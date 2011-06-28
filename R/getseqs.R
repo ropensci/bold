@@ -8,6 +8,7 @@ getseqs <-
 #   geoexc: geographic location to exclude (character)
 # Examples:
 #   getseqs('Coelioxys')
+#   getseqs('Aglae')
 
 function(taxoninc, taxonexc = NA, geoinc = NA, geoexc = NA, 
     url = "http://services.boldsystems.org/eSearch.php?") {
@@ -26,7 +27,7 @@ function(taxoninc, taxonexc = NA, geoinc = NA, geoexc = NA,
     sequrl <- paste("http://services.boldsystems.org/eFetch.php?record_type=sequence&id_type=sampleid&ids=(", sampleid_, ")&return_type=json", sep='')
     if ( class(try(fromJSON(sequrl)$record$nucleotides, silent=T)) %in% "try-error") 
       {seq_ <- "no sequence for this specimen"} else
-      {seq_ <- fromJSON(myurl)$record$nucleotides}
+      {seq_ <- fromJSON(sequrl)$record$nucleotides}
     return(seq_)
   }
 

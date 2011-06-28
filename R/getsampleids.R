@@ -8,7 +8,7 @@ getsampleids <-
 #   geoexc: geographic location to exclude (character)
 # Examples:
 #   getsampleids('Formicidae')
-#   getsampleids('Formicidae', geoexc='Canada')
+#   getsampleids('Andrenidae')
 
 function(taxoninc, taxonexc = NA, geoinc = NA, geoexc = NA, 
     url = "http://services.boldsystems.org/eSearch.php?") {
