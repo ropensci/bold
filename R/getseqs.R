@@ -1,17 +1,19 @@
-# Function to get sequences for a taxonomic group
-
-getseqs <- 
-# Args:
-#   taxoninc: taxonomic group to include in search (character)
-#   taxonexc: taxonomic group to exclude in search (character)
-#   geoinc: geographic location to include (character)
-#   geoexc: geographic location to exclude (character)
-# Examples:
-#   getseqs('Coelioxys')
-#   getseqs('Aglae')
-
-function(taxoninc, taxonexc = NA, geoinc = NA, geoexc = NA, 
-    url = "http://services.boldsystems.org/eSearch.php?") {
+#' getseqs 
+#'
+#' Get sequences for a taxonomic group
+#' @import RCurl XML plyr RJSONIO
+#' @param taxoninc taxonomic group to include in search (character)
+#' @param taxonexc taxonomic group to exclude in search (character)
+#' @param geoinc geographic location to include (character)
+#' @param geoexc geographic location to exclude (character)
+#' @export
+#' @examples \dontrun{
+#' getseqs('Coelioxys')
+#' getseqs('Aglae')
+#' }
+getseqs <- function(taxoninc, taxonexc = NA, geoinc = NA, geoexc = NA, 
+    url = "http://services.boldsystems.org/eSearch.php?") 
+{
   taxoninc_ <- paste("taxon_inc=(", taxoninc, ")", sep='')
   
   if (!is.na(taxonexc)) {taxonexc_ <- paste('&taxon_exc=(', taxonexc, ")", sep='')} else {taxonexc_ <- NULL}
@@ -30,6 +32,6 @@ function(taxoninc, taxonexc = NA, geoinc = NA, geoexc = NA,
       {seq_ <- fromJSON(sequrl)$record$nucleotides}
     return(seq_)
   }
-
+  
   laply(outlist[1:reclength], getseqs_, .progress="text")
 }

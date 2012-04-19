@@ -1,7 +1,0 @@
-import(XML)
-import(RCurl)
-import(RJSONIO)
-import(stringr)
-import(plyr)
-
-export(getsampleids, getseqs)

@@ -1,19 +1,20 @@
-# Function to get sequences for a taxonomic group
-
-getsampleids <- 
-# Args:
-#   taxoninc: taxonomic group to include in search (character)
-#   taxonexc: taxonomic group to exclude in search (character)
-#   geoinc: geographic location to include (character)
-#   geoexc: geographic location to exclude (character)
-# Examples:
-#   getsampleids(taxoninc = 'Andrena')
-#   getsampleids(taxoninc = 'Andrenidae')
-
-function(taxoninc = NA, taxonexc = NA, geoinc = NA, geoexc = NA, 
-    url = "http://services.boldsystems.org/eSearch.php?",
-    ...) {
-  
+#' getseqs 
+#'
+#' Get sequences for a taxonomic group
+#' @import RCurl XML plyr RJSONIO
+#' @param taxoninc taxonomic group to include in search (character)
+#' @param taxonexc taxonomic group to exclude in search (character)
+#' @param geoinc geographic location to include (character)
+#' @param geoexc geographic location to exclude (character)
+#' @param url base URL for the BOLD API (leave to default)
+#' @export
+#' @examples \dontrun{
+#' getsampleids(taxoninc = 'Andrena')
+#' getsampleids(taxoninc = 'Andrenidae')
+#' }
+getsampleids <- function(taxoninc = NA, taxonexc = NA, geoinc = NA, geoexc = NA, 
+    url = "http://services.boldsystems.org/eSearch.php?", ...) 
+{  
   taxoninc_ <- paste("taxon_inc=(", taxoninc, ")", sep='')
   if (!is.na(taxonexc)) {taxonexc_ <- paste('&taxon_exc=(', taxonexc, ")", sep='')} else {taxonexc_ <- NULL}
   if (!is.na(geoinc)) {geoinc_ <- paste('&geo_inc=(', geoinc, ")", sep='')} else {geoinc_ <- NULL}
@@ -22,9 +23,5 @@ function(taxoninc = NA, taxonexc = NA, geoinc = NA, geoexc = NA,
   out <- getURL(taxurl)
   reclength <- length(xmlTreeParse(out)[[1]][[1]])
   outlist <- xmlToList(out)
-  sampidlist <- laply(outlist[1:reclength], function(x) x$specimen_identifiers$sampleid, .progress="text")
-  
-  return(sampidlist)
+  laply(outlist[1:reclength], function(x) x$specimen_identifiers$sampleid, .progress="text")
 }
-
-
