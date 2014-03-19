@@ -1,16 +1,18 @@
-Package: rbold
+Package: bold
 Title: Interface to Bold Systems API methods
-Version: 0.0.1
-License: C00
-Date: 2012-04-18
+Description: A programmatic interface to the
+    Web Service methods provided by Bold Systems for barcode data.
+Version: 0.0.8
+License: MIT + file LICENSE
+Date: 2014-03-17
 Authors@R: c(person("Scott", "Chamberlain", role = c("aut", "cre"),
     email = "myrmecocystus@gmail.com"))
-Description: A programmatic interface to the
- Web Service methods provided by Bold Systems for barcode data.
-URL: https://github.com/ropensci/rbold
-Imports: 
-	XML, 
-	RCurl (>= 1.6), 
-	RJSONIO, 
-	stringr, 
-	plyr
+URL: https://github.com/ropensci/bold
+Bugs: https://github.com/ropensci/bold/issues
+Imports:
+    XML,
+    RCurl (>= 1.6),
+    RJSONIO,
+    stringr,
+    plyr,
+    assertthat
