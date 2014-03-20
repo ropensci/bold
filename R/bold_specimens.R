@@ -8,7 +8,8 @@
 #' @param format One of xml or tsv (character)
 #' @param callopts (character) curl debugging opts passed on to httr::GET
 #' @examples \dontrun{
-#' bold_specimens(taxon='Osmia', geo='Costa Rica')
+#' bold_specimens(taxon='Osmia')
+#' bold_specimens(geo='Costa Rica')
 #' bold_specimens(taxon="Formicidae", geo="Canada")
 #' 
 #' res <- bold_specimens(taxon="Formicidae", geo="Canada")
