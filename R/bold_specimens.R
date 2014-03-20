@@ -7,14 +7,14 @@
 #' @param geo geographic area to exclude (character)
 #' @param format One of xml or tsv (character)
 #' @examples \dontrun{
-#' bold_search(taxon='Aves', geo='Costa Rica')
-#' bold_search(taxon="Formicidae", geo="Canada")
+#' bold_specimens(taxon='Osmia', geo='Costa Rica')
+#' bold_specimens(taxon="Formicidae", geo="Canada")
 #' 
-#' res <- bold_search(taxon="Formicidae", geo="Canada")
+#' res <- bold_specimens(taxon="Formicidae", geo="Canada")
 #' head(res)
 #' }
 
-bold_search <- function(taxon = NULL, geo = NULL, format = 'xml', callopts=list()) 
+bold_specimens <- function(taxon = NULL, geo = NULL, format = 'xml', callopts=list()) 
 {
   format <- match.arg(format, choices = c('xml','tsv'))
   url <- 'http://www.boldsystems.org/index.php/API_Public/specimen'
