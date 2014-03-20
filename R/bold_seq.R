@@ -1,8 +1,9 @@
 #' Search BOLD for sequences.
 #'
-#' Get sequences for a taxonomic group
+#' Get sequences for a taxonomic name, id, bin, container, institution, researcher, geographic 
+#' place, or gene. 
 #' 
-#' @import RCurl XML RJSONIO stringr
+#' @import httr stringr
 #' @export
 #' @param taxon (character) Returns all records containing matching taxa. Taxa includes the ranks of 
 #' phylum, class, order, family, subfamily, genus, and species.

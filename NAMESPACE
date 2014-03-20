@@ -2,8 +2,6 @@
 
 export(bold_seq)
 export(bold_specimens)
-import(RCurl)
-import(RJSONIO)
 import(XML)
 import(assertthat)
 import(httr)

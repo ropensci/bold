@@ -48,7 +48,8 @@ bold_seq(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
 A list with each element of length 4 with slots for id, name, gene, and sequence.
 }
 \description{
-Get sequences for a taxonomic group
+Get sequences for a taxonomic name, id, bin, container, institution, researcher, geographic
+place, or gene.
 }
 \examples{
 \dontrun{

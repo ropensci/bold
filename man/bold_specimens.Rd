@@ -13,6 +13,9 @@ bold_specimens(taxon = NULL, geo = NULL, format = "xml",
   \item{geo}{geographic area to exclude (character)}
 
   \item{format}{One of xml or tsv (character)}
+
+  \item{callopts}{(character) curl debugging opts passed on
+  to httr::GET}
 }
 \description{
 Search BOLD for specimens.
