@@ -1,10 +1,12 @@
 Package: bold
 Title: Interface to Bold Systems API methods
-Description: A programmatic interface to the
-    Web Service methods provided by Bold Systems for barcode data.
-Version: 0.0.8
+Description: A programmatic interface to the Web Service methods provided by
+    Bold Systems for genetic barcode data. Functions include methods for
+    searching by sequences by taxonomic names, ids, collectors, and
+    institutions; as well as a function for searching for specimens.
+Version: 0.0.9
 License: MIT + file LICENSE
-Date: 2014-03-17
+Date: 2014-05-28
 Authors@R: c(person("Scott", "Chamberlain", role = c("aut", "cre"),
     email = "myrmecocystus@gmail.com"))
 URL: https://github.com/ropensci/bold

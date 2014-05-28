@@ -5,7 +5,7 @@
 \usage{
 bold_seq(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
   institutions = NULL, researchers = NULL, geo = NULL, marker = NULL,
-  callopts = list())
+  response = FALSE, callopts = list())
 }
 \arguments{
 \item{taxon}{(character) Returns all records containing matching taxa. Taxa includes the ranks of
@@ -21,13 +21,18 @@ Barcode Index Number URI.}
 Containers include project codes and dataset codes}
 
 \item{institutions}{(character) Returns all records stored in matching institutions. Institutions
-are the Specimen Storing Site. (spaces need to be encoded)}
+are the Specimen Storing Site.}
 
 \item{researchers}{(character) Returns all records containing matching researcher names.
-Researchers include collectors and specimen identifiers. (spaces need to be encoded)}
+Researchers include collectors and specimen identifiers.}
 
 \item{geo}{(character) Returns all records collected in matching geographic sites. Geographic
-sites includes countries and province/states. (spaces need to be encoded)}
+sites includes countries and province/states.}
+
+\item{response}{(logical) Note that response is the object that returns from the Curl call,
+useful for debugging, and getting detailed info on the API call.}
+
+\item{callopts}{(character) curl debugging opts passed on to httr::GET}
 
 \item{marker}{(character) Returns all records containing matching marker codes.}
 
@@ -53,7 +58,15 @@ bold_seq(institutions='Biodiversity Institute of Ontario')
 bold_seq(researchers='Thibaud Decaens')
 bold_seq(geo='Ireland')
 bold_seq(geo=c('Ireland','Denmark'))
-bold_seq(marker='COI')
+
+# Return the httr response object for detailed Curl call response details
+res <- bold_seq(taxon='Coelioxys', response=TRUE)
+res$url
+res$status_code
+res$headers
+}
+\donttest{
+bold_seq(marker='COI-5P')
 bold_seq(marker=c('rbcL','matK'))
 }
 }

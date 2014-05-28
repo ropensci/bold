@@ -3,48 +3,48 @@
 #' @import XML httr assertthat
 #' @importFrom plyr compact
 #' @export
-#' @param taxon scientitic name of taxon, as e.g., "Cottus" (character)
-#' @param geo geographic area to exclude (character)
-#' @param format One of xml or tsv (character)
-#' @param callopts (character) curl debugging opts passed on to httr::GET
+#' @template args 
+#' 
+#' @param format (character) One of xml or tsv (default). tsv format gives back a data.frame 
+#' object. xml gives back parsed xml as a 
+#' 
 #' @examples \dontrun{
 #' bold_specimens(taxon='Osmia')
-#' bold_specimens(geo='Costa Rica')
-#' bold_specimens(taxon="Formicidae", geo="Canada")
+#' bold_specimens(taxon='Osmia', format='xml')
+#' bold_specimens(taxon='Osmia', response=TRUE)
+#' res <- bold_specimens(taxon='Osmia', format='xml', response=TRUE)
+#' res$url
+#' res$status_code
+#' res$headers
 #' 
-#' res <- bold_specimens(taxon="Formicidae", geo="Canada")
-#' head(res)
+#' # More than 1 can be given for all searh parameters
+#' bold_specimens(taxon=c('Coelioxys','Osmia'))
+#' 
+#' library("httr")
+#' head(bold_specimens(geo='Costa Rica', callopts=timeout(6)))
+#' head(bold_specimens(taxon="Formicidae", geo="Canada", callopts=timeout(6)))
 #' }
 
-bold_specimens <- function(taxon = NULL, geo = NULL, format = 'xml', callopts=list()) 
+bold_specimens <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL, 
+  institutions = NULL, researchers = NULL, geo = NULL, response=FALSE, callopts=list(), 
+  format = 'tsv')
 {
   format <- match.arg(format, choices = c('xml','tsv'))
   url <- 'http://www.boldsystems.org/index.php/API_Public/specimen'
-  args <- compact(list(taxon=taxon, geo=geo, specimen_download=format))
+  args <- bold_compact(list(taxon=pipeornull(taxon), geo=pipeornull(geo), ids=pipeornull(ids), 
+      bin=pipeornull(bin), container=pipeornull(container), institutions=pipeornull(institutions), 
+      researchers=pipeornull(researchers), specimen_download=format))
   out <- GET(url, query=args, callopts)
   # check HTTP status code
-  stop_for_status(out)
+  warn_for_status(out)
   # check mime-type (Even though BOLD folks didn't specify correctly)
   assert_that(out$headers$`content-type`=='application/x-download')
   tt <- content(out, as = "text")
   
-  if(format=='xml'){
-    res <- xmlParse(tt)
-  } else {
-    res <- read.delim(text = tt, header = TRUE, sep = "\t")
+  if(response){ out } else {
+    switch(format, 
+           xml = xmlParse(tt),
+           tsv = read.delim(text = tt, header = TRUE, sep = "\t", stringsAsFactors=FALSE)
+    )
   }
-
-  return(res)
 }
-
-# outlist <- xmlToList(res)
-# laply(outlist[1:reclength], function(x) x$specimen_identifiers$sampleid, .progress="text")
-# 
-# getseqs <- function(x) {
-#   sampleid_ <- x$specimen_identifiers$sampleid
-#   url <- paste("http://services.boldsystems.org/eFetch.php?record_type=sequence&id_type=sampleid&ids=(", sampleid_, ")&return_type=json", sep='')
-#   seq_ <- fromJSON(url)$record$nucleotides
-#   return(seq_)
-# }
-# 
-# laply(outlist[1:10], getseqs, .progress="text")

@@ -3,17 +3,39 @@
 \alias{bold_specimens}
 \title{Search BOLD for specimens.}
 \usage{
-bold_specimens(taxon = NULL, geo = NULL, format = "xml",
-  callopts = list())
+bold_specimens(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
+  institutions = NULL, researchers = NULL, geo = NULL, response = FALSE,
+  callopts = list(), format = "tsv")
 }
 \arguments{
-\item{taxon}{scientitic name of taxon, as e.g., "Cottus" (character)}
+\item{taxon}{(character) Returns all records containing matching taxa. Taxa includes the ranks of
+phylum, class, order, family, subfamily, genus, and species.}
 
-\item{geo}{geographic area to exclude (character)}
+\item{ids}{(character) Returns all records containing matching IDs. IDs include Sample IDs,
+Process IDs, Museum IDs and Field IDs.}
 
-\item{format}{One of xml or tsv (character)}
+\item{bin}{(character) Returns all records contained in matching BINs. A BIN is defined by a
+Barcode Index Number URI.}
+
+\item{container}{(character) Returns all records contained in matching projects or datasets.
+Containers include project codes and dataset codes}
+
+\item{institutions}{(character) Returns all records stored in matching institutions. Institutions
+are the Specimen Storing Site.}
+
+\item{researchers}{(character) Returns all records containing matching researcher names.
+Researchers include collectors and specimen identifiers.}
+
+\item{geo}{(character) Returns all records collected in matching geographic sites. Geographic
+sites includes countries and province/states.}
+
+\item{response}{(logical) Note that response is the object that returns from the Curl call,
+useful for debugging, and getting detailed info on the API call.}
 
 \item{callopts}{(character) curl debugging opts passed on to httr::GET}
+
+\item{format}{(character) One of xml or tsv (default). tsv format gives back a data.frame
+object. xml gives back parsed xml as a}
 }
 \description{
 Search BOLD for specimens.
@@ -21,11 +43,19 @@ Search BOLD for specimens.
 \examples{
 \dontrun{
 bold_specimens(taxon='Osmia')
-bold_specimens(geo='Costa Rica')
-bold_specimens(taxon="Formicidae", geo="Canada")
+bold_specimens(taxon='Osmia', format='xml')
+bold_specimens(taxon='Osmia', response=TRUE)
+res <- bold_specimens(taxon='Osmia', format='xml', response=TRUE)
+res$url
+res$status_code
+res$headers
 
-res <- bold_specimens(taxon="Formicidae", geo="Canada")
-head(res)
+# More than 1 can be given for all searh parameters
+bold_specimens(taxon=c('Coelioxys','Osmia'))
+
+library("httr")
+head(bold_specimens(geo='Costa Rica', callopts=timeout(6)))
+head(bold_specimens(taxon="Formicidae", geo="Canada", callopts=timeout(6)))
 }
 }
 
