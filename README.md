@@ -1,19 +1,21 @@
 bold
 ------
 
-`bold` accesses BOLD barcode data. 
+[![Build Status](https://api.travis-ci.org/ropensci/bold.png)](https://travis-ci.org/ropensci/bold)
 
-You do not need an API key. 
+`bold` accesses BOLD barcode data.
+
+You do not need an API key.
 
 [Documentation for the BOLD API](http://www.boldsystems.org/index.php/resources/api).
 
 `bold` is part of the rOpenSci project, visit http://ropensci.org to learn more.
 
-## Quickstart 
+## Quickstart
 
 ### Install bold from GitHub:
 
-```coffee 
+```coffee
 install.packages("devtools")
 require(devtools)
 devtools::install_github("bold", "ropensci")
