@@ -2,3 +2,4 @@ man-roxygen
 inst/ignore
 inst/vign
 Makefile
+.travis.yml
