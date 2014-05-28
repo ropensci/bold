@@ -1,0 +1,74 @@
+<!--
+%\VignetteEngine{knitr::docco_classic}
+%\VignetteIndexEntry{bold vignette}
+-->
+
+`bold` is an R package to connect to BOLD Systems \url{http://www.boldsystems.org/} via their API. Functions in `bold` let you search for sequence data, specimen data, sequence + specimen data, and download raw trace files.
+
+### bold info
+
++ [BOLD home page](http://boldsystems.org/)
++ [BOLD API docs](boldsystems.org/index.php/resources/api)
+
+### Using bold
+
+**Install**
+
+Install `bold`
+
+```{r, eval=FALSE}
+devtools::install_github("ropensci/bold")
+```
+
+```{r}
+library("bold")
+```
+
+### Search for sequence data only
+
+Default is to get a list back
+
+```{r}
+bold_seq(taxon='Coelioxys')[1:2]
+```
+
+You can optionally get back the `httr` response object
+
+```{r}
+res <- bold_seq(taxon='Coelioxys', response=TRUE)
+res$headers
+```
+
+### Search for specimen data only
+
+By default you download `tsv` format data, which is given back to you as a `data.frame`
+
+```{r}
+res <- bold_specimens(taxon='Osmia')
+head(res[,1:8])
+```
+
+
+### Search for specimen plus sequence data
+
+By default you download `tsv` format data, which is given back to you as a `data.frame`
+
+```{r}
+res <- bold_seqspec(taxon='Osmia', sepfasta=TRUE)
+res$fasta[1:2]
+```
+
+Or you can index to a specific sequence like
+
+```{r}
+res$fasta['GBAH0293-06']
+```
+
+
+### Get trace files
+
+This function downloads files to your machine - it does not load them into your R session - but prints out where the files are for your information.
+
+```{r cache=TRUE, cache.path="../ignore/"}
+bold_trace(taxon='Osmia', quiet=TRUE)
+```

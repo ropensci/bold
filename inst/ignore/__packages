@@ -1,0 +1,17 @@
+base
+bold
+datasets
+devtools
+graphics
+grDevices
+httr
+knitr
+methods
+Rdocumentation
+roxygen2
+sacbox
+slidify
+slidifyLibraries
+stats
+testthat
+utils
