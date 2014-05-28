@@ -55,7 +55,7 @@ bold_seqspec(taxon='Osmia')
 bold_seqspec(taxon='Osmia', format='xml')
 bold_seqspec(taxon='Osmia', response=TRUE)
 res <- bold_seqspec(taxon='Osmia', sepfasta=TRUE)
-res$fasta
+res$fasta[1:2]
 res$fasta['GBAH0293-06']
 }
 }

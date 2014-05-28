@@ -41,4 +41,5 @@ bold_trace <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
   files <- list.files(destdir, full.names = TRUE)
   cat("Trace file extracted with files:", "\n\n")
   cat(files, sep = "\n")
+  invisible(files)
 }
