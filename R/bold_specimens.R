@@ -1,7 +1,6 @@
 #' Search BOLD for specimens.
 #' 
 #' @import XML httr assertthat
-#' @importFrom plyr compact
 #' @export
 #' @template args 
 #' 

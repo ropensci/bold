@@ -1,7 +1,6 @@
 #' Get BOLD specimen + sequence data.
 #' 
 #' @import XML httr assertthat stringr
-#' @importFrom plyr compact
 #' @export
 #' @template args 
 #' 

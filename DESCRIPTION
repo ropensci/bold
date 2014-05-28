@@ -15,5 +15,4 @@ Imports:
     XML,
     httr,
     stringr,
-    plyr,
     assertthat
