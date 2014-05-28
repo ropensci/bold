@@ -3,7 +3,9 @@
 #' @import XML httr assertthat stringr
 #' @export
 #' @template args 
+#' @template otherargs
 #' 
+#' @param marker (character) Returns all records containing matching marker codes. 
 #' @param format (character) One of xml or tsv (default). tsv format gives back a data.frame 
 #' object. xml gives back parsed xml as a 
 #' @param sepfasta (logical) If TRUE, the fasta data is separated into a list with names matching 

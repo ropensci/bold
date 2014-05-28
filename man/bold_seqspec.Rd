@@ -34,6 +34,8 @@ useful for debugging, and getting detailed info on the API call.}
 
 \item{callopts}{(character) curl debugging opts passed on to httr::GET}
 
+\item{marker}{(character) Returns all records containing matching marker codes.}
+
 \item{format}{(character) One of xml or tsv (default). tsv format gives back a data.frame
 object. xml gives back parsed xml as a}
 

@@ -29,10 +29,7 @@ Researchers include collectors and specimen identifiers.}
 \item{geo}{(character) Returns all records collected in matching geographic sites. Geographic
 sites includes countries and province/states.}
 
-\item{response}{(logical) Note that response is the object that returns from the Curl call,
-useful for debugging, and getting detailed info on the API call.}
-
-\item{callopts}{(character) curl debugging opts passed on to httr::GET}
+\item{marker}{(character) Returns all records containing matching marker codes.}
 
 \item{dest}{(character) A directory to write the files to}
 

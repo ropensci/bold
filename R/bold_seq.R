@@ -5,7 +5,8 @@
 #' 
 #' @import httr stringr
 #' @export
-#' @template args
+#' @template args 
+#' @template otherargs
 #' 
 #' @param marker (character) Returns all records containing matching marker codes. 
 #' 

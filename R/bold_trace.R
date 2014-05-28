@@ -6,6 +6,7 @@
 #' @export
 #' @template args 
 #' 
+#' @param marker (character) Returns all records containing matching marker codes. 
 #' @param dest (character) A directory to write the files to 
 #' @param ... Futher args passed on to download.file. See examples.
 #' 
