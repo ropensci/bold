@@ -3,6 +3,7 @@
 export(bold_seq)
 export(bold_seqspec)
 export(bold_specimens)
+export(bold_trace)
 import(XML)
 import(assertthat)
 import(httr)

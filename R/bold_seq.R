@@ -8,7 +8,7 @@
 #' @template args
 #' 
 #' @param marker (character) Returns all records containing matching marker codes. 
-#' @param callopts (character) curl debugging opts passed on to httr::GET
+#' 
 #' @return A list with each element of length 4 with slots for id, name, gene, and sequence.
 #' @examples \dontrun{
 #' bold_seq(taxon='Coelioxys')
@@ -51,15 +51,4 @@ bold_seq <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL, ins
   res <- strsplit(tt, ">")[[1]][-1]
   output <- lapply(res, split_fasta)
   if(response) out else output
-}
-
-split_fasta <- function(x){
-  temp <- paste(">", x, sep="")
-  seq <- str_replace_all(str_split(str_replace(temp[[1]], "\n", "<<<"), "<<<")[[1]][[2]], "\n", "")
-  stuff <- str_split(x, "\\|")[[1]][c(1:3)]
-  list(id=stuff[1], name=stuff[2], gene=stuff[1], sequence=seq)
-}
-
-pipeornull <- function(x){
-  if(!is.null(x)){ paste0(x, collapse = "|") } else { NULL }
 }

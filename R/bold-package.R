@@ -2,15 +2,18 @@
 #' 
 #' @section About:
 #' 
-#' This package gives you access to data from GBIF \url{http://www.boldsystems.org/} via their API.
+#' This package gives you access to data from BOLD System \url{http://www.boldsystems.org/} via 
+#' their API.
 #' 
 #' @section Functions:
 #' 
-#' There are currently two main functions.
+#' There are currently four functions.
 #' 
 #' \itemize{
-#'   bold_specimens - Search for specimen data.
-#'   bold_seq - Search for and retrieve sequences.
+#'  \item bold_specimens - Search for specimen data.
+#'  \item bold_seq - Search for and retrieve sequences.
+#'  \item bold_seqspec - Get sequence and specimen data together.
+#'  \item bold_trace - Get trace files.
 #' }
 #' 
 #' Interestingly, they provide xml and tsv format data for the specimen data, while they provide
