@@ -1,2 +1,4 @@
 man-roxygen
-inst/ignore/
+inst/ignore
+inst/vign
+Makefile
