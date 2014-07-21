@@ -7,7 +7,7 @@ c <- bold_seqspec(taxon='Osmia', sepfasta=TRUE)
 
 test_that("bold_seqspec returns the correct dimensions or values", {
   expect_equal(ncol(a), 63)
-  expect_equal(length(b), 8)
+  expect_equal(length(b), 9)
   expect_equal(length(c), 2)
   
   expect_equal(b$status_code, 200)
