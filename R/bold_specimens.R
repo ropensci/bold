@@ -34,6 +34,7 @@ bold_specimens <- function(taxon = NULL, ids = NULL, bin = NULL, container = NUL
   args <- bold_compact(list(taxon=pipeornull(taxon), geo=pipeornull(geo), ids=pipeornull(ids), 
       bin=pipeornull(bin), container=pipeornull(container), institutions=pipeornull(institutions), 
       researchers=pipeornull(researchers), specimen_download=format))
+  check_args_given_nonempty(args, c('taxon','ids','bin','container','institutions','researchers','geo'))
   out <- GET(url, query=args, callopts)
   # check HTTP status code
   warn_for_status(out)

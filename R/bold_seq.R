@@ -43,13 +43,15 @@ bold_seq <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL, ins
   args <- bold_compact(list(taxon=pipeornull(taxon), geo=pipeornull(geo), ids=pipeornull(ids), 
       bin=pipeornull(bin), container=pipeornull(container), institutions=pipeornull(institutions), 
       researchers=pipeornull(researchers), marker=pipeornull(marker)))
+  check_args_given_nonempty(args, c('taxon','ids','bin','container','institutions','researchers','geo','marker'))
   out <- GET(url, query=args, callopts)
   # check HTTP status code
   stop_for_status(out)
   # check mime-type (Even though BOLD folks didn't specify correctly)
   assert_that(out$headers$`content-type`=='application/x-download')
-  tt <- content(out, as = "text")
-  res <- strsplit(tt, ">")[[1]][-1]
-  output <- lapply(res, split_fasta)
-  if(response) out else output
+  if(response){ out } else { 
+    tt <- content(out, as = "text")
+    res <- strsplit(tt, ">")[[1]][-1]
+    lapply(res, split_fasta)
+  }
 }

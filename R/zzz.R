@@ -16,3 +16,16 @@ make_url <- function(url, args){
   tmp$query <- args
   build_url(tmp)
 }
+
+check_args_given_nonempty <- function(arguments, x){
+  paramnames <- x
+  matchez <- any(paramnames %in% names(arguments))
+  if(!matchez){
+    stop(sprintf("You must provide a non-empty value to at least one of\n  %s", paste0(paramnames, collapse = "\n  ")))
+  } else {
+    arguments_noformat <- arguments[ !names(arguments) %in% 'combined_download' ]
+    argslengths <- vapply(arguments_noformat, nchar, numeric(1), USE.NAMES = FALSE)
+    if(any(argslengths == 0))
+      stop(sprintf("You must provide a non-empty value to at least one of\n  %s", paste0(paramnames, collapse = "\n  ")))
+  }   
+}
