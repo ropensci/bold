@@ -1,3 +1,16 @@
+bold 0.1.2
+===============
+
+MINOR IMPROVEMENTS
+
+* Improved the vignette (#8)
+* Added small function to print helpful message when user inputs no parameters or zero length parameter values.
+
+BUG FIXES
+
+* Fixed some broken tests with the new `httr` (v0.4) (#9), and added a few more tests (#7)
+
+
 bold 0.1.0
 ===============
 
