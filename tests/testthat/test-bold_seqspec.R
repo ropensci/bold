@@ -26,3 +26,8 @@ test_that("bold_seqspec returns the correct classes", {
   
   expect_is(b$headers, "insensitive")
 })
+
+test_that("bold_seq returns correct error when parameters empty or not given", {
+  expect_error(bold_seqspec(taxon=''), "must provide a non-empty value")
+  expect_error(bold_seqspec(), "must provide a non-empty value")
+})

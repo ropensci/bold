@@ -26,3 +26,8 @@ test_that("bold_specimens returns the correct classes", {
 test_that("Throws warning on call that takes forever including timeout in callopts", {
   expect_error(bold_specimens(geo='Costa Rica', callopts=timeout(2)), "Operation timed out")
 })
+
+test_that("bold_seq returns correct thing when parameters empty or not given", {
+  expect_error(bold_specimens(taxon=''), "must provide a non-empty value")
+  expect_error(bold_specimens(), "must provide a non-empty value")
+})
