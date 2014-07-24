@@ -3,3 +3,4 @@ inst/ignore
 inst/vign
 Makefile
 .travis.yml
+cran-comments.md
