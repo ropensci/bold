@@ -4,7 +4,7 @@
 #' @export
 #' @template args 
 #' @template otherargs
-#' @references \url{http://www.boldsystems.org/index.php/resources/api}
+#' @references \url{http://www.boldsystems.org/index.php/resources/api#combined}
 #' 
 #' @param marker (character) Returns all records containing matching marker codes. 
 #' @param format (character) One of xml or tsv (default). tsv format gives back a data.frame 

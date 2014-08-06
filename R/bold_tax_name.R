@@ -5,7 +5,7 @@
 #' @param name (character) One or more scientific names.
 #' @param fuzzy (logical) Whether to use fuzzy search or not (default: FALSE).
 #' @template otherargs
-#' @references \url{http://boldsystems.org/index.php/resources/api?type=taxonomy}
+#' @references \url{http://boldsystems.org/index.php/resources/api?type=taxonomy#nameParameters}
 #' @examples \dontrun{
 #' bold_tax_name(name='Diplura')
 #' bold_tax_name(name='Osmia')

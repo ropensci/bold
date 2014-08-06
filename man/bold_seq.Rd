@@ -69,12 +69,8 @@ library("httr")
 bold_seq(taxon='Coelioxys', config=verbose())[1:2]
 bold_seqspec(taxon='Coelioxys', config=timeout(0.1))
 }
-\donttest{
-bold_seq(marker='COI-5P')
-bold_seq(marker=c('rbcL','matK'))
-}
 }
 \references{
-\url{http://www.boldsystems.org/index.php/resources/api}
+\url{http://www.boldsystems.org/index.php/resources/api#sequenceParameters}
 }
 

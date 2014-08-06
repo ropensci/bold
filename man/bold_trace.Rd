@@ -52,4 +52,7 @@ bold_trace(taxon='Bombus', institutions='York University', dest="~/mytarfiles")
 bold_trace(ids=c('ACRJP618-11','ACRJP619-11'))
 }
 }
+\references{
+\url{http://www.boldsystems.org/index.php/resources/api#trace}
+}
 

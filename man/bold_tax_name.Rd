@@ -34,6 +34,6 @@ bold_tax_name(name='Diplura', config=verbose())
 }
 }
 \references{
-\url{http://boldsystems.org/index.php/resources/api?type=taxonomy}
+\url{http://boldsystems.org/index.php/resources/api?type=taxonomy#nameParameters}
 }
 

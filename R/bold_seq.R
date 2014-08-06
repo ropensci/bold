@@ -1,16 +1,16 @@
 #' Search BOLD for sequences.
 #'
-#' Get sequences for a taxonomic name, id, bin, container, institution, researcher, geographic 
-#' place, or gene. 
-#' 
+#' Get sequences for a taxonomic name, id, bin, container, institution, researcher, geographic
+#' place, or gene.
+#'
 #' @import httr stringr
 #' @export
-#' @template args 
+#' @template args
 #' @template otherargs
-#' @references \url{http://www.boldsystems.org/index.php/resources/api}
-#' 
-#' @param marker (character) Returns all records containing matching marker codes. 
-#' 
+#' @references \url{http://www.boldsystems.org/index.php/resources/api#sequenceParameters}
+#'
+#' @param marker (character) Returns all records containing matching marker codes.
+#'
 #' @return A list with each element of length 4 with slots for id, name, gene, and sequence.
 #' @examples \dontrun{
 #' bold_seq(taxon='Coelioxys')
@@ -24,31 +24,32 @@
 #' bold_seq(researchers='Thibaud Decaens')
 #' bold_seq(geo='Ireland')
 #' bold_seq(geo=c('Ireland','Denmark'))
-#' 
+#'
 #' # Return the httr response object for detailed Curl call response details
 #' res <- bold_seq(taxon='Coelioxys', response=TRUE)
 #' res$url
 #' res$status_code
 #' res$headers
-#' 
+#'
 #' ## curl debugging
 #' ### You can do many things, including get verbose output on the curl call, and set a timeout
 #' library("httr")
 #' bold_seq(taxon='Coelioxys', config=verbose())[1:2]
 #' bold_seqspec(taxon='Coelioxys', config=timeout(0.1))
 #' }
-#' \donttest{
+#' 
+#' @examples \donttest{
 #' bold_seq(marker='COI-5P')
 #' bold_seq(marker=c('rbcL','matK'))
 #' }
 
-bold_seq <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL, institutions = NULL, 
-  researchers = NULL, geo = NULL, marker = NULL, response=FALSE, ...) 
+bold_seq <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL, institutions = NULL,
+  researchers = NULL, geo = NULL, marker = NULL, response=FALSE, ...)
 {
   url <- 'http://www.boldsystems.org/index.php/API_Public/sequence'
-  
-  args <- bold_compact(list(taxon=pipeornull(taxon), geo=pipeornull(geo), ids=pipeornull(ids), 
-      bin=pipeornull(bin), container=pipeornull(container), institutions=pipeornull(institutions), 
+
+  args <- bold_compact(list(taxon=pipeornull(taxon), geo=pipeornull(geo), ids=pipeornull(ids),
+      bin=pipeornull(bin), container=pipeornull(container), institutions=pipeornull(institutions),
       researchers=pipeornull(researchers), marker=pipeornull(marker)))
   check_args_given_nonempty(args, c('taxon','ids','bin','container','institutions','researchers','geo','marker'))
   out <- GET(url, query=args, ...)
@@ -56,7 +57,7 @@ bold_seq <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL, ins
   stop_for_status(out)
   # check mime-type (Even though BOLD folks didn't specify correctly)
   assert_that(out$headers$`content-type`=='application/x-download')
-  if(response){ out } else { 
+  if(response){ out } else {
     tt <- content(out, as = "text")
     res <- strsplit(tt, ">")[[1]][-1]
     lapply(res, split_fasta)

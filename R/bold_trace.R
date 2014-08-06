@@ -5,6 +5,7 @@
 #' @import httr
 #' @export
 #' @template args 
+#' @references \url{http://www.boldsystems.org/index.php/resources/api#trace}
 #' 
 #' @param marker (character) Returns all records containing matching marker codes. 
 #' @param dest (character) A directory to write the files to 

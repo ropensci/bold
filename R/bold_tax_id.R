@@ -7,7 +7,7 @@
 #' @param includeTree (logical) If TRUE (default: FALSE), returns a list containing information
 #' for parent taxa as well as the specified taxon.
 #' @template otherargs
-#' @references \url{http://boldsystems.org/index.php/resources/api?type=taxonomy}
+#' @references \url{http://boldsystems.org/index.php/resources/api?type=taxonomy#idParameters}
 #' @examples \dontrun{
 #' bold_tax_id(id=88899)
 #' bold_tax_id(id=88899, includeTree=TRUE)

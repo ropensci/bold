@@ -66,6 +66,6 @@ head(bold_seqspec(taxon='Osmia', config=timeout(1)))
 }
 }
 \references{
-\url{http://www.boldsystems.org/index.php/resources/api}
+\url{http://www.boldsystems.org/index.php/resources/api#combined}
 }
 

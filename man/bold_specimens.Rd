@@ -62,6 +62,6 @@ head(bold_specimens(taxon="Formicidae", geo="Canada", config=timeout(6)))
 }
 }
 \references{
-\url{http://www.boldsystems.org/index.php/resources/api}
+\url{http://www.boldsystems.org/index.php/resources/api#specimenParameters}
 }
 

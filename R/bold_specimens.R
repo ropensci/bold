@@ -4,7 +4,7 @@
 #' @export
 #' @template args 
 #' @template otherargs
-#' @references \url{http://www.boldsystems.org/index.php/resources/api}
+#' @references \url{http://www.boldsystems.org/index.php/resources/api#specimenParameters}
 #' 
 #' @param format (character) One of xml or tsv (default). tsv format gives back a data.frame 
 #' object. xml gives back parsed xml as a 
