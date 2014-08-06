@@ -29,6 +29,12 @@
 #' res$url
 #' res$status_code
 #' res$headers
+#' 
+#' ## curl debugging
+#' ### You can do many things, including get verbose output on the curl call, and set a timeout
+#' library("httr")
+#' bold_seq(taxon='Coelioxys', config=verbose())[1:2]
+#' bold_seqspec(taxon='Coelioxys', config=timeout(0.1))
 #' }
 #' \donttest{
 #' bold_seq(marker='COI-5P')
@@ -36,7 +42,7 @@
 #' }
 
 bold_seq <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL, institutions = NULL, 
-  researchers = NULL, geo = NULL, marker = NULL, response=FALSE, callopts=list()) 
+  researchers = NULL, geo = NULL, marker = NULL, response=FALSE, ...) 
 {
   url <- 'http://www.boldsystems.org/index.php/API_Public/sequence'
   
@@ -44,7 +50,7 @@ bold_seq <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL, ins
       bin=pipeornull(bin), container=pipeornull(container), institutions=pipeornull(institutions), 
       researchers=pipeornull(researchers), marker=pipeornull(marker)))
   check_args_given_nonempty(args, c('taxon','ids','bin','container','institutions','researchers','geo','marker'))
-  out <- GET(url, query=args, callopts)
+  out <- GET(url, query=args, ...)
   # check HTTP status code
   stop_for_status(out)
   # check mime-type (Even though BOLD folks didn't specify correctly)

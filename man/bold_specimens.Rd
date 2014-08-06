@@ -5,7 +5,7 @@
 \usage{
 bold_specimens(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
   institutions = NULL, researchers = NULL, geo = NULL, response = FALSE,
-  callopts = list(), format = "tsv")
+  format = "tsv", ...)
 }
 \arguments{
 \item{taxon}{(character) Returns all records containing matching taxa. Taxa includes the ranks of
@@ -32,7 +32,7 @@ sites includes countries and province/states.}
 \item{response}{(logical) Note that response is the object that returns from the Curl call,
 useful for debugging, and getting detailed info on the API call.}
 
-\item{callopts}{(character) curl debugging opts passed on to httr::GET}
+\item{...}{Further args passed on to httr::GET, main purpose being curl debugging}
 
 \item{format}{(character) One of xml or tsv (default). tsv format gives back a data.frame
 object. xml gives back parsed xml as a}
@@ -53,8 +53,11 @@ res$headers
 # More than 1 can be given for all searh parameters
 bold_specimens(taxon=c('Coelioxys','Osmia'))
 
+## curl debugging
+### These examples below take a long time, so you can set a timeout so that it stops by X sec
 library("httr")
-head(bold_specimens(geo='Costa Rica', callopts=timeout(6)))
+head(bold_specimens(taxon='Osmia', config=verbose()))
+head(bold_specimens(geo='Costa Rica', config=timeout(6)))
 head(bold_specimens(taxon="Formicidae", geo="Canada", callopts=timeout(6)))
 }
 }

@@ -1,22 +1,26 @@
-#' Search BOLD for taxonomy data.
+#' Search BOLD for taxonomy data by BOlD ID.
 #' 
-#' @import httr jsonlite assertthat reshape
 #' @export
 #' @template args 
 #' @template otherargs
+#' @references \url{}
 #' @examples \dontrun{
 #' bold_tax_id(id=88899)
 #' bold_tax_id(id=88899, includeTree=TRUE)
 #' bold_tax_id(id=c(88899,125295))
+#' 
+#' ## curl debugging
+#' library('httr')
+#' bold_tax_id(id=88899, config=verbose())
 #' }
 
-bold_tax_id <- function(id = NULL, dataTypes='basic', includeTree=FALSE, callopts=list())
+bold_tax_id <- function(id = NULL, dataTypes='basic', includeTree=FALSE, ...)
 {
   url <- 'http://www.boldsystems.org/index.php/API_Tax/TaxonData'
   
   foo <- function(x){
     args <- bold_compact(list(taxId=x, dataTypes=dataTypes, includeTree=if(includeTree) TRUE else NULL))
-    res <- GET(url, query=args, callopts)
+    res <- GET(url, query=args, ...)
     warn_for_status(res)
     assert_that(res$headers$`content-type`=='text/html; charset=utf-8')
     tt <- content(res, as = "text")

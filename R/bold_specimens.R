@@ -20,14 +20,16 @@
 #' # More than 1 can be given for all searh parameters
 #' bold_specimens(taxon=c('Coelioxys','Osmia'))
 #' 
+#' ## curl debugging
+#' ### These examples below take a long time, so you can set a timeout so that it stops by X sec
 #' library("httr")
-#' head(bold_specimens(geo='Costa Rica', callopts=timeout(6)))
+#' head(bold_specimens(taxon='Osmia', config=verbose()))
+#' head(bold_specimens(geo='Costa Rica', config=timeout(6)))
 #' head(bold_specimens(taxon="Formicidae", geo="Canada", callopts=timeout(6)))
 #' }
 
 bold_specimens <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL, 
-  institutions = NULL, researchers = NULL, geo = NULL, response=FALSE, callopts=list(), 
-  format = 'tsv')
+  institutions = NULL, researchers = NULL, geo = NULL, response=FALSE, format = 'tsv', ...)
 {
   format <- match.arg(format, choices = c('xml','tsv'))
   url <- 'http://www.boldsystems.org/index.php/API_Public/specimen'
@@ -35,7 +37,7 @@ bold_specimens <- function(taxon = NULL, ids = NULL, bin = NULL, container = NUL
       bin=pipeornull(bin), container=pipeornull(container), institutions=pipeornull(institutions), 
       researchers=pipeornull(researchers), specimen_download=format))
   check_args_given_nonempty(args, c('taxon','ids','bin','container','institutions','researchers','geo'))
-  out <- GET(url, query=args, callopts)
+  out <- GET(url, query=args, ...)
   # check HTTP status code
   warn_for_status(out)
   # check mime-type (Even though BOLD folks didn't specify correctly)

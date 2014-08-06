@@ -21,11 +21,17 @@
 #' res <- bold_seqspec(taxon='Osmia', sepfasta=TRUE)
 #' res$fasta[1:2]
 #' res$fasta['GBAH0293-06']
+#' 
+#' ## curl debugging
+#' ### You can do many things, including get verbose output on the curl call, and set a timeout
+#' library("httr")
+#' head(bold_seqspec(taxon='Osmia', config=verbose()))
+#' head(bold_seqspec(taxon='Osmia', config=timeout(1)))
 #' }
 
 bold_seqspec <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL, 
   institutions = NULL, researchers = NULL, geo = NULL, marker = NULL, response=FALSE, 
-  callopts=list(), format = 'tsv', sepfasta=FALSE)
+  format = 'tsv', sepfasta=FALSE, ...)
 {
   format <- match.arg(format, choices = c('xml','tsv'))
   url <- 'http://www.boldsystems.org/index.php/API_Public/combined'
@@ -33,7 +39,7 @@ bold_seqspec <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
     bin=pipeornull(bin), container=pipeornull(container), institutions=pipeornull(institutions), 
     researchers=pipeornull(researchers), marker=pipeornull(marker), combined_download=format))
   check_args_given_nonempty(args, c('taxon','ids','bin','container','institutions','researchers','geo','marker'))
-  out <- GET(url, query=args, callopts)
+  out <- GET(url, query=args, ...)
   # check HTTP status code
   warn_for_status(out)
   # check mime-type (Even though BOLD folks didn't specify correctly)

@@ -5,7 +5,7 @@
 \usage{
 bold_seq(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
   institutions = NULL, researchers = NULL, geo = NULL, marker = NULL,
-  response = FALSE, callopts = list())
+  response = FALSE, ...)
 }
 \arguments{
 \item{taxon}{(character) Returns all records containing matching taxa. Taxa includes the ranks of
@@ -32,7 +32,7 @@ sites includes countries and province/states.}
 \item{response}{(logical) Note that response is the object that returns from the Curl call,
 useful for debugging, and getting detailed info on the API call.}
 
-\item{callopts}{(character) curl debugging opts passed on to httr::GET}
+\item{...}{Further args passed on to httr::GET, main purpose being curl debugging}
 
 \item{marker}{(character) Returns all records containing matching marker codes.}
 }
@@ -62,6 +62,12 @@ res <- bold_seq(taxon='Coelioxys', response=TRUE)
 res$url
 res$status_code
 res$headers
+
+## curl debugging
+### You can do many things, including get verbose output on the curl call, and set a timeout
+library("httr")
+bold_seq(taxon='Coelioxys', config=verbose())[1:2]
+bold_seqspec(taxon='Coelioxys', config=timeout(0.1))
 }
 \donttest{
 bold_seq(marker='COI-5P')
