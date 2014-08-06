@@ -1,3 +1,5 @@
 .DS_Store
 *.tar
 inst/vign/cache
+inst/vign/bold_trace_files
+inst/ignore
