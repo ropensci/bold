@@ -1,5 +1,5 @@
 <!--
-%\VignetteEngine{knitr::docco_classic}
+%\VignetteEngine{knitr::knitr}
 %\VignetteIndexEntry{bold vignette}
 -->
 
@@ -32,6 +32,33 @@ Load the package
 ```{r}
 library("bold")
 ```
+
+
+### Search for taxonomic names via names
+
+`bold_tax_name` searches for names with names.
+
+```{r cache=TRUE}
+bold_tax_name(name='Diplura')
+```
+
+```{r cache=TRUE}
+bold_tax_name(name=c('Diplura','Osmia'))
+```
+
+
+### Search for taxonomic names via BOLD identifiers
+
+`bold_tax_id` searches for names with BOLD identifiers.
+
+```{r cache=TRUE}
+bold_tax_id(id=88899)
+```
+
+```{r cache=TRUE}
+bold_tax_id(id=c(88899,125295))
+```
+
 
 ### Search for sequence data only
 
