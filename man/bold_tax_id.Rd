@@ -3,29 +3,17 @@
 \alias{bold_tax_id}
 \title{Search BOLD for taxonomy data by BOlD ID.}
 \usage{
-bold_tax_id(id = NULL, dataTypes = "basic", includeTree = FALSE, ...)
+bold_tax_id(id = NULL, dataTypes = "basic", includeTree = FALSE,
+  response = FALSE, ...)
 }
 \arguments{
-\item{taxon}{(character) Returns all records containing matching taxa. Taxa includes the ranks of
-phylum, class, order, family, subfamily, genus, and species.}
+\item{id}{(integer) One or more BOLD taxonomic identifiers}
 
-\item{ids}{(character) Returns all records containing matching IDs. IDs include Sample IDs,
-Process IDs, Museum IDs and Field IDs.}
+\item{dataTypes}{(character) Specifies the datatypes that will be returned. 'all' returns all data.
+'basic' returns basic taxon information. 'images' returns specimen images.}
 
-\item{bin}{(character) Returns all records contained in matching BINs. A BIN is defined by a
-Barcode Index Number URI.}
-
-\item{container}{(character) Returns all records contained in matching projects or datasets.
-Containers include project codes and dataset codes}
-
-\item{institutions}{(character) Returns all records stored in matching institutions. Institutions
-are the Specimen Storing Site.}
-
-\item{researchers}{(character) Returns all records containing matching researcher names.
-Researchers include collectors and specimen identifiers.}
-
-\item{geo}{(character) Returns all records collected in matching geographic sites. Geographic
-sites includes countries and province/states.}
+\item{includeTree}{(logical) If TRUE (default: FALSE), returns a list containing information
+for parent taxa as well as the specified taxon.}
 
 \item{response}{(logical) Note that response is the object that returns from the Curl call,
 useful for debugging, and getting detailed info on the API call.}

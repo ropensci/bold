@@ -1,23 +1,24 @@
 #' Search BOLD for taxonomy data by taxonomic name.
-#' 
-#' @import httr assertthat reshape
+#'
+#' @import httr assertthat reshape jsonlite
 #' @export
-#' @template args 
+#' @param name (character) One or more scientific names.
+#' @param fuzzy (logical) Whether to use fuzzy search or not (default: FALSE).
 #' @template otherargs
 #' @examples \dontrun{
 #' bold_tax_name(name='Diplura')
 #' bold_tax_name(name='Osmia')
 #' bold_tax_name(name=c('Diplura','Osmia'))
-#' 
+#'
 #' ## curl debugging
 #' library('httr')
 #' bold_tax_name(name='Diplura', config=verbose())
 #' }
 
-bold_tax_name <- function(name = NULL, fuzzy=FALSE, ...)
+bold_tax_name <- function(name = NULL, fuzzy=FALSE, response=FALSE, ...)
 {
   url <- 'http://www.boldsystems.org/index.php/API_Tax/TaxonSearch'
-  
+
   foo <- function(x){
     args <- bold_compact(list(taxName=x, fuzzy=if(fuzzy) TRUE else NULL))
     res <- GET(url, query=args, ...)
@@ -30,7 +31,7 @@ bold_tax_name <- function(name = NULL, fuzzy=FALSE, ...)
       rr <- if(!all(matchagst %in% names(x))) matchagst[!matchagst %in% names(x)]
       if(length(rr)>0){
         tmp <- c(NA, x)
-        names(tmp)[1] <-rr 
+        names(tmp)[1] <-rr
         tmp
       } else { x }
     })

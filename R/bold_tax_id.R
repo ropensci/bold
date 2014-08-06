@@ -1,23 +1,27 @@
 #' Search BOLD for taxonomy data by BOlD ID.
-#' 
+#'
 #' @export
-#' @template args 
+#' @param id (integer) One or more BOLD taxonomic identifiers
+#' @param dataTypes (character) Specifies the datatypes that will be returned. 'all' returns all data.
+#' 'basic' returns basic taxon information. 'images' returns specimen images.
+#' @param includeTree (logical) If TRUE (default: FALSE), returns a list containing information
+#' for parent taxa as well as the specified taxon.
 #' @template otherargs
 #' @references \url{}
 #' @examples \dontrun{
 #' bold_tax_id(id=88899)
 #' bold_tax_id(id=88899, includeTree=TRUE)
 #' bold_tax_id(id=c(88899,125295))
-#' 
+#'
 #' ## curl debugging
 #' library('httr')
 #' bold_tax_id(id=88899, config=verbose())
 #' }
 
-bold_tax_id <- function(id = NULL, dataTypes='basic', includeTree=FALSE, ...)
+bold_tax_id <- function(id = NULL, dataTypes='basic', includeTree=FALSE, response=FALSE, ...)
 {
   url <- 'http://www.boldsystems.org/index.php/API_Tax/TaxonData'
-  
+
   foo <- function(x){
     args <- bold_compact(list(taxId=x, dataTypes=dataTypes, includeTree=if(includeTree) TRUE else NULL))
     res <- GET(url, query=args, ...)
@@ -30,7 +34,7 @@ bold_tax_id <- function(id = NULL, dataTypes='basic', includeTree=FALSE, ...)
       rr <- if(!all(matchagst %in% names(x))) matchagst[!matchagst %in% names(x)]
       if(length(rr)>0){
         tmp <- c(NA, x)
-        names(tmp)[1] <-rr 
+        names(tmp)[1] <-rr
         tmp
       } else { x }
     })
