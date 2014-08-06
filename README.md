@@ -174,7 +174,7 @@ This package is part of the [rOpenSci](http://ropensci.org/packages) project.
 ```coffee
 To cite package ‘bold’ in publications use:
 
-  Scott Chamberlain (2014). bold: Interface to Bold Systems API methods. R package version 0.1.2. https://github.com/ropensci/bold
+  Scott Chamberlain (2014). bold: Interface to Bold Systems API methods. R package version 0.2.0. https://github.com/ropensci/bold
 
 A BibTeX entry for LaTeX users is
 
@@ -182,7 +182,7 @@ A BibTeX entry for LaTeX users is
     title = {bold: Interface to Bold Systems API methods},
     author = {Scott Chamberlain},
     year = {2014},
-    note = {R package version 0.1.2},
+    note = {R package version 0.2.0},
     url = {https://github.com/ropensci/bold},
   }
 
@@ -190,4 +190,4 @@ A BibTeX entry for LaTeX users is
 
 Get citation information for `bold` in R doing `citation(package = 'bold')`
 
-[![](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
+[![ropensci footer](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
