@@ -7,11 +7,15 @@
 #' @param includeTree (logical) If TRUE (default: FALSE), returns a list containing information
 #' for parent taxa as well as the specified taxon.
 #' @template otherargs
-#' @references \url{}
+#' @references \url{http://boldsystems.org/index.php/resources/api?type=taxonomy}
 #' @examples \dontrun{
 #' bold_tax_id(id=88899)
 #' bold_tax_id(id=88899, includeTree=TRUE)
 #' bold_tax_id(id=c(88899,125295))
+#' 
+#' ## get httr response object only
+#' bold_tax_id(id=88899, response=TRUE)
+#' bold_tax_id(id=c(88899,125295), response=TRUE)
 #'
 #' ## curl debugging
 #' library('httr')
@@ -22,12 +26,16 @@ bold_tax_id <- function(id = NULL, dataTypes='basic', includeTree=FALSE, respons
 {
   url <- 'http://www.boldsystems.org/index.php/API_Tax/TaxonData'
 
-  foo <- function(x){
+  get_response <- function(x){
     args <- bold_compact(list(taxId=x, dataTypes=dataTypes, includeTree=if(includeTree) TRUE else NULL))
     res <- GET(url, query=args, ...)
     warn_for_status(res)
     assert_that(res$headers$`content-type`=='text/html; charset=utf-8')
-    tt <- content(res, as = "text")
+    return(res)
+  }
+  
+  process_response <- function(x, ids){
+    tt <- content(x, as = "text")
     out <- fromJSON(tt)
     matchagst <- names(out[which.max(sapply(out, function(b) length(names(b))))][[1]])
     out <- lapply(out, function(x) {
@@ -42,7 +50,11 @@ bold_tax_id <- function(id = NULL, dataTypes='basic', includeTree=FALSE, respons
     row.names(df) <- NULL
     ff <- sort_df(df, "parentid")
     row.names(ff) <- NULL
-    data.frame(id=x, ff, stringsAsFactors = FALSE)
+    data.frame(id=ids, ff, stringsAsFactors = FALSE)
   }
-  do.call(rbind, lapply(id, foo))
+  
+  tmp <- lapply(id, get_response)
+  if(response){ tmp } else {  
+    do.call(rbind, lapply(tmp, process_response, ids=id))
+  }
 }

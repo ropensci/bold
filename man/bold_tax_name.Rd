@@ -24,9 +24,16 @@ bold_tax_name(name='Diplura')
 bold_tax_name(name='Osmia')
 bold_tax_name(name=c('Diplura','Osmia'))
 
+## get httr response object only
+bold_tax_name(name='Diplura', response=TRUE)
+bold_tax_name(name=c('Diplura','Osmia'), response=TRUE)
+
 ## curl debugging
 library('httr')
 bold_tax_name(name='Diplura', config=verbose())
 }
+}
+\references{
+\url{http://boldsystems.org/index.php/resources/api?type=taxonomy}
 }
 

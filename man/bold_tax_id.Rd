@@ -29,12 +29,16 @@ bold_tax_id(id=88899)
 bold_tax_id(id=88899, includeTree=TRUE)
 bold_tax_id(id=c(88899,125295))
 
+## get httr response object only
+bold_tax_id(id=88899, response=TRUE)
+bold_tax_id(id=c(88899,125295), response=TRUE)
+
 ## curl debugging
 library('httr')
 bold_tax_id(id=88899, config=verbose())
 }
 }
 \references{
-\url{}
+\url{http://boldsystems.org/index.php/resources/api?type=taxonomy}
 }
 
