@@ -74,4 +74,7 @@ bold_seq(marker='COI-5P')
 bold_seq(marker=c('rbcL','matK'))
 }
 }
+\references{
+\url{http://www.boldsystems.org/index.php/resources/api}
+}
 

@@ -4,6 +4,7 @@
 #' @export
 #' @template args 
 #' @template otherargs
+#' @references \url{http://www.boldsystems.org/index.php/resources/api}
 #' 
 #' @param format (character) One of xml or tsv (default). tsv format gives back a data.frame 
 #' object. xml gives back parsed xml as a 
@@ -25,7 +26,7 @@
 #' library("httr")
 #' head(bold_specimens(taxon='Osmia', config=verbose()))
 #' head(bold_specimens(geo='Costa Rica', config=timeout(6)))
-#' head(bold_specimens(taxon="Formicidae", geo="Canada", callopts=timeout(6)))
+#' head(bold_specimens(taxon="Formicidae", geo="Canada", config=timeout(6)))
 #' }
 
 bold_specimens <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL, 

@@ -58,7 +58,10 @@ bold_specimens(taxon=c('Coelioxys','Osmia'))
 library("httr")
 head(bold_specimens(taxon='Osmia', config=verbose()))
 head(bold_specimens(geo='Costa Rica', config=timeout(6)))
-head(bold_specimens(taxon="Formicidae", geo="Canada", callopts=timeout(6)))
+head(bold_specimens(taxon="Formicidae", geo="Canada", config=timeout(6)))
 }
+}
+\references{
+\url{http://www.boldsystems.org/index.php/resources/api}
 }
 

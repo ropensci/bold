@@ -7,6 +7,7 @@
 #' @export
 #' @template args 
 #' @template otherargs
+#' @references \url{http://www.boldsystems.org/index.php/resources/api}
 #' 
 #' @param marker (character) Returns all records containing matching marker codes. 
 #' 
