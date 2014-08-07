@@ -19,7 +19,8 @@ Imports:
     stringr,
     assertthat,
     jsonlite,
-    reshape
+    reshape,
+    plyr
 Suggests:
     knitr,
     testthat
