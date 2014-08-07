@@ -36,6 +36,6 @@ bold_tax_id <- function(id = NULL, dataTypes='basic', includeTree=FALSE, respons
   
   tmp <- lapply(id, get_response)
   if(response){ tmp } else {  
-    do.call(rbind, Map(process_response, x=tmp, y=id))
+    do.call(rbind.fill, Map(process_response, x=tmp, y=id, z=includeTree))
   }
 }

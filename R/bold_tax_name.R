@@ -11,6 +11,7 @@
 #' bold_tax_name(name='Diplura')
 #' bold_tax_name(name='Osmia')
 #' bold_tax_name(name=c('Diplura','Osmia'))
+#' bold_tax_name(name=c("Apis","Puma concolor","Pinus concolor"))
 #' bold_tax_name(name='Diplur', fuzzy=TRUE)
 #' bold_tax_name(name='Osm', fuzzy=TRUE)
 #' 
@@ -26,7 +27,8 @@
 bold_tax_name <- function(name = NULL, fuzzy=FALSE, response=FALSE, ...)
 {
   url <- 'http://www.boldsystems.org/index.php/API_Tax/TaxonSearch'
-
+  includeTree <- FALSE
+  
   get_response <- function(x, ...){
     args <- bold_compact(list(taxName=x, fuzzy=if(fuzzy) 'true' else NULL))
     res <- GET(url, query=args, ...)
@@ -37,16 +39,24 @@ bold_tax_name <- function(name = NULL, fuzzy=FALSE, response=FALSE, ...)
   
   tmp <- lapply(name, get_response)
   if(response){ tmp } else {
-    do.call(rbind, Map(process_response, x=tmp, y=name))
+    do.call(rbind.fill, Map(process_response, x=tmp, y=name, z=includeTree))
   }
 }
 
-process_response <- function(x, y){
+process_response <- function(x, y, z){
   tt <- content(x, as = "text")
   out <- fromJSON(tt)
-  df <- do.call(rbind.fill, lapply(out, data.frame, stringsAsFactors = FALSE))
-  row.names(df) <- NULL
-  ff <- sort_df(df, "parentid")
-  row.names(ff) <- NULL
-  data.frame(id=y, ff, stringsAsFactors = FALSE)
+  if(length(out)==0){
+    data.frame(input=y, stringsAsFactors = FALSE)
+  } else {
+    trynames <- tryCatch(as.numeric(names(out)), warning=function(w) w)
+    if(!is(trynames, "simpleWarning")) names(out) <- NULL
+    if(!is.null(names(out))){ df <- data.frame(out, stringsAsFactors = FALSE) } else {
+      df <- do.call(rbind.fill, lapply(out, data.frame, stringsAsFactors = FALSE))
+    }
+    row.names(df) <- NULL
+    ff <- sort_df(df, "parentid")
+    row.names(ff) <- NULL
+    data.frame(input=y, ff, stringsAsFactors = FALSE)
+  }
 }
