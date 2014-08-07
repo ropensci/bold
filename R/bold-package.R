@@ -27,3 +27,9 @@
 #' @name bold-package
 #' @aliases bold
 NULL
+
+#' List of 3 nucleotide sequences to use in examples for the bold_identify function
+#' @name sequences
+#' @docType data
+#' @keywords data
+NULL
