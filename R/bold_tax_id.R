@@ -26,7 +26,7 @@ bold_tax_id <- function(id = NULL, dataTypes='basic', includeTree=FALSE, respons
 {
   url <- 'http://www.boldsystems.org/index.php/API_Tax/TaxonData'
 
-  get_response <- function(x){
+  get_response <- function(x, ...){
     args <- bold_compact(list(taxId=x, dataTypes=dataTypes, includeTree=if(includeTree) TRUE else NULL))
     res <- GET(url, query=args, ...)
     warn_for_status(res)
@@ -34,27 +34,8 @@ bold_tax_id <- function(id = NULL, dataTypes='basic', includeTree=FALSE, respons
     return(res)
   }
   
-  process_response <- function(x, ids){
-    tt <- content(x, as = "text")
-    out <- fromJSON(tt)
-    matchagst <- names(out[which.max(sapply(out, function(b) length(names(b))))][[1]])
-    out <- lapply(out, function(x) {
-      rr <- if(!all(matchagst %in% names(x))) matchagst[!matchagst %in% names(x)]
-      if(length(rr)>0){
-        tmp <- c(NA, x)
-        names(tmp)[1] <-rr
-        tmp
-      } else { x }
-    })
-    df <- if("taxid" %in% names(out)) data.frame(out, stringsAsFactors = FALSE) else do.call(rbind, lapply(out, data.frame, stringsAsFactors = FALSE))
-    row.names(df) <- NULL
-    ff <- sort_df(df, "parentid")
-    row.names(ff) <- NULL
-    data.frame(id=ids, ff, stringsAsFactors = FALSE)
-  }
-  
   tmp <- lapply(id, get_response)
   if(response){ tmp } else {  
-    do.call(rbind, lapply(tmp, process_response, ids=id))
+    do.call(rbind, Map(process_response, x=tmp, y=id))
   }
 }

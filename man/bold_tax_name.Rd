@@ -23,6 +23,8 @@ Search BOLD for taxonomy data by taxonomic name.
 bold_tax_name(name='Diplura')
 bold_tax_name(name='Osmia')
 bold_tax_name(name=c('Diplura','Osmia'))
+bold_tax_name(name='Diplur', fuzzy=TRUE)
+bold_tax_name(name='Osm', fuzzy=TRUE)
 
 ## get httr response object only
 bold_tax_name(name='Diplura', response=TRUE)
