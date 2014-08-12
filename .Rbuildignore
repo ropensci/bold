@@ -4,3 +4,4 @@ inst/vign
 Makefile
 .travis.yml
 cran-comments.md
+^appveyor\.yml$
