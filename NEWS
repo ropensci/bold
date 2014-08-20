@@ -11,7 +11,7 @@ MINOR IMPROVEMENTS
 * Added new taxonomy API functions to the vignette (#14)
 * Added reference URLS to all function doc files to allow easy reference for the appropriate API docs.
 * `callopts` parameter changed to `...` throughout the package, so that passing on options to `httr::GET` is done via named parameters, e.g., `config=verbose()`. (#13)
-* Added examples of doing curl debugging throught man pages.
+* Added examples of doing curl debugging throughout man pages.
 
 
 bold 0.1.2
