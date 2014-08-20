@@ -7,8 +7,6 @@ a <- bold_specimens(taxon='Osmia')
 b <- bold_specimens(taxon='Osmia', format='xml', response=TRUE)
 
 test_that("bold_specimens returns the correct dimensions or values", {
-  expect_equal(ncol(a), 59)
-  
   expect_equal(b$status_code, 200)
   expect_equal(b$headers$`content-type`, "application/x-download")
 })
