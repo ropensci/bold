@@ -2,6 +2,7 @@ bold
 ------
 
 [![Build Status](https://api.travis-ci.org/ropensci/bold.png)](https://travis-ci.org/ropensci/bold)
+[![Build status](https://ci.appveyor.com/api/projects/status/hifii9wvk2h7wc7f/branch/master)](https://ci.appveyor.com/project/sckott/bold/branch/master)
 
 `bold` accesses BOLD barcode data.
 
@@ -13,7 +14,15 @@ You do not need an API key.
 
 ## Quickstart
 
-### Install bold from GitHub:
+### Install bold
+
+From CRAN
+
+```coffee
+install.packages("bold")
+```
+
+Or the development version from Github
 
 ```coffee
 devtools::install_github("ropensci/bold")
