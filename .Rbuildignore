@@ -5,3 +5,4 @@ Makefile
 .travis.yml
 cran-comments.md
 ^appveyor\.yml$
+tests/test-all.R
