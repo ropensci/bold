@@ -1,21 +1,17 @@
 language: c
-
 before_install:
 - curl -OL http://raw.github.com/craigcitro/r-travis/master/scripts/travis-tool.sh
 - chmod 755 ./travis-tool.sh
-- ./travis-tool.sh bootstrap
-
+- "./travis-tool.sh bootstrap"
 install:
-- ./travis-tool.sh install_deps
-- ./travis-tool.sh github_package hadley/testthat
-
-script: ./travis-tool.sh run_tests
-
+- "./travis-tool.sh install_deps"
+- "./travis-tool.sh github_package hadley/testthat"
+script: "./travis-tool.sh run_tests"
 on_failure:
-  - ./travis-tool.sh dump_logs
-
+- "./travis-tool.sh dump_logs"
 notifications:
- slack: ropensci:wh30e1MP9Am3wXb2wJx1ZRFi
- email:
+  slack:
+    secure: KudAMnqi7D6dy1BruMF9tkT2PTUXa8VSuQo8ECk5M6gz6L7o6tEmzPgrzqLC9xzgc4mm80opMMdNGShTHZZdd1oWw9yIOFZpQ10O/kaLyb1LgFwV01yZP1dt9ZAxRvfm9Ur2wl8XS+cRr6PR7iJX733iBhQ+qUGDTltFm/O2q8U=
+  email:
     on_success: change
     on_failure: change
