@@ -6,3 +6,5 @@ Makefile
 cran-comments.md
 ^appveyor\.yml$
 tests/test-all.R
+^.*\.Rproj$
+^\.Rproj\.user$
