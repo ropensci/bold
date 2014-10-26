@@ -48,7 +48,7 @@ bold_seq <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL, ins
 {
   url <- 'http://www.boldsystems.org/index.php/API_Public/sequence'
 
-  args <- bold_compact(list(taxon=pipeornull(taxon), geo=pipeornull(geo), ids=pipeornull(ids),
+  args <- bc(list(taxon=pipeornull(taxon), geo=pipeornull(geo), ids=pipeornull(ids),
       bin=pipeornull(bin), container=pipeornull(container), institutions=pipeornull(institutions),
       researchers=pipeornull(researchers), marker=pipeornull(marker)))
   check_args_given_nonempty(args, c('taxon','ids','bin','container','institutions','researchers','geo','marker'))

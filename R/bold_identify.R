@@ -49,7 +49,7 @@ bold_identify <- function(sequences = NULL, db = 'COX1', response=FALSE, ...)
   url <- 'http://boldsystems.org/index.php/Ids_xml'
 
   foo <- function(a, b){
-    args <- bold_compact(list(sequence=a, db=b))
+    args <- bc(list(sequence=a, db=b))
     out <- GET(url, query=args, ...)
     stop_for_status(out)
     assert_that(out$headers$`content-type`=='text/xml')

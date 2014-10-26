@@ -25,39 +25,12 @@
 #' }
 
 bold_tax_name <- function(name = NULL, fuzzy=FALSE, response=FALSE, ...)
-{
-  url <- 'http://www.boldsystems.org/index.php/API_Tax/TaxonSearch'
-  includeTree <- FALSE
-  
-  get_response <- function(x, ...){
-    args <- bold_compact(list(taxName=x, fuzzy=if(fuzzy) 'true' else NULL))
-    res <- GET(url, query=args, ...)
-    warn_for_status(res)
-    assert_that(res$headers$`content-type`=='text/html; charset=utf-8')
-    return(res)
-  }
-  
-  tmp <- lapply(name, get_response)
+{ 
+  tmp <- lapply(name, function(x) 
+    get_response(bc(list(taxName=x, fuzzy=if(fuzzy) 'true' else NULL)), 
+                 url=paste0(bbase(), "TaxonSearch"), ...)
+  )
   if(response){ tmp } else {
-    do.call(rbind.fill, Map(process_response, x=tmp, y=name, z=includeTree))
-  }
-}
-
-process_response <- function(x, y, z, w){
-  tt <- content(x, as = "text")
-  out <- fromJSON(tt)
-  if(length(out)==0){
-    data.frame(input=y, stringsAsFactors = FALSE)
-  } else {
-    if(w %in% c("stats",'images','geo','sequencinglabs','depository')) out <- out[[1]]
-    trynames <- tryCatch(as.numeric(names(out)), warning=function(w) w)
-    if(!is(trynames, "simpleWarning")) names(out) <- NULL
-    if(!is.null(names(out))){ df <- data.frame(out, stringsAsFactors = FALSE) } else {
-      df <- do.call(rbind.fill, lapply(out, data.frame, stringsAsFactors = FALSE))
-    }
-    row.names(df) <- NULL
-    if("parentid" %in% names(df)) df <- sort_df(df, "parentid")
-    row.names(df) <- NULL
-    data.frame(input=y, df, stringsAsFactors = FALSE)
+    do.call(rbind.fill, Map(process_response, x=tmp, y=name, z=FALSE, w=""))
   }
 }

@@ -1,4 +1,4 @@
-bold_compact <- function (l) Filter(Negate(is.null), l)
+bc <- function (l) Filter(Negate(is.null), l)
 
 split_fasta <- function(x){
   temp <- paste(">", x, sep="")
@@ -28,4 +28,23 @@ check_args_given_nonempty <- function(arguments, x){
     if(any(argslengths == 0))
       stop(sprintf("You must provide a non-empty value to at least one of\n  %s", paste0(paramnames, collapse = "\n  ")))
   }   
+}
+
+process_response <- function(x, y, z, w){
+  tt <- content(x, as = "text")
+  out <- fromJSON(tt)
+  if(length(out)==0){
+    data.frame(input=y, stringsAsFactors = FALSE)
+  } else {
+    if(w %in% c("stats",'images','geo','sequencinglabs','depository')) out <- out[[1]]
+    trynames <- tryCatch(as.numeric(names(out)), warning=function(w) w)
+    if(!is(trynames, "simpleWarning")) names(out) <- NULL
+    if(!is.null(names(out))){ df <- data.frame(out, stringsAsFactors = FALSE) } else {
+      df <- do.call(rbind.fill, lapply(out, data.frame, stringsAsFactors = FALSE))
+    }
+    row.names(df) <- NULL
+    if("parentid" %in% names(df)) df <- sort_df(df, "parentid")
+    row.names(df) <- NULL
+    data.frame(input=y, df, stringsAsFactors = FALSE)
+  }
 }

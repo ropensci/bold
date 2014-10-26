@@ -26,7 +26,7 @@
 bold_trace <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL, 
   institutions = NULL, researchers = NULL, geo = NULL, marker = NULL, dest=NULL, ...)
 {
-  args <- bold_compact(list(taxon=pipeornull(taxon), geo=pipeornull(geo), ids=pipeornull(ids), 
+  args <- bc(list(taxon=pipeornull(taxon), geo=pipeornull(geo), ids=pipeornull(ids), 
       bin=pipeornull(bin), container=pipeornull(container), institutions=pipeornull(institutions), 
       researchers=pipeornull(researchers), marker=pipeornull(marker)))
   url <- make_url('http://www.boldsystems.org/index.php/API_Public/trace', args)
