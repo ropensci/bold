@@ -14,7 +14,7 @@
 #' @return Either a data.frame, parsed xml, a httr response object, or a list with length two
 #' (a data.frame w/o nucleotide data, and a list with nucleotide data)
 #' 
-#' @examples \dontrun{
+#' @examples \donttest{
 #' # The progress dialog is pretty verbose, so quiet=TRUE is a nice touch, but not by default
 #' bold_trace(taxon='Osmia', quiet=TRUE)
 #' # Use a specific destination directory

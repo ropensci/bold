@@ -50,7 +50,7 @@ Either a data.frame, parsed xml, a httr response object, or a list with length t
 Get BOLD specimen + sequence data.
 }
 \examples{
-\dontrun{
+\donttest{
 bold_seqspec(taxon='Osmia')
 bold_seqspec(taxon='Osmia', format='xml')
 bold_seqspec(taxon='Osmia', response=TRUE)

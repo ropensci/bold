@@ -41,7 +41,7 @@ object. xml gives back parsed xml as a}
 Search BOLD for specimens.
 }
 \examples{
-\dontrun{
+\donttest{
 bold_specimens(taxon='Osmia')
 bold_specimens(taxon='Osmia', format='xml')
 bold_specimens(taxon='Osmia', response=TRUE)

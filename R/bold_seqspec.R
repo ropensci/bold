@@ -15,7 +15,7 @@
 #' @return Either a data.frame, parsed xml, a httr response object, or a list with length two
 #' (a data.frame w/o nucleotide data, and a list with nucleotide data)
 #' 
-#' @examples \dontrun{
+#' @examples \donttest{
 #' bold_seqspec(taxon='Osmia')
 #' bold_seqspec(taxon='Osmia', format='xml')
 #' bold_seqspec(taxon='Osmia', response=TRUE)

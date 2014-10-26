@@ -9,7 +9,7 @@
 #' @template otherargs
 #' @references \url{http://boldsystems.org/index.php/resources/api?type=taxonomy#idParameters}
 #' @seealso \code{bold_tax_name}
-#' @examples \dontrun{
+#' @examples \donttest{
 #' bold_tax_id(id=88899)
 #' bold_tax_id(id=88899, includeTree=TRUE)
 #' bold_tax_id(id=88899, includeTree=TRUE, dataTypes = "stats")

@@ -23,7 +23,7 @@ A data.frame with details for each specimen matched.
 Search for matches to sequences against the BOLD COI database.
 }
 \details{
-Detailed desdription of options for the db parmeter:
+Detailed description of options for the db parmeter:
 
 \itemize{
  \item COX1 Every COI barcode record with a species level identification and a minimum sequence
@@ -43,7 +43,7 @@ Detailed desdription of options for the db parmeter:
 }
 }
 \examples{
-\dontrun{
+\donttest{
 seq <- sequences$seq1
 head(bold_identify(sequences=seq)[[1]])
 head(bold_identify(sequences=seq, db='COX1_SPECIES')[[1]])

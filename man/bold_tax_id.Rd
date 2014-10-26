@@ -24,7 +24,7 @@ useful for debugging, and getting detailed info on the API call.}
 Search BOLD for taxonomy data by BOLD ID.
 }
 \examples{
-\dontrun{
+\donttest{
 bold_tax_id(id=88899)
 bold_tax_id(id=88899, includeTree=TRUE)
 bold_tax_id(id=88899, includeTree=TRUE, dataTypes = "stats")

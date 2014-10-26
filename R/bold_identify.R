@@ -10,7 +10,7 @@
 #' useful for debugging, and getting detailed info on the API call.
 #' @param ... Further args passed on to httr::GET, main purpose being curl debugging
 #' 
-#' @details Detailed desdription of options for the db parmeter:
+#' @details Detailed description of options for the db parmeter:
 #' 
 #' \itemize{
 #'  \item COX1 Every COI barcode record with a species level identification and a minimum sequence 
@@ -29,7 +29,7 @@
 #'  identification as it provides maximum overlap with short reads from the barcode region of COI.
 #' }
 #' @return A data.frame with details for each specimen matched.
-#' @examples \dontrun{
+#' @examples \donttest{
 #' seq <- sequences$seq1
 #' head(bold_identify(sequences=seq)[[1]])
 #' head(bold_identify(sequences=seq, db='COX1_SPECIES')[[1]])

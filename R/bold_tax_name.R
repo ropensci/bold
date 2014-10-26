@@ -11,7 +11,7 @@
 #' use that parameter, get an ID from this function and pass it into \code{bold_tax_id}, and then
 #' use the \code{dataTypes} parameter.
 #' @seealso \code{bold_tax_id}
-#' @examples \dontrun{
+#' @examples \donttest{
 #' bold_tax_name(name='Diplura')
 #' bold_tax_name(name='Osmia')
 #' bold_tax_name(name=c('Diplura','Osmia'))

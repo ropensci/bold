@@ -9,7 +9,7 @@
 #' @param format (character) One of xml or tsv (default). tsv format gives back a data.frame 
 #' object. xml gives back parsed xml as a 
 #' 
-#' @examples \dontrun{
+#' @examples \donttest{
 #' bold_specimens(taxon='Osmia')
 #' bold_specimens(taxon='Osmia', format='xml')
 #' bold_specimens(taxon='Osmia', response=TRUE)

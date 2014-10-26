@@ -12,7 +12,7 @@
 #' @param marker (character) Returns all records containing matching marker codes.
 #'
 #' @return A list with each element of length 4 with slots for id, name, gene, and sequence.
-#' @examples \dontrun{
+#' @examples \donttest{
 #' bold_seq(taxon='Coelioxys')
 #' bold_seq(taxon='Aglae')
 #' bold_seq(taxon=c('Coelioxys','Osmia'))

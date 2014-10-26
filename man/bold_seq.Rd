@@ -44,7 +44,7 @@ Get sequences for a taxonomic name, id, bin, container, institution, researcher,
 place, or gene.
 }
 \examples{
-\dontrun{
+\donttest{
 bold_seq(taxon='Coelioxys')
 bold_seq(taxon='Aglae')
 bold_seq(taxon=c('Coelioxys','Osmia'))

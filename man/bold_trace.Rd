@@ -43,7 +43,7 @@ Either a data.frame, parsed xml, a httr response object, or a list with length t
 This function downloads files to your machine - it does not load them into your R session.
 }
 \examples{
-\dontrun{
+\donttest{
 # The progress dialog is pretty verbose, so quiet=TRUE is a nice touch, but not by default
 bold_trace(taxon='Osmia', quiet=TRUE)
 # Use a specific destination directory
