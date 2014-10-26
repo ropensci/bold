@@ -48,3 +48,12 @@ process_response <- function(x, y, z, w){
     data.frame(input=y, df, stringsAsFactors = FALSE)
   }
 }
+
+get_response <- function(args, url, ...){
+  res <- GET(url, query=args, ...)
+  warn_for_status(res)
+  assert_that(res$headers$`content-type`=='text/html; charset=utf-8')
+  res
+}
+
+bbase <- function() 'http://www.boldsystems.org/index.php/API_Tax/'

@@ -8,6 +8,7 @@
 #' for parent taxa as well as the specified taxon.
 #' @template otherargs
 #' @references \url{http://boldsystems.org/index.php/resources/api?type=taxonomy#idParameters}
+#' @seealso \code{bold_tax_name}
 #' @examples \dontrun{
 #' bold_tax_id(id=88899)
 #' bold_tax_id(id=88899, includeTree=TRUE)
@@ -46,12 +47,3 @@ bold_tax_id <- function(id = NULL, dataTypes='basic', includeTree=FALSE, respons
     if(NCOL(res) == 1){ res$noresults <- NA; res } else { res }
   }
 }
-
-get_response <- function(args, url, ...){
-  res <- GET(url, query=args, ...)
-  warn_for_status(res)
-  assert_that(res$headers$`content-type`=='text/html; charset=utf-8')
-  res
-}
-
-bbase <- function() 'http://www.boldsystems.org/index.php/API_Tax/'

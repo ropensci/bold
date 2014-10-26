@@ -18,6 +18,11 @@ useful for debugging, and getting detailed info on the API call.}
 \description{
 Search BOLD for taxonomy data by taxonomic name.
 }
+\details{
+The \code{dataTypes} parameter is not supported in this function. If you want to
+use that parameter, get an ID from this function and pass it into \code{bold_tax_id}, and then
+use the \code{dataTypes} parameter.
+}
 \examples{
 \dontrun{
 bold_tax_name(name='Diplura')
@@ -38,5 +43,8 @@ bold_tax_name(name='Diplura', config=verbose())
 }
 \references{
 \url{http://boldsystems.org/index.php/resources/api?type=taxonomy#nameParameters}
+}
+\seealso{
+\code{bold_tax_id}
 }
 
