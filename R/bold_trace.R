@@ -10,6 +10,7 @@
 #' @param overwrite (logical) Overwrite existing directory and file?
 #' @param progress (logical) Print progress or not. Uses \code{\link[httr]{progress}}.
 #' @param ... Futher args passed on to \code{\link[httr]{GET}}.
+#' @param x Object to print or read.
 #' 
 #' @examples \donttest{
 #' # The progress dialog is pretty verbose, so quiet=TRUE is a nice touch, but not by default

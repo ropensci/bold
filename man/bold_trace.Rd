@@ -41,6 +41,8 @@ sites includes countries and province/states.}
 \item{progress}{(logical) Print progress or not. Uses \code{\link[httr]{progress}}.}
 
 \item{...}{Futher args passed on to \code{\link[httr]{GET}}.}
+
+\item{x}{Object to print or read.}
 }
 \description{
 Get BOLD trace files
