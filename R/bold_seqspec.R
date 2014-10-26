@@ -35,19 +35,14 @@ bold_seqspec <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
   format = 'tsv', sepfasta=FALSE, ...)
 {
   format <- match.arg(format, choices = c('xml','tsv'))
-  url <- 'http://www.boldsystems.org/index.php/API_Public/combined'
   args <- bc(list(taxon=pipeornull(taxon), geo=pipeornull(geo), ids=pipeornull(ids), 
     bin=pipeornull(bin), container=pipeornull(container), institutions=pipeornull(institutions), 
     researchers=pipeornull(researchers), marker=pipeornull(marker), combined_download=format))
-  check_args_given_nonempty(args, c('taxon','ids','bin','container','institutions','researchers','geo','marker'))
-  out <- GET(url, query=args, ...)
-  # check HTTP status code
-  warn_for_status(out)
-  # check mime-type (Even though BOLD folks didn't specify correctly)
-  assert_that(out$headers$`content-type`=='application/x-download')
-  tt <- content(out, as = "text")
-  
+  check_args_given_nonempty(args, c('taxon','ids','bin','container','institutions','researchers',
+                                    'geo','marker'))
+  out <- b_GET(paste0(bbase(), 'API_Public/combined'), args, ...)
   if(response){ out } else {
+    tt <- content(out, as = "text")
     temp <- switch(format, 
            xml = xmlParse(tt),
            tsv = read.delim(text = tt, header = TRUE, sep = "\t", stringsAsFactors=FALSE)

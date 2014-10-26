@@ -40,7 +40,7 @@ bold_tax_id <- function(id = NULL, dataTypes='basic', includeTree=FALSE, respons
 {
   tmp <- lapply(id, function(x) 
     get_response(bc(list(taxId=x, dataTypes=dataTypes, includeTree=if(includeTree) TRUE else NULL)), 
-                 url=paste0(bbase(), "TaxonData"), ...)
+                 url=paste0(bbase(), "API_Tax/TaxonData"), ...)
   )
   if(response){ tmp } else {  
     res <- do.call(rbind.fill, Map(process_response, x=tmp, y=id, z=includeTree, w=dataTypes))

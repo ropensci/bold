@@ -1,3 +1,5 @@
+bbase <- function() 'http://www.boldsystems.org/index.php/'
+
 bc <- function (l) Filter(Negate(is.null), l)
 
 split_fasta <- function(x){
@@ -56,4 +58,9 @@ get_response <- function(args, url, ...){
   res
 }
 
-bbase <- function() 'http://www.boldsystems.org/index.php/API_Tax/'
+b_GET <- function(url, args, ...){  
+  out <- GET(url, query=args, ...)
+  stop_for_status(out)
+  assert_that(out$headers$`content-type`=='application/x-download')
+  out
+}

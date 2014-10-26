@@ -37,26 +37,16 @@
 #' bold_seq(taxon='Coelioxys', config=verbose())[1:2]
 #' bold_seqspec(taxon='Coelioxys', config=timeout(0.1))
 #' }
-#' 
-#' @examples \donttest{
-#' bold_seq(marker='COI-5P')
-#' bold_seq(marker=c('rbcL','matK'))
-#' }
 
 bold_seq <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL, institutions = NULL,
   researchers = NULL, geo = NULL, marker = NULL, response=FALSE, ...)
 {
-  url <- 'http://www.boldsystems.org/index.php/API_Public/sequence'
-
   args <- bc(list(taxon=pipeornull(taxon), geo=pipeornull(geo), ids=pipeornull(ids),
       bin=pipeornull(bin), container=pipeornull(container), institutions=pipeornull(institutions),
       researchers=pipeornull(researchers), marker=pipeornull(marker)))
-  check_args_given_nonempty(args, c('taxon','ids','bin','container','institutions','researchers','geo','marker'))
-  out <- GET(url, query=args, ...)
-  # check HTTP status code
-  stop_for_status(out)
-  # check mime-type (Even though BOLD folks didn't specify correctly)
-  assert_that(out$headers$`content-type`=='application/x-download')
+  check_args_given_nonempty(args, c('taxon','ids','bin','container','institutions','researchers',
+                                    'geo','marker'))
+  out <- b_GET(paste0(bbase(), 'API_Public/sequence'), args, ...)
   if(response){ out } else {
     tt <- content(out, as = "text")
     res <- strsplit(tt, ">")[[1]][-1]

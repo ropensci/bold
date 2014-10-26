@@ -32,7 +32,7 @@ bold_tax_name <- function(name = NULL, fuzzy=FALSE, response=FALSE, ...)
 { 
   tmp <- lapply(name, function(x) 
     get_response(bc(list(taxName=x, fuzzy=if(fuzzy) 'true' else NULL)), 
-                 url=paste0(bbase(), "TaxonSearch"), ...)
+                 url=paste0(bbase(), "API_Tax/TaxonSearch"), ...)
   )
   if(response){ tmp } else {
     do.call(rbind.fill, Map(process_response, x=tmp, y=name, z=FALSE, w=""))
