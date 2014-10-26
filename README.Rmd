@@ -21,13 +21,13 @@ knitr::opts_chunk$set(
 
 ### Install bold
 
-From CRAN
+#### From CRAN
 
 ```{r eval=FALSE}
 install.packages("bold")
 ```
 
-Or the development version from Github
+#### Development version from Github
 
 Install `sangerseqR` first
 

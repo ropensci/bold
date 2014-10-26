@@ -14,14 +14,14 @@ bold
 
 ### Install bold
 
-From CRAN
+#### From CRAN
 
 
 ```r
 install.packages("bold")
 ```
 
-Or the development version from Github
+#### Development version from Github
 
 Install `sangerseqR` first
 
@@ -71,7 +71,7 @@ You can optionally get back the `httr` response object
 res <- bold_seq(taxon='Coelioxys', response=TRUE)
 res$headers
 #> $date
-#> [1] "Sun, 26 Oct 2014 23:38:11 GMT"
+#> [1] "Sun, 26 Oct 2014 23:43:10 GMT"
 #> 
 #> $server
 #> [1] "Apache/2.2.15 (Red Hat)"
