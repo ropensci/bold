@@ -1,6 +1,7 @@
 #' Get BOLD trace files
 #' 
-#' @import httr
+#' @import httr 
+#' @importFrom sangerseqR readsangerseq
 #' @export
 #' @template args 
 #' @references \url{http://www.boldsystems.org/index.php/resources/api#trace}
