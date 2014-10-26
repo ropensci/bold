@@ -1,0 +1,109 @@
+bold
+------
+
+```{r echo=FALSE}
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  warning = FALSE,
+  message = FALSE
+)
+```
+
+[![Build Status](https://api.travis-ci.org/ropensci/bold.png)](https://travis-ci.org/ropensci/bold)
+[![Build status](https://ci.appveyor.com/api/projects/status/hifii9wvk2h7wc7f/branch/master)](https://ci.appveyor.com/project/sckott/bold/branch/master)
+
+`bold` accesses BOLD barcode data.
+
+[Documentation for the BOLD API](http://www.boldsystems.org/index.php/resources/api).
+
+## Quickstart
+
+### Install bold
+
+From CRAN
+
+```{r eval=FALSE}
+install.packages("bold")
+```
+
+Or the development version from Github
+
+```{r eval=FALSE}
+devtools::install_github("ropensci/bold")
+```
+
+```{r}
+library("bold")
+```
+
+
+### Search for sequence data only
+
+Default is to get a list back
+
+```{r}
+bold_seq(taxon='Coelioxys')[[1]]
+```
+
+You can optionally get back the `httr` response object
+
+```{r}
+res <- bold_seq(taxon='Coelioxys', response=TRUE)
+res$headers
+```
+
+### Search for specimen data only
+
+By default you download `tsv` format data, which is given back to you as a `data.frame`
+
+```{r}
+res <- bold_specimens(taxon='Osmia')
+head(res[,1:8])
+```
+
+### Search for specimen plus sequence data
+
+By default you download `tsv` format data, which is given back to you as a `data.frame`
+
+```{r}
+res <- bold_seqspec(taxon='Osmia', sepfasta=TRUE)
+res$fasta[1:2]
+```
+
+Or you can index to a specific sequence like
+
+```{r}
+res$fasta['GBAH0293-06']
+```
+
+### Get trace files
+
+This function downloads files to your machine - it does not load them into your R session - but prints out where the files are for your information.
+
+```{r eval=FALSE}
+bold_trace(taxon='Osmia', quiet=TRUE)
+
+#> Trace file extracted with files:
+#>
+#> /Users/sacmac/bold_trace_files/ACRJP618-11[LepF1,LepR1]_F.ab1
+#> /Users/sacmac/bold_trace_files/ACRJP619-11[LepF1,LepR1]_F.ab1
+#> /Users/sacmac/bold_trace_files/ACRJP619-11[LepF1,LepR1]_R.ab1
+#> /Users/sacmac/bold_trace_files/HMBCH056-07_F.ab1
+#> /Users/sacmac/bold_trace_files/HMBCH056-07_R.ab1
+#> /Users/sacmac/bold_trace_files/HMBCH063-07_F.ab1
+#> /Users/sacmac/bold_trace_files/HMBCH063-07_R.ab1
+#> /Users/sacmac/bold_trace_files/Osm_aur_T505_LCOHym_D04_008_copy.ab1
+#> /Users/sacmac/bold_trace_files/Osm_aur_T505_NancyFull_D10_008_copy.ab1
+#> /Users/sacmac/bold_trace_files/Osm_ruf_T309_LCOHym_C06_006_copy.ab1
+#> /Users/sacmac/bold_trace_files/Osm_ruf_T309_Nancy_C06_006_copy.ab1
+#> /Users/sacmac/bold_trace_files/TRACE_FILE_INFO.txt
+```
+
+## Meta
+
+* [Please report any issues or bugs](https://github.com/ropensci/bold/issues).
+* License: MIT
+* Get citation information for `bold` in R doing `citation(package = 'bold')`
+
+[![ropensci footer](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
