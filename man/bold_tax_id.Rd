@@ -9,8 +9,8 @@ bold_tax_id(id = NULL, dataTypes = "basic", includeTree = FALSE,
 \arguments{
 \item{id}{(integer) One or more BOLD taxonomic identifiers}
 
-\item{dataTypes}{(character) Specifies the datatypes that will be returned. 'all' returns all data.
-'basic' returns basic taxon information. 'images' returns specimen images.}
+\item{dataTypes}{(character) Specifies the datatypes that will be returned. 'all' returns all
+data. 'basic' returns basic taxon information. 'images' returns specimen images.}
 
 \item{includeTree}{(logical) If TRUE (default: FALSE), returns a list containing information
 for parent taxa as well as the specified taxon.}
@@ -27,7 +27,20 @@ Search BOLD for taxonomy data by BOlD ID.
 \dontrun{
 bold_tax_id(id=88899)
 bold_tax_id(id=88899, includeTree=TRUE)
+bold_tax_id(id=88899, includeTree=TRUE, dataTypes = "stats")
 bold_tax_id(id=c(88899,125295))
+
+## dataTypes parameter
+bold_tax_id(id=88899, dataTypes = "basic")
+bold_tax_id(id=88899, dataTypes = "stats")
+bold_tax_id(id=88899, dataTypes = "images")
+bold_tax_id(id=88899, dataTypes = "geo")
+bold_tax_id(id=88899, dataTypes = "sequencinglabs")
+bold_tax_id(id=88899, dataTypes = "depository")
+bold_tax_id(id=88899, dataTypes = "thirdparty")
+bold_tax_id(id=88899, dataTypes = "all")
+bold_tax_id(id=c(88899,125295), dataTypes = "geo")
+bold_tax_id(id=c(88899,125295), dataTypes = "depository")
 
 ## get httr response object only
 bold_tax_id(id=88899, response=TRUE)

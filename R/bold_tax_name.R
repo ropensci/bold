@@ -43,20 +43,21 @@ bold_tax_name <- function(name = NULL, fuzzy=FALSE, response=FALSE, ...)
   }
 }
 
-process_response <- function(x, y, z){
+process_response <- function(x, y, z, w){
   tt <- content(x, as = "text")
   out <- fromJSON(tt)
   if(length(out)==0){
     data.frame(input=y, stringsAsFactors = FALSE)
   } else {
+    if(w %in% c("stats",'images','geo','sequencinglabs','depository')) out <- out[[1]]
     trynames <- tryCatch(as.numeric(names(out)), warning=function(w) w)
     if(!is(trynames, "simpleWarning")) names(out) <- NULL
     if(!is.null(names(out))){ df <- data.frame(out, stringsAsFactors = FALSE) } else {
       df <- do.call(rbind.fill, lapply(out, data.frame, stringsAsFactors = FALSE))
     }
     row.names(df) <- NULL
-    ff <- sort_df(df, "parentid")
-    row.names(ff) <- NULL
-    data.frame(input=y, ff, stringsAsFactors = FALSE)
+    if("parentid" %in% names(df)) df <- sort_df(df, "parentid")
+    row.names(df) <- NULL
+    data.frame(input=y, df, stringsAsFactors = FALSE)
   }
 }
