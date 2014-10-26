@@ -23,6 +23,16 @@ install.packages("bold")
 
 Or the development version from Github
 
+Install `sangerseqR` first
+
+
+```r
+source("http://bioconductor.org/biocLite.R")
+biocLite("sangerseqR")
+```
+
+Then `bold`
+
 
 ```r
 devtools::install_github("ropensci/bold")
@@ -61,7 +71,7 @@ You can optionally get back the `httr` response object
 res <- bold_seq(taxon='Coelioxys', response=TRUE)
 res$headers
 #> $date
-#> [1] "Sun, 26 Oct 2014 18:49:27 GMT"
+#> [1] "Sun, 26 Oct 2014 23:38:11 GMT"
 #> 
 #> $server
 #> [1] "Apache/2.2.15 (Red Hat)"
@@ -139,22 +149,14 @@ This function downloads files to your machine - it does not load them into your 
 
 
 ```r
-bold_trace(taxon='Osmia', quiet=TRUE)
-
-#> Trace file extracted with files:
-#>
-#> /Users/sacmac/bold_trace_files/ACRJP618-11[LepF1,LepR1]_F.ab1
-#> /Users/sacmac/bold_trace_files/ACRJP619-11[LepF1,LepR1]_F.ab1
-#> /Users/sacmac/bold_trace_files/ACRJP619-11[LepF1,LepR1]_R.ab1
-#> /Users/sacmac/bold_trace_files/HMBCH056-07_F.ab1
-#> /Users/sacmac/bold_trace_files/HMBCH056-07_R.ab1
-#> /Users/sacmac/bold_trace_files/HMBCH063-07_F.ab1
-#> /Users/sacmac/bold_trace_files/HMBCH063-07_R.ab1
-#> /Users/sacmac/bold_trace_files/Osm_aur_T505_LCOHym_D04_008_copy.ab1
-#> /Users/sacmac/bold_trace_files/Osm_aur_T505_NancyFull_D10_008_copy.ab1
-#> /Users/sacmac/bold_trace_files/Osm_ruf_T309_LCOHym_C06_006_copy.ab1
-#> /Users/sacmac/bold_trace_files/Osm_ruf_T309_Nancy_C06_006_copy.ab1
-#> /Users/sacmac/bold_trace_files/TRACE_FILE_INFO.txt
+x <- bold_trace(ids='ACRJP618-11', dest="~/mytarfiles", progress = FALSE)
+read_trace(x$ab1[2])
+#> Number of datapoints: 9533
+#> Number of basecalls: 349
+#> 
+#> Primary Basecalls: NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNGNNNANNGGNTCATCCATAAGATTATTAATTCGTATAGAATTAAGTCATCCTGGTATATGAATCAATAATGATCAAATTTATAATTCATTAGTTACAAATCATGCATTTTTAATAATTTTTTTTATAGTTATACCATTTATAATTGGAGGATTTGGAAATTACTTAATTCCATTAATATTAGGATCATCTGATATAGCTTTTCCACGAATAAATAATATTAGATTCTGATCACTTCCTCCATCTCTTTTTATATTACTTTTAAGAAATTTATTCACACCAAATGTAGGAACNGGATGAANTNNNNNNNNNNNNN
+#> 
+#> Secondary Basecalls:
 ```
 
 ## Meta
