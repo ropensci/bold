@@ -34,8 +34,8 @@ check_args_given_nonempty <- function(arguments, x){
 
 process_response <- function(x, y, z, w){
   tt <- content(x, as = "text")
-  out <- fromJSON(tt)
-  if(length(out)==0){
+  out <- jsonlite::fromJSON(tt)
+  if( length(out)==0 || identical(out[[1]], list()) ){
     data.frame(input=y, stringsAsFactors = FALSE)
   } else {
     if(w %in% c("stats",'images','geo','sequencinglabs','depository')) out <- out[[1]]

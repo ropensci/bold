@@ -22,6 +22,11 @@
 #' ## get httr response object only
 #' bold_tax_name(name='Diplura', response=TRUE)
 #' bold_tax_name(name=c('Diplura','Osmia'), response=TRUE)
+#' 
+#' ## Names with no data in BOLD database
+#' bold_tax_name("Nasiaeshna pentacantha")
+#' bold_tax_name(name = "Cordulegaster erronea")
+#' bold_tax_name(name = "Cordulegaster erronea", response=TRUE)
 #'
 #' ## curl debugging
 #' library('httr')
