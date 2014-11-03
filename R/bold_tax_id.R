@@ -27,6 +27,11 @@
 #' bold_tax_id(id=c(88899,125295), dataTypes = "geo")
 #' bold_tax_id(id=c(88899,125295), dataTypes = "images")
 #' 
+#' ## Passing in NA
+#' bold_tax_id(NA, response=TRUE)
+#' bold_tax_id(id = NA)
+#' bold_tax_id(id = c(88899,125295,NA))
+#' 
 #' ## get httr response object only
 #' bold_tax_id(id=88899, response=TRUE)
 #' bold_tax_id(id=c(88899,125295), response=TRUE)
@@ -39,7 +44,7 @@
 bold_tax_id <- function(id = NULL, dataTypes='basic', includeTree=FALSE, response=FALSE, ...)
 {
   tmp <- lapply(id, function(x) 
-    get_response(bc(list(taxId=x, dataTypes=dataTypes, includeTree=if(includeTree) TRUE else NULL)), 
+    get_response(args = bc(list(taxId=x, dataTypes=dataTypes, includeTree=if(includeTree) TRUE else NULL)), 
                  url=paste0(bbase(), "API_Tax/TaxonData"), ...)
   )
   if(response){ tmp } else {  
