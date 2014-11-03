@@ -1,6 +1,16 @@
 bold 0.2.0
 ===============
 
+BUG FIXES
+
+* Fixed similar bugs in `bold_tax_name()` (#17) and `bold_tax_id()` (#18) in which species that 
+were missing from the BOLD database returned empty arrays but 200 status codes. Parsing those as
+failed attempts now. Also fixes problem in taxize in `bold_search()` that use these two functions.
+
+
+bold 0.2.0
+===============
+
 NEW FEATURES
 
 * Package gains two new functions for working with the BOLD taxonomy APIs: `bold_tax_name()` and `bold_tax_id()`, which search for taxonomic data from BOLD using either names or BOLD identifiers, respectively. (#11)
