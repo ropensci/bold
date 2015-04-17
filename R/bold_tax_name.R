@@ -1,6 +1,9 @@
 #' Search BOLD for taxonomy data by taxonomic name.
 #'
-#' @import httr assertthat reshape jsonlite
+#' @importFrom httr GET stop_for_status content parse_url build_url progress write_disk
+#' @importFrom assertthat assert_that
+#' @importFrom jsonlite fromJSON
+#' @importFrom reshape sort_df
 #' @importFrom plyr rbind.fill
 #' @export
 #' @param name (character) One or more scientific names.

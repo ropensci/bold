@@ -1,6 +1,5 @@
 #' Get BOLD trace files
 #'
-#' @importFrom sangerseqR readsangerseq
 #' @export
 #' @template args
 #' @references \url{http://www.boldsystems.org/index.php/resources/api#trace}
@@ -34,13 +33,17 @@
 
 bold_trace <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
   institutions = NULL, researchers = NULL, geo = NULL, marker = NULL, dest=NULL,
-  overwrite = TRUE, progress = TRUE, ...)
-{
+  overwrite = TRUE, progress = TRUE, ...) {
+  
+  if (!requireNamespace("sangerseqR", quietly = TRUE)) {
+    stop("Please install sangerseqR", call. = FALSE)
+  }
+  
   args <- bc(list(taxon=pipeornull(taxon), geo=pipeornull(geo), ids=pipeornull(ids),
       bin=pipeornull(bin), container=pipeornull(container), institutions=pipeornull(institutions),
       researchers=pipeornull(researchers), marker=pipeornull(marker)))
   url <- make_url(paste0(bbase(), 'API_Public/trace'), args)
-  if(is.null(dest)){
+  if (is.null(dest)) {
     destfile <- paste0(getwd(), "/bold_trace_files.tar")
     destdir <- paste0(getwd(), "/bold_trace_files")
   } else {
@@ -51,7 +54,7 @@ bold_trace <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
   untar(destfile, exdir = destdir)
   files <- list.files(destdir, full.names = TRUE)
   ab1 <- list.files(destdir, pattern = ".ab1", full.names = TRUE)
-  structure(list(destfile=destfile, destdir=destdir, ab1=ab1, args=args), class="boldtrace")
+  structure(list(destfile = destfile, destdir = destdir, ab1 = ab1, args = args), class = "boldtrace")
 }
 
 #' @export
@@ -63,10 +66,10 @@ print.boldtrace <- function(x, ...){
 #' @export
 #' @rdname bold_trace
 read_trace <- function(x){
-  if(is(x, "boldtrace")){
-    if(length(x$ab1) > 1) stop("Number of paths > 1, just pass one in", call. = FALSE)
-    readsangerseq(x$ab1)
+  if (is(x, "boldtrace")) {
+    if (length(x$ab1) > 1) stop("Number of paths > 1, just pass one in", call. = FALSE)
+    sangerseqR::readsangerseq(x$ab1)
   } else {
-    readsangerseq(x)
+    sangerseqR::readsangerseq(x)
   }
 }

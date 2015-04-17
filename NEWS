@@ -3,7 +3,8 @@ bold 0.2.6
 
 MINOR IMPROVEMENTS
 
-* `sangerseqR` package now imported for reading trace files.
+* `sangerseqR` package now in Suggests for reading trace files, and is only used in `bold_trace()`
+function. 
 * General code tidying, reduction of code duplication.
 * `bold_trace()` gains two new parameters: `overwrite` to choose whether to overwrite an existing
 file of the same name or not, `progress` to show a progress bar for downloading or not.

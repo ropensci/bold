@@ -1,6 +1,6 @@
 #' Get BOLD specimen + sequence data.
 #'
-#' @import XML
+#' @importFrom XML xmlParse getNodeSet xpathSApply xmlToList xmlValue xmlName
 #' @export
 #' @template args
 #' @template otherargs

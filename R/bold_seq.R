@@ -3,7 +3,7 @@
 #' Get sequences for a taxonomic name, id, bin, container, institution, researcher, geographic
 #' place, or gene.
 #'
-#' @import stringr
+#' @importFrom stringr str_replace_all str_replace str_split
 #' @export
 #' @template args
 #' @template otherargs
