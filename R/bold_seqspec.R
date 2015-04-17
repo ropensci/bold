@@ -32,8 +32,7 @@
 
 bold_seqspec <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
   institutions = NULL, researchers = NULL, geo = NULL, marker = NULL, response=FALSE,
-  format = 'tsv', sepfasta=FALSE, ...)
-{
+  format = 'tsv', sepfasta=FALSE, ...) {
   format <- match.arg(format, choices = c('xml','tsv'))
   args <- bc(list(taxon=pipeornull(taxon), geo=pipeornull(geo), ids=pipeornull(ids),
     bin=pipeornull(bin), container=pipeornull(container), institutions=pipeornull(institutions),

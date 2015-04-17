@@ -20,7 +20,6 @@
 #' bold_seq(ids=c('ACRJP618-11','ACRJP619-11'))
 #' bold_seq(bin='BOLD:AAA5125')
 #' bold_seq(container='ACRJP')
-#' bold_seq(institutions='Biodiversity Institute of Ontario')
 #' bold_seq(researchers='Thibaud Decaens')
 #' bold_seq(geo='Ireland')
 #' bold_seq(geo=c('Ireland','Denmark'))
@@ -39,8 +38,7 @@
 #' }
 
 bold_seq <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL, institutions = NULL,
-  researchers = NULL, geo = NULL, marker = NULL, response=FALSE, ...)
-{
+  researchers = NULL, geo = NULL, marker = NULL, response=FALSE, ...) {
   args <- bc(list(taxon=pipeornull(taxon), geo=pipeornull(geo), ids=pipeornull(ids),
       bin=pipeornull(bin), container=pipeornull(container), institutions=pipeornull(institutions),
       researchers=pipeornull(researchers), marker=pipeornull(marker)))

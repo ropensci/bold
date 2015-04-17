@@ -33,8 +33,8 @@
 #' bold_tax_name(name='Diplura', config=verbose())
 #' }
 
-bold_tax_name <- function(name = NULL, fuzzy=FALSE, response=FALSE, ...)
-{
+bold_tax_name <- function(name = NULL, fuzzy=FALSE, response=FALSE, ...) {
+
   tmp <- lapply(name, function(x)
     get_response(bc(list(taxName=x, fuzzy=if(fuzzy) 'true' else NULL)),
                  url=paste0(bbase(), "API_Tax/TaxonSearch"), ...)
