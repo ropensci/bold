@@ -1,6 +1,5 @@
 #' Search BOLD for specimens.
 #' 
-#' @import XML httr assertthat
 #' @export
 #' @template args 
 #' @template otherargs

@@ -1,6 +1,5 @@
 #' Get BOLD trace files
 #' 
-#' @import httr 
 #' @importFrom sangerseqR readsangerseq
 #' @export
 #' @template args 
