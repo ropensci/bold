@@ -49,7 +49,7 @@ sites includes countries and province/states.}
 Get BOLD trace files
 }
 \examples{
-\donttest{
+\dontrun{
 # The progress dialog is pretty verbose, so quiet=TRUE is a nice touch, but not by default
 bold_trace(taxon='Osmia', quiet=TRUE)
 

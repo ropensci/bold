@@ -1,30 +1,30 @@
 #' Get BOLD trace files
-#' 
+#'
 #' @importFrom sangerseqR readsangerseq
 #' @export
-#' @template args 
+#' @template args
 #' @references \url{http://www.boldsystems.org/index.php/resources/api#trace}
-#' 
-#' @param marker (character) Returns all records containing matching marker codes. 
-#' @param dest (character) A directory to write the files to 
+#'
+#' @param marker (character) Returns all records containing matching marker codes.
+#' @param dest (character) A directory to write the files to
 #' @param overwrite (logical) Overwrite existing directory and file?
 #' @param progress (logical) Print progress or not. Uses \code{\link[httr]{progress}}.
 #' @param ... Futher args passed on to \code{\link[httr]{GET}}.
 #' @param x Object to print or read.
-#' 
-#' @examples \donttest{
+#'
+#' @examples \dontrun{
 #' # The progress dialog is pretty verbose, so quiet=TRUE is a nice touch, but not by default
 #' bold_trace(taxon='Osmia', quiet=TRUE)
-#' 
+#'
 #' # Use a specific destination directory
 #' bold_trace(taxon='Bombus', institutions='York University', dest="~/mytarfiles")
 #' bold_trace(taxon='Bombus', geo='Alaska', dest="~/mytarfiles")
-#' 
+#'
 #' # Another example
 #' bold_trace(ids='ACRJP618-11', dest="~/mytarfiles")
 #' bold_trace(ids=c('ACRJP618-11','ACRJP619-11'), dest="~/mytarfiles")
-#' 
-#' # read file in 
+#'
+#' # read file in
 #' x <- bold_trace(ids=c('ACRJP618-11','ACRJP619-11'), dest="~/mytarfiles")
 #' (res <- read_trace(x$ab1[2]))
 #' primarySeq(res)
@@ -32,12 +32,12 @@
 #' head(traceMatrix(res))
 #' }
 
-bold_trace <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL, 
-  institutions = NULL, researchers = NULL, geo = NULL, marker = NULL, dest=NULL, 
+bold_trace <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
+  institutions = NULL, researchers = NULL, geo = NULL, marker = NULL, dest=NULL,
   overwrite = TRUE, progress = TRUE, ...)
 {
-  args <- bc(list(taxon=pipeornull(taxon), geo=pipeornull(geo), ids=pipeornull(ids), 
-      bin=pipeornull(bin), container=pipeornull(container), institutions=pipeornull(institutions), 
+  args <- bc(list(taxon=pipeornull(taxon), geo=pipeornull(geo), ids=pipeornull(ids),
+      bin=pipeornull(bin), container=pipeornull(container), institutions=pipeornull(institutions),
       researchers=pipeornull(researchers), marker=pipeornull(marker)))
   url <- make_url(paste0(bbase(), 'API_Public/trace'), args)
   if(is.null(dest)){

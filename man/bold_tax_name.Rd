@@ -25,7 +25,7 @@ use that parameter, get an ID from this function and pass it into \code{bold_tax
 use the \code{dataTypes} parameter.
 }
 \examples{
-\donttest{
+\dontrun{
 bold_tax_name(name='Diplura')
 bold_tax_name(name='Osmia')
 bold_tax_name(name=c('Diplura','Osmia'))
@@ -51,6 +51,6 @@ bold_tax_name(name='Diplura', config=verbose())
 \url{http://boldsystems.org/index.php/resources/api?type=taxonomy#nameParameters}
 }
 \seealso{
-\code{bold_tax_id}
+\code{\link{bold_tax_id}}
 }
 

@@ -44,7 +44,7 @@ Detailed description of options for the db parmeter:
 }
 }
 \examples{
-\donttest{
+\dontrun{
 seq <- sequences$seq1
 head(bold_identify(sequences=seq)[[1]])
 head(bold_identify(sequences=seq, db='COX1_SPECIES')[[1]])
