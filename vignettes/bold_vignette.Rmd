@@ -391,7 +391,7 @@ res$headers
 
 ```
 ## $date
-## [1] "Wed, 06 Aug 2014 22:15:33 GMT"
+## [1] "Fri, 17 Apr 2015 14:57:45 GMT"
 ## 
 ## $server
 ## [1] "Apache/2.2.15 (Red Hat)"
