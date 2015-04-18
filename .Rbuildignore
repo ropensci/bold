@@ -9,4 +9,3 @@ cran-comments.md
 ^\.Rproj\.user$
 README.Rmd
 ^.*\.tar
-tests/test-all.R
