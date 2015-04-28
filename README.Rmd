@@ -12,6 +12,7 @@ knitr::opts_chunk$set(
 
 [![Build Status](https://api.travis-ci.org/ropensci/bold.png)](https://travis-ci.org/ropensci/bold)
 [![Build status](https://ci.appveyor.com/api/projects/status/hifii9wvk2h7wc7f/branch/master)](https://ci.appveyor.com/project/sckott/bold/branch/master)
+[![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/bold)](https://github.com/metacran/cranlogs.app)
 
 `bold` accesses BOLD barcode data.
 
