@@ -22,7 +22,7 @@ test_that("bold_specimens returns the correct classes", {
 })
 
 test_that("Throws warning on call that takes forever including timeout in callopts", {
-  expect_error(bold_specimens(geo='Costa Rica', config=timeout(2)), "Operation timed out")
+  expect_error(bold_specimens(geo='Costa Rica', config=timeout(2)), "Timeout was reached")
 })
 
 test_that("bold_seq returns correct thing when parameters empty or not given", {
