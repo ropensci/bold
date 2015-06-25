@@ -45,7 +45,7 @@ Search BOLD for specimens.
 \dontrun{
 bold_specimens(taxon='Osmia')
 bold_specimens(taxon='Osmia', format='xml')
-bold_specimens(taxon='Osmia', response=TRUE)
+# bold_specimens(taxon='Osmia', response=TRUE)
 res <- bold_specimens(taxon='Osmia', format='xml', response=TRUE)
 res$url
 res$status_code
@@ -58,8 +58,8 @@ bold_specimens(taxon=c('Coelioxys','Osmia'))
 ### These examples below take a long time, so you can set a timeout so that it stops by X sec
 library("httr")
 head(bold_specimens(taxon='Osmia', config=verbose()))
-head(bold_specimens(geo='Costa Rica', config=timeout(6)))
-head(bold_specimens(taxon="Formicidae", geo="Canada", config=timeout(6)))
+# head(bold_specimens(geo='Costa Rica', config=timeout(6)))
+# head(bold_specimens(taxon="Formicidae", geo="Canada", config=timeout(6)))
 }
 }
 \references{

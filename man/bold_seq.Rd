@@ -67,7 +67,7 @@ res$headers
 ### You can do many things, including get verbose output on the curl call, and set a timeout
 library("httr")
 bold_seq(taxon='Coelioxys', config=verbose())[1:2]
-bold_seqspec(taxon='Coelioxys', config=timeout(0.1))
+# bold_seqspec(taxon='Coelioxys', config=timeout(0.1))
 }
 }
 \references{
