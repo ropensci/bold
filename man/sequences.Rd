@@ -3,9 +3,11 @@
 \docType{data}
 \name{sequences}
 \alias{sequences}
-\title{List of 3 nucleotide sequences to use in examples for the bold_identify function}
+\title{List of 3 nucleotide sequences to use in examples for the
+\code{\link{bold_identify}} function}
 \description{
-List of 3 nucleotide sequences to use in examples for the bold_identify function
+List of 3 nucleotide sequences to use in examples for the
+\code{\link{bold_identify}} function
 }
 \keyword{data}
 

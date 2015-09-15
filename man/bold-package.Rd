@@ -21,12 +21,12 @@ their API.
 There are currently six functions.
 
 \itemize{
- \item bold_specimens - Search for specimen data.
- \item bold_seq - Search for and retrieve sequences.
- \item bold_seqspec - Get sequence and specimen data together.
- \item bold_trace - Get trace files.
- \item bold_tax_name - Get taxonomic names via input names.
- \item bold_tax_id - Get taxonomic names via BOLD identifiers.
+ \item \code{\link{bold_specimens}} - Search for specimen data.
+ \item \code{\link{bold_seq}} - Search for and retrieve sequences.
+ \item \code{\link{bold_seqspec}} - Get sequence and specimen data together.
+ \item \code{\link{bold_trace}} - Get trace files.
+ \item \code{\link{bold_tax_name}} - Get taxonomic names via input names.
+ \item \code{\link{bold_tax_id}} - Get taxonomic names via BOLD identifiers.
 }
 
 Interestingly, they provide xml and tsv format data for the specimen data, while they provide
