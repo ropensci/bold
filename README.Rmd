@@ -99,7 +99,7 @@ read_trace(x$ab1[2])
 
 ## Meta
 
-* [Please report any issues or bugs](https://github.com/ropensci/bold/issues).
+* Please [report any issues or bugs](https://github.com/ropensci/bold/issues).
 * License: MIT
 * Get citation information for `bold` in R doing `citation(package = 'bold')`
 
