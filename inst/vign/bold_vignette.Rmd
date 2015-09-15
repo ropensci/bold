@@ -1,7 +1,17 @@
 <!--
 %\VignetteEngine{knitr::knitr}
 %\VignetteIndexEntry{bold vignette}
+%\VignetteEncoding{UTF-8}
 -->
+
+```{r, eval=TRUE, echo=FALSE}
+knitr::opts_chunk$set(
+  comment = "#>",
+  warning = FALSE,
+  message = FALSE,
+  collapse = TRUE
+)
+```
 
 `bold` is an R package to connect to [BOLD Systems](http://www.boldsystems.org/) via their API. Functions in `bold` let you search for sequence data, specimen data, sequence + specimen data, and download raw trace files.
 
@@ -169,6 +179,6 @@ res$fasta['GBAH0293-06']
 
 This function downloads files to your machine - it does not load them into your R session - but prints out where the files are for your information.
 
-```{r cache=TRUE, cache.path="../ignore/"}
+```{r eval=FALSE}
 bold_trace(taxon = 'Osmia', quiet = TRUE)
 ```
