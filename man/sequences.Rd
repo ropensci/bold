@@ -9,5 +9,8 @@
 List of 3 nucleotide sequences to use in examples for the
 \code{\link{bold_identify}} function
 }
+\details{
+Each sequence is a character string, of lengths 410, 600, and 696.
+}
 \keyword{data}
 
