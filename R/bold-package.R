@@ -22,7 +22,9 @@
 #' fasta data format for the sequence data. So for the specimen data you can get back raw XML, or
 #' a data frame parsed from the tsv data, while for sequence data you get back a list (b/c
 #' sequences are quite long and would make a data frame unwieldy).
-#'
+#' 
+#' @importFrom methods is
+#' @importFrom utils read.delim untar
 #' @docType package
 #' @name bold-package
 #' @aliases bold

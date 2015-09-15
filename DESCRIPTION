@@ -5,9 +5,9 @@ Description: A programmatic interface to the Web Service methods provided by
     searching by sequences by taxonomic names, ids, collectors, and
     institutions; as well as a function for searching for specimens, and
     downloading trace files.
-Version: 0.2.7.9000
+Version: 0.2.9.9000
 License: MIT + file LICENSE
-Date: 2015-04-18
+Date: 2015-09-15
 Authors@R: c(person("Scott", "Chamberlain", role = c("aut", "cre"),
     email = "myrmecocystus@gmail.com"))
 URL: https://github.com/ropensci/bold
@@ -15,6 +15,8 @@ BugReports: https://github.com/ropensci/bold/issues
 VignetteBuilder: knitr
 LazyData: yes
 Imports:
+    methods,
+    utils,
     XML,
     httr,
     stringr,
