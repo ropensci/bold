@@ -1,10 +1,19 @@
+bold 0.3.0
+===============
+
+MINOR IMPROVEMENTS
+
+* Explicitly import non-base R functions (#22)
+* Better package level manual file
+
+
 bold 0.2.6
 ===============
 
 MINOR IMPROVEMENTS
 
 * `sangerseqR` package now in Suggests for reading trace files, and is only used in `bold_trace()`
-function. 
+function.
 * General code tidying, reduction of code duplication.
 * `bold_trace()` gains two new parameters: `overwrite` to choose whether to overwrite an existing
 file of the same name or not, `progress` to show a progress bar for downloading or not.
