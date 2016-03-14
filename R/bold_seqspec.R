@@ -22,6 +22,12 @@
 #' res <- bold_seqspec(taxon='Osmia', sepfasta=TRUE)
 #' res$fasta[1:2]
 #' res$fasta['GBAH0293-06']
+#' 
+#' # records that match a marker name
+#' res <- bold_seqspec(taxon="Melanogrammus aeglefinus", marker="COI-5P")
+#' 
+#' # records that match a geographic locality
+#' res <- bold_seqspec(taxon="Melanogrammus aeglefinus", geo="Canada")
 #'
 #' ## curl debugging
 #' ### You can do many things, including get verbose output on the curl call, and set a timeout
@@ -33,26 +39,38 @@
 bold_seqspec <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
   institutions = NULL, researchers = NULL, geo = NULL, marker = NULL, response=FALSE,
   format = 'tsv', sepfasta=FALSE, ...) {
+  
   format <- match.arg(format, choices = c('xml','tsv'))
-  args <- bc(list(taxon=pipeornull(taxon), geo=pipeornull(geo), ids=pipeornull(ids),
-    bin=pipeornull(bin), container=pipeornull(container), institutions=pipeornull(institutions),
-    researchers=pipeornull(researchers), marker=pipeornull(marker), combined_download=format))
-  check_args_given_nonempty(args, c('taxon','ids','bin','container','institutions','researchers',
-                                    'geo','marker'))
+  args <- bc(list(taxon = pipeornull(taxon), geo = pipeornull(geo), 
+                  ids = pipeornull(ids), bin = pipeornull(bin), 
+                  container = pipeornull(container), 
+                  institutions = pipeornull(institutions), 
+                  researchers = pipeornull(researchers), 
+                  marker = pipeornull(marker), combined_download = format))
+  check_args_given_nonempty(args, c('taxon', 'ids', 'bin', 'container',
+                                    'institutions', 'researchers',
+                                    'geo', 'marker'))
   out <- b_GET(paste0(bbase(), 'API_Public/combined'), args, ...)
-  if(response){ out } else {
-    tt <- content(out, as = "text")
+  if (response) { 
+    out
+  } else {
+    tt <- rawToChar(content(out))
+    if (tt == "") return(NA)
     temp <- switch(format,
            xml = xmlParse(tt),
-           tsv = read.delim(text = tt, header = TRUE, sep = "\t", stringsAsFactors=FALSE)
+           tsv = read.delim(text = tt, header = TRUE, sep = "\t", stringsAsFactors = FALSE)
     )
-    if(!sepfasta){ temp }  else {
-      if(format == "tsv"){
+    if (!sepfasta) { 
+      temp 
+    }  else {
+      if (format == "tsv") {
         fasta <- as.list(temp$nucleotides)
         names(fasta) <- temp$processid
         df <- temp[ , !names(temp) %in% "nucleotides" ]
-        list(data=df, fasta=fasta)
-      } else { temp }
+        list(data = df, fasta = fasta)
+      } else { 
+        temp 
+      }
     }
   }
 }
