@@ -1,17 +1,13 @@
-language: c
-before_install:
-- curl -OL http://raw.github.com/craigcitro/r-travis/master/scripts/travis-tool.sh
-- chmod 755 ./travis-tool.sh
-- "./travis-tool.sh bootstrap"
-install:
-- "./travis-tool.sh install_deps"
-- "./travis-tool.sh install_bioc sangerseqR"
-script: "./travis-tool.sh run_tests"
-on_failure:
-- "./travis-tool.sh dump_logs"
+language: r
+sudo: false
+cache: packages
+
+bioc_packages: 
+- sangerseqR
+
 notifications:
-  slack:
-    secure: KudAMnqi7D6dy1BruMF9tkT2PTUXa8VSuQo8ECk5M6gz6L7o6tEmzPgrzqLC9xzgc4mm80opMMdNGShTHZZdd1oWw9yIOFZpQ10O/kaLyb1LgFwV01yZP1dt9ZAxRvfm9Ur2wl8XS+cRr6PR7iJX733iBhQ+qUGDTltFm/O2q8U=
   email:
     on_success: change
     on_failure: change
+  slack:
+    secure: KudAMnqi7D6dy1BruMF9tkT2PTUXa8VSuQo8ECk5M6gz6L7o6tEmzPgrzqLC9xzgc4mm80opMMdNGShTHZZdd1oWw9yIOFZpQ10O/kaLyb1LgFwV01yZP1dt9ZAxRvfm9Ur2wl8XS+cRr6PR7iJX733iBhQ+qUGDTltFm/O2q8U=
