@@ -51,7 +51,7 @@ Get BOLD trace files
 \examples{
 \dontrun{
 # The progress dialog is pretty verbose, so quiet=TRUE is a nice touch, but not by default
-bold_trace(taxon='Osmia', quiet=TRUE)
+x <- bold_trace(taxon='Osmia', quiet=TRUE)
 
 # Use a specific destination directory
 bold_trace(taxon='Bombus', institutions='York University', dest="~/mytarfiles")
@@ -64,9 +64,13 @@ bold_trace(ids=c('ACRJP618-11','ACRJP619-11'), dest="~/mytarfiles")
 # read file in
 x <- bold_trace(ids=c('ACRJP618-11','ACRJP619-11'), dest="~/mytarfiles")
 (res <- read_trace(x$ab1[2]))
-primarySeq(res)
-secondarySeq(res)
-head(traceMatrix(res))
+
+if (requireNamespace("sangerseqR", quietly = TRUE)) {
+ library("sangerseqR")
+ primarySeq(res)
+ secondarySeq(res)
+ head(traceMatrix(res))
+}
 }
 }
 \references{

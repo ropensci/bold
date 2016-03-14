@@ -45,8 +45,10 @@ bold_seq <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL, ins
   check_args_given_nonempty(args, c('taxon','ids','bin','container','institutions','researchers',
                                     'geo','marker'))
   out <- b_GET(paste0(bbase(), 'API_Public/sequence'), args, ...)
-  if(response){ out } else {
-    tt <- content(out, as = "text")
+  if (response) { 
+    out 
+  } else {
+    tt <- rawToChar(content(out, encoding = "UTF-8"))
     res <- strsplit(tt, ">")[[1]][-1]
     lapply(res, split_fasta)
   }

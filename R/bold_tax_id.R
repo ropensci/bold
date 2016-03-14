@@ -41,14 +41,21 @@
 #' bold_tax_id(id=88899, config=verbose())
 #' }
 
-bold_tax_id <- function(id = NULL, dataTypes='basic', includeTree=FALSE, response=FALSE, ...) {
+bold_tax_id <- function(id=NULL, dataTypes='basic', includeTree=FALSE, response=FALSE, ...) {
   
   tmp <- lapply(id, function(x)
-    get_response(args = bc(list(taxId=x, dataTypes=dataTypes, includeTree=if(includeTree) TRUE else NULL)),
-                 url=paste0(bbase(), "API_Tax/TaxonData"), ...)
+    get_response(args = bc(list(taxId = x, dataTypes = dataTypes, includeTree = if (includeTree) TRUE else NULL)),
+                 url = paste0(bbase(), "API_Tax/TaxonData"), ...)
   )
-  if(response){ tmp } else {
-    res <- do.call(rbind.fill, Map(process_response, x=tmp, y=id, z=includeTree, w=dataTypes))
-    if(NCOL(res) == 1){ res$noresults <- NA; res } else { res }
+  if (response) { 
+    tmp 
+  } else {
+    res <- do.call(rbind.fill, Map(process_response, x = tmp, y = id, z = includeTree, w = dataTypes))
+    if (NCOL(res) == 1) { 
+      res$noresults <- NA
+      return(res)
+    } else { 
+      res 
+    }
   }
 }

@@ -51,7 +51,7 @@ res$url
 res$status_code
 res$headers
 
-# More than 1 can be given for all searh parameters
+# More than 1 can be given for all search parameters
 bold_specimens(taxon=c('Coelioxys','Osmia'))
 
 ## curl debugging

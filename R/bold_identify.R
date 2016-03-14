@@ -48,14 +48,16 @@
 
 bold_identify <- function(sequences = NULL, db = 'COX1', response=FALSE, ...) {
   url <- 'http://boldsystems.org/index.php/Ids_xml'
-
+  
   foo <- function(a, b){
-    args <- bc(list(sequence=a, db=b))
-    out <- GET(url, query=args, ...)
+    args <- bc(list(sequence = a, db = b))
+    out <- GET(url, query = args, ...)
     stop_for_status(out)
-    assert_that(out$headers$`content-type`=='text/xml')
-    if(response){ out } else {
-      tt <- content(out, as = "text")
+    assert_that(out$headers$`content-type` == 'text/xml')
+    if (response) { 
+      out 
+    } else {
+      tt <- content(out, encoding = "UTF-8")
       xml <- xmlParse(tt)
       nodes <- getNodeSet(xml, "//match")
       toget <- c("ID","sequencedescription","database","citation","taxonomicidentification","similarity")
@@ -70,7 +72,7 @@ bold_identify <- function(sequences = NULL, db = 'COX1', response=FALSE, ...) {
       do.call(rbind.fill, outlist)
     }
   }
-  lapply(sequences, foo, b=db)
+  lapply(sequences, foo, b = db)
 }
 
 xml_value_name <- function(x){
