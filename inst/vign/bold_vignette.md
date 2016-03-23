@@ -381,7 +381,7 @@ res$status_code
 #> [1] 200
 res$headers
 #> $date
-#> [1] "Tue, 15 Sep 2015 20:12:13 GMT"
+#> [1] "Wed, 23 Mar 2016 19:47:30 GMT"
 #> 
 #> $server
 #> [1] "Apache/2.2.15 (Red Hat)"

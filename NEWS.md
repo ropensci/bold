@@ -1,6 +1,10 @@
 bold 0.3.4
 ===============
 
+### NEW FEATURES
+
+* Added a code of conduct
+
 ### MINOR IMPROVEMENTS
 
 * Switched to `xml2` from `XML` as the XML parser for this package (#26)
