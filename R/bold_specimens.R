@@ -37,12 +37,12 @@ bold_specimens <- function(taxon = NULL, ids = NULL, bin = NULL, container = NUL
       researchers=pipeornull(researchers), specimen_download=format))
   check_args_given_nonempty(args, c('taxon','ids','bin','container','institutions','researchers','geo'))
   out <- b_GET(paste0(bbase(), 'API_Public/specimen'), args, ...)
-  if (response) { 
-    out 
+  if (response) {
+    out
   } else {
     tt <- rawToChar(content(out, encoding = "UTF-8"))
     switch(format,
-           xml = xmlParse(tt),
+           xml = xml2::read_xml(tt),
            tsv = read.delim(text = tt, header = TRUE, sep = "\t", stringsAsFactors = FALSE)
     )
   }

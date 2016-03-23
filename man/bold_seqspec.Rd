@@ -54,7 +54,7 @@ Get BOLD specimen + sequence data.
 \dontrun{
 bold_seqspec(taxon='Osmia')
 bold_seqspec(taxon='Osmia', format='xml')
-# bold_seqspec(taxon='Osmia', response=TRUE)
+bold_seqspec(taxon='Osmia', response=TRUE)
 res <- bold_seqspec(taxon='Osmia', sepfasta=TRUE)
 res$fasta[1:2]
 res$fasta['GBAH0293-06']
@@ -69,7 +69,10 @@ res <- bold_seqspec(taxon="Melanogrammus aeglefinus", geo="Canada")
 ### You can do many things, including get verbose output on the curl call, and set a timeout
 library("httr")
 head(bold_seqspec(taxon='Osmia', config=verbose()))
+## timeout
 # head(bold_seqspec(taxon='Osmia', config=timeout(1)))
+## progress
+# x <- bold_seqspec(taxon='Osmia', config=progress())
 }
 }
 \references{

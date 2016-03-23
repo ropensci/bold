@@ -1,6 +1,5 @@
 #' Get BOLD specimen + sequence data.
 #'
-#' @importFrom XML xmlParse getNodeSet xpathSApply xmlToList xmlValue xmlName
 #' @export
 #' @template args
 #' @template otherargs
@@ -18,7 +17,7 @@
 #' @examples \dontrun{
 #' bold_seqspec(taxon='Osmia')
 #' bold_seqspec(taxon='Osmia', format='xml')
-#' # bold_seqspec(taxon='Osmia', response=TRUE)
+#' bold_seqspec(taxon='Osmia', response=TRUE)
 #' res <- bold_seqspec(taxon='Osmia', sepfasta=TRUE)
 #' res$fasta[1:2]
 #' res$fasta['GBAH0293-06']
@@ -33,7 +32,10 @@
 #' ### You can do many things, including get verbose output on the curl call, and set a timeout
 #' library("httr")
 #' head(bold_seqspec(taxon='Osmia', config=verbose()))
+#' ## timeout
 #' # head(bold_seqspec(taxon='Osmia', config=timeout(1)))
+#' ## progress
+#' # x <- bold_seqspec(taxon='Osmia', config=progress())
 #' }
 
 bold_seqspec <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
@@ -57,12 +59,12 @@ bold_seqspec <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
     tt <- rawToChar(content(out, encoding = "UTF-8"))
     if (tt == "") return(NA)
     temp <- switch(format,
-           xml = xmlParse(tt),
+           xml = xml2::read_xml(tt),
            tsv = read.delim(text = tt, header = TRUE, sep = "\t", stringsAsFactors = FALSE)
     )
     if (!sepfasta) { 
       temp 
-    }  else {
+    } else {
       if (format == "tsv") {
         fasta <- as.list(temp$nucleotides)
         names(fasta) <- temp$processid
