@@ -12,11 +12,7 @@
 #' @param x Object to print or read.
 #'
 #' @examples \dontrun{
-#' # The progress dialog is pretty verbose, so quiet=TRUE is a nice touch, but not by default
-#' x <- bold_trace(taxon='Osmia', quiet=TRUE)
-#'
 #' # Use a specific destination directory
-#' bold_trace(taxon='Bombus', institutions='York University', dest="~/mytarfiles")
 #' bold_trace(taxon='Bombus', geo='Alaska', dest="~/mytarfiles")
 #'
 #' # Another example
@@ -26,6 +22,10 @@
 #' # read file in
 #' x <- bold_trace(ids=c('ACRJP618-11','ACRJP619-11'), dest="~/mytarfiles")
 #' (res <- read_trace(x$ab1[2]))
+#' 
+#' # The progress dialog is pretty verbose, so quiet=TRUE is a nice touch, but not by default
+#' # Beware, this one take a while
+#' x <- bold_trace(taxon='Osmia', quiet=TRUE)
 #' 
 #' if (requireNamespace("sangerseqR", quietly = TRUE)) {
 #'  library("sangerseqR")
@@ -54,6 +54,8 @@ bold_trace <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
     destdir <- path.expand(dest)
     destfile <- paste0(destdir, "/bold_trace_files.tar")
   }
+  dir.create(destdir, showWarnings = FALSE, recursive = TRUE)
+  if (!file.exists(destfile)) file.create(destfile, showWarnings = FALSE)
   res <- GET(url, write_disk(path = destfile, overwrite = overwrite), if(progress) progress(), ...)
   untar(destfile, exdir = destdir)
   files <- list.files(destdir, full.names = TRUE)

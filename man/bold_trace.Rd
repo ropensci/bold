@@ -54,7 +54,6 @@ Get BOLD trace files
 x <- bold_trace(taxon='Osmia', quiet=TRUE)
 
 # Use a specific destination directory
-bold_trace(taxon='Bombus', institutions='York University', dest="~/mytarfiles")
 bold_trace(taxon='Bombus', geo='Alaska', dest="~/mytarfiles")
 
 # Another example

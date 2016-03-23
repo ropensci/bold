@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 [![Build Status](https://api.travis-ci.org/ropensci/bold.png)](https://travis-ci.org/ropensci/bold)
 [![Build status](https://ci.appveyor.com/api/projects/status/hifii9wvk2h7wc7f/branch/master)](https://ci.appveyor.com/project/sckott/bold/branch/master)
 [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/bold)](https://github.com/metacran/cranlogs.app)
-[![cran version](http://www.r-pkg.org/badges/version/bold)](http://cran.rstudio.com/web/packages/bold)
+[![cran version](http://www.r-pkg.org/badges/version/bold)](https://cran.r-project.org/package=bold)
 
 `bold` accesses BOLD barcode data.
 
@@ -93,7 +93,8 @@ res$fasta['GBAH0293-06']
 This function downloads files to your machine - it does not load them into your R session - but prints out where the files are for your information.
 
 ```{r}
-x <- bold_trace(ids='ACRJP618-11', dest="~/mytarfiles", progress = FALSE)
+tdir <- file.path(tempdir(), "helloworld")
+x <- bold_trace(ids = 'ACRJP618-11', dest = tdir, progress = FALSE)
 read_trace(x$ab1[2])
 ```
 
