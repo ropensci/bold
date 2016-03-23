@@ -19,6 +19,7 @@ on_failure:
 
 environment:
   _R_CHECK_FORCE_SUGGESTS_: false
+  R_VERSION: stable
 
 notifications:
   - provider: Slack
