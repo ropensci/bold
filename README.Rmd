@@ -93,9 +93,8 @@ res$fasta['GBAH0293-06']
 This function downloads files to your machine - it does not load them into your R session - but prints out where the files are for your information.
 
 ```{r}
-tdir <- file.path(tempdir(), "helloworld")
-x <- bold_trace(ids = 'ACRJP618-11', dest = tdir, progress = FALSE)
-read_trace(x$ab1[2])
+x <- bold_trace(ids = 'ACRJP618-11', progress = FALSE)
+read_trace(x$ab1)
 ```
 
 ## Meta
