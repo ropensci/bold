@@ -1,9 +1,9 @@
 #' Search for matches to sequences against the BOLD COI database.
 #'
 #' @export
-#' @references \url{http://www.boldsystems.org/index.php/resources/api?type=idengine}
 #'
-#' @param sequences (character) Returns all records containing matching marker codes.
+#' @param sequences (character) Returns all records containing matching marker 
+#' codes. Required.
 #' @param db (character) The database to match against, one of COX1, COX1_SPECIES,
 #' COX1_SPECIES_PUBLIC, OR COX1_L604bp. See Details for more information.
 #' @param response (logical) Note that response is the object that returns from the
@@ -31,6 +31,7 @@
 #'  with short reads from the barcode region of COI.
 #' }
 #' @return A data.frame with details for each specimen matched.
+#' @references \url{http://www.boldsystems.org/index.php/resources/api?type=idengine}
 #' @examples \dontrun{
 #' seq <- sequences$seq1
 #' head(bold_identify(sequences=seq)[[1]])
@@ -46,7 +47,7 @@
 #' bold_identify(sequences=seq, response=TRUE, config=verbose())[[1]]
 #' }
 
-bold_identify <- function(sequences = NULL, db = 'COX1', response=FALSE, ...) {
+bold_identify <- function(sequences, db = 'COX1', response=FALSE, ...) {
   url <- 'http://boldsystems.org/index.php/Ids_xml'
   
   foo <- function(a, b){
