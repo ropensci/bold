@@ -1,3 +1,14 @@
+bold 0.3.5
+===============
+
+### MINOR IMPROVEMENTS
+
+* Added more tests to the test suite (#28)
+
+### BUG FIXES
+
+* Fixed a bug in an internal data parser (#27)
+
 bold 0.3.4
 ===============
 
@@ -8,12 +19,12 @@ bold 0.3.4
 ### MINOR IMPROVEMENTS
 
 * Switched to `xml2` from `XML` as the XML parser for this package (#26)
-* Fixes to `bold_trace()` to create dir and tar file when it doesn't 
+* Fixes to `bold_trace()` to create dir and tar file when it doesn't
 already exist
 
 ### BUG FIXES
 
-* Fixed odd problem where sometimes resulting data from HTTP request 
+* Fixed odd problem where sometimes resulting data from HTTP request
 was garbled on `content(x, "text")`, so now using `rawToChar(content(x))`,
 which works (#24)
 
