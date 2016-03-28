@@ -4,10 +4,10 @@
 \alias{bold_tax_name}
 \title{Search BOLD for taxonomy data by taxonomic name.}
 \usage{
-bold_tax_name(name = NULL, fuzzy = FALSE, response = FALSE, ...)
+bold_tax_name(name, fuzzy = FALSE, response = FALSE, ...)
 }
 \arguments{
-\item{name}{(character) One or more scientific names.}
+\item{name}{(character) One or more scientific names. required.}
 
 \item{fuzzy}{(logical) Whether to use fuzzy search or not (default: FALSE).}
 

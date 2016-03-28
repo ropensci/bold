@@ -6,7 +6,7 @@
 #' @importFrom reshape sort_df
 #' @importFrom plyr rbind.fill
 #' @export
-#' @param name (character) One or more scientific names.
+#' @param name (character) One or more scientific names. required.
 #' @param fuzzy (logical) Whether to use fuzzy search or not (default: FALSE).
 #' @template otherargs
 #' @references \url{http://boldsystems.org/index.php/resources/api?type=taxonomy#nameParameters}
@@ -36,7 +36,7 @@
 #' bold_tax_name(name='Diplura', config=verbose())
 #' }
 
-bold_tax_name <- function(name = NULL, fuzzy=FALSE, response=FALSE, ...) {
+bold_tax_name <- function(name, fuzzy = FALSE, response = FALSE, ...) {
 
   tmp <- lapply(name, function(x)
     get_response(bc(list(taxName = x, fuzzy = if (fuzzy) 'true' else NULL)),

@@ -4,11 +4,11 @@
 \alias{bold_tax_id}
 \title{Search BOLD for taxonomy data by BOLD ID.}
 \usage{
-bold_tax_id(id = NULL, dataTypes = "basic", includeTree = FALSE,
+bold_tax_id(id, dataTypes = "basic", includeTree = FALSE,
   response = FALSE, ...)
 }
 \arguments{
-\item{id}{(integer) One or more BOLD taxonomic identifiers}
+\item{id}{(integer) One or more BOLD taxonomic identifiers. required.}
 
 \item{dataTypes}{(character) Specifies the datatypes that will be returned. 'all' returns all
 data. 'basic' returns basic taxon information. 'images' returns specimen images.}
@@ -44,7 +44,6 @@ bold_tax_id(id=c(88899,125295), dataTypes = "geo")
 bold_tax_id(id=c(88899,125295), dataTypes = "images")
 
 ## Passing in NA
-bold_tax_id(NA, response=TRUE)
 bold_tax_id(id = NA)
 bold_tax_id(id = c(88899,125295,NA))
 

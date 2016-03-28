@@ -1,7 +1,7 @@
 #' Search BOLD for taxonomy data by BOLD ID.
 #'
 #' @export
-#' @param id (integer) One or more BOLD taxonomic identifiers
+#' @param id (integer) One or more BOLD taxonomic identifiers. required.
 #' @param dataTypes (character) Specifies the datatypes that will be returned. 'all' returns all
 #' data. 'basic' returns basic taxon information. 'images' returns specimen images.
 #' @param includeTree (logical) If TRUE (default: FALSE), returns a list containing information
@@ -28,7 +28,6 @@
 #' bold_tax_id(id=c(88899,125295), dataTypes = "images")
 #'
 #' ## Passing in NA
-#' bold_tax_id(NA, response=TRUE)
 #' bold_tax_id(id = NA)
 #' bold_tax_id(id = c(88899,125295,NA))
 #'
@@ -41,7 +40,7 @@
 #' bold_tax_id(id=88899, config=verbose())
 #' }
 
-bold_tax_id <- function(id=NULL, dataTypes='basic', includeTree=FALSE, response=FALSE, ...) {
+bold_tax_id <- function(id, dataTypes='basic', includeTree=FALSE, response=FALSE, ...) {
   
   tmp <- lapply(id, function(x)
     get_response(args = bc(list(taxId = x, dataTypes = dataTypes, includeTree = if (includeTree) TRUE else NULL)),
