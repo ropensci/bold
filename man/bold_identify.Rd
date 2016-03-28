@@ -4,10 +4,11 @@
 \alias{bold_identify}
 \title{Search for matches to sequences against the BOLD COI database.}
 \usage{
-bold_identify(sequences = NULL, db = "COX1", response = FALSE, ...)
+bold_identify(sequences, db = "COX1", response = FALSE, ...)
 }
 \arguments{
-\item{sequences}{(character) Returns all records containing matching marker codes.}
+\item{sequences}{(character) Returns all records containing matching marker 
+codes. Required.}
 
 \item{db}{(character) The database to match against, one of COX1, COX1_SPECIES,
 COX1_SPECIES_PUBLIC, OR COX1_L604bp. See Details for more information.}

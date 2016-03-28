@@ -5,6 +5,9 @@ cache: packages
 bioc_packages: 
 - sangerseqR
 
+after_success:
+  - Rscript -e 'covr::codecov()'
+
 notifications:
   email:
     on_success: change

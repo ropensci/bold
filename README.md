@@ -6,24 +6,24 @@ bold
 [![Build Status](https://api.travis-ci.org/ropensci/bold.png)](https://travis-ci.org/ropensci/bold)
 [![Build status](https://ci.appveyor.com/api/projects/status/hifii9wvk2h7wc7f/branch/master)](https://ci.appveyor.com/project/sckott/bold/branch/master)
 [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/bold)](https://github.com/metacran/cranlogs.app)
+[![codecov.io](https://codecov.io/github/ropensci/bold/coverage.svg?branch=master)](https://codecov.io/github/ropensci/bold?branch=master)
 [![cran version](http://www.r-pkg.org/badges/version/bold)](https://cran.r-project.org/package=bold)
 
 `bold` accesses BOLD barcode data.
 
 [Documentation for the BOLD API](http://www.boldsystems.org/index.php/resources/api).
 
-## Quickstart
 
-### Install bold
+## Installation
 
-#### From CRAN
+Stable CRAN version
 
 
 ```r
 install.packages("bold")
 ```
 
-#### Development version from Github
+Development version from Github
 
 Install `sangerseqR` first
 
@@ -46,7 +46,7 @@ library("bold")
 ```
 
 
-### Search for sequence data only
+## Search for sequence data only
 
 Default is to get a list back
 
@@ -73,7 +73,7 @@ You can optionally get back the `httr` response object
 res <- bold_seq(taxon='Coelioxys', response=TRUE)
 res$headers
 #> $date
-#> [1] "Wed, 23 Mar 2016 19:46:25 GMT"
+#> [1] "Mon, 28 Mar 2016 20:35:02 GMT"
 #> 
 #> $server
 #> [1] "Apache/2.2.15 (Red Hat)"
@@ -97,7 +97,7 @@ res$headers
 #> [1] "insensitive" "list"
 ```
 
-### Search for specimen data only
+## Search for specimen data only
 
 By default you download `tsv` format data, which is given back to you as a `data.frame`
 
@@ -128,7 +128,7 @@ head(res[,1:8])
 #> 6                        20
 ```
 
-### Search for specimen plus sequence data
+## Search for specimen plus sequence data
 
 By default you download `tsv` format data, which is given back to you as a `data.frame`
 
@@ -152,7 +152,7 @@ res$fasta['GBAH0293-06']
 #> [1] "------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------TTAATGTTAGGGATTCCAGATATAGCTTTTCCACGAATAAATAATATTAGATTTTGACTGTTACCTCCATCTTTAATATTATTACTTTTAAGAAATTTTTTAAATCCAAGTCCTGGAACAGGATGAACAGTTTATCCTCCTTTATCATCAAATTTATTTCATTCTTCTCCTTCAGTTGATTTAGCAATTTTTTCTTTACATATTTCAGGTTTATCTTCTATTATAGGTTCATTAAATTTTATTGTTACAATTATTATAATAAAAAATATTTCTTTAAAATATATTCAATTACCTTTATTTTCTTGATCTGTATTTATTACTACTATTCTTTTATTATTTTCTTTACCTGTATTAGCTGGAGCTATTACTATATTATTATTTGATCGAAATTTTAATACATCTTTTTTTGATCCAACAGGAGGGGGAGATCCAATTCTTTATCAACATTTATTTTGATTTTTTGGTCATCCTGAAGTTTATATTTTAATTTTACCTGGATTTGGATTAATTTCTCAAATTATTTCTAATGAAAGAGGAAAAAAAGAAACTTTTGGAAATATTGGTATAATTTATGCTATATTAAGAATTGGACTTTTAGGTTTTATTGTT---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"
 ```
 
-### Get trace files
+## Get trace files
 
 This function downloads files to your machine - it does not load them into your R session - but prints out where the files are for your information.
 
@@ -175,4 +175,4 @@ read_trace(x$ab1)
 * Get citation information for `bold` in R doing `citation(package = 'bold')`
 * Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
 
-[![ropensci footer](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
+[![ropensci_footer](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
