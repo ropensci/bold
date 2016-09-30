@@ -4,7 +4,7 @@
 \alias{bold_filter}
 \title{Get BOLD specimen + sequence data.}
 \usage{
-bold_filter(x, by, how = "max", ...)
+bold_filter(x, by, how = "max")
 }
 \arguments{
 \item{x}{(data.frame) a data.frame, as returned from 

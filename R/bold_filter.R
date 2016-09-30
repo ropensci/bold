@@ -22,7 +22,7 @@
 #' vapply(maxx$nucleotides, nchar, 1, USE.NAMES = FALSE)
 #' vapply(minn$nucleotides, nchar, 1, USE.NAMES = FALSE)
 #' }
-bold_filter <- function(x, by, how = "max", ...) {
+bold_filter <- function(x, by, how = "max") {
   if (!inherits(x, "data.frame")) stop("'x' must be a data.frame", call. = FALSE)
   if (!how %in% c("min", "max")) stop("'how' must be one of 'min' or 'max'", call. = FALSE)
   if (!by %in% names(x)) stop(sprintf("'%s' is not a valid column in 'x'", by), call. = FALSE)
