@@ -64,10 +64,10 @@ bold_identify <- function(sequences, db = 'COX1', response=FALSE, ...) {
       toget <- c("ID","sequencedescription","database","citation","taxonomicidentification","similarity")
       outlist <- lapply(nodes, function(x){
         tmp2 <- vapply(toget, function(y) {
-          tmp <- xml2::xml_find_one(x, y)
+          tmp <- xml2::xml_find_first(x, y)
           setNames(xml2::xml_text(tmp), xml2::xml_name(tmp))
         }, "")
-        spectmp <- xml2::as_list(xml2::xml_find_one(x, "specimen"))
+        spectmp <- xml2::as_list(xml2::xml_find_first(x, "specimen"))
         spectmp <- unnest(spectmp)
         names(spectmp) <- c('specimen_url','specimen_country','specimen_lat','specimen_lon')
         spectmp[sapply(spectmp, is.null)] <- NA
