@@ -30,22 +30,25 @@ Researchers include collectors and specimen identifiers.}
 \item{geo}{(character) Returns all records collected in matching geographic sites. Geographic 
 sites includes countries and province/states.}
 
-\item{marker}{(character) Returns all records containing matching marker codes.}
+\item{marker}{(character) Returns all records containing matching marker 
+codes.}
 
 \item{response}{(logical) Note that response is the object that returns from the Curl call,
 useful for debugging, and getting detailed info on the API call.}
 
-\item{format}{(character) One of xml or tsv (default). tsv format gives back a data.frame
-object. xml gives back parsed xml as a}
+\item{format}{(character) One of xml or tsv (default). tsv format gives 
+back a data.frame object. xml gives back parsed xml as a}
 
-\item{sepfasta}{(logical) If TRUE, the fasta data is separated into a list with names matching
-the processid's from the data frame}
+\item{sepfasta}{(logical) If \code{TRUE}, the fasta data is separated into 
+a list with names matching the processid's from the data frame.
+Default: \code{FALSE}}
 
 \item{...}{Further args passed on to httr::GET, main purpose being curl debugging}
 }
 \value{
-Either a data.frame, parsed xml, a httr response object, or a list with length two
-(a data.frame w/o nucleotide data, and a list with nucleotide data)
+Either a data.frame, parsed xml, a httr response object, or a list 
+with length two (a data.frame w/o nucleotide data, and a list with 
+nucleotide data)
 }
 \description{
 Get BOLD specimen + sequence data.
@@ -64,6 +67,8 @@ res <- bold_seqspec(taxon="Melanogrammus aeglefinus", marker="COI-5P")
 
 # records that match a geographic locality
 res <- bold_seqspec(taxon="Melanogrammus aeglefinus", geo="Canada")
+
+# return only the longest sequence for each 
 
 ## curl debugging
 ### You can do many things, including get verbose output on the curl call, and set a timeout

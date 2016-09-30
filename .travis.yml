@@ -10,7 +10,7 @@ after_success:
 
 notifications:
   email:
-    on_success: change
-    on_failure: change
+    on_success: never
+    on_failure: never
   slack:
     secure: KudAMnqi7D6dy1BruMF9tkT2PTUXa8VSuQo8ECk5M6gz6L7o6tEmzPgrzqLC9xzgc4mm80opMMdNGShTHZZdd1oWw9yIOFZpQ10O/kaLyb1LgFwV01yZP1dt9ZAxRvfm9Ur2wl8XS+cRr6PR7iJX733iBhQ+qUGDTltFm/O2q8U=
