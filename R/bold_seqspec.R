@@ -56,7 +56,7 @@ bold_seqspec <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
   if (response) { 
     out
   } else {
-    tt <- rawToChar(content(out, encoding = "UTF-8"))
+    tt <- paste0(rawToChar(content(out, encoding = "UTF-8"), multiple = TRUE), collapse = "")
     if (tt == "") return(NA)
     temp <- switch(format,
            xml = xml2::read_xml(tt),
