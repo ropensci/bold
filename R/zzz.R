@@ -46,8 +46,13 @@ process_response <- function(x, y, z, w){
     if (w %in% c("stats",'images','geo','sequencinglabs','depository')) out <- out[[1]]
     trynames <- tryCatch(as.numeric(names(out)), warning = function(w) w)
     if (!is(trynames, "simpleWarning")) names(out) <- NULL
-    if (!is.null(names(out))) { 
-      df <- data.frame(out, stringsAsFactors = FALSE) 
+    if (any(vapply(out, function(x) is.list(x) && length(x) > 0, logical(1)))) {
+        out <- lapply(out, function(x) Filter(length, x))
+    } else {
+        out <- Filter(length, out)
+    }
+    if (!is.null(names(out))) {
+      df <- data.frame(out, stringsAsFactors = FALSE)
     } else {
       df <- do.call(rbind.fill, lapply(out, data.frame, stringsAsFactors = FALSE))
     }
