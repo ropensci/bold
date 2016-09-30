@@ -46,8 +46,9 @@ process_response <- function(x, y, z, w){
     if (w %in% c("stats",'images','geo','sequencinglabs','depository')) out <- out[[1]]
     trynames <- tryCatch(as.numeric(names(out)), warning = function(w) w)
     if (!is(trynames, "simpleWarning")) names(out) <- NULL
-    if (!is.null(names(out))) { 
-      df <- data.frame(out, stringsAsFactors = FALSE) 
+    out[vapply(out, length, numeric(1)) < 1] <- 0
+    if (!is.null(names(out))) {
+      df <- data.frame(out, stringsAsFactors = FALSE)
     } else {
       df <- do.call(rbind.fill, lapply(out, data.frame, stringsAsFactors = FALSE))
     }
