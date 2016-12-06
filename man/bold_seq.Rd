@@ -30,7 +30,8 @@ Researchers include collectors and specimen identifiers.}
 \item{geo}{(character) Returns all records collected in matching geographic sites. Geographic 
 sites includes countries and province/states.}
 
-\item{marker}{(character) Returns all records containing matching marker codes.}
+\item{marker}{(character) Returns all records containing matching 
+marker codes.}
 
 \item{response}{(logical) Note that response is the object that returns from the Curl call,
 useful for debugging, and getting detailed info on the API call.}
@@ -38,15 +39,16 @@ useful for debugging, and getting detailed info on the API call.}
 \item{...}{Further args passed on to httr::GET, main purpose being curl debugging}
 }
 \value{
-A list with each element of length 4 with slots for id, name, gene, and sequence.
+A list with each element of length 4 with slots for id, name, 
+gene, and sequence.
 }
 \description{
-Get sequences for a taxonomic name, id, bin, container, institution, researcher, geographic
-place, or gene.
+Get sequences for a taxonomic name, id, bin, container, institution, 
+researcher, geographic, place, or gene.
 }
 \examples{
 \dontrun{
-bold_seq(taxon='Coelioxys')
+res <- bold_seq(taxon='Coelioxys')
 bold_seq(taxon='Aglae')
 bold_seq(taxon=c('Coelioxys','Osmia'))
 bold_seq(ids='ACRJP618-11')
@@ -64,7 +66,8 @@ res$status_code
 res$headers
 
 ## curl debugging
-### You can do many things, including get verbose output on the curl call, and set a timeout
+### You can do many things, including get verbose output on the curl 
+### call, and set a timeout
 library("httr")
 bold_seq(taxon='Coelioxys', config=verbose())[1:2]
 # bold_seqspec(taxon='Coelioxys', config=timeout(0.1))
