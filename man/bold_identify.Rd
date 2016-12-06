@@ -10,13 +10,16 @@ bold_identify(sequences, db = "COX1", response = FALSE, ...)
 \item{sequences}{(character) Returns all records containing matching marker 
 codes. Required.}
 
-\item{db}{(character) The database to match against, one of COX1, COX1_SPECIES,
-COX1_SPECIES_PUBLIC, OR COX1_L604bp. See Details for more information.}
+\item{db}{(character) The database to match against, one of COX1, 
+COX1_SPECIES, COX1_SPECIES_PUBLIC, OR COX1_L604bp. See Details for 
+more information.}
 
-\item{response}{(logical) Note that response is the object that returns from the
-Curl call, useful for debugging, and getting detailed info on the API call.}
+\item{response}{(logical) Note that response is the object that returns 
+from the Curl call, useful for debugging, and getting detailed info on 
+the API call.}
 
-\item{...}{Further args passed on to httr::GET, main purpose being curl debugging}
+\item{...}{Further args passed on to httr::GET, main purpose being 
+curl debugging}
 }
 \value{
 A data.frame with details for each specimen matched.
@@ -28,15 +31,16 @@ Search for matches to sequences against the BOLD COI database.
 Detailed description of options for the db parmeter:
 
 \itemize{
- \item COX1 Every COI barcode record with a species level identification and
- a minimum sequence length of 500bp. This includes many species represented by
- only one or two specimens as well as  all species with interim taxonomy.
- \item COX1_SPECIES Every COI barcode record on BOLD with a minimum sequence
+ \item COX1 Every COI barcode record on BOLD with a minimum sequence
  length of 500bp (warning: unvalidated library and includes records without
  species level identification). This includes many species represented by
  only one or two specimens as well as all species with interim taxonomy. This
  search only returns a list of the nearest matches and does not provide a
  probability of placement to a taxon.
+ \item COX1_SPECIES Every COI barcode record with a species level 
+ identification and a minimum sequence length of 500bp. This includes 
+ many species represented by only one or two specimens as well as  all 
+ species with interim taxonomy.
  \item COX1_SPECIES_PUBLIC All published COI records from BOLD and GenBank
  with a minimum sequence length of 500bp. This library is a collection of
  records from the published projects section of BOLD.
