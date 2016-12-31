@@ -33,8 +33,8 @@ sites includes countries and province/states.}
 \item{response}{(logical) Note that response is the object that returns from the Curl call,
 useful for debugging, and getting detailed info on the API call.}
 
-\item{format}{(character) One of xml or tsv (default). tsv format gives back a data.frame
-object. xml gives back parsed xml as a}
+\item{format}{(character) One of xml or tsv (default). tsv format gives 
+back a data.frame object. xml gives back parsed xml as a}
 
 \item{...}{Further args passed on to httr::GET, main purpose being curl debugging}
 }
@@ -55,7 +55,8 @@ res$headers
 bold_specimens(taxon=c('Coelioxys','Osmia'))
 
 ## curl debugging
-### These examples below take a long time, so you can set a timeout so that it stops by X sec
+### These examples below take a long time, so you can set a timeout so that 
+### it stops by X sec
 library("httr")
 head(bold_specimens(taxon='Osmia', config=verbose()))
 # head(bold_specimens(geo='Costa Rica', config=timeout(6)))

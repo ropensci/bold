@@ -33,13 +33,15 @@ Researchers include collectors and specimen identifiers.}
 \item{geo}{(character) Returns all records collected in matching geographic sites. Geographic 
 sites includes countries and province/states.}
 
-\item{marker}{(character) Returns all records containing matching marker codes.}
+\item{marker}{(character) Returns all records containing matching 
+marker codes.}
 
 \item{dest}{(character) A directory to write the files to}
 
 \item{overwrite}{(logical) Overwrite existing directory and file?}
 
-\item{progress}{(logical) Print progress or not. Uses \code{\link[httr]{progress}}.}
+\item{progress}{(logical) Print progress or not. Uses 
+\code{\link[httr]{progress}}.}
 
 \item{...}{Futher args passed on to \code{\link[httr]{GET}}.}
 
@@ -61,7 +63,8 @@ bold_trace(ids=c('ACRJP618-11','ACRJP619-11'), dest="~/mytarfiles")
 x <- bold_trace(ids=c('ACRJP618-11','ACRJP619-11'), dest="~/mytarfiles")
 (res <- read_trace(x$ab1[2]))
 
-# The progress dialog is pretty verbose, so quiet=TRUE is a nice touch, but not by default
+# The progress dialog is pretty verbose, so quiet=TRUE is a nice touch, 
+# but not by default
 # Beware, this one take a while
 x <- bold_trace(taxon='Osmia', quiet=TRUE)
 

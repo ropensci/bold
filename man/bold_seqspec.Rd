@@ -71,7 +71,8 @@ res <- bold_seqspec(taxon="Melanogrammus aeglefinus", geo="Canada")
 # return only the longest sequence for each 
 
 ## curl debugging
-### You can do many things, including get verbose output on the curl call, and set a timeout
+### You can do many things, including get verbose output on the curl call, 
+### and set a timeout
 library("httr")
 head(bold_seqspec(taxon='Osmia', config=verbose()))
 ## timeout

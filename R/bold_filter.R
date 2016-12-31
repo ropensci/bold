@@ -23,9 +23,12 @@
 #' vapply(minn$nucleotides, nchar, 1, USE.NAMES = FALSE)
 #' }
 bold_filter <- function(x, by, how = "max") {
-  if (!inherits(x, "data.frame")) stop("'x' must be a data.frame", call. = FALSE)
-  if (!how %in% c("min", "max")) stop("'how' must be one of 'min' or 'max'", call. = FALSE)
-  if (!by %in% names(x)) stop(sprintf("'%s' is not a valid column in 'x'", by), call. = FALSE)
+  if (!inherits(x, "data.frame")) stop("'x' must be a data.frame", 
+                                       call. = FALSE)
+  if (!how %in% c("min", "max")) stop("'how' must be one of 'min' or 'max'", 
+                                      call. = FALSE)
+  if (!by %in% names(x)) stop(sprintf("'%s' is not a valid column in 'x'", by), 
+                              call. = FALSE)
   xsp <- split(x, x[[by]])
   tibble::as_data_frame(setrbind(lapply(xsp, function(z) {
     lgts <- vapply(z$nucleotides, function(w) nchar(gsub("-", "", w)), 1, 

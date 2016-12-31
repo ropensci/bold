@@ -34,7 +34,8 @@
 #' # return only the longest sequence for each 
 #'
 #' ## curl debugging
-#' ### You can do many things, including get verbose output on the curl call, and set a timeout
+#' ### You can do many things, including get verbose output on the curl call, 
+#' ### and set a timeout
 #' library("httr")
 #' head(bold_seqspec(taxon='Osmia', config=verbose()))
 #' ## timeout
@@ -44,8 +45,8 @@
 #' }
 
 bold_seqspec <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
-  institutions = NULL, researchers = NULL, geo = NULL, marker = NULL, response=FALSE,
-  format = 'tsv', sepfasta=FALSE, ...) {
+  institutions = NULL, researchers = NULL, geo = NULL, marker = NULL, 
+  response=FALSE, format = 'tsv', sepfasta=FALSE, ...) {
   
   format <- match.arg(format, choices = c('xml','tsv'))
   args <- bc(list(taxon = pipeornull(taxon), geo = pipeornull(geo), 
@@ -61,12 +62,14 @@ bold_seqspec <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
   if (response) { 
     out
   } else {
-    tt <- paste0(rawToChar(content(out, encoding = "UTF-8"), multiple = TRUE), collapse = "")
+    tt <- paste0(rawToChar(content(out, encoding = "UTF-8"), multiple = TRUE), 
+                 collapse = "")
     if (tt == "") return(NA)
     temp <- switch(
       format,
       xml = xml2::read_xml(tt),
-      tsv = read.delim(text = tt, header = TRUE, sep = "\t", stringsAsFactors = FALSE)
+      tsv = read.delim(text = tt, header = TRUE, sep = "\t", 
+                       stringsAsFactors = FALSE)
     )
     if (!sepfasta) { 
       temp 

@@ -20,9 +20,9 @@ useful for debugging, and getting detailed info on the API call.}
 Search BOLD for taxonomy data by taxonomic name.
 }
 \details{
-The \code{dataTypes} parameter is not supported in this function. If you want to
-use that parameter, get an ID from this function and pass it into \code{bold_tax_id}, and then
-use the \code{dataTypes} parameter.
+The \code{dataTypes} parameter is not supported in this function. 
+If you want to use that parameter, get an ID from this function and pass 
+it into \code{bold_tax_id}, and then use the \code{dataTypes} parameter.
 }
 \examples{
 \dontrun{
