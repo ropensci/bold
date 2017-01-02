@@ -18,8 +18,8 @@ more information.}
 from the Curl call, useful for debugging, and getting detailed info on 
 the API call.}
 
-\item{...}{Further args passed on to httr::GET, main purpose being 
-curl debugging}
+\item{...}{Further args passed on to \code{\link[httr]{GET}}, main purpose 
+being curl debugging}
 }
 \value{
 A data.frame with details for each specimen matched.
@@ -27,8 +27,7 @@ A data.frame with details for each specimen matched.
 \description{
 Search for matches to sequences against the BOLD COI database.
 }
-\details{
-Detailed description of options for the db parmeter:
+\section{db parmeter options}{
 
 \itemize{
  \item COX1 Every COI barcode record on BOLD with a minimum sequence
@@ -49,6 +48,13 @@ Detailed description of options for the db parmeter:
  is intended for short sequence identification as it provides maximum overlap
  with short reads from the barcode region of COI.
 }
+}
+
+\section{Named outputs}{
+
+To maintain names on the output list of data make sure to pass in a 
+named list to the \code{sequences} parameter. You can for example, 
+take a list of sequences, and use \code{\link{setNames}} to set names.
 }
 \examples{
 \dontrun{
