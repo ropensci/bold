@@ -42,11 +42,15 @@
 #' @return A data.frame with details for each specimen matched.
 #' @references 
 #' \url{http://www.boldsystems.org/index.php/resources/api?type=idengine}
+#' @seealso \code{\link{bold_identify_parents}}
 #' @examples \dontrun{
 #' seq <- sequences$seq1
-#' head(bold_identify(sequences=seq)[[1]])
+#' res <- bold_identify(sequences=seq)
+#' head(res[[1]])
 #' head(bold_identify(sequences=seq, db='COX1_SPECIES')[[1]])
 #' bold_identify(sequences=seq, response=TRUE)
+#' 
+#' bold_identify_parents(res)
 #'
 #' # Multiple sequences
 #' out <- bold_identify(sequences=c(sequences$seq2, sequences$seq3), db='COX1')

@@ -58,7 +58,7 @@ bold_tax_id(id=88899, config=verbose())
 }
 }
 \references{
-\url{http://boldsystems.org/index.php/resources/api?type=taxonomy#idParameters}
+\url{http://boldsystems.org/index.php/resources/api?type=taxonomy}
 }
 \seealso{
 \code{bold_tax_name}
