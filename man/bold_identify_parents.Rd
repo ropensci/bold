@@ -41,7 +41,7 @@ classification, and name the columns by the taxon rank, so you get
 }
 \examples{
 \dontrun{
-df <- bold_identify(sequences = sequences)
+df <- bold_identify(sequences = sequences$seq2)
 
 # long format
 out <- bold_identify_parents(df)

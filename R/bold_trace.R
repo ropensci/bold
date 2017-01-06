@@ -18,8 +18,8 @@
 #' bold_trace(taxon='Bombus', geo='Alaska', dest="~/mytarfiles")
 #'
 #' # Another example
-#' bold_trace(ids='ACRJP618-11', dest="~/mytarfiles")
-#' bold_trace(ids=c('ACRJP618-11','ACRJP619-11'), dest="~/mytarfiles")
+#' # bold_trace(ids='ACRJP618-11', dest="~/mytarfiles")
+#' # bold_trace(ids=c('ACRJP618-11','ACRJP619-11'), dest="~/mytarfiles")
 #'
 #' # read file in
 #' x <- bold_trace(ids=c('ACRJP618-11','ACRJP619-11'), dest="~/mytarfiles")
@@ -28,7 +28,7 @@
 #' # The progress dialog is pretty verbose, so quiet=TRUE is a nice touch, 
 #' # but not by default
 #' # Beware, this one take a while
-#' x <- bold_trace(taxon='Osmia', quiet=TRUE)
+#' # x <- bold_trace(taxon='Osmia', quiet=TRUE)
 #' 
 #' if (requireNamespace("sangerseqR", quietly = TRUE)) {
 #'  library("sangerseqR")

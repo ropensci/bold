@@ -27,7 +27,7 @@
 #' @return a list of the same length as the input
 #' 
 #' @examples \dontrun{
-#' df <- bold_identify(sequences = sequences)
+#' df <- bold_identify(sequences = sequences$seq2)
 #' 
 #' # long format
 #' out <- bold_identify_parents(df)

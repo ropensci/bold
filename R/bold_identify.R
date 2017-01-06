@@ -48,17 +48,6 @@
 #' res <- bold_identify(sequences=seq)
 #' head(res[[1]])
 #' head(bold_identify(sequences=seq, db='COX1_SPECIES')[[1]])
-#' bold_identify(sequences=seq, response=TRUE)
-#' 
-#' bold_identify_parents(res)
-#'
-#' # Multiple sequences
-#' out <- bold_identify(sequences=c(sequences$seq2, sequences$seq3), db='COX1')
-#' lapply(out, head)
-#'
-#' # curl debugging
-#' library('httr')
-#' bold_identify(sequences=seq, response=TRUE, config=verbose())[[1]]
 #' }
 
 bold_identify <- function(sequences, db = 'COX1', response=FALSE, ...) {
