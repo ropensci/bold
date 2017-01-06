@@ -10,3 +10,4 @@ cran-comments.md
 README.Rmd
 ^.*\.tar
 ^CONDUCT\.md$
+^cran-comments\.md$

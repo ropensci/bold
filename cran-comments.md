@@ -1,6 +1,22 @@
-R CMD CHECK passed on my local OS X install with R 3.2.4 and
-R Under development, Ubuntu running on Travis-CI, and Win builder.
+## Test environments
 
-This version fixes a bug and adds more tests to the test suite.
+* local OS X install, R 3.3.2
+* ubuntu 12.04 (on travis-ci), R 3.3.2
+* win-builder (devel and release)
+
+## R CMD check results
+
+0 errors | 0 warnings | 1 note
+
+xx
+
+## Reverse dependencies
+
+* I have run R CMD check on the 1 downstream dependencies.
+  (Summary at ...).
+
+-----
+
+This version xxx
 
 Thanks! Scott Chamberlain
