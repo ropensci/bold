@@ -13,10 +13,11 @@ xx
 ## Reverse dependencies
 
 * I have run R CMD check on the 1 downstream dependencies.
-  (Summary at ...).
+  (Summary at <>), and no problems were found.
 
 -----
 
-This version xxx
+This version adds a new function, fixes some documentation, and 
+fixes a bug.
 
 Thanks! Scott Chamberlain
