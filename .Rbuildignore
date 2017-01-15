@@ -12,3 +12,5 @@ README.Rmd
 ^CONDUCT\.md$
 ^cran-comments\.md$
 revdep
+.github
+
