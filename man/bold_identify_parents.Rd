@@ -25,6 +25,9 @@ This function gets unique set of taxonomic names from the input
 data.frame, then queries \code{\link{bold_tax_name}} to get the 
 taxonomic ID, passing it to \code{\link{bold_tax_id}} to get the parent
 names, then attaches those to the input data.
+
+Records in the input data that do not have matches for parent names
+simply get NA values in the added columns.
 }
 \section{wide vs long format}{
 

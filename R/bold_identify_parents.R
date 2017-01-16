@@ -12,6 +12,9 @@
 #' taxonomic ID, passing it to \code{\link{bold_tax_id}} to get the parent
 #' names, then attaches those to the input data.
 #' 
+#' Records in the input data that do not have matches for parent names
+#' simply get NA values in the added columns.
+#' 
 #' @section wide vs long format:
 #' When \code{wide = FALSE} you get many rows for each record. Essentially, 
 #' we \code{cbind} the taxonomic classification onto the one row from the 
@@ -73,6 +76,8 @@ bold_identify_parents.list <- function(x, wide = FALSE) {
       NULL
     }
   }), uniqnms)
+  # remove length zero elements
+  out <- bc(out)
   
   # appply parent names to input data
   lapply(x, function(z) {
@@ -87,9 +92,12 @@ bold_identify_parents.list <- function(x, wide = FALSE) {
       }))))
     }
     zsplit <- split(z, z$ID)
-    setrbind(lapply(zsplit, function(w) {
-      suppressWarnings(cbind(w, out[names(out) %in% 
-                                      w$taxonomicidentification][[1]]))
-    }))
+    setrbind(
+      bc(lapply(zsplit, function(w) {
+        tmp <- out[names(out) %in% w$taxonomicidentification]
+        if (!length(tmp)) return(w)
+        suppressWarnings(cbind(w, tmp[[1]]))
+      }))
+    )
   })
 }
