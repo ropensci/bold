@@ -55,7 +55,7 @@ library("bold")
 ```
 
 
-## Search for sequence data onlys
+## Search for sequence data only
 
 Default is to get a list back
 
