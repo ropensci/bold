@@ -18,8 +18,6 @@ knitr::opts_chunk$set(
 
 `bold` accesses BOLD barcode data.
 
-## Description
-
 The Barcode of Life Data Systems (BOLD) is designed to support the generation and application of DNA barcode data. The platform consists of four main modules: a data portal, a database of barcode clusters, an educational portal, and a data collection workbench.
 
 This package retrieves data from the BOLD database of barcode clusters, and allows for searching of over 1.7M public records using multiple search criteria including sequence data, specimen data, specimen *plus* sequence data, as well as trace files.
