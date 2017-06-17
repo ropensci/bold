@@ -48,7 +48,7 @@ Default: \code{FALSE}}
 purpose being curl debugging}
 }
 \value{
-Either a data.frame, parsed xml, a httr response object, or a list 
+Either a data.frame, parsed xml, a http response object, or a list 
 with length two (a data.frame w/o nucleotide data, and a list with 
 nucleotide data)
 }

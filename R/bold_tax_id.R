@@ -33,13 +33,12 @@
 #' bold_tax_id(id = NA)
 #' bold_tax_id(id = c(88899,125295,NA))
 #'
-#' ## get httr response object only
+#' ## get http response object only
 #' bold_tax_id(id=88899, response=TRUE)
 #' bold_tax_id(id=c(88899,125295), response=TRUE)
 #'
 #' ## curl debugging
-#' library('httr')
-#' bold_tax_id(id=88899, config=verbose())
+#' bold_tax_id(id=88899, verbose = TRUE)
 #' }
 
 bold_tax_id <- function(id, dataTypes='basic', includeTree=FALSE, 

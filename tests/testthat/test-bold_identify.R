@@ -25,7 +25,7 @@ test_that("bold_identify response param works as expected", {
 
   aa <- bold_identify(seq, response = TRUE)
   expect_is(aa, "list")
-  expect_is(aa[[1]], "response")
+  expect_is(aa[[1]], "HttpResponse")
   expect_equal(aa[[1]]$status_code, 200)
 })
 

@@ -18,12 +18,6 @@ pipeornull <- function(x){
   }
 }
 
-make_url <- function(url, args){
-  tmp <- httr::parse_url(url)
-  tmp$query <- args
-  httr::build_url(tmp)
-}
-
 check_args_given_nonempty <- function(arguments, x){
   paramnames <- x
   matchez <- any(paramnames %in% names(arguments))

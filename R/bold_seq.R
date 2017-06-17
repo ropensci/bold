@@ -28,7 +28,7 @@
 #' bold_seq(geo='Ireland')
 #' bold_seq(geo=c('Ireland','Denmark'))
 #'
-#' # Return the httr response object for detailed Curl call response details
+#' # Return the http response object for detailed Curl call response details
 #' res <- bold_seq(taxon='Coelioxys', response=TRUE)
 #' res$url
 #' res$status_code

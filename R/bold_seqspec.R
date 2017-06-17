@@ -13,7 +13,7 @@
 #' a list with names matching the processid's from the data frame.
 #' Default: \code{FALSE}
 #'
-#' @return Either a data.frame, parsed xml, a httr response object, or a list 
+#' @return Either a data.frame, parsed xml, a http response object, or a list 
 #' with length two (a data.frame w/o nucleotide data, and a list with 
 #' nucleotide data)
 #'
