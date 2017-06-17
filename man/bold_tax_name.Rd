@@ -11,10 +11,12 @@ bold_tax_name(name, fuzzy = FALSE, response = FALSE, ...)
 
 \item{fuzzy}{(logical) Whether to use fuzzy search or not (default: FALSE).}
 
-\item{response}{(logical) Note that response is the object that returns from the Curl call,
-useful for debugging, and getting detailed info on the API call.}
+\item{response}{(logical) Note that response is the object that returns 
+from the Curl call, useful for debugging, and getting detailed info on 
+the API call.}
 
-\item{...}{Further args passed on to httr::GET, main purpose being curl debugging}
+\item{...}{Further args passed on to \code{\link[crul]{HttpClient}}, main 
+purpose being curl debugging}
 }
 \description{
 Search BOLD for taxonomy data by taxonomic name.
@@ -33,7 +35,7 @@ bold_tax_name(name=c("Apis","Puma concolor","Pinus concolor"))
 bold_tax_name(name='Diplur', fuzzy=TRUE)
 bold_tax_name(name='Osm', fuzzy=TRUE)
 
-## get httr response object only
+## get http response object only
 bold_tax_name(name='Diplura', response=TRUE)
 bold_tax_name(name=c('Diplura','Osmia'), response=TRUE)
 
@@ -43,8 +45,7 @@ bold_tax_name(name = "Cordulegaster erronea")
 bold_tax_name(name = "Cordulegaster erronea", response=TRUE)
 
 ## curl debugging
-library('httr')
-bold_tax_name(name='Diplura', config=verbose())
+bold_tax_name(name='Diplura', verbose = TRUE)
 }
 }
 \references{
@@ -53,4 +54,3 @@ bold_tax_name(name='Diplura', config=verbose())
 \seealso{
 \code{\link{bold_tax_id}}
 }
-

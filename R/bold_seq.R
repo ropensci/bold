@@ -32,14 +32,13 @@
 #' res <- bold_seq(taxon='Coelioxys', response=TRUE)
 #' res$url
 #' res$status_code
-#' res$headers
+#' res$response_headers
 #'
 #' ## curl debugging
 #' ### You can do many things, including get verbose output on the curl 
 #' ### call, and set a timeout
-#' library("httr")
-#' bold_seq(taxon='Coelioxys', config=verbose())[1:2]
-#' # bold_seqspec(taxon='Coelioxys', config=timeout(0.1))
+#' bold_seq(taxon='Coelioxys', verbose = TRUE)[1:2]
+#' # bold_seqspec(taxon='Coelioxys', timeout_ms = 10)
 #' }
 
 bold_seq <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL, 
@@ -64,7 +63,8 @@ bold_seq <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
   if (response) { 
     out 
   } else {
-    tt <- rawToChar(content(out, encoding = "UTF-8"))
+    tt <- out$parse("UTF-8")
+    #tt <- rawToChar(content(out, encoding = "UTF-8"))
     res <- strsplit(tt, ">")[[1]][-1]
     lapply(res, split_fasta)
   }

@@ -42,6 +42,7 @@ the rows for taxonomic ID and name for each taxon in the taxonomic
 classification, and name the columns by the taxon rank, so you get 
 \code{phylum} and \code{phylum_id}, and so on.
 }
+
 \examples{
 \dontrun{
 df <- bold_identify(sequences = sequences$seq2)
@@ -57,4 +58,3 @@ str(out)
 head(out$seq1)
 }
 }
-

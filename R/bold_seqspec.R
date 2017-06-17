@@ -31,17 +31,12 @@
 #' # records that match a geographic locality
 #' res <- bold_seqspec(taxon="Melanogrammus aeglefinus", geo="Canada")
 #' 
-#' # return only the longest sequence for each 
-#'
 #' ## curl debugging
 #' ### You can do many things, including get verbose output on the curl call, 
 #' ### and set a timeout
-#' library("httr")
-#' head(bold_seqspec(taxon='Osmia', config=verbose()))
+#' head(bold_seqspec(taxon='Osmia', verbose = TRUE))
 #' ## timeout
-#' # head(bold_seqspec(taxon='Osmia', config=timeout(1)))
-#' ## progress
-#' # x <- bold_seqspec(taxon='Osmia', config=progress())
+#' # head(bold_seqspec(taxon='Osmia', timeout_ms = 1))
 #' }
 
 bold_seqspec <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
@@ -62,13 +57,12 @@ bold_seqspec <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
   if (response) { 
     out
   } else {
-    tt <- paste0(rawToChar(content(out, encoding = "UTF-8"), multiple = TRUE), 
-                 collapse = "")
+    tt <- paste0(rawToChar(out$content, multiple = TRUE), collapse = "")
     if (tt == "") return(NA)
     temp <- switch(
       format,
       xml = xml2::read_xml(tt),
-      tsv = read.delim(text = tt, header = TRUE, sep = "\t", 
+      tsv = utils::read.delim(text = tt, header = TRUE, sep = "\t", 
                        stringsAsFactors = FALSE)
     )
     if (!sepfasta) { 

@@ -38,4 +38,3 @@ vapply(maxx$nucleotides, nchar, 1, USE.NAMES = FALSE)
 vapply(minn$nucleotides, nchar, 1, USE.NAMES = FALSE)
 }
 }
-

@@ -18,8 +18,8 @@ more information.}
 from the Curl call, useful for debugging, and getting detailed info on 
 the API call.}
 
-\item{...}{Further args passed on to \code{\link[httr]{GET}}, main purpose 
-being curl debugging}
+\item{...}{Further args passed on to \code{\link[crul]{HttpClient}}, main 
+purpose being curl debugging}
 }
 \value{
 A data.frame with details for each specimen matched.
@@ -56,6 +56,7 @@ To maintain names on the output list of data make sure to pass in a
 named list to the \code{sequences} parameter. You can for example, 
 take a list of sequences, and use \code{\link{setNames}} to set names.
 }
+
 \examples{
 \dontrun{
 seq <- sequences$seq1
@@ -70,4 +71,3 @@ head(bold_identify(sequences=seq, db='COX1_SPECIES')[[1]])
 \seealso{
 \code{\link{bold_identify_parents}}
 }
-

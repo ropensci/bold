@@ -1,11 +1,5 @@
 #' Search BOLD for taxonomy data by taxonomic name.
 #'
-#' @importFrom httr GET stop_for_status content parse_url build_url 
-#' progress write_disk
-#' @importFrom assertthat assert_that
-#' @importFrom jsonlite fromJSON
-#' @importFrom reshape sort_df
-#' @importFrom plyr rbind.fill
 #' @export
 #' @param name (character) One or more scientific names. required.
 #' @param fuzzy (logical) Whether to use fuzzy search or not (default: FALSE).
@@ -24,7 +18,7 @@
 #' bold_tax_name(name='Diplur', fuzzy=TRUE)
 #' bold_tax_name(name='Osm', fuzzy=TRUE)
 #'
-#' ## get httr response object only
+#' ## get http response object only
 #' bold_tax_name(name='Diplura', response=TRUE)
 #' bold_tax_name(name=c('Diplura','Osmia'), response=TRUE)
 #'
@@ -34,8 +28,7 @@
 #' bold_tax_name(name = "Cordulegaster erronea", response=TRUE)
 #'
 #' ## curl debugging
-#' library('httr')
-#' bold_tax_name(name='Diplura', config=verbose())
+#' bold_tax_name(name='Diplura', verbose = TRUE)
 #' }
 
 bold_tax_name <- function(name, fuzzy = FALSE, response = FALSE, ...) {
@@ -47,7 +40,7 @@ bold_tax_name <- function(name, fuzzy = FALSE, response = FALSE, ...) {
   if (response) {
     tmp 
   } else {
-    do.call(rbind.fill, 
+    do.call("rbind.fill",
             Map(process_response, x = tmp, y = name, z = FALSE, w = ""))
   }
 }

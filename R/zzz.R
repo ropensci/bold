@@ -42,7 +42,7 @@ check_args_given_nonempty <- function(arguments, x){
 }
 
 process_response <- function(x, y, z, w){
-  tt <- rawToChar(content(x, "raw", encoding = "UTF-8"))
+  tt <- rawToChar(x$content)
   out <- if (x$status_code > 202) "stop" else jsonlite::fromJSON(tt)
   if ( length(out) == 0 || identical(out[[1]], list()) || out == "stop" ) {
     data.frame(input = y, stringsAsFactors = FALSE)
@@ -68,14 +68,17 @@ process_response <- function(x, y, z, w){
 }
 
 get_response <- function(args, url, ...){
-  res <- GET(url, query = args, ...)
-  assert_that(res$headers$`content-type` == 'text/html; charset=utf-8')
-  res
+  cli <- crul::HttpClient$new(url = url)
+  out <- cli$get(query = args, ...)
+  out$raise_for_status()
+  stopifnot(res$headers$`content-type` == 'text/html; charset=utf-8')
+  return(out)
 }
 
-b_GET <- function(url, args, ...){  
-  out <- GET(url, query = args, ...)
-  stop_for_status(out)
-  assert_that(out$headers$`content-type` == 'application/x-download')
-  out
+b_GET <- function(url, args, ...){
+  cli <- crul::HttpClient$new(url = url)
+  out <- cli$get(query = args, ...)
+  out$raise_for_status()
+  stopifnot(out$headers$`content-type` == 'application/x-download')
+  return(out)
 }

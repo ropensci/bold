@@ -2,8 +2,8 @@
 % Please edit documentation in R/bold-package.R
 \docType{package}
 \name{bold-package}
-\alias{bold}
 \alias{bold-package}
+\alias{bold}
 \title{bold: A programmatic interface to the Barcode of Life data.}
 \description{
 bold: A programmatic interface to the Barcode of Life data.
@@ -11,8 +11,8 @@ bold: A programmatic interface to the Barcode of Life data.
 \section{About}{
 
 
-This package gives you access to data from BOLD System \url{http://www.boldsystems.org/} 
-via their API.
+This package gives you access to data from BOLD System 
+\url{http://www.boldsystems.org/} via their API.
 }
 
 \section{Functions}{
@@ -29,10 +29,10 @@ via their API.
  \item \code{\link{bold_identify}} - Search for match given a COI sequence.
 }
 
-Interestingly, they provide xml and tsv format data for the specimen data, while 
-they provide fasta data format for the sequence data. So for the specimen data 
-you can get back raw XML, or a data frame parsed from the tsv data, while for 
-sequence data you get back a list (b/c sequences are quite long and would make 
-a data frame unwieldy).
+Interestingly, they provide xml and tsv format data for the specimen data, 
+while  they provide fasta data format for the sequence data. So for the 
+specimen data  you can get back raw XML, or a data frame parsed from the 
+tsv data, while for sequence data you get back a list (b/c sequences are 
+quite long and would make a data frame unwieldy).
 }
 

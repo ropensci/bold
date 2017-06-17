@@ -16,7 +16,7 @@
 #' res <- bold_specimens(taxon='Osmia', format='xml', response=TRUE)
 #' res$url
 #' res$status_code
-#' res$headers
+#' res$response_headers
 #'
 #' # More than 1 can be given for all search parameters
 #' bold_specimens(taxon=c('Coelioxys','Osmia'))
@@ -24,10 +24,8 @@
 #' ## curl debugging
 #' ### These examples below take a long time, so you can set a timeout so that 
 #' ### it stops by X sec
-#' library("httr")
-#' head(bold_specimens(taxon='Osmia', config=verbose()))
-#' # head(bold_specimens(geo='Costa Rica', config=timeout(6)))
-#' # head(bold_specimens(taxon="Formicidae", geo="Canada", config=timeout(6)))
+#' head(bold_specimens(taxon='Osmia', verbose = TRUE))
+#' # head(bold_specimens(geo='Costa Rica', timeout_ms = 6))
 #' }
 
 bold_specimens <- function(taxon = NULL, ids = NULL, bin = NULL, 
@@ -47,10 +45,11 @@ bold_specimens <- function(taxon = NULL, ids = NULL, bin = NULL,
   if (response) {
     out
   } else {
-    tt <- rawToChar(content(out, encoding = "UTF-8"))
+    tt <- out$parse("UTF-8")
+    #tt <- rawToChar(content(out, encoding = "UTF-8"))
     switch(format,
            xml = xml2::read_xml(tt),
-           tsv = read.delim(text = tt, header = TRUE, sep = "\t", 
+           tsv = utils::read.delim(text = tt, header = TRUE, sep = "\t", 
                             stringsAsFactors = FALSE)
     )
   }

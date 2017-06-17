@@ -33,8 +33,9 @@ sites includes countries and province/states.}
 \item{marker}{(character) Returns all records containing matching marker 
 codes.}
 
-\item{response}{(logical) Note that response is the object that returns from the Curl call,
-useful for debugging, and getting detailed info on the API call.}
+\item{response}{(logical) Note that response is the object that returns 
+from the Curl call, useful for debugging, and getting detailed info on 
+the API call.}
 
 \item{format}{(character) One of xml or tsv (default). tsv format gives 
 back a data.frame object. xml gives back parsed xml as a}
@@ -43,7 +44,8 @@ back a data.frame object. xml gives back parsed xml as a}
 a list with names matching the processid's from the data frame.
 Default: \code{FALSE}}
 
-\item{...}{Further args passed on to httr::GET, main purpose being curl debugging}
+\item{...}{Further args passed on to \code{\link[crul]{HttpClient}}, main 
+purpose being curl debugging}
 }
 \value{
 Either a data.frame, parsed xml, a httr response object, or a list 
@@ -68,20 +70,14 @@ res <- bold_seqspec(taxon="Melanogrammus aeglefinus", marker="COI-5P")
 # records that match a geographic locality
 res <- bold_seqspec(taxon="Melanogrammus aeglefinus", geo="Canada")
 
-# return only the longest sequence for each 
-
 ## curl debugging
 ### You can do many things, including get verbose output on the curl call, 
 ### and set a timeout
-library("httr")
-head(bold_seqspec(taxon='Osmia', config=verbose()))
+head(bold_seqspec(taxon='Osmia', verbose = TRUE))
 ## timeout
-# head(bold_seqspec(taxon='Osmia', config=timeout(1)))
-## progress
-# x <- bold_seqspec(taxon='Osmia', config=progress())
+# head(bold_seqspec(taxon='Osmia', timeout_ms = 1))
 }
 }
 \references{
 \url{http://www.boldsystems.org/index.php/resources/api#combined}
 }
-

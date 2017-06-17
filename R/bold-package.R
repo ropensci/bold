@@ -2,8 +2,8 @@
 #'
 #' @section About:
 #'
-#' This package gives you access to data from BOLD System \url{http://www.boldsystems.org/} 
-#' via their API.
+#' This package gives you access to data from BOLD System 
+#' \url{http://www.boldsystems.org/} via their API.
 #'
 #' @section Functions:
 #'
@@ -18,16 +18,21 @@
 #'  \item \code{\link{bold_identify}} - Search for match given a COI sequence.
 #' }
 #'
-#' Interestingly, they provide xml and tsv format data for the specimen data, while 
-#' they provide fasta data format for the sequence data. So for the specimen data 
-#' you can get back raw XML, or a data frame parsed from the tsv data, while for 
-#' sequence data you get back a list (b/c sequences are quite long and would make 
-#' a data frame unwieldy).
+#' Interestingly, they provide xml and tsv format data for the specimen data, 
+#' while  they provide fasta data format for the sequence data. So for the 
+#' specimen data  you can get back raw XML, or a data frame parsed from the 
+#' tsv data, while for sequence data you get back a list (b/c sequences are 
+#' quite long and would make a data frame unwieldy).
 #' 
 #' @importFrom methods is
+#' @importFrom crul HttpClient
 #' @importFrom stats setNames
 #' @importFrom utils read.delim untar
-#' @importFrom xml2 read_xml xml_find_all xml_find_first xml_text xml_name as_list
+#' @importFrom xml2 read_xml xml_find_all xml_find_first xml_text 
+#' xml_name as_list
+#' @importFrom jsonlite fromJSON
+#' @importFrom reshape sort_df
+#' @importFrom plyr rbind.fill
 #' @docType package
 #' @name bold-package
 #' @aliases bold

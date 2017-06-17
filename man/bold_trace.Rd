@@ -40,10 +40,10 @@ marker codes.}
 
 \item{overwrite}{(logical) Overwrite existing directory and file?}
 
-\item{progress}{(logical) Print progress or not. Uses 
-\code{\link[httr]{progress}}.}
+\item{progress}{(logical) Print progress or not. NOT AVAILABLE FOR NOW. 
+HOPEFULLY WILL RETURN SOON.}
 
-\item{...}{Futher args passed on to \code{\link[httr]{GET}}.}
+\item{...}{Futher args passed on to \code{\link[crul]{HttpClient}}}
 
 \item{x}{Object to print or read.}
 }
@@ -79,4 +79,3 @@ if (requireNamespace("sangerseqR", quietly = TRUE)) {
 \references{
 \url{http://www.boldsystems.org/index.php/resources/api#trace}
 }
-

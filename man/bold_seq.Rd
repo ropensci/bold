@@ -33,10 +33,12 @@ sites includes countries and province/states.}
 \item{marker}{(character) Returns all records containing matching 
 marker codes.}
 
-\item{response}{(logical) Note that response is the object that returns from the Curl call,
-useful for debugging, and getting detailed info on the API call.}
+\item{response}{(logical) Note that response is the object that returns 
+from the Curl call, useful for debugging, and getting detailed info on 
+the API call.}
 
-\item{...}{Further args passed on to httr::GET, main purpose being curl debugging}
+\item{...}{Further args passed on to \code{\link[crul]{HttpClient}}, main 
+purpose being curl debugging}
 }
 \value{
 A list with each element of length 4 with slots for id, name, 
@@ -63,17 +65,15 @@ bold_seq(geo=c('Ireland','Denmark'))
 res <- bold_seq(taxon='Coelioxys', response=TRUE)
 res$url
 res$status_code
-res$headers
+res$response_headers
 
 ## curl debugging
 ### You can do many things, including get verbose output on the curl 
 ### call, and set a timeout
-library("httr")
-bold_seq(taxon='Coelioxys', config=verbose())[1:2]
-# bold_seqspec(taxon='Coelioxys', config=timeout(0.1))
+bold_seq(taxon='Coelioxys', verbose = TRUE)[1:2]
+# bold_seqspec(taxon='Coelioxys', timeout_ms = 10)
 }
 }
 \references{
 \url{http://www.boldsystems.org/index.php/resources/api#sequenceParameters}
 }
-
