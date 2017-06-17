@@ -1,5 +1,5 @@
 Package: bold
-Title: Interface to Bold Systems 'API'
+Title: Interface to Bold Systems API
 Description: A programmatic interface to the Web Service methods provided by
     Bold Systems for genetic 'barcode' data. Functions include methods for
     searching by sequences by taxonomic names, ids, collectors, and
@@ -29,6 +29,5 @@ Imports:
 Suggests:
     sangerseqR,
     knitr,
-    testthat,
-    covr
+    testthat
 RoxygenNote: 5.0.1

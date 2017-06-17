@@ -2,8 +2,11 @@ language: r
 sudo: false
 cache: packages
 
+r_github_packages:
+  - jimhester/covr
+
 bioc_packages: 
-- sangerseqR
+  - sangerseqR
 
 r_check_args: "--as-cran --run-dontrun"
 
