@@ -25,7 +25,7 @@
 #' quite long and would make a data frame unwieldy).
 #' 
 #' @importFrom methods is
-#' @importFrom crul HttpClient
+#' @importFrom crul HttpClient url_build
 #' @importFrom stats setNames
 #' @importFrom utils read.delim untar
 #' @importFrom xml2 read_xml xml_find_all xml_find_first xml_text 

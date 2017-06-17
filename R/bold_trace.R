@@ -50,7 +50,7 @@ bold_trace <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
       ids=pipeornull(ids), bin=pipeornull(bin), container=pipeornull(container), 
       institutions=pipeornull(institutions), researchers=pipeornull(researchers), 
       marker=pipeornull(marker)))
-  url <- make_url(paste0(bbase(), 'API_Public/trace'), args)
+  url <- crul::url_build(paste0(bbase(), 'API_Public/trace'), query = args)
   if (is.null(dest)) {
     destfile <- paste0(getwd(), "/bold_trace_files.tar")
     destdir <- paste0(getwd(), "/bold_trace_files")

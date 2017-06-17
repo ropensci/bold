@@ -14,14 +14,14 @@ pipeornull <- function(x){
   if (!is.null(x)) { 
     paste0(x, collapse = "|") 
   } else { 
-    NULL 
+    NULL
   }
 }
 
 make_url <- function(url, args){
-  tmp <- parse_url(url)
+  tmp <- httr::parse_url(url)
   tmp$query <- args
-  build_url(tmp)
+  httr::build_url(tmp)
 }
 
 check_args_given_nonempty <- function(arguments, x){
@@ -71,7 +71,7 @@ get_response <- function(args, url, ...){
   cli <- crul::HttpClient$new(url = url)
   out <- cli$get(query = args, ...)
   out$raise_for_status()
-  stopifnot(res$headers$`content-type` == 'text/html; charset=utf-8')
+  stopifnot(out$headers$`content-type` == 'text/html; charset=utf-8')
   return(out)
 }
 
