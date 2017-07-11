@@ -11,7 +11,7 @@ knitr::opts_chunk$set(
 ```
 
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-![CRAN/GitHub 0.4.0_/0.4.4.9120](https://img.shields.io/badge/CRAN/GitHub-0.4.0_/0.4.4.9120-blue.svg)
+![](https://img.shields.io/badge/CRAN/GitHub-0.4.0_/0.4.4.9120-blue.svg)
 
 
 `bold` accesses BOLD barcode data.
@@ -71,7 +71,7 @@ You can optionally get back the `httr` response object
 
 ```{r}
 res <- bold_seq(taxon='Coelioxys', response=TRUE)
-res$headers
+res$response_headers
 ```
 
 ### Search for specimen data only
