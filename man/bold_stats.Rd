@@ -31,6 +31,12 @@ researcher names. Researchers include collectors and specimen identifiers.}
 \item{geo}{(character) Returns all records collected in matching geographic 
 sites. Geographic sites includes countries and province/states.}
 
+\item{dataType}{(character) one of "overview" or "drill_down" (default).
+"drill_down": a detailed summary of information which provides record 
+counts by [BINs, Country, Storing Institution, Species]. "overview": 
+the total counts of [BINs, Countries, Storing Institutions, Orders, 
+Families, Genus, Species]}
+
 \item{response}{(logical) Note that response is the object that returns 
 from the Curl call, useful for debugging, and getting detailed info on 
 the API call.}

@@ -13,7 +13,7 @@ The Barcode of Life Data Systems (BOLD) is designed to support the generation an
 
 This package retrieves data from the BOLD database of barcode clusters, and allows for searching of over 1.7M public records using multiple search criteria including sequence data, specimen data, specimen *plus* sequence data, as well as trace files.
 
-[Documentation for the BOLD API](http://www.boldsystems.org/index.php/resources/api).
+[Documentation for the BOLD API](http://v4.boldsystems.org/index.php/api_home).
 
 
 ## Package status and installation
@@ -26,6 +26,7 @@ This package retrieves data from the BOLD database of barcode clusters, and allo
 __Installation instructions__
 
 __Stable Version__
+
 
 ```r
 install.packages("bold")
@@ -64,16 +65,16 @@ Default is to get a list back
 ```r
 bold_seq(taxon='Coelioxys')[[1]]
 #> $id
-#> [1] "BBHYA1441-12"
-#> 
+#> [1] "BBHYL404-10"
+#>
 #> $name
-#> [1] "Coelioxys mexicana"
-#> 
+#> [1] "Coelioxys rufitarsis"
+#>
 #> $gene
-#> [1] "BBHYA1441-12"
-#> 
+#> [1] "BBHYL404-10"
+#>
 #> $sequence
-#> [1] "-------------------------------------------TCTTCCCTAAGAATAATCATCCGTATAGAATTAAGTATTCCAGGTTCTTGGATTAATAATGATCAAATTTATAATTCATTTATTACAGCCCATGCTTTTTTAATAATTTTTTTTTTAGTAATACCTTTTTTAATTGGTGGATTTGGAAATTGATTAGCTCCTTTAATAATCGGAGCCCCAGATATAGCATTCCCACGAATAAACAATATTAGATTTTGATTACTTCCCCCTTCATTATTATTTCTATTATCAAGAAATTTAATCTCCCCTAGTCCCGGTACAGGATGAACTGTATATCCTCCCTTATCTTCCTATACATTTCATCCCTCTCCTTCGGTTGACTTGGCTATTTTTTCTTTACATTTATCAGGAATCTCTTCAATTATTGGATCAATAAATTTTATTGTAACTATTTTAATAATAAAAAATTACTCTTTAAATTACAGACAAATACCTTTATTCCCATGATCAGTATTAATTACTACAATTTTATTATTACTTTCTTTACCTGTACTAGCAGGAGCTATCACAATATTATTATTTGATCGAAATTTAAATTCTTCTTTTTTTGACCCTATGGGAGGAGGAGATCCTATTTTATATCAACATTTATTT\r"
+#> [1] "TATAATATATATAATTTTTGCAATATGATCAGGTATAATTGGATCATCTTTAAGAATAATTATTCGAATAGAATTAAGAATCCCAGGTTCATGAATTAGAAATGATCAAATTTATAATTCTTTTATTACAGCACATGCATTTTTAATAATTTTTTTTTTAGTTATGCCTTTTCTAATTGGGGGATTTGGTAATTGATTAACACCATTAATACTTGGAGCTCCTGATATAGCTTTCCCCCGAATAAACAATATTAGATTTTGACTACTCCCACCTTCTTTATTACTTTTATTATCAAGAAATTTAATTAATCCAAGACCAGGAACAGGATGAACTGTTTATCCACCATTATCCTCTTATACATATCATCCATCTCCTTCTGTAGATTTAGCAATTTTTTCTTTACATTTATCAGGAATTTCCTCAATTATTGGATCAATAAATTTTATTGTTACAATTTTAATAATAAAAAATTATTCAATAAATTATAATCAAATACCATTATTCCCATGATCAGTTTTAATTACTACAATTTTATTATTACTATCACTTCCAGTATTAGCAGGAGCAATTACAATATTATTATTTGATCGAAATTTAAATTCTTCTTTTTTTGACCCAATAGGAGGAGGAGACCCAATTTTATATCAACATTTATTT\r"
 ```
 
 You can optionally get back the `httr` response object
@@ -84,25 +85,25 @@ res <- bold_seq(taxon='Coelioxys', response=TRUE)
 res$response_headers
 #> $status
 #> [1] "HTTP/1.1 200 OK"
-#> 
+#>
 #> $date
-#> [1] "Tue, 11 Jul 2017 17:13:47 GMT"
-#> 
+#> [1] "Thu, 20 Jul 2017 21:51:40 GMT"
+#>
 #> $server
 #> [1] "Apache/2.2.15 (Red Hat)"
-#> 
+#>
 #> $`x-powered-by`
 #> [1] "PHP/5.3.15"
-#> 
+#>
 #> $`content-disposition`
 #> [1] "attachment; filename=fasta.fas"
-#> 
+#>
 #> $connection
 #> [1] "close"
-#> 
+#>
 #> $`transfer-encoding`
 #> [1] "chunked"
-#> 
+#>
 #> $`content-type`
 #> [1] "application/x-download"
 ```
@@ -115,62 +116,27 @@ By default you download `tsv` format data, which is given back to you as a `data
 ```r
 res <- bold_specimens(taxon='Osmia')
 head(res[,1:8])
-#>     processid
-#> 1   image_ids
-#> 2 FBAPB671-09
-#> 3      663009
-#> 4 FBAPB679-09
-#> 5      663017
-#> 6 FBAPB727-09
-#>                                                                sampleid
-#> 1                                                            image_urls
-#> 2                                                      BC ZSM HYM 02146
-#> 3 http://www.boldsystems.org/pics/FBAPB/BC_ZSM_HYM_02146+1259765280.JPG
-#> 4                                                      BC ZSM HYM 02154
-#> 5 http://www.boldsystems.org/pics/FBAPB/BC_ZSM_HYM_02154+1259765280.JPG
-#> 6                                                      BC ZSM HYM 02202
-#>                                                   recordID
-#> 1                                       copyright_licenses
-#> 2                                                  1289032
-#> 3 CreativeCommons - Attribution Non-Commercial Share-Alike
-#> 4                                                  1289040
-#> 5 CreativeCommons - Attribution Non-Commercial Share-Alike
-#> 6                                                  1289088
-#>                catalognum
-#> 1               trace_ids
-#> 2        BC ZSM HYM 02146
-#> 3                 2474894
-#> 4        BC ZSM HYM 02154
-#> 5 2578904|2474899|2578877
-#> 6        BC ZSM HYM 02202
-#>                                                                                                                                                            fieldnum
-#> 1                                                                                                                                                       trace_links
-#> 2                                                                                                                                                  BC ZSM HYM 02146
-#> 3                                                                                                             http://trace.boldsystems.org/traceIO/bold.org/2165735
-#> 4                                                                                                                                                  BC ZSM HYM 02154
-#> 5 http://trace.boldsystems.org/traceIO/bold.org/2263489|http://trace.boldsystems.org/traceIO/bold.org/2165740|http://trace.boldsystems.org/traceIO/bold.org/2263462
-#> 6                                                                                                                                                  BC ZSM HYM 02202
-#>                                           institution_storing
-#> 1                                                   run_dates
-#> 2                   SNSB, Zoologische Staatssammlung Muenchen
-#> 3                                         2010-10-28 09:39:39
-#> 4                   SNSB, Zoologische Staatssammlung Muenchen
-#> 5 2010-12-08 21:46:32|2010-10-28 09:39:39|2010-12-08 20:19:35
-#> 6                   SNSB, Zoologische Staatssammlung Muenchen
-#>                                                                                                 bin_uri
-#> 1                                                                                    sequencing_centers
-#> 2                                                                                                      
-#> 3                                                                     Biodiversity Institute of Ontario
-#> 4                                                                                          BOLD:AAI1788
-#> 5 Biodiversity Institute of Ontario|Biodiversity Institute of Ontario|Biodiversity Institute of Ontario
-#> 6                                                                                          BOLD:AAE5457
-#>   phylum_taxID
-#> 1   directions
-#> 2           20
-#> 3            F
-#> 4           20
-#> 5        R|F|F
-#> 6           20
+#>      processid         sampleid recordID       catalognum         fieldnum
+#> 1  ASGCB255-13   BIOUG07489-F04  3955532                    BIOUG07489-F04
+#> 2  ASGCB258-13   BIOUG07489-F07  3955535                    BIOUG07489-F07
+#> 3 BBHYA3298-12   BIOUG02688-A06  2711807   BIOUG02688-A06  L#11BIOBUS-2558
+#> 4  BBHYL310-10     10BBCHY-3264  1769753     10BBCHY-3264   L#PC2010KT-025
+#> 5 BCHYM1496-13 BC ZSM HYM 19356  4005345 BC ZSM HYM 19356 BC ZSM HYM 19356
+#> 6  BCHYM412-13 BC ZSM HYM 18272  3896353 BC ZSM HYM 18272 BC ZSM HYM 18272
+#>                                      institution_storing collection_code
+#> 1                      Biodiversity Institute of Ontario              NA
+#> 2                      Biodiversity Institute of Ontario              NA
+#> 3 University of Guelph, Centre for Biodiversity Genomics              NA
+#> 4 University of Guelph, Centre for Biodiversity Genomics              NA
+#> 5              SNSB, Zoologische Staatssammlung Muenchen              NA
+#> 6              SNSB, Zoologische Staatssammlung Muenchen              NA
+#>        bin_uri
+#> 1 BOLD:ABZ2181
+#> 2 BOLD:AAC0884
+#> 3 BOLD:ACF5858
+#> 4 BOLD:AAC3295
+#> 5 BOLD:AAI2010
+#> 6 BOLD:AAP2416
 ```
 
 ### Search for specimen plus sequence data
@@ -181,11 +147,11 @@ By default you download `tsv` format data, which is given back to you as a `data
 ```r
 res <- bold_seqspec(taxon='Osmia', sepfasta=TRUE)
 res$fasta[1:2]
-#> $image_ids
-#> [1] ""
-#> 
-#> $`FBAPB671-09`
-#> [1] "------------------------------------------------------AATTTTAATTCGAATAGAATTAAGAATTCCCGGATCATGAATTTCTAATGATCAAGTTTATAATTCTTTAGTAACTGCTCATGCTTTTTTAATAATTTTTTTTCTTGTAATACCATTTTTAATTGGTGGATTTGGAAATTGATTAATTCCTTTAATATTAGGAATTCCTGATATAGCTTTTCCTCGAATAAATAATATTAGATTTTGACTTCTACCTCCATCTTTAATATTATTACTTTTGAGAAATTTTTTAAATCCAAGTCCAGGNACNGGATGAACT------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"
+#> $`ASGCB255-13`
+#> [1] "-------------------------------GGAATAATTGGTTCTGCTATAAGTATTATTATTCGAATAGAATTAAGAATTCCTGGATCATTCATTTCTAATGATCAAACTTATAATTCTTTAGTAACAGCTCATGCTTTTTTAATAATTTTTTTTCTTGTAATACCATTTTTAATTGGTGGATTTGGAAATTGATTAATTCCATTAATATTAGGAATCCCAGATATAGCATTTCCTCGAATAAATAATATTAGATTTTGACTTTTACCCCCATCCTTAATAATTTTACTTTTAAGAAATTTCTTAAATCCAAGTCCAGGAACAGGTTGAACTGTATATCCCCCCCTTTCTTCTTATTTATTTCATTCTTCCCCTTCTGTTGATTTAGCTATTTTTTCTCTTCATATTTCTGGTTTATCTTCCATCATAGGTTCTTTAAATTTTATTGTTACAATTATTATAATAAAAAATATTTCATTAAAACATATTCAATTACCTTTATTTCCTTGATCCGTTTTTATTACAACTATTTTACTATTATTTTCTTTACCTGTTCTAGCAGGAGCTATTACTATATTATTATTTGATCGAAACTTTAATACTTCATTTTTTGATCCAACTGGAGGAGGAGATCCAATTTTATATCAACATTTATTC"
+#>
+#> $`ASGCB258-13`
+#> [1] "GATTTTATATATAATTTTTGCTATGTGATCAGGAATAATTGGTTCAGCAATAAGAATTATTATTCGAATAGAATTAAGAATTCCAGGTTCATGAATCTCTAATGATCAAATTTATAATTCTTTAGTTACTGCTCACGCTTTTTTAATAATTTTTTTTTTAGTAATACCATTTTTAATTGGAGGATTTGGTAATTGATTAGTTCCATTAATATTAGGAATTCCAGATATAGCATTTCCACGAATAAATAATATTAGATTTTGACTTTTACCTCCTTCTTTAATGTTATTACTTTTAAGAAATTTTTTAAATCCAAGTCCAGGAACTGGATGAACTGTATATCCTCCTCTTTCTTCTCATTTATTTCATTCTTCTCCTTCAGTTGATATAGCTATTTTTTCTTTACATATTTCTGGTTTATCTTCTATTATAGGTTCATTAAATTTTATTGTTACAATTATTATAATAAAAAATATTTCATTAAAACATATTCAATTGCCTTTATTTCCTTGATCTGTTTTTATTACTACTATTTTATTACTTTTTTCTTTACCTGTTTTAGCTGGAGCAATTACTATATTATTATTTGATCGAAATTTTAATACTTCATTTTTTGATCCGACAGGAGGTGGAGATCCAATTCTTTATCAACATTTATTT"
 ```
 
 Or you can index to a specific sequence like
@@ -207,9 +173,9 @@ x <- bold_trace(ids = 'ACRJP618-11', progress = FALSE)
 read_trace(x$ab1)
 #> Number of datapoints: 8877
 #> Number of basecalls: 685
-#> 
+#>
 #> Primary Basecalls: NNNNNNNNNNNNNNNNNNGNNNTTGAGCAGGNATAGTAGGANCTTCTCTTAGTCTTATTATTCGAACAGAATTAGGAAATCCAGGATTTTTAATTGGAGATGATCAAATCTACAATACTATTGTTACGGCTCATGCTTTTATTATAATTTTTTTTATAGTTATACCTATTATAATTGGAGGATTTGGTAATTGATTAGTTCCCCTTATACTAGGAGCCCCAGATATAGCTTTCCCTCGAATAAACAATATAAGTTTTTGGCTTCTTCCCCCTTCACTATTACTTTTAATTTCCAGAAGAATTGTTGAAAATGGAGCTGGAACTGGATGAACAGTTTATCCCCCACTGTCATCTAATATTGCCCATAGAGGTACATCAGTAGATTTAGCTATTTTTTCTTTACATTTAGCAGGTATTTCCTCTATTTTAGGAGCGATTAATTTTATTACTACAATTATTAATATACGAATTAACAGTATAAATTATGATCAAATACCACTATTTGTGTGATCAGTAGGAATTACTGCTTTACTCTTATTACTTTCTCTTCCAGTATTAGCAGGTGCTATCACTATATTATTAACGGATCGAAATTTAAATACATCATTTTTTGATCCTGCAGGAGGAGGAGATCCAATTTTATATCAACATTTATTTTGATTTTTTGGACNTCNNNNAAGTTTAAN
-#> 
+#>
 #> Secondary Basecalls:
 ```
 
