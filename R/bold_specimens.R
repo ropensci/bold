@@ -12,7 +12,7 @@
 #' @examples \dontrun{
 #' bold_specimens(taxon='Osmia')
 #' bold_specimens(taxon='Osmia', format='xml')
-#' # bold_specimens(taxon='Osmia', response=TRUE)
+#' bold_specimens(taxon='Osmia', response=TRUE)
 #' res <- bold_specimens(taxon='Osmia', format='xml', response=TRUE)
 #' res$url
 #' res$status_code

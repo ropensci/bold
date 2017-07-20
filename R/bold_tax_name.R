@@ -1,4 +1,4 @@
-#' Search BOLD for taxonomy data by taxonomic name.
+#' Search BOLD for taxonomy data by taxonomic name
 #'
 #' @export
 #' @param name (character) One or more scientific names. required.
@@ -40,7 +40,19 @@ bold_tax_name <- function(name, fuzzy = FALSE, response = FALSE, ...) {
   if (response) {
     tmp 
   } else {
-    do.call("rbind.fill",
-            Map(process_response, x = tmp, y = name, z = FALSE, w = ""))
+    (vvv <- data.table::setDF(data.table::rbindlist(
+      Map(process_tax_name, tmp, name), 
+      use.names = TRUE, fill = TRUE)
+    ))
+  }
+}
+
+process_tax_name <- function(x, y) {
+  tt <- rawToChar(x$content)
+  out <- if (x$status_code > 202) "stop" else jsonlite::fromJSON(tt, flatten = TRUE)
+  if ( length(out) == 0 || identical(out[[1]], list()) || out == "stop" ) {
+    data.frame(input = y, stringsAsFactors = FALSE)
+  } else {
+    data.frame(out$top_matched_names, input = y, stringsAsFactors = FALSE)
   }
 }

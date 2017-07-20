@@ -50,11 +50,11 @@ df <- bold_identify(sequences = sequences$seq2)
 # long format
 out <- bold_identify_parents(df)
 str(out)
-head(out$seq1)
+head(out[[1]])
 
 # wide format
 out <- bold_identify_parents(df, wide = TRUE)
 str(out)
-head(out$seq1)
+head(out[[1]])
 }
 }

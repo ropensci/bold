@@ -35,12 +35,12 @@
 #' # long format
 #' out <- bold_identify_parents(df)
 #' str(out)
-#' head(out$seq1)
+#' head(out[[1]])
 #' 
 #' # wide format
 #' out <- bold_identify_parents(df, wide = TRUE)
 #' str(out)
-#' head(out$seq1)
+#' head(out[[1]])
 #' }
 bold_identify_parents <- function(x, wide = FALSE) {
   UseMethod("bold_identify_parents")

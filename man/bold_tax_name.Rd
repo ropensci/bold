@@ -2,7 +2,7 @@
 % Please edit documentation in R/bold_tax_name.R
 \name{bold_tax_name}
 \alias{bold_tax_name}
-\title{Search BOLD for taxonomy data by taxonomic name.}
+\title{Search BOLD for taxonomy data by taxonomic name}
 \usage{
 bold_tax_name(name, fuzzy = FALSE, response = FALSE, ...)
 }
@@ -19,7 +19,7 @@ the API call.}
 purpose being curl debugging}
 }
 \description{
-Search BOLD for taxonomy data by taxonomic name.
+Search BOLD for taxonomy data by taxonomic name
 }
 \details{
 The \code{dataTypes} parameter is not supported in this function. 

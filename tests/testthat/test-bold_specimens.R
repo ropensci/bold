@@ -14,7 +14,7 @@ test_that("bold_specimens returns the correct dimensions or values", {
   expect_is(b, "HttpResponse")
 
   expect_is(a$recordID, "integer")
-  expect_is(a$directions, "character")
+  expect_is(a$processid, "character")
 
   expect_is(b$response_headers, "list")
 })

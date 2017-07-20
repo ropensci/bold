@@ -41,8 +41,6 @@ bold_tax_id(id=88899, dataTypes = "images")
 bold_tax_id(id=88899, dataTypes = "geo")
 bold_tax_id(id=88899, dataTypes = "sequencinglabs")
 bold_tax_id(id=88899, dataTypes = "depository")
-bold_tax_id(id=88899, dataTypes = "thirdparty")
-bold_tax_id(id=88899, dataTypes = "all")
 bold_tax_id(id=c(88899,125295), dataTypes = "geo")
 bold_tax_id(id=c(88899,125295), dataTypes = "images")
 

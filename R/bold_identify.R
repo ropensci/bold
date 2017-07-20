@@ -59,9 +59,7 @@ bold_identify <- function(sequences, db = 'COX1', response=FALSE, ...) {
     out <- cli$get(query = args, ...)
     out$raise_for_status()
     stopifnot(out$headers$`content-type` == 'text/xml')
-    # out <- GET(url, query = args, ...)
-    # stop_for_status(out)
-    # stopifnot(out$headers$`content-type` == 'text/xml')
+
     if (response) { 
       out 
     } else {
