@@ -37,14 +37,14 @@
 
 bold_stats <- function(taxon = NULL, ids = NULL, bin = NULL, 
   container = NULL, institutions = NULL, researchers = NULL, geo = NULL, 
-  response=FALSE, ...) {
+  dataType = "drill_down", response=FALSE, ...) {
   
   args <- bc(list(taxon = pipeornull(taxon), geo = pipeornull(geo), 
                   ids = pipeornull(ids), bin = pipeornull(bin), 
                   container = pipeornull(container), 
                   institutions = pipeornull(institutions), 
                   researchers = pipeornull(researchers), 
-                  specimen_download = "json"))
+                  dataType = dataType, format = "json"))
   check_args_given_nonempty(args, c('taxon','ids','bin','container',
                                     'institutions','researchers','geo'))
   out <- b_GET(paste0(bbase(), 'API_Public/stats'), args, ...)

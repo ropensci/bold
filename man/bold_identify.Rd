@@ -22,7 +22,8 @@ the API call.}
 purpose being curl debugging}
 }
 \value{
-A data.frame with details for each specimen matched.
+A data.frame with details for each specimen matched. if a 
+failed request, returns \code{NULL}
 }
 \description{
 Search for matches to sequences against the BOLD COI database.

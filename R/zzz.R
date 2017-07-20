@@ -73,6 +73,8 @@ b_GET <- function(url, args, ...){
   cli <- crul::HttpClient$new(url = url)
   out <- cli$get(query = args, ...)
   out$raise_for_status()
-  stopifnot(out$headers$`content-type` == 'application/x-download')
+  if (grepl("html", out$response_headers$`content-type`)) {
+    stop(out$parse("UTF-8"))
+  }
   return(out)
 }

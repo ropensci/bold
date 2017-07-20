@@ -39,7 +39,8 @@
 #' named list to the \code{sequences} parameter. You can for example, 
 #' take a list of sequences, and use \code{\link{setNames}} to set names.
 #' 
-#' @return A data.frame with details for each specimen matched.
+#' @return A data.frame with details for each specimen matched. if a 
+#' failed request, returns \code{NULL}
 #' @references 
 #' \url{http://v4.boldsystems.org/index.php/resources/api?type=idengine}
 #' @seealso \code{\link{bold_identify_parents}}
@@ -51,11 +52,9 @@
 #' }
 
 bold_identify <- function(sequences, db = 'COX1', response=FALSE, ...) {
-  url <- 'http://boldsystems.org/index.php/Ids_xml'
-  
   foo <- function(a, b){
     args <- bc(list(sequence = a, db = b))
-    cli <- crul::HttpClient$new(url = url)
+    cli <- crul::HttpClient$new(url = paste0(bbase(), 'Ids_xml'))
     out <- cli$get(query = args, ...)
     out$raise_for_status()
     stopifnot(out$headers$`content-type` == 'text/xml')

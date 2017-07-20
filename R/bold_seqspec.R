@@ -7,7 +7,7 @@
 #' \url{http://v4.boldsystems.org/index.php/resources/api?type=webservices}
 #'
 #' @param marker (character) Returns all records containing matching marker
-#' codes.
+#' codes. See Details.
 #' @param format (character) One of xml or tsv (default). tsv format gives
 #' back a data.frame object. xml gives back parsed xml as a
 #' @param sepfasta (logical) If \code{TRUE}, the fasta data is separated into
@@ -17,6 +17,15 @@
 #' @return Either a data.frame, parsed xml, a http response object, or a list
 #' with length two (a data.frame w/o nucleotide data, and a list with
 #' nucleotide data)
+#' 
+#' @section Marker:
+#' Notes from BOLD on the \code{marker} param:
+#' "All markers for a specimen matching the search string will be returned. 
+#' ie. A record with COI-5P and ITS will return sequence data for both 
+#' markers even if only COI-5P was specified."
+#' 
+#' You will likely end up with data with markers that you did not request -
+#' just be sure to filter those out as needed.
 #'
 #' @examples \dontrun{
 #' bold_seqspec(taxon='Osmia')
@@ -44,7 +53,7 @@ bold_seqspec <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
   institutions = NULL, researchers = NULL, geo = NULL, marker = NULL,
   response=FALSE, format = 'tsv', sepfasta=FALSE, ...) {
 
-  format <- match.arg(format, choices = c('xml','tsv'))
+  format <- match.arg(format, choices = c('xml', 'tsv'))
   args <- bc(list(taxon = pipeornull(taxon), geo = pipeornull(geo),
                   ids = pipeornull(ids), bin = pipeornull(bin),
                   container = pipeornull(container),

@@ -6,8 +6,11 @@
 #' @references 
 #' \url{http://v4.boldsystems.org/index.php/resources/api?type=webservices}
 #'
-#' @param format (character) One of xml or tsv (default). tsv format gives 
-#' back a data.frame object. xml gives back parsed xml as a
+#' @param format (character) One of xml, json, tsv (default). tsv format gives 
+#' back a data.frame object. xml gives back parsed XML as \code{xml_document}
+#' object. 'json' (JavaScript Object Notation) and 'dwc' (Darwin Core Archive)
+#' are supported in theory, but the JSON can be malformed, so we don't support
+#' that here, and the DWC option actually returns TSV.
 #'
 #' @examples \dontrun{
 #' bold_specimens(taxon='Osmia')
@@ -32,13 +35,13 @@ bold_specimens <- function(taxon = NULL, ids = NULL, bin = NULL,
   container = NULL, institutions = NULL, researchers = NULL, geo = NULL, 
   response=FALSE, format = 'tsv', ...) {
 
-  format <- match.arg(format, choices = c('xml','tsv'))
+  format <- match.arg(format, choices = c('xml', 'tsv'))
   args <- bc(list(taxon=pipeornull(taxon), geo=pipeornull(geo), 
                   ids=pipeornull(ids), bin=pipeornull(bin), 
                   container=pipeornull(container), 
                   institutions=pipeornull(institutions), 
                   researchers=pipeornull(researchers), 
-                  specimen_download=format))
+                  format = format))
   check_args_given_nonempty(args, c('taxon','ids','bin','container',
                                     'institutions','researchers','geo'))
   out <- b_GET(paste0(bbase(), 'API_Public/specimen'), args, ...)
@@ -46,10 +49,9 @@ bold_specimens <- function(taxon = NULL, ids = NULL, bin = NULL,
     out
   } else {
     tt <- out$parse("UTF-8")
-    #tt <- rawToChar(content(out, encoding = "UTF-8"))
     switch(format,
            xml = xml2::read_xml(tt),
-           tsv = utils::read.delim(text = tt, header = TRUE, sep = "\t", 
+           tsv = utils::read.delim(text = tt, header = TRUE, sep = "\t",
                             stringsAsFactors = FALSE)
     )
   }

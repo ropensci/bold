@@ -39,8 +39,8 @@
 #' bold_tax_id(id=88899, verbose = TRUE)
 #' }
 
-bold_tax_id <- function(id, dataTypes='basic', includeTree=FALSE, 
-                        response=FALSE, ...) {
+bold_tax_id <- function(id, dataTypes = 'basic', includeTree = FALSE, 
+                        response = FALSE, ...) {
   
   tmp <- lapply(id, function(x)
     get_response(args = bc(list(
