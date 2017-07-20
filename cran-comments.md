@@ -1,7 +1,7 @@
 ## Test environments
 
-* local OS X install, R 3.3.2
-* ubuntu 12.04 (on travis-ci), R 3.3.2
+* local OS X install, R 3.4.1
+* ubuntu 12.04 (on travis-ci), R 3.4.1
 * win-builder (devel and release)
 * R-hub (Windows Server R-devel, Ubuntu Linux R-release, Fedora Linux R-devel)
 
@@ -24,7 +24,7 @@
 
 -----
 
-This version adds a new function, fixes some documentation, and 
-fixes a bug.
+This version switches to using new version of the data provides web 
+service, along with a few bug fixes.
 
 Thanks! Scott Chamberlain

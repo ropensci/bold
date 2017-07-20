@@ -1,3 +1,31 @@
+bold 0.5.0
+==========
+
+### NEW FEATURES
+
+* Now using BOLD's v4 API throughout the package. This was essentially
+just a change of the BASE URL for each request (#30) 
+* Now using `crul` for HTTP requests. Only really affects users in that
+specifying curl options works slightly differenlty (#42) 
+
+### BUG FIXES 
+
+* `marker` parameter in `bold_seqspec` was and maybe still is not working, 
+in the sense that using the parameter doesn't always limit results to the 
+marker you specify. Not really fixed - watch out for it, and filter after you
+get results back to get markers you want. (#25) 
+* Fixed bug in `bold_identify_parents` - was failing when no match for a
+parent name. (#41) thx @VascoElbrecht  
+* `tsv` results were erroring in `bold_specimens` and other fxns (#46) - fixed
+by switching to new BOLD v4 API (#30)
+
+### MINOR IMPROVEMENTS
+
+* Namespace calls to base pkgs for `stats` and `utils` - replaced 
+`is` with `inherits` (#39) 
+
+
+
 bold 0.4.0
 ==========
 
