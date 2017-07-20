@@ -7,11 +7,11 @@
 bold_identify_parents(x, wide = FALSE)
 }
 \arguments{
-\item{x}{(data.frame/list) list of data.frames - the output from a call to 
+\item{x}{(data.frame/list) list of data.frames - the output from a call to
 \code{\link{bold_identify}}. or a single data.frame from the output from
 same. required.}
 
-\item{wide}{(logical) output in long or wide format. See Details. 
+\item{wide}{(logical) output in long or wide format. See Details.
 Default: \code{FALSE}}
 }
 \value{
@@ -22,7 +22,7 @@ Add taxonomic parent names to a data.frame
 }
 \details{
 This function gets unique set of taxonomic names from the input
-data.frame, then queries \code{\link{bold_tax_name}} to get the 
+data.frame, then queries \code{\link{bold_tax_name}} to get the
 taxonomic ID, passing it to \code{\link{bold_tax_id}} to get the parent
 names, then attaches those to the input data.
 
@@ -31,15 +31,15 @@ simply get NA values in the added columns.
 }
 \section{wide vs long format}{
 
-When \code{wide = FALSE} you get many rows for each record. Essentially, 
-we \code{cbind} the taxonomic classification onto the one row from the 
+When \code{wide = FALSE} you get many rows for each record. Essentially,
+we \code{cbind} the taxonomic classification onto the one row from the
 result of \code{\link{bold_identify}}, giving as many rows as there are
 taxa in the taxonomic classification.
 
-When \code{wide = TRUE} you get one row for each record - thus the 
-dimenions of the input data stay the same. For this option, we take just
-the rows for taxonomic ID and name for each taxon in the taxonomic 
-classification, and name the columns by the taxon rank, so you get 
+When \code{wide = TRUE} you get one row for each record - thus the
+dimensions of the input data stay the same. For this option, we take just
+the rows for taxonomic ID and name for each taxon in the taxonomic
+classification, and name the columns by the taxon rank, so you get
 \code{phylum} and \code{phylum_id}, and so on.
 }
 

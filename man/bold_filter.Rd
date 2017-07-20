@@ -7,19 +7,19 @@
 bold_filter(x, by, how = "max")
 }
 \arguments{
-\item{x}{(data.frame) a data.frame, as returned from 
+\item{x}{(data.frame) a data.frame, as returned from
 \code{\link{bold_seqspec}}. Note that some combinations of parameters
-in \code{\link{bold_seqspec}} don't return a data.frame. Stops with 
+in \code{\link{bold_seqspec}} don't return a data.frame. Stops with
 error message if this is not a data.frame. Required.}
 
-\item{by}{(character) the column by which to group. For example, 
-if you want the longest sequence for each unique species name, then 
-pass \strong{species_name}. If the column doesn't exist, error 
+\item{by}{(character) the column by which to group. For example,
+if you want the longest sequence for each unique species name, then
+pass \strong{species_name}. If the column doesn't exist, error
 with message saying so. Required.}
 
-\item{how}{(character) one of "max" or "min", which get used as 
-\code{which.max} or \code{which.min} to get the longest or shorest 
-sequence, respectively. Note that we remove gap/alignment characters 
+\item{how}{(character) one of "max" or "min", which get used as
+\code{which.max} or \code{which.min} to get the longest or shortest
+sequence, respectively. Note that we remove gap/alignment characters
 (\code{-})}
 }
 \value{
