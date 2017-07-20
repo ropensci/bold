@@ -24,10 +24,7 @@
 #' tsv data, while for sequence data you get back a list (b/c sequences are 
 #' quite long and would make a data frame unwieldy).
 #' 
-#' @importFrom methods is
 #' @importFrom crul HttpClient url_build
-#' @importFrom stats setNames
-#' @importFrom utils read.delim untar
 #' @importFrom xml2 read_xml xml_find_all xml_find_first xml_text 
 #' xml_name as_list
 #' @importFrom jsonlite fromJSON

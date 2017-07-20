@@ -62,7 +62,7 @@ bold_trace <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
   if (!file.exists(destfile)) file.create(destfile, showWarnings = FALSE)
   cli <- crul::HttpClient$new(url = url)
   res <- cli$get(disk = destfile, ...)
-  untar(destfile, exdir = destdir)
+  utils::untar(destfile, exdir = destdir)
   files <- list.files(destdir, full.names = TRUE)
   ab1 <- list.files(destdir, pattern = ".ab1", full.names = TRUE)
   structure(list(destfile = destfile, destdir = destdir, ab1 = ab1, 
@@ -80,7 +80,7 @@ print.boldtrace <- function(x, ...){
 #' @export
 #' @rdname bold_trace
 read_trace <- function(x){
-  if (is(x, "boldtrace")) {
+  if (inherits(x, "boldtrace")) {
     if (length(x$ab1) > 1) stop("Number of paths > 1, just pass one in", 
                                 call. = FALSE)
     sangerseqR::readsangerseq(x$ab1)

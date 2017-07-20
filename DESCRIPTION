@@ -14,9 +14,6 @@ BugReports: https://github.com/ropensci/bold/issues
 VignetteBuilder: knitr
 LazyData: yes
 Imports:
-    methods,
-    utils,
-    stats,
     xml2,
     crul (>= 0.3.8),
     stringr,
