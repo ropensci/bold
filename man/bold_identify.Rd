@@ -66,7 +66,7 @@ head(bold_identify(sequences=seq, db='COX1_SPECIES')[[1]])
 }
 }
 \references{
-\url{http://www.boldsystems.org/index.php/resources/api?type=idengine}
+\url{http://v4.boldsystems.org/index.php/resources/api?type=idengine}
 }
 \seealso{
 \code{\link{bold_identify_parents}}

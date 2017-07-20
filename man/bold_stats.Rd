@@ -72,5 +72,5 @@ bold_stats(taxon='Osmia', verbose = TRUE)
 }
 }
 \references{
-\url{http://www.boldsystems.org/index.php/resources/api#specimenParameters}
+\url{http://v4.boldsystems.org/index.php/resources/api?type=webservices}
 }

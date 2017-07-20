@@ -8,7 +8,7 @@
 #' @template args
 #' @template otherargs
 #' @references 
-#' \url{http://www.boldsystems.org/index.php/resources/api#sequenceParameters}
+#' \url{http://v4.boldsystems.org/index.php/resources/api?type=webservices}
 #'
 #' @param marker (character) Returns all records containing matching 
 #' marker codes.

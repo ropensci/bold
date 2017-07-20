@@ -9,7 +9,7 @@
 #' containing information for parent taxa as well as the specified taxon.
 #' @template otherargs
 #' @references 
-#' \url{http://boldsystems.org/index.php/resources/api?type=taxonomy}
+#' \url{http://v4.boldsystems.org/index.php/resources/api?type=taxonomy}
 #' @seealso \code{bold_tax_name}
 #' @examples \dontrun{
 #' bold_tax_id(id=88899)

@@ -3,7 +3,8 @@
 #' @section About:
 #'
 #' This package gives you access to data from BOLD System 
-#' \url{http://www.boldsystems.org/} via their API.
+#' \url{http://www.boldsystems.org/} via their API 
+#' (\url{http://v4.boldsystems.org/index.php/api_home})
 #'
 #' @section Functions:
 #'
@@ -36,8 +37,7 @@
 NULL
 
 #' List of 3 nucleotide sequences to use in examples for the 
-#' \code{\link{bold_identify}} function
-#' 
+#' \code{\link{bold_identify}} function 
 #' 
 #' @details Each sequence is a character string, of lengths 410, 600, and 696.
 #' @name sequences

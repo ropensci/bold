@@ -30,17 +30,17 @@ Researchers include collectors and specimen identifiers.}
 \item{geo}{(character) Returns all records collected in matching geographic sites. Geographic 
 sites includes countries and province/states.}
 
-\item{marker}{(character) Returns all records containing matching marker 
+\item{marker}{(character) Returns all records containing matching marker
 codes.}
 
 \item{response}{(logical) Note that response is the object that returns 
 from the Curl call, useful for debugging, and getting detailed info on 
 the API call.}
 
-\item{format}{(character) One of xml or tsv (default). tsv format gives 
+\item{format}{(character) One of xml or tsv (default). tsv format gives
 back a data.frame object. xml gives back parsed xml as a}
 
-\item{sepfasta}{(logical) If \code{TRUE}, the fasta data is separated into 
+\item{sepfasta}{(logical) If \code{TRUE}, the fasta data is separated into
 a list with names matching the processid's from the data frame.
 Default: \code{FALSE}}
 
@@ -48,8 +48,8 @@ Default: \code{FALSE}}
 purpose being curl debugging}
 }
 \value{
-Either a data.frame, parsed xml, a http response object, or a list 
-with length two (a data.frame w/o nucleotide data, and a list with 
+Either a data.frame, parsed xml, a http response object, or a list
+with length two (a data.frame w/o nucleotide data, and a list with
 nucleotide data)
 }
 \description{
@@ -71,7 +71,7 @@ res <- bold_seqspec(taxon="Melanogrammus aeglefinus", marker="COI-5P")
 res <- bold_seqspec(taxon="Melanogrammus aeglefinus", geo="Canada")
 
 ## curl debugging
-### You can do many things, including get verbose output on the curl call, 
+### You can do many things, including get verbose output on the curl call,
 ### and set a timeout
 head(bold_seqspec(taxon='Osmia', verbose = TRUE))
 ## timeout
@@ -79,5 +79,5 @@ head(bold_seqspec(taxon='Osmia', verbose = TRUE))
 }
 }
 \references{
-\url{http://www.boldsystems.org/index.php/resources/api#combined}
+\url{http://v4.boldsystems.org/index.php/resources/api?type=webservices}
 }

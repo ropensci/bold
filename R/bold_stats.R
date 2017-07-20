@@ -3,7 +3,7 @@
 #' @export
 #' @inheritParams bold_specimens
 #' @references 
-#' \url{http://www.boldsystems.org/index.php/resources/api#specimenParameters}
+#' \url{http://v4.boldsystems.org/index.php/resources/api?type=webservices}
 #'
 #' @examples \dontrun{
 #' x <- bold_stats(taxon='Osmia')

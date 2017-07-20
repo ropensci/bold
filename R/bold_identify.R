@@ -41,7 +41,7 @@
 #' 
 #' @return A data.frame with details for each specimen matched.
 #' @references 
-#' \url{http://www.boldsystems.org/index.php/resources/api?type=idengine}
+#' \url{http://v4.boldsystems.org/index.php/resources/api?type=idengine}
 #' @seealso \code{\link{bold_identify_parents}}
 #' @examples \dontrun{
 #' seq <- sequences$seq1
