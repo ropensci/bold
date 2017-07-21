@@ -36,11 +36,11 @@ bold_specimens <- function(taxon = NULL, ids = NULL, bin = NULL,
   response=FALSE, format = 'tsv', ...) {
 
   format <- match.arg(format, choices = c('xml', 'tsv'))
-  args <- bc(list(taxon=pipeornull(taxon), geo=pipeornull(geo), 
-                  ids=pipeornull(ids), bin=pipeornull(bin), 
-                  container=pipeornull(container), 
-                  institutions=pipeornull(institutions), 
-                  researchers=pipeornull(researchers), 
+  args <- bc(list(taxon = pipeornull(taxon), geo = pipeornull(geo), 
+                  ids = pipeornull(ids), bin = pipeornull(bin), 
+                  container = pipeornull(container), 
+                  institutions = pipeornull(institutions), 
+                  researchers = pipeornull(researchers), 
                   format = format))
   check_args_given_nonempty(args, c('taxon','ids','bin','container',
                                     'institutions','researchers','geo'))
@@ -48,7 +48,7 @@ bold_specimens <- function(taxon = NULL, ids = NULL, bin = NULL,
   if (response) {
     out
   } else {
-    tt <- out$parse("UTF-8")
+    tt <- rawToChar(out$content)
     switch(format,
            xml = xml2::read_xml(tt),
            tsv = utils::read.delim(text = tt, header = TRUE, sep = "\t",
