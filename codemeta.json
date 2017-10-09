@@ -1,10 +1,10 @@
-{
+ropensci{
   "@context": ["https://doi.org/doi:10.5063/schema/codemeta-2.0", "http://schema.org"],
   "@type": "SoftwareSourceCode",
   "identifier": "bold",
   "description": "A programmatic interface to the Web Service methods provided by\n    Bold Systems (<http://www.boldsystems.org/>) for genetic 'barcode' data.\n    Functions include methods for searching by sequences by taxonomic names,\n    ids, collectors, and institutions; as well as a function for searching\n    for specimens, and downloading trace files.",
   "name": "bold: Interface to Bold Systems API",
-  "codeRepository": "https://github.com/graceli8/bold.git",
+  "codeRepository": "https://github.com/ropensci/bold",
   "issueTracker": "https://github.com/ropensci/bold/issues",
   "license": "https://spdx.org/licenses/MIT",
   "version": "0.5.0.9210",
@@ -180,7 +180,7 @@
   "keywords": ["biodiversity", "barcode", "DNA", "sequences", "fasta"],
   "contIntegration": "https://travis-ci.org/ropensci/bold",
   "developmentStatus": "active",
-  "releaseNotes": "https://github.com/graceli8/bold.git/blob/master/NEWS.md",
-  "readme": "https://github.com/graceli8/bold.git/blob/master/README.md",
+  "releaseNotes": "https://github.com/ropensci/bold/blob/master/NEWS.md",
+  "readme": "https://github.com/ropensci/bold/blob/master/README.md",
   "fileSize": "27.962KB"
 }
