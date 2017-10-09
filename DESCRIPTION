@@ -7,8 +7,10 @@ Description: A programmatic interface to the Web Service methods provided by
     for specimens, and downloading trace files.
 Version: 0.5.0.9210
 License: MIT + file LICENSE
-Authors@R: c(person("Scott", "Chamberlain", role = c("aut", "cre"),
-    email = "myrmecocystus@gmail.com"))
+Authors@R: c(person("Scott", "Chamberlain",
+    role = c("aut", "cre"),
+    email = "myrmecocystus@gmail.com",
+    comment = "orcid.org/0000-0003-1444-9135"))
 URL: https://github.com/ropensci/bold
 BugReports: https://github.com/ropensci/bold/issues
 VignetteBuilder: knitr
@@ -28,3 +30,6 @@ Suggests:
     knitr,
     testthat
 RoxygenNote: 6.0.1
+X-schema.org-applicationCategory: Data Access
+X-schema.org-keywords: biodiversity, barcode, DNA, sequences, fasta
+X-schema.org-isPartOf: https://ropensci.org
