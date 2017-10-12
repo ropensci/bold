@@ -7,22 +7,28 @@
 bold_identify(sequences, db = "COX1", response = FALSE, ...)
 }
 \arguments{
-\item{sequences}{(character) Returns all records containing matching marker 
-codes. Required.}
+\item{sequences}{(character) Returns all records containing matching marker
+codes. Required. One or more. See Details.}
 
-\item{db}{(character) The database to match against, one of COX1, 
-COX1_SPECIES, COX1_SPECIES_PUBLIC, OR COX1_L604bp. See Details for 
+\item{db}{(character) The database to match against, one of COX1,
+COX1_SPECIES, COX1_SPECIES_PUBLIC, OR COX1_L604bp. See Details for
 more information.}
 
-\item{response}{(logical) Note that response is the object that returns 
-from the Curl call, useful for debugging, and getting detailed info on 
+\item{response}{(logical) Note that response is the object that returns
+from the Curl call, useful for debugging, and getting detailed info on
 the API call.}
 
-\item{...}{Further args passed on to \code{\link[crul]{HttpClient}}, main 
-purpose being curl debugging}
+\item{...}{Further args passed on to \code{\link[crul]{HttpClient}}, main
+purpose being curl debugging
+
+BOLD only allows one sequence per query. We internally \code{lapply}
+over the input values given to the \code{sequences} parameter to search
+with one sequence per query. Remember this if you have a lot of sequences -
+you are doing a separate query for each one, so it can take a long time -
+if you run into errors let us know.}
 }
 \value{
-A data.frame with details for each specimen matched. if a 
+A data.frame with details for each specimen matched. if a
 failed request, returns \code{NULL}
 }
 \description{
@@ -37,9 +43,9 @@ Search for matches to sequences against the BOLD COI database.
  only one or two specimens as well as all species with interim taxonomy. This
  search only returns a list of the nearest matches and does not provide a
  probability of placement to a taxon.
- \item COX1_SPECIES Every COI barcode record with a species level 
- identification and a minimum sequence length of 500bp. This includes 
- many species represented by only one or two specimens as well as  all 
+ \item COX1_SPECIES Every COI barcode record with a species level
+ identification and a minimum sequence length of 500bp. This includes
+ many species represented by only one or two specimens as well as  all
  species with interim taxonomy.
  \item COX1_SPECIES_PUBLIC All published COI records from BOLD and GenBank
  with a minimum sequence length of 500bp. This library is a collection of
@@ -53,8 +59,8 @@ Search for matches to sequences against the BOLD COI database.
 
 \section{Named outputs}{
 
-To maintain names on the output list of data make sure to pass in a 
-named list to the \code{sequences} parameter. You can for example, 
+To maintain names on the output list of data make sure to pass in a
+named list to the \code{sequences} parameter. You can for example,
 take a list of sequences, and use \code{\link{setNames}} to set names.
 }
 
