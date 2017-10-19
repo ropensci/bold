@@ -11,7 +11,7 @@ knitr::opts_chunk$set(
 ```
 
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-![](https://img.shields.io/badge/CRAN/GitHub-0.4.0_/0.4.4.9120-blue.svg)
+[![cran version](https://www.r-pkg.org/badges/version/bold)](https://cran.r-project.org/package=bold)
 
 
 `bold` accesses BOLD barcode data.
