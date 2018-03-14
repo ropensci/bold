@@ -1,0 +1,30 @@
+http_interactions:
+- request:
+    method: get
+    uri: http://v4.boldsystems.org/index.php/API_Public/combined?taxon=Osmia&combined_download=tsv
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.54.0 r-curl/3.1 crul/0.5.2
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      date: Wed, 14 Mar 2018 20:18:41 GMT
+      server: Apache/2.2.15 (Red Hat)
+      x-powered-by: PHP/5.3.15
+      content-disposition: attachment; filename=bold_data.txt
+      connection: close
+      transfer-encoding: chunked
+      content-type: application/x-download
+    body:
+      encoding: UTF-8
+      string: .na.character
+  recorded_at: 2018-03-14 20:18:45 GMT
+  recorded_with: vcr/0.0.7.9314
