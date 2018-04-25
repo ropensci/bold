@@ -64,6 +64,7 @@ bold_seqspec <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
                                     'institutions', 'researchers',
                                     'geo', 'marker'))
   out <- b_GET(paste0(bbase(), 'API_Public/combined'), args, ...)
+  # out <- b_GET(paste0(bbase(), 'API_Public/combined'), args)
   if (response) {
     out
   } else {

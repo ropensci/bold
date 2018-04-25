@@ -9,7 +9,7 @@ test_that("bold_specimens returns the correct dimensions or values", {
     expect_is(a, "data.frame")
     expect_is(a$recordID, "integer")
     expect_is(a$processid, "character")
-  })
+  }, preserve_exact_body_bytes = TRUE)
 
   vcr::use_cassette("bold_specimens_response", {
     b <- bold_specimens(taxon='Osmia', format='xml', response=TRUE)
@@ -17,7 +17,7 @@ test_that("bold_specimens returns the correct dimensions or values", {
     expect_equal(b$response_headers$`content-type`, "application/x-download")
     expect_is(b, "HttpResponse")
     expect_is(b$response_headers, "list")
-  })
+  }, preserve_exact_body_bytes = TRUE)
 })
 
 test_that("Throws warning on call that takes forever including timeout in callopts", {

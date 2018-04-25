@@ -1,0 +1,29 @@
+http_interactions:
+- request:
+    method: get
+    uri: http://v4.boldsystems.org/index.php/API_Tax/TaxonData?taxId=88899&dataTypes=stats
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.5.2
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      date: Tue, 24 Apr 2018 18:46:55 GMT
+      server: Apache/2.2.15 (Red Hat)
+      x-powered-by: PHP/5.3.15
+      content-length: '220'
+      connection: close
+      content-type: text/html; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"stats":{"publicspecies":2,"publicbins":5,"publicmarkersequences":{"COI-5P":15},"publicrecords":15,"publicsubspecies":0,"specimenrecords":56,"sequencedspecimens":37,"barcodespecimens":33,"species":3,"barcodespecies":3}}'
+  recorded_at: 2018-04-24 18:46:55 GMT
+  recorded_with: vcr/0.0.7.9410

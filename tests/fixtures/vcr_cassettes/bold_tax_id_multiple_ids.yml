@@ -1,0 +1,113 @@
+http_interactions:
+- request:
+    method: get
+    uri: http://v4.boldsystems.org/index.php/API_Tax/TaxonData?taxId=88899&dataTypes=basic
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.5.4.9100
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      date: Wed, 25 Apr 2018 18:41:55 GMT
+      server: Apache/2.2.15 (Red Hat)
+      x-powered-by: PHP/5.3.15
+      content-length: '119'
+      connection: close
+      content-type: text/html; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"taxid":88899,"taxon":"Momotus","tax_rank":"genus","tax_division":"Animals","parentid":88898,"parentname":"Momotidae"}'
+  recorded_at: 2018-04-25 18:41:57 GMT
+  recorded_with: vcr/0.0.7.9411
+- request:
+    method: get
+    uri: http://v4.boldsystems.org/index.php/API_Tax/TaxonData?taxId=88899&dataTypes=basic
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.5.4.9100
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      date: Wed, 25 Apr 2018 18:41:56 GMT
+      server: Apache/2.2.15 (Red Hat)
+      x-powered-by: PHP/5.3.15
+      content-length: '119'
+      connection: close
+      content-type: text/html; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"taxid":88899,"taxon":"Momotus","tax_rank":"genus","tax_division":"Animals","parentid":88898,"parentname":"Momotidae"}'
+  recorded_at: 2018-04-25 18:41:57 GMT
+  recorded_with: vcr/0.0.7.9411
+- request:
+    method: get
+    uri: http://v4.boldsystems.org/index.php/API_Tax/TaxonData?taxId=125295&dataTypes=basic
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.5.4.9100
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      date: Wed, 25 Apr 2018 18:41:56 GMT
+      server: Apache/2.2.15 (Red Hat)
+      x-powered-by: PHP/5.3.15
+      content-length: '149'
+      connection: close
+      content-type: text/html; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"taxid":125295,"taxon":"Helianthus","tax_rank":"genus","tax_division":"Plants","parentid":151101,"parentname":"Asteroideae","taxonrep":"Helianthus"}'
+  recorded_at: 2018-04-25 18:41:57 GMT
+  recorded_with: vcr/0.0.7.9411
+- request:
+    method: get
+    uri: http://v4.boldsystems.org/index.php/API_Tax/TaxonData?taxId=125295&dataTypes=basic
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.5.4.9100
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      date: Wed, 25 Apr 2018 18:41:57 GMT
+      server: Apache/2.2.15 (Red Hat)
+      x-powered-by: PHP/5.3.15
+      content-length: '149'
+      connection: close
+      content-type: text/html; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"taxid":125295,"taxon":"Helianthus","tax_rank":"genus","tax_division":"Plants","parentid":151101,"parentname":"Asteroideae","taxonrep":"Helianthus"}'
+  recorded_at: 2018-04-25 18:41:57 GMT
+  recorded_with: vcr/0.0.7.9411
