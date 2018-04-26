@@ -16,7 +16,7 @@ http_interactions:
       explanation: Request fulfilled, document follows
     headers:
       status: HTTP/1.1 200 OK
-      date: Tue, 24 Apr 2018 18:46:56 GMT
+      date: Wed, 25 Apr 2018 22:06:48 GMT
       server: Apache/2.2.15 (Red Hat)
       x-powered-by: PHP/5.3.15
       content-length: '205'
@@ -25,5 +25,5 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"country":{"Brazil":4,"Colombia":1,"Mexico":2,"Panama":10,"Guatemala":1,"Peru":16,"Bolivia":6,"Ecuador":2},"sitemap":"http:\/\/www.boldsystems.org\/index.php\/TaxBrowser_Maps_CollectionSites?taxid=88899"}'
-  recorded_at: 2018-04-24 18:46:56 GMT
-  recorded_with: vcr/0.0.7.9410
+  recorded_at: 2018-04-25 22:06:48 GMT
+  recorded_with: vcr/0.0.7.9431

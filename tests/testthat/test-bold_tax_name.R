@@ -14,7 +14,7 @@ test_that("bold_tax_name returns the correct classes", {
 
     expect_is(a$input, "character")
     expect_is(a$taxid, "integer")
-  })
+  }, record = "all", match_requests_on = c("method", "uri", "query"))
 })
 
 test_that("bold_tax_name fails well", {
@@ -33,5 +33,5 @@ test_that("fuzzy works", {
     expect_is(aa, "data.frame")
     expect_is(aa$input, "character")
     expect_gt(NROW(aa), NROW(aa_not))
-  })
+  }, record = "all", match_requests_on = c("method", "uri", "query"))
 })
