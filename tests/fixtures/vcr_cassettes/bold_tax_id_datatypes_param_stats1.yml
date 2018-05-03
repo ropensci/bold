@@ -16,7 +16,7 @@ http_interactions:
       explanation: Request fulfilled, document follows
     headers:
       status: HTTP/1.1 200 OK
-      date: Wed, 25 Apr 2018 22:06:48 GMT
+      date: Thu, 03 May 2018 00:28:45 GMT
       server: Apache/2.2.15 (Red Hat)
       x-powered-by: PHP/5.3.15
       content-length: '220'
@@ -25,5 +25,5 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"stats":{"publicspecies":2,"publicbins":5,"publicmarkersequences":{"COI-5P":15},"publicrecords":15,"publicsubspecies":0,"specimenrecords":56,"sequencedspecimens":37,"barcodespecimens":33,"species":3,"barcodespecies":3}}'
-  recorded_at: 2018-04-25 22:06:48 GMT
-  recorded_with: vcr/0.0.7.9431
+  recorded_at: 2018-05-03 00:28:45 GMT
+  recorded_with: vcr/0.0.8.9536, webmockr/0.2.2.9119, crul/0.5.2

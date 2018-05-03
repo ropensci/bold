@@ -16,7 +16,7 @@ http_interactions:
       explanation: Request fulfilled, document follows
     headers:
       status: HTTP/1.1 200 OK
-      date: Wed, 25 Apr 2018 22:05:26 GMT
+      date: Thu, 03 May 2018 00:27:24 GMT
       server: Apache/2.2.15 (Red Hat)
       x-powered-by: PHP/5.3.15
       connection: close
@@ -203,5 +203,5 @@ http_interactions:
         Public Records</database><citation>BOLD Systems, 2018</citation><taxonomicidentification>Corvus
         macrorhynchos</taxonomicidentification><similarity>0.8971</similarity><specimen><url>http://www.boldsystems.org/index.php/Public_RecordView?processid=KBBI113-07</url><collectionlocation><country>South
         Korea</country><coord><lat>38.09</lat><lon>127.19</lon></coord></collectionlocation></specimen></match></matches>'
-  recorded_at: 2018-04-25 22:05:32 GMT
-  recorded_with: vcr/0.0.7.9431
+  recorded_at: 2018-05-03 00:27:30 GMT
+  recorded_with: vcr/0.0.8.9536, webmockr/0.2.2.9119, crul/0.5.2

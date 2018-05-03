@@ -16,7 +16,7 @@ http_interactions:
       explanation: Request fulfilled, document follows
     headers:
       status: HTTP/1.1 200 OK
-      date: Wed, 25 Apr 2018 22:11:46 GMT
+      date: Thu, 03 May 2018 00:28:48 GMT
       server: Apache/2.2.15 (Red Hat)
       x-powered-by: PHP/5.3.15
       content-length: '453'
@@ -24,9 +24,9 @@ http_interactions:
       content-type: text/html; charset=utf-8
     body:
       encoding: UTF-8
-      string: '{"top_matched_names":[{"taxid":603673,"taxon":"Diplura","tax_rank":"genus","tax_division":"Protists","parentid":53974,"parentname":"Scytosiphonaceae","specimenrecords":"6"},{"taxid":734358,"taxon":"Diplura","tax_rank":"class","tax_division":"Animals","parentid":20,"parentname":"Arthropoda","taxonrep":"Diplura","representitive_image":{"image":"SSWLA\/BIOUG09581-E05+1434047314.jpg","apectratio":1.339},"specimenrecords":"205"}],"total_matched_names":2}'
-  recorded_at: 2018-04-25 22:11:49 GMT
-  recorded_with: vcr/0.0.7.9431
+      string: '{"top_matched_names":[{"taxid":603673,"taxon":"Diplura","tax_rank":"genus","tax_division":"Protists","parentid":53974,"parentname":"Scytosiphonaceae","specimenrecords":"6"},{"taxid":734358,"taxon":"Diplura","tax_rank":"class","tax_division":"Animals","parentid":20,"parentname":"Arthropoda","taxonrep":"Diplura","representitive_image":{"image":"SSWLA\/BIOUG09581-E05+1434047314.jpg","apectratio":1.339},"specimenrecords":"192"}],"total_matched_names":2}'
+  recorded_at: 2018-05-03 00:28:51 GMT
+  recorded_with: vcr/0.0.8.9536, webmockr/0.2.2.9119, crul/0.5.2
 - request:
     method: get
     uri: http://v4.boldsystems.org/index.php/API_Tax/TaxonSearch?taxName=Diplura
@@ -44,7 +44,7 @@ http_interactions:
       explanation: Request fulfilled, document follows
     headers:
       status: HTTP/1.1 200 OK
-      date: Wed, 25 Apr 2018 22:11:46 GMT
+      date: Thu, 03 May 2018 00:28:49 GMT
       server: Apache/2.2.15 (Red Hat)
       x-powered-by: PHP/5.3.15
       content-length: '453'
@@ -52,9 +52,37 @@ http_interactions:
       content-type: text/html; charset=utf-8
     body:
       encoding: UTF-8
-      string: '{"top_matched_names":[{"taxid":603673,"taxon":"Diplura","tax_rank":"genus","tax_division":"Protists","parentid":53974,"parentname":"Scytosiphonaceae","specimenrecords":"6"},{"taxid":734358,"taxon":"Diplura","tax_rank":"class","tax_division":"Animals","parentid":20,"parentname":"Arthropoda","taxonrep":"Diplura","representitive_image":{"image":"SSWLA\/BIOUG09581-E05+1434047314.jpg","apectratio":1.339},"specimenrecords":"205"}],"total_matched_names":2}'
-  recorded_at: 2018-04-25 22:11:49 GMT
-  recorded_with: vcr/0.0.7.9431
+      string: '{"top_matched_names":[{"taxid":603673,"taxon":"Diplura","tax_rank":"genus","tax_division":"Protists","parentid":53974,"parentname":"Scytosiphonaceae","specimenrecords":"6"},{"taxid":734358,"taxon":"Diplura","tax_rank":"class","tax_division":"Animals","parentid":20,"parentname":"Arthropoda","taxonrep":"Diplura","representitive_image":{"image":"SSWLA\/BIOUG09581-E05+1434047314.jpg","apectratio":1.339},"specimenrecords":"192"}],"total_matched_names":2}'
+  recorded_at: 2018-05-03 00:28:51 GMT
+  recorded_with: vcr/0.0.8.9536, webmockr/0.2.2.9119, crul/0.5.2
+- request:
+    method: get
+    uri: http://v4.boldsystems.org/index.php/API_Tax/TaxonSearch?taxName=Diplura
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.5.2
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      date: Thu, 03 May 2018 00:28:49 GMT
+      server: Apache/2.2.15 (Red Hat)
+      x-powered-by: PHP/5.3.15
+      content-length: '453'
+      connection: close
+      content-type: text/html; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"top_matched_names":[{"taxid":603673,"taxon":"Diplura","tax_rank":"genus","tax_division":"Protists","parentid":53974,"parentname":"Scytosiphonaceae","specimenrecords":"6"},{"taxid":734358,"taxon":"Diplura","tax_rank":"class","tax_division":"Animals","parentid":20,"parentname":"Arthropoda","taxonrep":"Diplura","representitive_image":{"image":"SSWLA\/BIOUG09581-E05+1434047314.jpg","apectratio":1.339},"specimenrecords":"192"}],"total_matched_names":2}'
+  recorded_at: 2018-05-03 00:28:51 GMT
+  recorded_with: vcr/0.0.8.9536, webmockr/0.2.2.9119, crul/0.5.2
 - request:
     method: get
     uri: http://v4.boldsystems.org/index.php/API_Tax/TaxonSearch?taxName=Osmia
@@ -72,7 +100,7 @@ http_interactions:
       explanation: Request fulfilled, document follows
     headers:
       status: HTTP/1.1 200 OK
-      date: Wed, 25 Apr 2018 22:11:47 GMT
+      date: Thu, 03 May 2018 00:28:49 GMT
       server: Apache/2.2.15 (Red Hat)
       x-powered-by: PHP/5.3.15
       content-length: '283'
@@ -81,8 +109,8 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"top_matched_names":[{"taxid":4940,"taxon":"Osmia","tax_rank":"genus","tax_division":"Animals","parentid":4962,"parentname":"Megachilinae","taxonrep":"Osmia","representitive_image":{"image":"BUSA\/IMG_3061.jpg","apectratio":1.486},"specimenrecords":"2205"}],"total_matched_names":1}'
-  recorded_at: 2018-04-25 22:11:49 GMT
-  recorded_with: vcr/0.0.7.9431
+  recorded_at: 2018-05-03 00:28:51 GMT
+  recorded_with: vcr/0.0.8.9536, webmockr/0.2.2.9119, crul/0.5.2
 - request:
     method: get
     uri: http://v4.boldsystems.org/index.php/API_Tax/TaxonSearch?taxName=Apis
@@ -100,7 +128,7 @@ http_interactions:
       explanation: Request fulfilled, document follows
     headers:
       status: HTTP/1.1 200 OK
-      date: Wed, 25 Apr 2018 22:11:48 GMT
+      date: Thu, 03 May 2018 00:28:50 GMT
       server: Apache/2.2.15 (Red Hat)
       x-powered-by: PHP/5.3.15
       content-length: '288'
@@ -109,8 +137,8 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"top_matched_names":[{"taxid":1937,"taxon":"Apis","tax_rank":"genus","tax_division":"Animals","parentid":2183,"parentname":"Apinae","taxonrep":"Apis","representitive_image":{"image":"BOFTH\/B3265-D11+1262794240.jpg","apectratio":1.365},"specimenrecords":"1958"}],"total_matched_names":1}'
-  recorded_at: 2018-04-25 22:11:49 GMT
-  recorded_with: vcr/0.0.7.9431
+  recorded_at: 2018-05-03 00:28:51 GMT
+  recorded_with: vcr/0.0.8.9536, webmockr/0.2.2.9119, crul/0.5.2
 - request:
     method: get
     uri: http://v4.boldsystems.org/index.php/API_Tax/TaxonSearch?taxName=Puma%20concolor
@@ -128,7 +156,7 @@ http_interactions:
       explanation: Request fulfilled, document follows
     headers:
       status: HTTP/1.1 200 OK
-      date: Wed, 25 Apr 2018 22:11:48 GMT
+      date: Thu, 03 May 2018 00:28:50 GMT
       server: Apache/2.2.15 (Red Hat)
       x-powered-by: PHP/5.3.15
       content-length: '313'
@@ -138,8 +166,8 @@ http_interactions:
       encoding: UTF-8
       string: '{"top_matched_names":[{"taxid":12521,"taxon":"Puma concolor","tax_rank":"species","tax_division":"Animals","parentid":4372,"parentname":"Puma","taxonrep":"Puma
         concolor","representitive_image":{"image":"FCMUN\/IBUNAM_CNMA_1314+1276871340.JPG","apectratio":1.493},"specimenrecords":"339"}],"total_matched_names":1}'
-  recorded_at: 2018-04-25 22:11:49 GMT
-  recorded_with: vcr/0.0.7.9431
+  recorded_at: 2018-05-03 00:28:51 GMT
+  recorded_with: vcr/0.0.8.9536, webmockr/0.2.2.9119, crul/0.5.2
 - request:
     method: get
     uri: http://v4.boldsystems.org/index.php/API_Tax/TaxonSearch?taxName=Pinus%20concolor
@@ -157,7 +185,7 @@ http_interactions:
       explanation: Request fulfilled, document follows
     headers:
       status: HTTP/1.1 200 OK
-      date: Wed, 25 Apr 2018 22:11:49 GMT
+      date: Thu, 03 May 2018 00:28:51 GMT
       server: Apache/2.2.15 (Red Hat)
       x-powered-by: PHP/5.3.15
       content-length: '48'
@@ -166,5 +194,5 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"top_matched_names":[],"total_matched_names":0}'
-  recorded_at: 2018-04-25 22:11:49 GMT
-  recorded_with: vcr/0.0.7.9431
+  recorded_at: 2018-05-03 00:28:51 GMT
+  recorded_with: vcr/0.0.8.9536, webmockr/0.2.2.9119, crul/0.5.2

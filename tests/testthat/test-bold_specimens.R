@@ -17,7 +17,7 @@ test_that("bold_specimens returns the correct dimensions or values", {
     expect_equal(b$response_headers$`content-type`, "application/x-download")
     expect_is(b, "HttpResponse")
     expect_is(b$response_headers, "list")
-  }, preserve_exact_body_bytes = TRUE)
+  }, preserve_exact_body_bytes = FALSE)
 })
 
 test_that("Throws warning on call that takes forever including timeout in callopts", {
