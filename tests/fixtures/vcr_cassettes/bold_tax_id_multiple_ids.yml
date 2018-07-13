@@ -16,7 +16,7 @@ http_interactions:
       explanation: Request fulfilled, document follows
     headers:
       status: HTTP/1.1 200 OK
-      date: Thu, 03 May 2018 00:28:43 GMT
+      date: Thu, 17 May 2018 18:39:37 GMT
       server: Apache/2.2.15 (Red Hat)
       x-powered-by: PHP/5.3.15
       content-length: '119'
@@ -25,8 +25,8 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"taxid":88899,"taxon":"Momotus","tax_rank":"genus","tax_division":"Animals","parentid":88898,"parentname":"Momotidae"}'
-  recorded_at: 2018-05-03 00:28:44 GMT
-  recorded_with: vcr/0.0.8.9536, webmockr/0.2.2.9119, crul/0.5.2
+  recorded_at: 2018-05-17 18:39:38 GMT
+  recorded_with: vcr/0.1.0, webmockr/0.2.6, crul/0.5.2
 - request:
     method: get
     uri: http://v4.boldsystems.org/index.php/API_Tax/TaxonData?taxId=125295&dataTypes=basic
@@ -44,7 +44,7 @@ http_interactions:
       explanation: Request fulfilled, document follows
     headers:
       status: HTTP/1.1 200 OK
-      date: Thu, 03 May 2018 00:28:44 GMT
+      date: Thu, 17 May 2018 18:39:38 GMT
       server: Apache/2.2.15 (Red Hat)
       x-powered-by: PHP/5.3.15
       content-length: '149'
@@ -53,5 +53,5 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"taxid":125295,"taxon":"Helianthus","tax_rank":"genus","tax_division":"Plants","parentid":151101,"parentname":"Asteroideae","taxonrep":"Helianthus"}'
-  recorded_at: 2018-05-03 00:28:44 GMT
-  recorded_with: vcr/0.0.8.9536, webmockr/0.2.2.9119, crul/0.5.2
+  recorded_at: 2018-05-17 18:39:38 GMT
+  recorded_with: vcr/0.1.0, webmockr/0.2.6, crul/0.5.2

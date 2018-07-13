@@ -16,7 +16,7 @@ http_interactions:
       explanation: Request fulfilled, document follows
     headers:
       status: HTTP/1.1 200 OK
-      date: Thu, 03 May 2018 00:28:47 GMT
+      date: Thu, 17 May 2018 18:39:41 GMT
       server: Apache/2.2.15 (Red Hat)
       x-powered-by: PHP/5.3.15
       content-length: '397'
@@ -25,5 +25,5 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"taxid":321215,"taxon":"Placozoa","tax_rank":"phylum","tax_division":"Animals","parentid":1,"stats":{"publicspecies":1,"publicbins":4,"publicmarkersequences":{"ND5-0":5,"CYTB":4,"COXIII":5,"ND4L":5,"COI-5P":5,"ND1":5,"ND3":5,"ND2":5,"COII":5,"ND4":5,"ND6":5},"publicrecords":5,"publicsubspecies":0,"specimenrecords":13,"sequencedspecimens":57,"barcodespecimens":6,"species":1,"barcodespecies":1}}'
-  recorded_at: 2018-05-03 00:28:47 GMT
-  recorded_with: vcr/0.0.8.9536, webmockr/0.2.2.9119, crul/0.5.2
+  recorded_at: 2018-05-17 18:39:41 GMT
+  recorded_with: vcr/0.1.0, webmockr/0.2.6, crul/0.5.2
