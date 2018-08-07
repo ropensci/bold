@@ -18,6 +18,7 @@ This package retrieves data from the BOLD database of barcode clusters, and allo
 
 ## Package status and installation
 
+[![cran checks](https://cranchecks.info/badges/worst/bold)](https://cranchecks.info/pkgs/bold)
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ropensci/bold?branch=master&svg=true)](https://ci.appveyor.com/project/ropensci/bold)
 [![Travis-CI Build Status](https://travis-ci.org/ropensci/bold.svg?branch=master)](https://travis-ci.org/)
 [![codecov.io](https://codecov.io/github/ropensci/bold/coverage.svg?branch=master)](https://codecov.io/github/ropensci/bold?branch=master)
