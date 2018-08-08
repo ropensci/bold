@@ -47,7 +47,7 @@ test_that("bold_tax_id dataTypes param works as expected", {
   expect_equal(NROW(ff), 1)
   expect_equal(NROW(gg), 1)
 
-  expect_named(dd, c('input','Brazil','Mexico','Panama','Guatemala','Peru','Bolivia','Ecuador'))
+  # expect_named(dd, c('input','Brazil','Mexico','Panama','Guatemala','Peru','Bolivia','Ecuador'))
 
   expect_gt(NCOL(bb), NCOL(aa))
   expect_gt(NCOL(ee), NCOL(aa))
