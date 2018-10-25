@@ -6,8 +6,9 @@
 \title{Get BOLD trace files}
 \usage{
 bold_trace(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
-  institutions = NULL, researchers = NULL, geo = NULL, marker = NULL,
-  dest = NULL, overwrite = TRUE, progress = TRUE, ...)
+  institutions = NULL, researchers = NULL, geo = NULL,
+  marker = NULL, dest = NULL, overwrite = TRUE, progress = TRUE,
+  ...)
 
 read_trace(x)
 }

@@ -4,9 +4,10 @@
 \alias{bold_seqspec}
 \title{Get BOLD specimen + sequence data.}
 \usage{
-bold_seqspec(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
-  institutions = NULL, researchers = NULL, geo = NULL, marker = NULL,
-  response = FALSE, format = "tsv", sepfasta = FALSE, ...)
+bold_seqspec(taxon = NULL, ids = NULL, bin = NULL,
+  container = NULL, institutions = NULL, researchers = NULL,
+  geo = NULL, marker = NULL, response = FALSE, format = "tsv",
+  sepfasta = FALSE, ...)
 }
 \arguments{
 \item{taxon}{(character) Returns all records containing matching taxa. Taxa 

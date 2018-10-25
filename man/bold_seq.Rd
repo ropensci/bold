@@ -5,8 +5,8 @@
 \title{Search BOLD for sequences.}
 \usage{
 bold_seq(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
-  institutions = NULL, researchers = NULL, geo = NULL, marker = NULL,
-  response = FALSE, ...)
+  institutions = NULL, researchers = NULL, geo = NULL,
+  marker = NULL, response = FALSE, ...)
 }
 \arguments{
 \item{taxon}{(character) Returns all records containing matching taxa. Taxa 

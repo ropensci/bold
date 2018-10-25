@@ -42,22 +42,31 @@
 #' str(out)
 #' head(out[[1]])
 #' }
-bold_identify_parents <- function(x, wide = FALSE) {
+bold_identify_parents <- function(x, wide = FALSE, taxid = NULL, 
+  taxon = NULL, tax_rank = NULL, tax_division = NULL, parentid = NULL, 
+  parentname = NULL, taxonrep = NULL, specimenrecords = NULL) {
   UseMethod("bold_identify_parents")
 }
 
 #' @export
-bold_identify_parents.default <- function(x, wide = FALSE) {
+bold_identify_parents.default <- function(x, wide = FALSE, taxid = NULL, 
+  taxon = NULL, tax_rank = NULL, tax_division = NULL, parentid = NULL, 
+  parentname = NULL, taxonrep = NULL, specimenrecords = NULL) {
   stop("no 'bold_identify_parents' method for ", class(x), call. = FALSE)
 }
 
 #' @export
-bold_identify_parents.data.frame <- function(x, wide = FALSE) {
+bold_identify_parents.data.frame <- function(x, wide = FALSE, taxid = NULL, 
+  taxon = NULL, tax_rank = NULL, tax_division = NULL, parentid = NULL, 
+  parentname = NULL, taxonrep = NULL, specimenrecords = NULL) {
   bold_identify_parents(list(x), wide)
 }
 
 #' @export
-bold_identify_parents.list <- function(x, wide = FALSE) {
+bold_identify_parents.list <- function(x, wide = FALSE, taxid = NULL, 
+  taxon = NULL, tax_rank = NULL, tax_division = NULL, parentid = NULL, 
+  parentname = NULL, taxonrep = NULL, specimenrecords = NULL) {
+
   # get unique set of names
   uniqnms <-
     unique(unname(unlist(lapply(x, function(z) z$taxonomicidentification))))
@@ -68,6 +77,20 @@ bold_identify_parents.list <- function(x, wide = FALSE) {
   # get parent names via bold_tax_name and bold_tax_id
   out <- stats::setNames(lapply(uniqnms, function(w) {
     tmp <- bold_tax_name(w)
+    # if length(tmp) > 1, user decides which one
+    if (NROW(tmp) > 1) {
+      # if (is.null(pick_parent)) {
+      #   message("more than 1 parent, but pick_parent is NULL, skipping")
+      # } else {
+        # pick_parent = list(tax_division = "Animals")
+        # pick_parent = 'tax_division == "Animals"'
+        # choose <- list(tmp = pick_parent)
+        # tmp[parse(text = paste0("tmp$", pick_parent)), ]
+        # subset(tmp, parse(text = pick_parent))
+        tmp <- filt(tmp, "taxid", taxid)
+        tmp <- filt(tmp, "tax_division", tax_division)
+      # }
+    }
     if (!is.null(tmp$taxid)) {
       tmp2 <- bold_tax_id(tmp$taxid, includeTree = TRUE)
       tmp2$input <- NULL
@@ -100,4 +123,19 @@ bold_identify_parents.list <- function(x, wide = FALSE) {
       }))
     )
   })
+}
+
+# function to help filter get_*() functions for a rank name or rank itself ---
+filt <- function(df, col, z) {
+  if (NROW(df) == 0) {
+    df
+  } else {
+    if (is.null(z)) return(df)
+    mtch <- grep(sprintf("%s", tolower(z)), tolower(df[,col]))
+    if (length(mtch) != 0) {
+      df[mtch, ]
+    } else {
+      data.frame(NULL)
+    }
+  }
 }
