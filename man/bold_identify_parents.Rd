@@ -15,6 +15,28 @@ same. required.}
 
 \item{wide}{(logical) output in long or wide format. See Details.
 Default: \code{FALSE}}
+
+\item{taxid}{(character) A taxid name. Optional. See `Filtering` below.}
+
+\item{taxon}{(character) A taxon name. Optional. See `Filtering` below.}
+
+\item{tax_rank}{(character) A tax_rank name. Optional. See `Filtering` 
+below.}
+
+\item{tax_division}{(character) A tax_division name. Optional. See 
+`Filtering` below.}
+
+\item{parentid}{(character) A parentid name. Optional. See `Filtering` 
+below.}
+
+\item{parentname}{(character) A parentname name. Optional. See `Filtering` 
+below.}
+
+\item{taxonrep}{(character) A taxonrep name. Optional. See `Filtering` 
+below.}
+
+\item{specimenrecords}{(character) A specimenrecords name. Optional. 
+See `Filtering` below.}
 }
 \value{
 a list of the same length as the input
@@ -31,6 +53,19 @@ names, then attaches those to the input data.
 Records in the input data that do not have matches for parent names
 simply get NA values in the added columns.
 }
+\section{Filtering}{
+
+The parameters `taxid`, `taxon`, `tax_rank`, `tax_division`, 
+`parentid`, `parentname`,`taxonrep`, and `specimenrecords` are not used 
+in the search sent to BOLD, but are used in filtering the data down 
+to a subset that is closer to the target you want. For all these 
+parameters, you can use regex strings since we use [grep()] internally 
+to match. Filtering narrows down to the set that matches your query, 
+and removes the rest. The data.frame that we filter on with these 
+parameters internally is the result of a call to the [bold_tax_name()]
+function.
+}
+
 \section{wide vs long format}{
 
 When \code{wide = FALSE} you get many rows for each record. Essentially,
