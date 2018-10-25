@@ -13,5 +13,5 @@ README.Rmd
 ^cran-comments\.md$
 revdep
 .github
-
 ^codemeta\.json$
+notes.R
