@@ -1,3 +1,16 @@
+bold 0.8.0
+==========
+
+### MINOR IMPROVEMENTS
+
+* link to taxize bookdown book in readme and vignette (#51)
+* `bold_identify_parents()` gains many new parameters (`taxid`, `taxon`, `tax_rank`, `tax_division`, `parentid`, `parentname`, `taxonrep`, `specimenrecords`) to filter parents based on any of a number of fields - should solve problem where multiple parents found for a single taxon, often in different kingdoms (#50)
+* add note in docs of `bold_identify()` that the function uses `lapply` internally, so queries with lots of sequences can take a long time
+
+### BUG FIXES
+
+* fix `bold_specimens()`: use `rawToChar()` on raw bytes instead of `parse()` from `crul` (#47)
+
 bold 0.5.0
 ==========
 
