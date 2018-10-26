@@ -22,6 +22,7 @@ This package retrieves data from the BOLD database of barcode clusters, and allo
 
 [Documentation for the BOLD API](http://v4.boldsystems.org/index.php/api_home).
 
+See also the taxize book for more options for taxonomic workflows with BOLD: <https://ropensci.github.io/taxize-book/>
 
 ## Package status and installation
 
@@ -113,10 +114,11 @@ read_trace(x$ab1)
 
 Get citation information for `bold` in R by running: `citation(package = 'bold')`
 
-## Code of Conduct
+## Meta
 
-Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md).
-By participating in this project you agree to abide by its terms.
-
+* Please [report any issues or bugs](https://github.com/ropensci/bold/issues)
+* License: MIT
+* Get citation information for `bold` in R doing `citation(package = 'bold')`
+* Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
 
 [![ropensci_footer](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)
