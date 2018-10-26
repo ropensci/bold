@@ -16,7 +16,7 @@
 
 ## Reverse dependencies
 
-* I have run R CMD check on the 1 downstream dependencies.
+* I have run R CMD check on the 2 downstream dependencies.
   (Summary at <https://github.com/ropensci/bold/blob/master/revdep/README.md>). No problems were found.
 
 -----

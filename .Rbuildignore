@@ -15,3 +15,4 @@ revdep
 .github
 ^codemeta\.json$
 notes.R
+^revdep$

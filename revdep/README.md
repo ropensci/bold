@@ -1,34 +1,29 @@
-# Setup
+# Platform
 
-## Platform
-
-|setting  |value                                       |
+|field    |value                                       |
 |:--------|:-------------------------------------------|
-|version  |R version 3.4.1 Patched (2017-07-04 r72893) |
+|version  |R version 3.5.1 Patched (2018-08-12 r75119) |
+|os       |macOS High Sierra 10.13.6                   |
 |system   |x86_64, darwin15.6.0                        |
-|ui       |RStudio (1.0.143)                           |
+|ui       |X11                                         |
 |language |(EN)                                        |
 |collate  |en_US.UTF-8                                 |
-|tz       |America/Vancouver                           |
-|date     |2017-07-20                                  |
+|ctype    |en_US.UTF-8                                 |
+|tz       |US/Pacific                                  |
+|date     |2018-10-26                                  |
 
-## Packages
+# Dependencies
 
-|package |*  |version    |date       |source                   |
-|:-------|:--|:----------|:----------|:------------------------|
-|bold    |   |0.4.9.9910 |2017-07-20 |local (ropensci/bold@NA) |
+|package |old   |new |Δ  |
+|:-------|:-----|:---|:--|
+|bold    |0.5.0 |NA  |*  |
 
-# Check results
+# Revdeps
 
-1 packages
+## All (2)
 
-|package |version | errors| warnings| notes|
-|:-------|:-------|------:|--------:|-----:|
-|taxize  |0.8.9   |      0|        0|     0|
-
-## taxize (0.8.9)
-Maintainer: Scott Chamberlain <myrmecocystus@gmail.com>  
-Bug reports: https://github.com/ropensci/taxize/issues
-
-0 errors | 0 warnings | 0 notes
+|package                          |version |error |warning |note |
+|:--------------------------------|:-------|:-----|:-------|:----|
+|[funbarRF](problems.md#funbarrf) |1.0.1   |      |        |1    |
+|taxize                           |0.9.4   |      |        |     |
 

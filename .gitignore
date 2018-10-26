@@ -6,3 +6,6 @@ inst/ignore
 .Rproj.user
 .Rhistory
 notes.R
+revdep/checks.noindex
+revdep/data.sqlite
+revdep/library.noindex
