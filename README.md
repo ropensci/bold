@@ -20,8 +20,7 @@ See also the taxize book for more options for taxonomic workflows with BOLD: <ht
 ## Package status and installation
 
 [![cran checks](https://cranchecks.info/badges/worst/bold)](https://cranchecks.info/pkgs/bold)
-[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ropensci/bold?branch=master&svg=true)](https://ci.appveyor.com/project/ropensci/bold)
-[![Travis-CI Build Status](https://travis-ci.org/ropensci/bold.svg?branch=master)](https://travis-ci.org/)
+[![Build Status](https://travis-ci.org/ropensci/bold.svg?branch=master)](https://travis-ci.org/ropensci/bold)
 [![codecov.io](https://codecov.io/github/ropensci/bold/coverage.svg?branch=master)](https://codecov.io/github/ropensci/bold?branch=master)
 [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/bold)](https://github.com/metacran/cranlogs.app)
 
@@ -89,7 +88,7 @@ res$response_headers
 #> [1] "HTTP/1.1 200 OK"
 #> 
 #> $date
-#> [1] "Fri, 26 Oct 2018 16:59:15 GMT"
+#> [1] "Fri, 26 Oct 2018 17:24:49 GMT"
 #> 
 #> $server
 #> [1] "Apache/2.2.15 (Red Hat)"
