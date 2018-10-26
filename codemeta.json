@@ -5,20 +5,19 @@
   ],
   "@type": "SoftwareSourceCode",
   "identifier": "bold",
-  "description":
-    "A programmatic interface to the Web Service methods provided by\n    Bold Systems (<http://www.boldsystems.org/>) for genetic 'barcode' data.\n    Functions include methods for searching by sequences by taxonomic names,\n    ids, collectors, and institutions; as well as a function for searching\n    for specimens, and downloading trace files.",
+  "description": "A programmatic interface to the Web Service methods provided by\n    Bold Systems (<http://www.boldsystems.org/>) for genetic 'barcode' data.\n    Functions include methods for searching by sequences by taxonomic names,\n    ids, collectors, and institutions; as well as a function for searching\n    for specimens, and downloading trace files.",
   "name": "bold: Interface to Bold Systems API",
   "codeRepository": "https://github.com/ropensci/bold",
   "issueTracker": "https://github.com/ropensci/bold/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.5.0.9210",
+  "version": "0.8.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.4.2",
+    "version": "3.5.1",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.4.2 (2017-09-28)",
+  "runtimePlatform": "R version 3.5.1 Patched (2018-08-12 r75119)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -34,25 +33,28 @@
       "@id": "orcid.org/0000-0003-1444-9135"
     }
   ],
-  "maintainer": {
-    "@type": "Person",
-    "givenName": "Scott",
-    "familyName": "Chamberlain",
-    "email": "myrmecocystus@gmail.com",
-    "@id": "orcid.org/0000-0003-1444-9135"
-  },
+  "maintainer": [
+    {
+      "@type": "Person",
+      "givenName": "Scott",
+      "familyName": "Chamberlain",
+      "email": "myrmecocystus@gmail.com",
+      "@id": "orcid.org/0000-0003-1444-9135"
+    }
+  ],
   "softwareSuggestions": [
     {
       "@type": "SoftwareApplication",
       "identifier": "roxygen2",
       "name": "roxygen2",
-      "version": "6.0.1",
+      "version": ">= 6.0.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
-        "name": "Central R Archive Network (CRAN)",
+        "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
-      }
+      },
+      "sameAs": "https://CRAN.R-project.org/package=roxygen2"
     },
     {
       "@type": "SoftwareApplication",
@@ -63,7 +65,8 @@
         "@type": "Organization",
         "name": "BioConductor",
         "url": "https://www.bioconductor.org"
-      }
+      },
+      "sameAs": "https://bioconductor.org/packages/release/bioc/html/sangerseqR.html"
     },
     {
       "@type": "SoftwareApplication",
@@ -72,9 +75,10 @@
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
-        "name": "Central R Archive Network (CRAN)",
+        "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
-      }
+      },
+      "sameAs": "https://CRAN.R-project.org/package=knitr"
     },
     {
       "@type": "SoftwareApplication",
@@ -83,9 +87,10 @@
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
-        "name": "Central R Archive Network (CRAN)",
+        "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
-      }
+      },
+      "sameAs": "https://CRAN.R-project.org/package=testthat"
     }
   ],
   "softwareRequirements": [
@@ -96,21 +101,23 @@
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
-        "name": "Central R Archive Network (CRAN)",
+        "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
-      }
+      },
+      "sameAs": "https://CRAN.R-project.org/package=xml2"
     },
     {
       "@type": "SoftwareApplication",
       "identifier": "crul",
       "name": "crul",
-      "version": "0.3.8",
+      "version": ">= 0.3.8",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
-        "name": "Central R Archive Network (CRAN)",
+        "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
-      }
+      },
+      "sameAs": "https://CRAN.R-project.org/package=crul"
     },
     {
       "@type": "SoftwareApplication",
@@ -119,9 +126,10 @@
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
-        "name": "Central R Archive Network (CRAN)",
+        "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
-      }
+      },
+      "sameAs": "https://CRAN.R-project.org/package=stringr"
     },
     {
       "@type": "SoftwareApplication",
@@ -130,9 +138,10 @@
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
-        "name": "Central R Archive Network (CRAN)",
+        "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
-      }
+      },
+      "sameAs": "https://CRAN.R-project.org/package=jsonlite"
     },
     {
       "@type": "SoftwareApplication",
@@ -141,9 +150,10 @@
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
-        "name": "Central R Archive Network (CRAN)",
+        "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
-      }
+      },
+      "sameAs": "https://CRAN.R-project.org/package=reshape"
     },
     {
       "@type": "SoftwareApplication",
@@ -152,9 +162,10 @@
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
-        "name": "Central R Archive Network (CRAN)",
+        "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
-      }
+      },
+      "sameAs": "https://CRAN.R-project.org/package=plyr"
     },
     {
       "@type": "SoftwareApplication",
@@ -163,9 +174,10 @@
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
-        "name": "Central R Archive Network (CRAN)",
+        "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
-      }
+      },
+      "sameAs": "https://CRAN.R-project.org/package=data.table"
     },
     {
       "@type": "SoftwareApplication",
@@ -174,17 +186,18 @@
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
-        "name": "Central R Archive Network (CRAN)",
+        "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
-      }
+      },
+      "sameAs": "https://CRAN.R-project.org/package=tibble"
     }
   ],
   "applicationCategory": "DataAccess",
   "isPartOf": "https://ropensci.org",
-  "keywords": ["biodiversity", "barcode", "DNA", "sequences", "fasta"],
+  "keywords": ["biodiversity", "barcode", "DNA", "sequences", "fasta", "api-wrapper", "barcodes", "r", "rstats", "r-package", "taxize"],
   "contIntegration": "https://travis-ci.org/ropensci/bold",
   "developmentStatus": "active",
   "releaseNotes": "https://github.com/ropensci/bold/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/bold/blob/master/README.md",
-  "fileSize": "27.973KB"
+  "fileSize": "29.713KB"
 }
