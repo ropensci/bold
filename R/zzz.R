@@ -78,3 +78,11 @@ b_GET <- function(url, args, ...){
   }
   return(out)
 }
+
+strextract <- function(str, pattern) {
+  regmatches(str, regexpr(pattern, str))
+}
+
+strdrop <- function(str, pattern) {
+  regmatches(str, regexpr(pattern, str), invert = TRUE)
+}

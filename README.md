@@ -88,7 +88,7 @@ res$response_headers
 #> [1] "HTTP/1.1 200 OK"
 #> 
 #> $date
-#> [1] "Fri, 26 Oct 2018 17:24:49 GMT"
+#> [1] "Thu, 01 Nov 2018 14:43:09 GMT"
 #> 
 #> $server
 #> [1] "Apache/2.2.15 (Red Hat)"
@@ -171,6 +171,67 @@ read_trace(x$ab1)
 #> Primary Basecalls: NNNNNNNNNNNNNNNNNNGNNNTTGAGCAGGNATAGTAGGANCTTCTCTTAGTCTTATTATTCGAACAGAATTAGGAAATCCAGGATTTTTAATTGGAGATGATCAAATCTACAATACTATTGTTACGGCTCATGCTTTTATTATAATTTTTTTTATAGTTATACCTATTATAATTGGAGGATTTGGTAATTGATTAGTTCCCCTTATACTAGGAGCCCCAGATATAGCTTTCCCTCGAATAAACAATATAAGTTTTTGGCTTCTTCCCCCTTCACTATTACTTTTAATTTCCAGAAGAATTGTTGAAAATGGAGCTGGAACTGGATGAACAGTTTATCCCCCACTGTCATCTAATATTGCCCATAGAGGTACATCAGTAGATTTAGCTATTTTTTCTTTACATTTAGCAGGTATTTCCTCTATTTTAGGAGCGATTAATTTTATTACTACAATTATTAATATACGAATTAACAGTATAAATTATGATCAAATACCACTATTTGTGTGATCAGTAGGAATTACTGCTTTACTCTTATTACTTTCTCTTCCAGTATTAGCAGGTGCTATCACTATATTATTAACGGATCGAAATTTAAATACATCATTTTTTGATCCTGCAGGAGGAGGAGATCCAATTTTATATCAACATTTATTTTGATTTTTTGGACNTCNNNNAAGTTTAAN
 #> 
 #> Secondary Basecalls:
+```
+
+### Large data
+
+Sometimes with `bold_seq()` you request a lot of data, which can cause problems due 
+to BOLD's servers. 
+
+An example is the taxonomic name _Arthropoda_. When you send a request like 
+`bold_seq(taxon = "Arthropoda")` BOLD attempts to give you back sequences
+for all records under _Arthropoda_. This, as you can imagine, is a lot of 
+sequences. 
+
+
+
+```r
+library("taxize")
+```
+
+Using `taxize::downstream` get children of _Arthropoda_
+
+
+```r
+x <- downstream("Arthropoda", db = "ncbi", downto = "class")
+nms <- x$Arthropoda$childtaxa_name
+```
+
+Optionally, check that the name exists in BOLD's data. Any that are not in 
+BOLD will give back a row of NAs
+
+
+```r
+checks <- bold_tax_name(nms)
+# all is good
+checks[,1:5]
+#>     taxid         taxon tax_rank tax_division parentid
+#> 1   26059   Pycnogonida    class      Animals       20
+#> 2      63     Arachnida    class      Animals       20
+#> 3      74   Merostomata    class      Animals       20
+#> 4  493944     Pauropoda    class      Animals       20
+#> 5   80390      Symphyla    class      Animals       20
+#> 6      85     Diplopoda    class      Animals       20
+#> 7      75     Chilopoda    class      Animals       20
+#> 8      82       Insecta    class      Animals       20
+#> 9     372    Collembola    class      Animals       20
+#> 10 734357       Protura    class      Animals       20
+#> 11     84     Remipedia    class      Animals       20
+#> 12     73 Cephalocarida    class      Animals       20
+#> 13     68  Branchiopoda    class      Animals       20
+#> 14 765970   Hexanauplia    class      Animals       20
+#> 15     69  Malacostraca    class      Animals       20
+#> 16 889450 Ichthyostraca    class      Animals       20
+#> 17     80     Ostracoda    class      Animals       20
+```
+
+Then pass those names to `bold_seq()`. You could pass all names in at once,
+but we're trying to avoid the large data request problem here, so run each 
+one separately with `lapply` or a for loop like request. 
+
+
+```r
+out <- lapply(nms, bold_seq)
 ```
 
 ## Citation
