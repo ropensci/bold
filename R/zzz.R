@@ -6,6 +6,7 @@ split_fasta <- function(x){
   temp <- paste(">", x, sep = "")
   seq <- str_replace_all(str_split(str_replace(temp[[1]], "\n", "<<<"), 
                                    "<<<")[[1]][[2]], "\n", "")
+  seq <- gsub("\\\r|\\\n", "", seq)
   stuff <- str_split(x, "\\|")[[1]][c(1:3)]
   list(id = stuff[1], name = stuff[2], gene = stuff[1], sequence = seq)
 }

@@ -20,7 +20,14 @@ test_that("bold_seq returns the correct dimensions/classes", {
 
   expect_is(c, "HttpResponse")
   expect_is(c$response_headers, "list")
+  
+  # no newlines found
+  expect_false(
+    any(vapply(a, function(w) grepl("\n|\r", w$sequence), logical(1))))
+  expect_false(
+    any(vapply(b, function(w) grepl("\n|\r", w$sequence), logical(1))))
 })
+
 
 test_that("bold_seq returns correct error when parameters empty or not given", {
   skip_on_cran()
