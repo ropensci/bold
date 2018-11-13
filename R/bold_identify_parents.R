@@ -6,7 +6,21 @@
 #' same. required.
 #' @param wide (logical) output in long or wide format. See Details.
 #' Default: \code{FALSE}
-#'
+#' @param taxid  (character) A taxid name. Optional. See `Filtering` below.
+#' @param taxon (character) A taxon name. Optional. See `Filtering` below.
+#' @param tax_rank (character) A tax_rank name. Optional. See `Filtering` 
+#' below.
+#' @param tax_division (character) A tax_division name. Optional. See 
+#' `Filtering` below.
+#' @param parentid (character) A parentid name. Optional. See `Filtering` 
+#' below.
+#' @param parentname (character) A parentname name. Optional. See `Filtering` 
+#' below.
+#' @param taxonrep (character) A taxonrep name. Optional. See `Filtering` 
+#' below.
+#' @param specimenrecords (character) A specimenrecords name. Optional. 
+#' See `Filtering` below.
+#' 
 #' @details This function gets unique set of taxonomic names from the input
 #' data.frame, then queries \code{\link{bold_tax_name}} to get the
 #' taxonomic ID, passing it to \code{\link{bold_tax_id}} to get the parent
@@ -15,6 +29,17 @@
 #' Records in the input data that do not have matches for parent names
 #' simply get NA values in the added columns.
 #'
+#' @section Filtering:
+#' The parameters `taxid`, `taxon`, `tax_rank`, `tax_division`, 
+#' `parentid`, `parentname`,`taxonrep`, and `specimenrecords` are not used 
+#' in the search sent to BOLD, but are used in filtering the data down 
+#' to a subset that is closer to the target you want. For all these 
+#' parameters, you can use regex strings since we use [grep()] internally 
+#' to match. Filtering narrows down to the set that matches your query, 
+#' and removes the rest. The data.frame that we filter on with these 
+#' parameters internally is the result of a call to the [bold_tax_name()]
+#' function. 
+#' 
 #' @section wide vs long format:
 #' When \code{wide = FALSE} you get many rows for each record. Essentially,
 #' we \code{cbind} the taxonomic classification onto the one row from the
@@ -42,22 +67,31 @@
 #' str(out)
 #' head(out[[1]])
 #' }
-bold_identify_parents <- function(x, wide = FALSE) {
+bold_identify_parents <- function(x, wide = FALSE, taxid = NULL, 
+  taxon = NULL, tax_rank = NULL, tax_division = NULL, parentid = NULL, 
+  parentname = NULL, taxonrep = NULL, specimenrecords = NULL) {
   UseMethod("bold_identify_parents")
 }
 
 #' @export
-bold_identify_parents.default <- function(x, wide = FALSE) {
+bold_identify_parents.default <- function(x, wide = FALSE, taxid = NULL, 
+  taxon = NULL, tax_rank = NULL, tax_division = NULL, parentid = NULL, 
+  parentname = NULL, taxonrep = NULL, specimenrecords = NULL) {
   stop("no 'bold_identify_parents' method for ", class(x), call. = FALSE)
 }
 
 #' @export
-bold_identify_parents.data.frame <- function(x, wide = FALSE) {
+bold_identify_parents.data.frame <- function(x, wide = FALSE, taxid = NULL, 
+  taxon = NULL, tax_rank = NULL, tax_division = NULL, parentid = NULL, 
+  parentname = NULL, taxonrep = NULL, specimenrecords = NULL) {
   bold_identify_parents(list(x), wide)
 }
 
 #' @export
-bold_identify_parents.list <- function(x, wide = FALSE) {
+bold_identify_parents.list <- function(x, wide = FALSE, taxid = NULL, 
+  taxon = NULL, tax_rank = NULL, tax_division = NULL, parentid = NULL, 
+  parentname = NULL, taxonrep = NULL, specimenrecords = NULL) {
+
   # get unique set of names
   uniqnms <-
     unique(unname(unlist(lapply(x, function(z) z$taxonomicidentification))))
@@ -68,6 +102,17 @@ bold_identify_parents.list <- function(x, wide = FALSE) {
   # get parent names via bold_tax_name and bold_tax_id
   out <- stats::setNames(lapply(uniqnms, function(w) {
     tmp <- bold_tax_name(w)
+    # if length(tmp) > 1, user decides which one
+    if (NROW(tmp) > 1) {
+      tmp <- filt(tmp, "taxid", taxid)
+      tmp <- filt(tmp, "taxon", taxon)
+      tmp <- filt(tmp, "tax_rank", tax_rank)
+      tmp <- filt(tmp, "tax_division", tax_division)
+      tmp <- filt(tmp, "parentid", parentid)
+      tmp <- filt(tmp, "parentname", parentname)
+      tmp <- filt(tmp, "taxonrep", taxonrep)
+      tmp <- filt(tmp, "specimenrecords", specimenrecords)
+    }
     if (!is.null(tmp$taxid)) {
       tmp2 <- bold_tax_id(tmp$taxid, includeTree = TRUE)
       tmp2$input <- NULL
@@ -100,4 +145,19 @@ bold_identify_parents.list <- function(x, wide = FALSE) {
       }))
     )
   })
+}
+
+# function to help filter get_*() functions for a rank name or rank itself ---
+filt <- function(df, col, z) {
+  if (NROW(df) == 0) {
+    df
+  } else {
+    if (is.null(z)) return(df)
+    mtch <- grep(sprintf("%s", tolower(z)), tolower(df[,col]))
+    if (length(mtch) != 0) {
+      df[mtch, ]
+    } else {
+      data.frame(NULL)
+    }
+  }
 }

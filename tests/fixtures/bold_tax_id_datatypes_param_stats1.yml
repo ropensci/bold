@@ -6,7 +6,7 @@ http_interactions:
       encoding: ''
       string: ''
     headers:
-      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.5.2
+      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.6.0
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
   response:
@@ -16,7 +16,7 @@ http_interactions:
       explanation: Request fulfilled, document follows
     headers:
       status: HTTP/1.1 200 OK
-      date: Thu, 17 May 2018 18:39:39 GMT
+      date: Tue, 13 Nov 2018 23:20:31 GMT
       server: Apache/2.2.15 (Red Hat)
       x-powered-by: PHP/5.3.15
       content-length: '220'
@@ -25,5 +25,5 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"stats":{"publicspecies":2,"publicbins":5,"publicmarkersequences":{"COI-5P":15},"publicrecords":15,"publicsubspecies":0,"specimenrecords":57,"sequencedspecimens":40,"barcodespecimens":34,"species":3,"barcodespecies":3}}'
-  recorded_at: 2018-05-17 18:39:39 GMT
-  recorded_with: vcr/0.1.0, webmockr/0.2.6, crul/0.5.2
+  recorded_at: 2018-11-13 23:20:31 GMT
+  recorded_with: vcr/0.2.0, webmockr/0.2.9

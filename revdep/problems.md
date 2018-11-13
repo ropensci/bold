@@ -1,27 +1,13 @@
-# Setup
+# funbarRF
 
-## Platform
+Version: 1.0.1
 
-|setting  |value                                       |
-|:--------|:-------------------------------------------|
-|version  |R version 3.4.1 Patched (2017-07-04 r72893) |
-|system   |x86_64, darwin15.6.0                        |
-|ui       |RStudio (1.0.143)                           |
-|language |(EN)                                        |
-|collate  |en_US.UTF-8                                 |
-|tz       |America/Vancouver                           |
-|date     |2017-07-20                                  |
+## In both
 
-## Packages
-
-|package |*  |version    |date       |source                   |
-|:-------|:--|:----------|:----------|:------------------------|
-|bold    |   |0.4.9.9910 |2017-07-20 |local (ropensci/bold@NA) |
-
-# Check results
-
-0 packages with problems
-
-
-
+*   checking installed package size ... NOTE
+    ```
+      installed size is 17.1Mb
+      sub-directories of 1Mb or more:
+        data  17.0Mb
+    ```
 

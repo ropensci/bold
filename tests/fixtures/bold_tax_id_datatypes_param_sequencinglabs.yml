@@ -6,7 +6,7 @@ http_interactions:
       encoding: ''
       string: ''
     headers:
-      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.5.2
+      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.6.0
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
   response:
@@ -16,7 +16,7 @@ http_interactions:
       explanation: Request fulfilled, document follows
     headers:
       status: HTTP/1.1 200 OK
-      date: Thu, 17 May 2018 18:39:40 GMT
+      date: Tue, 13 Nov 2018 23:20:32 GMT
       server: Apache/2.2.15 (Red Hat)
       x-powered-by: PHP/5.3.15
       content-length: '323'
@@ -27,7 +27,7 @@ http_interactions:
       string: '{"sequencinglabs":{"Genoscope, Centre National de Sequencage":5,"Royal
         Ontario Museum":2,"Smithsonian Tropical Research Institute":7,"Universidade
         Federal de Minas Gerais":1,"Mined from GenBank, NCBI":2,"Universidade Federal
-        do Rio de Janeiro":2,"Biodiversity Institute of Ontario":16,"Universidad Nacional
-        de Colombia":1}}'
-  recorded_at: 2018-05-17 18:39:40 GMT
-  recorded_with: vcr/0.1.0, webmockr/0.2.6, crul/0.5.2
+        do Rio de Janeiro":2,"Biodiversity Institute of Ontario":18,"Universidad Nacional
+        de Colombia":2}}'
+  recorded_at: 2018-11-13 23:20:32 GMT
+  recorded_with: vcr/0.2.0, webmockr/0.2.9

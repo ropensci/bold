@@ -1,12 +1,12 @@
 http_interactions:
 - request:
     method: get
-    uri: http://v4.boldsystems.org/index.php/API_Tax/TaxonData?taxId=88899&dataTypes=basic
+    uri: http://v4.boldsystems.org/index.php/API_Tax/TaxonData?taxId=88899&dataTypes=geo
     body:
       encoding: ''
       string: ''
     headers:
-      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.5.2
+      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.6.0
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
   response:
@@ -16,14 +16,14 @@ http_interactions:
       explanation: Request fulfilled, document follows
     headers:
       status: HTTP/1.1 200 OK
-      date: Thu, 17 May 2018 18:39:37 GMT
+      date: Tue, 13 Nov 2018 23:20:32 GMT
       server: Apache/2.2.15 (Red Hat)
       x-powered-by: PHP/5.3.15
-      content-length: '119'
+      content-length: '205'
       connection: close
       content-type: text/html; charset=utf-8
     body:
       encoding: UTF-8
-      string: '{"taxid":88899,"taxon":"Momotus","tax_rank":"genus","tax_division":"Animals","parentid":88898,"parentname":"Momotidae"}'
-  recorded_at: 2018-05-17 18:39:37 GMT
-  recorded_with: vcr/0.1.0, webmockr/0.2.6, crul/0.5.2
+      string: '{"country":{"Brazil":4,"Colombia":2,"Mexico":2,"Panama":10,"Guatemala":1,"Peru":16,"Bolivia":6,"Ecuador":2},"sitemap":"http:\/\/www.boldsystems.org\/index.php\/TaxBrowser_Maps_CollectionSites?taxid=88899"}'
+  recorded_at: 2018-11-13 23:20:32 GMT
+  recorded_with: vcr/0.2.0, webmockr/0.2.9

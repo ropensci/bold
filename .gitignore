@@ -5,3 +5,8 @@ inst/vign/bold_trace_files
 inst/ignore
 .Rproj.user
 .Rhistory
+notes.R
+revdep/checks.noindex
+revdep/data.sqlite
+revdep/library.noindex
+bold_trace_files/

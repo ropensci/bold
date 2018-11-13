@@ -22,11 +22,12 @@ This package retrieves data from the BOLD database of barcode clusters, and allo
 
 [Documentation for the BOLD API](http://v4.boldsystems.org/index.php/api_home).
 
+See also the taxize book for more options for taxonomic workflows with BOLD: <https://ropensci.github.io/taxize-book/>
 
 ## Package status and installation
 
-[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ropensci/bold?branch=master&svg=true)](https://ci.appveyor.com/project/ropensci/bold)
-[![Travis-CI Build Status](https://travis-ci.org/ropensci/bold.svg?branch=master)](https://travis-ci.org/)
+[![cran checks](https://cranchecks.info/badges/worst/bold)](https://cranchecks.info/pkgs/bold)
+[![Build Status](https://travis-ci.org/ropensci/bold.svg?branch=master)](https://travis-ci.org/ropensci/bold)
 [![codecov.io](https://codecov.io/github/ropensci/bold/coverage.svg?branch=master)](https://codecov.io/github/ropensci/bold?branch=master)
 [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/bold)](https://github.com/metacran/cranlogs.app)
 
@@ -108,14 +109,54 @@ x <- bold_trace(ids = 'ACRJP618-11', progress = FALSE)
 read_trace(x$ab1)
 ```
 
+### Large data
+
+Sometimes with `bold_seq()` you request a lot of data, which can cause problems due 
+to BOLD's servers. 
+
+An example is the taxonomic name _Arthropoda_. When you send a request like 
+`bold_seq(taxon = "Arthropoda")` BOLD attempts to give you back sequences
+for all records under _Arthropoda_. This, as you can imagine, is a lot of 
+sequences. 
+
+
+```{r}
+library("taxize")
+```
+
+Using `taxize::downstream` get children of _Arthropoda_
+
+```{r}
+x <- downstream("Arthropoda", db = "ncbi", downto = "class")
+nms <- x$Arthropoda$childtaxa_name
+```
+
+Optionally, check that the name exists in BOLD's data. Any that are not in 
+BOLD will give back a row of NAs
+
+```{r}
+checks <- bold_tax_name(nms)
+# all is good
+checks[,1:5]
+```
+
+Then pass those names to `bold_seq()`. You could pass all names in at once,
+but we're trying to avoid the large data request problem here, so run each 
+one separately with `lapply` or a for loop like request. 
+
+```{r eval = FALSE}
+out <- lapply(nms, bold_seq)
+```
+
 ## Citation
 
 Get citation information for `bold` in R by running: `citation(package = 'bold')`
 
-## Code of Conduct
+## Meta
 
-Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md).
-By participating in this project you agree to abide by its terms.
-
+* Please [report any issues or bugs](https://github.com/ropensci/bold/issues)
+* License: MIT
+* Get citation information for `bold` in R doing `citation(package = 'bold')`
+* Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
 
 [![ropensci_footer](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)

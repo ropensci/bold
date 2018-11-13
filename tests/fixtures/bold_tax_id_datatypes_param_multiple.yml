@@ -6,7 +6,7 @@ http_interactions:
       encoding: ''
       string: ''
     headers:
-      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.5.2
+      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.6.0
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
   response:
@@ -16,7 +16,7 @@ http_interactions:
       explanation: Request fulfilled, document follows
     headers:
       status: HTTP/1.1 200 OK
-      date: Thu, 17 May 2018 18:39:41 GMT
+      date: Tue, 13 Nov 2018 23:20:33 GMT
       server: Apache/2.2.15 (Red Hat)
       x-powered-by: PHP/5.3.15
       content-length: '397'
@@ -24,6 +24,6 @@ http_interactions:
       content-type: text/html; charset=utf-8
     body:
       encoding: UTF-8
-      string: '{"taxid":321215,"taxon":"Placozoa","tax_rank":"phylum","tax_division":"Animals","parentid":1,"stats":{"publicspecies":1,"publicbins":4,"publicmarkersequences":{"ND5-0":5,"CYTB":4,"COXIII":5,"ND4L":5,"COI-5P":5,"ND1":5,"ND3":5,"ND2":5,"COII":5,"ND4":5,"ND6":5},"publicrecords":5,"publicsubspecies":0,"specimenrecords":13,"sequencedspecimens":57,"barcodespecimens":6,"species":1,"barcodespecies":1}}'
-  recorded_at: 2018-05-17 18:39:41 GMT
-  recorded_with: vcr/0.1.0, webmockr/0.2.6, crul/0.5.2
+      string: '{"taxid":321215,"taxon":"Placozoa","tax_rank":"phylum","tax_division":"Animals","parentid":1,"stats":{"publicspecies":1,"publicbins":4,"publicmarkersequences":{"ND5-0":5,"CYTB":4,"COXIII":5,"ND4L":5,"COI-5P":5,"ND1":5,"ND3":5,"ND2":5,"COII":5,"ND4":5,"ND6":5},"publicrecords":5,"publicsubspecies":0,"specimenrecords":13,"sequencedspecimens":56,"barcodespecimens":5,"species":1,"barcodespecies":1}}'
+  recorded_at: 2018-11-13 23:20:33 GMT
+  recorded_with: vcr/0.2.0, webmockr/0.2.9

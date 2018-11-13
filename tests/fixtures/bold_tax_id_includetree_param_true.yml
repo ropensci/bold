@@ -6,7 +6,7 @@ http_interactions:
       encoding: ''
       string: ''
     headers:
-      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.5.2
+      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.6.0
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
   response:
@@ -16,7 +16,7 @@ http_interactions:
       explanation: Request fulfilled, document follows
     headers:
       status: HTTP/1.1 200 OK
-      date: Thu, 17 May 2018 18:39:42 GMT
+      date: Tue, 13 Nov 2018 23:20:34 GMT
       server: Apache/2.2.15 (Red Hat)
       x-powered-by: PHP/5.3.15
       content-length: '634'
@@ -25,5 +25,5 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"88899":{"taxid":88899,"taxon":"Momotus","tax_rank":"genus","tax_division":"Animals","parentid":88898,"parentname":"Momotidae"},"88898":{"taxid":88898,"taxon":"Momotidae","tax_rank":"family","tax_division":"Animals","parentid":339,"parentname":"Coraciiformes"},"339":{"taxid":339,"taxon":"Coraciiformes","tax_rank":"order","tax_division":"Animals","parentid":51,"parentname":"Aves"},"51":{"taxid":51,"taxon":"Aves","tax_rank":"class","tax_division":"Animals","parentid":18,"parentname":"Chordata","taxonrep":"Aves"},"18":{"taxid":18,"taxon":"Chordata","tax_rank":"phylum","tax_division":"Animals","parentid":1,"taxonrep":"Chordata"}}'
-  recorded_at: 2018-05-17 18:39:42 GMT
-  recorded_with: vcr/0.1.0, webmockr/0.2.6, crul/0.5.2
+  recorded_at: 2018-11-13 23:20:35 GMT
+  recorded_with: vcr/0.2.0, webmockr/0.2.9

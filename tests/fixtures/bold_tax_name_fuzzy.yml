@@ -6,7 +6,7 @@ http_interactions:
       encoding: ''
       string: ''
     headers:
-      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.5.2
+      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.6.0
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
   response:
@@ -16,25 +16,23 @@ http_interactions:
       explanation: Request fulfilled, document follows
     headers:
       status: HTTP/1.1 200 OK
-      date: Thu, 17 May 2018 18:39:46 GMT
+      date: Tue, 13 Nov 2018 23:20:39 GMT
       server: Apache/2.2.15 (Red Hat)
       x-powered-by: PHP/5.3.15
-      content-length: '6942'
+      content-length: '6653'
       connection: close
       content-type: text/html; charset=utf-8
     body:
       encoding: UTF-8
-      string: '{"top_matched_names":[{"taxid":603673,"taxon":"Diplura","tax_rank":"genus","tax_division":"Protists","parentid":53974,"parentname":"Scytosiphonaceae","specimenrecords":"6"},{"taxid":734358,"taxon":"Diplura","tax_rank":"class","tax_division":"Animals","parentid":20,"parentname":"Arthropoda","taxonrep":"Diplura","representitive_image":{"image":"SSWLA\/BIOUG09581-E05+1434047314.jpg","apectratio":1.339},"specimenrecords":"228"},{"taxid":603674,"taxon":"Diplura
+      string: '{"top_matched_names":[{"taxid":603673,"taxon":"Diplura","tax_rank":"genus","tax_division":"Protists","parentid":53974,"parentname":"Scytosiphonaceae","specimenrecords":"6"},{"taxid":734358,"taxon":"Diplura","tax_rank":"class","tax_division":"Animals","parentid":20,"parentname":"Arthropoda","taxonrep":"Diplura","representitive_image":{"image":"SSWLA\/BIOUG09581-E05+1434047314.jpg","apectratio":1.339},"specimenrecords":"294"},{"taxid":603674,"taxon":"Diplura
         simplex","tax_rank":"species","tax_division":"Protists","parentid":603673,"parentname":"Diplura","specimenrecords":"1"},{"taxid":603675,"taxon":"Diplura
-        sp","tax_rank":"species","tax_division":"Protists","parentid":603673,"parentname":"Diplura","specimenrecords":"5"},{"taxid":734360,"taxon":"Diplura_order","tax_rank":"order","tax_division":"Animals","parentid":734358,"parentname":"Diplura","representitive_image":{"image":"COLLH\/bc25340G05+1467842645.jpg","apectratio":1.35},"specimenrecords":"4"},{"taxid":211734,"taxon":"Dipluridae","tax_rank":"family","tax_division":"Animals","parentid":251,"parentname":"Araneae","taxonrep":"Dipluridae","representitive_image":{"image":"ARBCM\/BIOUG25736-F04+1449238424.JPG","apectratio":1.333},"specimenrecords":"143"},{"taxid":92159,"taxon":"Diplurodes","tax_rank":"genus","tax_division":"Animals","parentid":5509,"parentname":"Ennominae","taxonrep":"Diplurodes","representitive_image":{"image":"GWOTE\/BC_ZSM_Lep_add_57874+1332406662.JPG","apectratio":1.333},"specimenrecords":"56"},{"taxid":369192,"taxon":"Diplurodes
+        sp","tax_rank":"species","tax_division":"Protists","parentid":603673,"parentname":"Diplura","specimenrecords":"5"},{"taxid":734360,"taxon":"Diplura_order","tax_rank":"order","tax_division":"Animals","parentid":734358,"parentname":"Diplura","representitive_image":{"image":"COLLH\/bc25340G05+1467842645.jpg","apectratio":1.35},"specimenrecords":"4"},{"taxid":211734,"taxon":"Dipluridae","tax_rank":"family","tax_division":"Animals","parentid":251,"parentname":"Araneae","taxonrep":"Dipluridae","representitive_image":{"image":"ARBCM\/BIOUG25736-F04+1449238424.JPG","apectratio":1.333},"specimenrecords":"153"},{"taxid":92159,"taxon":"Diplurodes","tax_rank":"genus","tax_division":"Animals","parentid":5509,"parentname":"Ennominae","taxonrep":"Diplurodes","representitive_image":{"image":"GWOTE\/BC_ZSM_Lep_add_57874+1332406662.JPG","apectratio":1.333},"specimenrecords":"55"},{"taxid":369192,"taxon":"Diplurodes
         MS01","tax_rank":"species","tax_division":"Animals","parentid":92159,"parentname":"Diplurodes","taxonrep":"Diplurodes
         MS01","specimenrecords":"1"},{"taxid":456655,"taxon":"Diplurodes cristatus","tax_rank":"species","tax_division":"Animals","parentid":92159,"parentname":"Diplurodes","taxonrep":"Diplurodes
         cristatus","specimenrecords":"1"},{"taxid":466258,"taxon":"Diplurodes decursaria","tax_rank":"species","tax_division":"Animals","parentid":92159,"parentname":"Diplurodes","taxonrep":"Diplurodes
         decursaria","representitive_image":{"image":"GWOTE\/BC_ZSM_Lep_add_57873+1332406656.JPG","apectratio":1.333},"specimenrecords":"2"},{"taxid":391258,"taxon":"Diplurodes
         diehli","tax_rank":"species","tax_division":"Animals","parentid":92159,"parentname":"Diplurodes","taxonrep":"Diplurodes
-        diehli","specimenrecords":"1"},{"taxid":807996,"taxon":"Diplurodes exprimata","tax_rank":"species","tax_division":"Animals","parentid":92159,"parentname":"Diplurodes","taxonrep":"Diplurodes
-        exprimata","representitive_image":{"image":"LEPMY\/BIOUG36916-G08+1525804416.JPG","apectratio":1.499},"specimenrecords":"1"},{"taxid":762851,"taxon":"Diplurodes
-        fimbripedata","tax_rank":"species","tax_division":"Animals","parentid":92159,"parentname":"Diplurodes","taxonrep":"Diplurodes
+        diehli","specimenrecords":"1"},{"taxid":762851,"taxon":"Diplurodes fimbripedata","tax_rank":"species","tax_division":"Animals","parentid":92159,"parentname":"Diplurodes","taxonrep":"Diplurodes
         fimbripedata","representitive_image":{"image":"LEPMY\/BIOUG31631-D05+1524860738.JPG","apectratio":1.499},"specimenrecords":"3"},{"taxid":466259,"taxon":"Diplurodes
         indentata","tax_rank":"species","tax_division":"Animals","parentid":92159,"parentname":"Diplurodes","taxonrep":"Diplurodes
         indentata","representitive_image":{"image":"GWOTE\/BC_ZSM_Lep_add_57874+1332406662.JPG","apectratio":1.333},"specimenrecords":"2"},{"taxid":466257,"taxon":"Diplurodes
@@ -60,9 +58,9 @@ http_interactions:
         spinivava","specimenrecords":"1"},{"taxid":224606,"taxon":"Diplurodes submontana","tax_rank":"species","tax_division":"Animals","parentid":92159,"parentname":"Diplurodes","taxonrep":"Diplurodes
         submontana","representitive_image":{"image":"GWOTE\/BC_ZSM_Lep_add_57871+1332406652.JPG","apectratio":1.333},"specimenrecords":"5"},{"taxid":535185,"taxon":"Diplurodes
         sugillata","tax_rank":"species","tax_division":"Animals","parentid":92159,"parentname":"Diplurodes","taxonrep":"Diplurodes
-        sugillata","representitive_image":{"image":"LEVIE\/RMNH_INS_541290_dor_a+1357325154.jpg","apectratio":1.506},"specimenrecords":"2"}],"total_matched_names":31}'
-  recorded_at: 2018-05-17 18:39:48 GMT
-  recorded_with: vcr/0.1.0, webmockr/0.2.6, crul/0.5.2
+        sugillata","representitive_image":{"image":"GWORK\/BC_ZSM_Lep_74362+1424362924.JPG","apectratio":1.333},"specimenrecords":"2"}],"total_matched_names":30}'
+  recorded_at: 2018-11-13 23:20:41 GMT
+  recorded_with: vcr/0.2.0, webmockr/0.2.9
 - request:
     method: get
     uri: http://v4.boldsystems.org/index.php/API_Tax/TaxonSearch?taxName=Diplur
@@ -70,7 +68,7 @@ http_interactions:
       encoding: ''
       string: ''
     headers:
-      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.5.2
+      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.6.0
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
   response:
@@ -80,7 +78,7 @@ http_interactions:
       explanation: Request fulfilled, document follows
     headers:
       status: HTTP/1.1 200 OK
-      date: Thu, 17 May 2018 18:39:47 GMT
+      date: Tue, 13 Nov 2018 23:20:41 GMT
       server: Apache/2.2.15 (Red Hat)
       x-powered-by: PHP/5.3.15
       content-length: '48'
@@ -89,5 +87,5 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"top_matched_names":[],"total_matched_names":0}'
-  recorded_at: 2018-05-17 18:39:48 GMT
-  recorded_with: vcr/0.1.0, webmockr/0.2.6, crul/0.5.2
+  recorded_at: 2018-11-13 23:20:41 GMT
+  recorded_with: vcr/0.2.0, webmockr/0.2.9
