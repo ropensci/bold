@@ -26,11 +26,12 @@ Imports:
     data.table,
     tibble
 Suggests:
-    roxygen2 (>= 6.0.1),
+    roxygen2 (>= 6.1.1),
     sangerseqR,
     knitr,
-    testthat
-RoxygenNote: 6.1.0
+    testthat,
+    vcr (>= 0.2.0)
+RoxygenNote: 6.1.1
 X-schema.org-applicationCategory: Data Access
 X-schema.org-keywords: biodiversity, barcode, DNA, sequences, fasta
 X-schema.org-isPartOf: https://ropensci.org

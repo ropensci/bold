@@ -2,30 +2,26 @@
 context("bold_seq")
 
 test_that("bold_seq returns the correct dimensions/classes", {
-  skip_on_cran()
-  
-  a <- bold_seq(taxon='Coelioxys')
-  b <- bold_seq(bin='BOLD:AAA5125')
-  c <- bold_seq(taxon='Coelioxys', response=TRUE)
-  
-  expect_equal(c$status_code, 200)
-  expect_equal(c$response_headers$`content-type`, "application/x-download")
+  vcr::use_cassette("bold_seq_works_taxon", {
+    a <- bold_seq(taxon='Coelioxys')
+    expect_is(a, "list")
+    expect_is(a[[1]], "list")
+    expect_is(a[[1]]$id, "character")
+    expect_is(a[[1]]$sequence, "character")
+  })
 
-  expect_is(a, "list")
-  expect_is(b, "list")
+  vcr::use_cassette("bold_seq_works_bin", {
+    b <- bold_seq(bin='BOLD:AAA5125')
+    expect_is(b, "list")
+  })
 
-  expect_is(a[[1]], "list")
-  expect_is(a[[1]]$id, "character")
-  expect_is(a[[1]]$sequence, "character")
-
-  expect_is(c, "HttpResponse")
-  expect_is(c$response_headers, "list")
-  
-  # no newlines found
-  expect_false(
-    any(vapply(a, function(w) grepl("\n|\r", w$sequence), logical(1))))
-  expect_false(
-    any(vapply(b, function(w) grepl("\n|\r", w$sequence), logical(1))))
+  vcr::use_cassette("bold_seq_works_taxon_response", {
+    c <- bold_seq(taxon='Coelioxys', response=TRUE)
+    expect_equal(c$status_code, 200)
+    expect_equal(c$response_headers$`content-type`, "application/x-download")
+    expect_is(c, "HttpResponse")
+    expect_is(c$response_headers, "list")
+  })
 })
 
 
