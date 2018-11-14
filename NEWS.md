@@ -1,3 +1,13 @@
+bold 0.8.6
+==========
+
+### MINOR IMPROVEMENTS
+
+* tests that make HTTP requests now use package `vcr` to cache responses, speeds up tests significantly, and no longer relies on an internet connection (#55) (#56)
+* `bold_seq()`: sometimes on large requests, the BOLD servers time out, and give back partial output but don't indicate that there was an error. We catch this kind of error now, throw a message for the user, and the function gives back the partial output given by the server. Also added to the documentation for `bold_seq()` and in the README that if you run into this problem try to do many queries that will result in smaller set of results instead of one or fewer larger queries (#52) (#53)
+* `bold_seq()`: remove return characters (`\r` and `\n`) from sequences (#54)
+
+
 bold 0.8.0
 ==========
 

@@ -21,7 +21,7 @@
 
 -----
 
-This version includes a bug fix to one function and addition of parmeters for another function.
+This version includes improvements to a function bold_seq() and HTTP request caching for tests.
 
 Thanks! 
 Scott Chamberlain
