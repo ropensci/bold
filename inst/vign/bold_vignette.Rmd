@@ -82,11 +82,11 @@ The default is to get a list back
 bold_seq(taxon = 'Coelioxys')[1:2]
 ```
 
-You can optionally get back the `httr` response object
+You can optionally get back the `crul` response object
 
 ```{r cache=TRUE}
 res <- bold_seq(taxon = 'Coelioxys', response = TRUE)
-res$headers
+res$response_headers
 ```
 
 You can do geographic searches
@@ -153,13 +153,13 @@ bold_specimens(taxon = 'Osmia', format = 'xml')
     <taxonomy>
 ```
 
-You can choose to get the `httr` response object back if you'd rather work with the raw data returned from the BOLD API.
+You can choose to get the `crul` response object back if you'd rather work with the raw data returned from the BOLD API.
 
 ```{r}
 res <- bold_specimens(taxon = 'Osmia', format = 'xml', response = TRUE)
 res$url
 res$status_code
-res$headers
+res$response_headers
 ```
 
 ### Search for specimen plus sequence data

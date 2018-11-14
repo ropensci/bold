@@ -69,7 +69,7 @@ Default is to get a list back
 bold_seq(taxon='Coelioxys')[[1]]
 ```
 
-You can optionally get back the `httr` response object
+You can optionally get back the `crul` response object
 
 ```{r}
 res <- bold_seq(taxon='Coelioxys', response=TRUE)
