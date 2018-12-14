@@ -30,6 +30,8 @@ test_that("bold_tax_id works with multiple ids passed in", {
 })
 
 test_that("bold_tax_id dataTypes param works as expected", {
+  skip_on_cran()
+  
   vcr::use_cassette("bold_tax_id_datatypes_param_basic", {
     aa <- bold_tax_id(88899, dataTypes = "basic")
     expect_is(aa, "data.frame")

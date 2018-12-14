@@ -2,6 +2,8 @@
 context("bold_seq")
 
 test_that("bold_seq returns the correct dimensions/classes", {
+  skip_on_cran()
+  
   vcr::use_cassette("bold_seq_works_taxon", {
     a <- bold_seq(taxon='Coelioxys')
     expect_is(a, "list")
