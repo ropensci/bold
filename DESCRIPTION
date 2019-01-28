@@ -30,9 +30,8 @@ Suggests:
     sangerseqR,
     knitr,
     testthat,
-    vcr (>= 0.2.0.9114)
+    vcr (>= 0.2.2)
 RoxygenNote: 6.1.1
-Remotes: ropensci/vcr
 X-schema.org-applicationCategory: Data Access
 X-schema.org-keywords: biodiversity, barcode, DNA, sequences, fasta
 X-schema.org-isPartOf: https://ropensci.org
