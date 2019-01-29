@@ -87,3 +87,27 @@ strextract <- function(str, pattern) {
 strdrop <- function(str, pattern) {
   regmatches(str, regexpr(pattern, str), invert = TRUE)
 }
+
+assert <- function(x, y) {
+  if (!is.null(x)) {
+    if (!inherits(x, y)) {
+      stop(deparse(substitute(x)), " must be of class ",
+           paste0(y, collapse = ", "), call. = FALSE)
+    }
+  }
+}
+
+assert_param <- function(x, param, y) {
+  if (!is.null(x)) {
+    if (!inherits(x, y)) {
+      stop(param, " must be of class ",
+           paste0(y, collapse = ", "), call. = FALSE)
+    }
+  }
+}
+
+setrbind <- function(x) {
+  (xxx <- data.table::setDF(
+    data.table::rbindlist(x, fill = TRUE, use.names = TRUE))
+  )
+}

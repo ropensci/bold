@@ -1,4 +1,7 @@
-#' Get BOLD specimen + sequence data.
+#' Filter BOLD specimen + sequence data (output of bold_seqspec)
+#' 
+#' Picks either shortest or longest sequences, for a given grouping variable
+#' (e.g., species name)
 #'
 #' @export
 #' @param x (data.frame) a data.frame, as returned from
@@ -23,22 +26,13 @@
 #' vapply(minn$nucleotides, nchar, 1, USE.NAMES = FALSE)
 #' }
 bold_filter <- function(x, by, how = "max") {
-  if (!inherits(x, "data.frame")) stop("'x' must be a data.frame",
-                                       call. = FALSE)
-  if (!how %in% c("min", "max")) stop("'how' must be one of 'min' or 'max'",
-                                      call. = FALSE)
-  if (!by %in% names(x)) stop(sprintf("'%s' is not a valid column in 'x'", by),
-                              call. = FALSE)
+  if (!inherits(x, "data.frame")) stop("'x' must be a data.frame")
+  if (!how %in% c("min", "max")) stop("'how' must be one of 'min' or 'max'")
+  if (!by %in% names(x)) stop(sprintf("'%s' is not a valid column in 'x'", by))
   xsp <- split(x, x[[by]])
   tibble::as_data_frame(setrbind(lapply(xsp, function(z) {
     lgts <- vapply(z$nucleotides, function(w) nchar(gsub("-", "", w)), 1,
                    USE.NAMES = FALSE)
     z[eval(parse(text = paste0("which.", how)))(lgts), ]
   })))
-}
-
-setrbind <- function(x) {
-  (xxx <- data.table::setDF(
-    data.table::rbindlist(x, fill = TRUE, use.names = TRUE))
-  )
 }

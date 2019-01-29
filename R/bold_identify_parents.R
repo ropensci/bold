@@ -66,6 +66,17 @@
 #' out <- bold_identify_parents(df, wide = TRUE)
 #' str(out)
 #' head(out[[1]])
+#' 
+#' get_uid(sciname = "Satyrium", division_filter = "monocots")
+#' get_uid(sciname = "Satyrium", division_filter = "butterflies")
+#' x <- bold_seq(taxon = "Satyrium")
+#' out <- bold_identify(c(x[[1]]$sequence, x[[13]]$sequence))
+#' res <- bold_identify_parents(out)
+#' res
+#' 
+#' x <- bold_seq(taxon = 'Diplura')
+#' out <- bold_identify(vapply(x, "[[", "", "sequence")[1:20])
+#' res <- bold_identify_parents(out)
 #' }
 bold_identify_parents <- function(x, wide = FALSE, taxid = NULL, 
   taxon = NULL, tax_rank = NULL, tax_division = NULL, parentid = NULL, 
@@ -77,20 +88,23 @@ bold_identify_parents <- function(x, wide = FALSE, taxid = NULL,
 bold_identify_parents.default <- function(x, wide = FALSE, taxid = NULL, 
   taxon = NULL, tax_rank = NULL, tax_division = NULL, parentid = NULL, 
   parentname = NULL, taxonrep = NULL, specimenrecords = NULL) {
-  stop("no 'bold_identify_parents' method for ", class(x), call. = FALSE)
+  stop("no 'bold_identify_parents' method for ", class(x)[1L], call. = FALSE)
 }
 
 #' @export
 bold_identify_parents.data.frame <- function(x, wide = FALSE, taxid = NULL, 
   taxon = NULL, tax_rank = NULL, tax_division = NULL, parentid = NULL, 
   parentname = NULL, taxonrep = NULL, specimenrecords = NULL) {
-  bold_identify_parents(list(x), wide)
+  bold_identify_parents(list(x), wide, taxid, taxon, tax_rank, 
+    tax_division, parentid, parentname, taxonrep, specimenrecords)
 }
 
 #' @export
 bold_identify_parents.list <- function(x, wide = FALSE, taxid = NULL, 
   taxon = NULL, tax_rank = NULL, tax_division = NULL, parentid = NULL, 
   parentname = NULL, taxonrep = NULL, specimenrecords = NULL) {
+
+  assert(wide, "logical")
 
   # get unique set of names
   uniqnms <-
@@ -130,9 +144,9 @@ bold_identify_parents.list <- function(x, wide = FALSE, taxid = NULL,
       # replace each data.frame with a wide version with just
       # taxid and taxon name (with col names with rank name)
       out <- lapply(out, function(h) do.call("cbind", (apply(h, 1, function(x) {
-        tmp <- as.list(x[c('taxid', 'taxon')])
+        tmp <- as.list(x[c("taxid", "taxon")])
         tmp$taxid <- as.numeric(tmp$taxid)
-        data.frame(stats::setNames(tmp, paste0(x['tax_rank'], c('_id', ''))),
+        data.frame(stats::setNames(tmp, paste0(x["tax_rank"], c("_id", ""))),
                    stringsAsFactors = FALSE)
       }))))
     }
@@ -149,11 +163,12 @@ bold_identify_parents.list <- function(x, wide = FALSE, taxid = NULL,
 
 # function to help filter get_*() functions for a rank name or rank itself ---
 filt <- function(df, col, z) {
+  assert_param(z, deparse(substitute(z)), "character")
   if (NROW(df) == 0) {
     df
   } else {
     if (is.null(z)) return(df)
-    mtch <- grep(sprintf("%s", tolower(z)), tolower(df[,col]))
+    mtch <- grep(sprintf("%s", tolower(z)), tolower(df[, col]))
     if (length(mtch) != 0) {
       df[mtch, ]
     } else {
