@@ -72,7 +72,7 @@ res$response_headers
 bold_stats(taxon=c('Coelioxys','Osmia'))
 
 ## curl debugging
-### These examples below take a long time, so you can set a timeout so that 
+### These examples below take a long time, so you can set a timeout so that
 ### it stops by X sec
 bold_stats(taxon='Osmia', verbose = TRUE)
 # bold_stats(geo='Costa Rica', timeout_ms = 6)

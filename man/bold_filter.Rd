@@ -2,7 +2,7 @@
 % Please edit documentation in R/bold_filter.R
 \name{bold_filter}
 \alias{bold_filter}
-\title{Get BOLD specimen + sequence data.}
+\title{Filter BOLD specimen + sequence data (output of bold_seqspec)}
 \usage{
 bold_filter(x, by, how = "max")
 }
@@ -26,7 +26,8 @@ sequence, respectively. Note that we remove gap/alignment characters
 a tibble/data.frame
 }
 \description{
-Get BOLD specimen + sequence data.
+Picks either shortest or longest sequences, for a given grouping variable
+(e.g., species name)
 }
 \examples{
 \dontrun{

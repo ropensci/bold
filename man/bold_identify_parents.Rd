@@ -93,5 +93,16 @@ head(out[[1]])
 out <- bold_identify_parents(df, wide = TRUE)
 str(out)
 head(out[[1]])
+
+get_uid(sciname = "Satyrium", division_filter = "monocots")
+get_uid(sciname = "Satyrium", division_filter = "butterflies")
+x <- bold_seq(taxon = "Satyrium")
+out <- bold_identify(c(x[[1]]$sequence, x[[13]]$sequence))
+res <- bold_identify_parents(out)
+res
+
+x <- bold_seq(taxon = 'Diplura')
+out <- bold_identify(vapply(x, "[[", "", "sequence")[1:20])
+res <- bold_identify_parents(out)
 }
 }
