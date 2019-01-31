@@ -20,7 +20,7 @@ matrix:
 bioc_packages: 
   - sangerseqR
 
-r_check_args: "--as-cran --run-dontrun"
+r_check_args: "--as-cran"
 
 after_success:
   - if [[ "${R_CODECOV}" ]]; then R -e 'covr::codecov()'; fi
