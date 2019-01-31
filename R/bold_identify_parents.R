@@ -138,6 +138,7 @@ bold_identify_parents.list <- function(x, wide = FALSE, taxid = NULL,
 
   # appply parent names to input data
   lapply(x, function(z) {
+    if (is.null(z)) return(NULL)
     if (wide) {
       # replace each data.frame with a wide version with just
       # taxid and taxon name (with col names with rank name)
