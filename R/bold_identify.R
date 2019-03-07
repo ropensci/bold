@@ -98,3 +98,40 @@ unnest <- function(x){
     do.call("c", lapply(x, unnest))
   }
 }
+
+parse_identify_one <- function(x) {
+  xml <- xml2::read_xml(x)
+  nodes <- xml2::xml_find_all(xml, "//match")
+  toget <- c("ID","sequencedescription","database",
+             "citation","taxonomicidentification","similarity")
+  outlist <- lapply(nodes, function(x){
+    tmp2 <- vapply(toget, function(y) {
+      tmp <- xml2::xml_find_first(x, y)
+      stats::setNames(xml2::xml_text(tmp), xml2::xml_name(tmp))
+    }, "")
+    spectmp <- xml2::as_list(xml2::xml_find_first(x, "specimen"))
+    spectmp <- unnest(spectmp)
+    names(spectmp) <- c('specimen_url','specimen_country',
+                        'specimen_lat','specimen_lon')
+    spectmp[sapply(spectmp, is.null)] <- NA
+    data.frame(c(tmp2, spectmp), stringsAsFactors = FALSE)
+  })
+  do.call(rbind.fill, outlist)
+}
+
+#' async identify
+#' @export
+#' @examples
+#' res <- bold_identify_async(x = sequences)
+bold_identify_async <- function(x, db = 'COX1', ...) {
+  reqs <- lapply(x, function(s) {
+    crul::HttpRequest$new(
+      url = "http://v4.boldsystems.org/index.php/Ids_xml",
+      opts = list(...)
+    )$get(query = bc(list(sequence = s, db = db)))
+  })
+  out <- crul::AsyncVaried$new(.list = reqs)
+  out$request()
+  xmls <- out$parse()
+  lapply(xmls, parse_identify_one)
+}
