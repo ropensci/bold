@@ -101,6 +101,7 @@ unnest <- function(x){
 }
 
 parse_identify_one <- function(x) {
+  x <- gsub("&", "&amp;", x)
   xml <- xml2::read_xml(x)
   nodes <- xml2::xml_find_all(xml, "//match")
   toget <- c("ID","sequencedescription","database",
