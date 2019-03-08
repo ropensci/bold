@@ -41,3 +41,14 @@ test_that("bold_identify fails well", {
   expect_error(bold_identify(), 
     "argument \"sequences\" is missing, with no default")
 })
+
+test_that("bold_identify works for XML that contains &", {
+  seq <- "AACCCTATACTTTTTATTTGGAATTTGAGCGGGTATAGTAGGTACTAGCTTAAGTATATTAATTCGTCTAGAGCTAGGACAACCCGGTGTATTTTTAGAAGATGACCAAACCTATAACGTTATTGTAACAGCCCACGCTTTTATTATAATTTTCTTCATAATTATACCAATC
+    ATAATTGGA"
+  vcr::use_cassette("bold_identify_ampersands", {
+    aa <- bold_identify(seq)
+    expect_is(aa, 'list')
+    expect_is(aa[[1]], 'data.frame')
+    expect_is(aa[[1]]$ID, 'character')
+  })
+})

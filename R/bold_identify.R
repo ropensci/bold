@@ -69,6 +69,7 @@ bold_identify <- function(sequences, db = 'COX1', response=FALSE, ...) {
       out
     } else {
       tt <- out$parse('UTF-8')
+      tt <- gsub("&", "&amp;", tt)
       xml <- xml2::read_xml(tt)
       nodes <- xml2::xml_find_all(xml, "//match")
       toget <- c("ID","sequencedescription","database",
