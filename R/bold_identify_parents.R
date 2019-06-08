@@ -109,7 +109,7 @@ bold_identify_parents.list <- function(x, wide = FALSE, taxid = NULL,
   # get unique set of names
   uniqnms <-
     unique(unname(unlist(lapply(x, function(z) z$taxonomicidentification))))
-  if (is.null(uniquenms)) {
+  if (is.null(uniqnms)) {
     stop("no fields 'taxonomicidentification' found in input", call. = FALSE)
   }
 
