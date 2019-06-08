@@ -20,6 +20,8 @@
 #' below.
 #' @param specimenrecords (character) A specimenrecords name. Optional. 
 #' See `Filtering` below.
+#' @param ... Further args passed on to \code{\link[crul]{verb-GET}}, main 
+#' purpose being curl debugging
 #' 
 #' @details This function gets unique set of taxonomic names from the input
 #' data.frame, then queries \code{\link{bold_tax_name}} to get the
@@ -78,21 +80,21 @@
 #' }
 bold_identify_parents <- function(x, wide = FALSE, taxid = NULL, 
   taxon = NULL, tax_rank = NULL, tax_division = NULL, parentid = NULL, 
-  parentname = NULL, taxonrep = NULL, specimenrecords = NULL) {
+  parentname = NULL, taxonrep = NULL, specimenrecords = NULL, ...) {
   UseMethod("bold_identify_parents")
 }
 
 #' @export
 bold_identify_parents.default <- function(x, wide = FALSE, taxid = NULL, 
   taxon = NULL, tax_rank = NULL, tax_division = NULL, parentid = NULL, 
-  parentname = NULL, taxonrep = NULL, specimenrecords = NULL) {
+  parentname = NULL, taxonrep = NULL, specimenrecords = NULL, ...) {
   stop("no 'bold_identify_parents' method for ", class(x)[1L], call. = FALSE)
 }
 
 #' @export
 bold_identify_parents.data.frame <- function(x, wide = FALSE, taxid = NULL, 
   taxon = NULL, tax_rank = NULL, tax_division = NULL, parentid = NULL, 
-  parentname = NULL, taxonrep = NULL, specimenrecords = NULL) {
+  parentname = NULL, taxonrep = NULL, specimenrecords = NULL, ...) {
   bold_identify_parents(list(x), wide, taxid, taxon, tax_rank, 
     tax_division, parentid, parentname, taxonrep, specimenrecords)
 }
@@ -100,20 +102,20 @@ bold_identify_parents.data.frame <- function(x, wide = FALSE, taxid = NULL,
 #' @export
 bold_identify_parents.list <- function(x, wide = FALSE, taxid = NULL, 
   taxon = NULL, tax_rank = NULL, tax_division = NULL, parentid = NULL, 
-  parentname = NULL, taxonrep = NULL, specimenrecords = NULL) {
+  parentname = NULL, taxonrep = NULL, specimenrecords = NULL, ...) {
 
   assert(wide, "logical")
 
   # get unique set of names
   uniqnms <-
     unique(unname(unlist(lapply(x, function(z) z$taxonomicidentification))))
-  if (is.null(uniqnms)) {
+  if (is.null(uniquenms)) {
     stop("no fields 'taxonomicidentification' found in input", call. = FALSE)
   }
 
   # get parent names via bold_tax_name and bold_tax_id
   out <- stats::setNames(lapply(uniqnms, function(w) {
-    tmp <- bold_tax_name(w)
+    tmp <- bold_tax_name(w, ...)
     # if length(tmp) > 1, user decides which one
     if (NROW(tmp) > 1) {
       tmp <- filt(tmp, "taxid", taxid)
@@ -126,7 +128,7 @@ bold_identify_parents.list <- function(x, wide = FALSE, taxid = NULL,
       tmp <- filt(tmp, "specimenrecords", specimenrecords)
     }
     if (!is.null(tmp$taxid)) {
-      tmp2 <- bold_tax_id(tmp$taxid, includeTree = TRUE)
+      tmp2 <- bold_tax_id(tmp$taxid, includeTree = TRUE, ...)
       tmp2$input <- NULL
       return(tmp2)
     } else {
