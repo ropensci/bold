@@ -22,7 +22,7 @@ This package retrieves data from the BOLD database of barcode clusters, and allo
 
 [Documentation for the BOLD API](http://v4.boldsystems.org/index.php/api_home).
 
-See also the taxize book for more options for taxonomic workflows with BOLD: <https://ropensci.github.io/taxize-book/>
+See also the taxize book for more options for taxonomic workflows with BOLD: <https://ropenscilabs.github.io/taxize-book/>
 
 ## Package status and installation
 
@@ -41,14 +41,23 @@ install.packages("bold")
 
 __Development Version__
 
-Install `sangerseqR` first
+Install `sangerseqR` first (used in function `bold::bold_trace()` only)
+
+For R < 3.5
 
 ```{r eval=FALSE}
 source("http://bioconductor.org/biocLite.R")
 biocLite("sangerseqR")
 ```
 
-Then `bold`
+For R >= 3.5
+
+```{r eval=FALSE}
+install.packages('BiocManager')
+BiocManager::install('sangerseqR')
+```
+
+Then install `bold`
 
 ```{r eval=FALSE}
 devtools::install_github("ropensci/bold")

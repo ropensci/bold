@@ -15,7 +15,7 @@ This package retrieves data from the BOLD database of barcode clusters, and allo
 
 [Documentation for the BOLD API](http://v4.boldsystems.org/index.php/api_home).
 
-See also the taxize book for more options for taxonomic workflows with BOLD: <https://ropensci.github.io/taxize-book/>
+See also the taxize book for more options for taxonomic workflows with BOLD: <https://ropenscilabs.github.io/taxize-book/>
 
 ## Package status and installation
 
@@ -35,7 +35,9 @@ install.packages("bold")
 
 __Development Version__
 
-Install `sangerseqR` first
+Install `sangerseqR` first (used in function `bold::bold_trace()` only)
+
+For R < 3.5
 
 
 ```r
@@ -43,7 +45,15 @@ source("http://bioconductor.org/biocLite.R")
 biocLite("sangerseqR")
 ```
 
-Then `bold`
+For R >= 3.5
+
+
+```r
+install.packages('BiocManager')
+BiocManager::install('sangerseqR')
+```
+
+Then install `bold`
 
 
 ```r
@@ -66,16 +76,16 @@ Default is to get a list back
 ```r
 bold_seq(taxon='Coelioxys')[[1]]
 #> $id
-#> [1] "ABEE013-17"
+#> [1] "ABEE117-17"
 #> 
 #> $name
-#> [1] "Coelioxys afra"
+#> [1] "Coelioxys elongata"
 #> 
 #> $gene
-#> [1] "ABEE013-17"
+#> [1] "ABEE117-17"
 #> 
 #> $sequence
-#> [1] "AATATTATATATAATTTTTGCAATTTGATCAGGTATAATTGGATCTTCATTAAGAATAATTATTCGAATAGAATTAAGAACTCCAGGAAGATGAATCAACAACGATCAAATTTATAATTCTTTTATTACAGCTCATGCATTTTTAATAATTTTTTTTTTAGTAATACCATTTTTAATTGGAGGATTTGGAAATTGATTAGTACCTTTAATACTAGGAGCCCCCGATATAGCTTTTCCACGAATAAATAATGTAAGATTTTGACTATTACCTCCCTCAATTTTCTTATTATTATCAAGAACCCTAATTAACCCAAGAGCTGGTACTGGATGAACTGTATATCCTCCTTTATCCTTATATACATTTCATGCCTCACCTTCCGTTGATTTAGCAATTTTTTCACTTCATTTATCAGGAATTTCATCAATTATTGGATCAATAAATTTTATTGTTACAATCTTAATAATAAAAAATTTTTCTTTAAATTATAGACAAATACCATTATTTTCATGATCAGTTTTAATTACTACAATTTTACTTTTATTATCACTACCAATTTTAGCTGGAGCAATTACTATACTCCTATTTGATCGAAATTTAAATACCTCATTCTTTGACCCAATAGGAGGAGGAGATCCAATTTTATATCAACATTTATTT-----------------"
+#> [1] "------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------TTATCATTATATACATATCATCCTTCCCCATCAGTTGATTTAGCAATTTTTTYTTTACATTTATCAGGAATTTYTTYTATTATCGGATCAATAAATTTTATTGTAACAATTTTAATAATAAAAAATTATTCAATAAATTATAATCAAATACCTTTATTTCCATGATCAATTTTAATTACTACAATTTTATTATTATTATCATTACCTGTATTAGCAGGAGCTATTACAATATTATTATTTGATCGTAATTTAAATTCATCATTTTTTGACCCAATAGGAGGAGGAGATCCTATTTTATATCAACATTTATTTTG------------------------------------"
 ```
 
 You can optionally get back the `crul` response object
@@ -88,7 +98,7 @@ res$response_headers
 #> [1] "HTTP/1.1 200 OK"
 #> 
 #> $date
-#> [1] "Wed, 14 Nov 2018 00:49:40 GMT"
+#> [1] "Wed, 26 Jun 2019 02:48:47 GMT"
 #> 
 #> $server
 #> [1] "Apache/2.2.15 (Red Hat)"
@@ -117,27 +127,20 @@ By default you download `tsv` format data, which is given back to you as a `data
 ```r
 res <- bold_specimens(taxon='Osmia')
 head(res[,1:8])
-#>     processid      sampleid recordID    catalognum
-#> 1  ABEE151-17  NHMW-HYM 773  8362250              
-#> 2  ABEE184-17 NHMW-HYM 2142  8362283 NHMW-HYM 2142
-#> 3  ABEE185-17 NHMW-HYM 2144  8362284 NHMW-HYM 2144
-#> 4  ABEE188-17 NHMW-HYM 2242  8362287 NHMW-HYM 2242
-#> 5  ABEE190-17 NHMW-HYM 2259  8362289 NHMW-HYM 2259
-#> 6 GBAH3878-08      EU726629   856409      EU726629
-#>                                                       fieldnum
-#> 1                                                             
-#> 2 NBH2 Zimmermann 2017.04.03 Oesterreich WienAUTWienZimmermann
-#> 3 NBH2 Zimmermann 2017.04.03 Oesterreich WienAUTWienZimmermann
-#> 4       NHB3 Schoder 2017.05.30 Oesterreich WienAUTWienSchoder
-#> 5       NBH9 Schoder 2017.06.15 Oesterreich WienAUTWienSchoder
-#> 6                                                             
-#>             institution_storing collection_code      bin_uri
-#> 1 Naturhistorisches Museum Wien              NA BOLD:AAE5409
-#> 2 Naturhistorisches Museum Wien              NA BOLD:AAE5409
-#> 3 Naturhistorisches Museum Wien              NA BOLD:ADJ1069
-#> 4 Naturhistorisches Museum Wien              NA BOLD:AAF2155
-#> 5 Naturhistorisches Museum Wien              NA BOLD:AAD0313
-#> 6      Mined from GenBank, NCBI              NA BOLD:AAA4494
+#>     processid       sampleid recordID catalognum       fieldnum
+#> 1 ASGCB255-13 BIOUG07489-F04  3955532            BIOUG07489-F04
+#> 2 BEECA122-06     04-ON-0122   281152                04-ON-0122
+#> 3 BEECA186-06     03-BC-0186   281216                03-BC-0186
+#> 4 BEECA373-06     05-NT-0373   514740                05-NT-0373
+#> 5 BEECA501-06     06-ON-0501   514868                06-ON-0501
+#> 6 BEECA601-06     06-YT-0601   516953                06-YT-0601
+#>                  institution_storing collection_code      bin_uri
+#> 1  Biodiversity Institute of Ontario              NA BOLD:ABZ2181
+#> 2 York University, Packer Collection              NA BOLD:AAC8510
+#> 3 York University, Packer Collection              NA BOLD:AAC2237
+#> 4 York University, Packer Collection              NA BOLD:AAI2013
+#> 5 York University, Packer Collection              NA BOLD:AAC5789
+#> 6 York University, Packer Collection              NA BOLD:AAB4644
 ```
 
 ### Search for specimen plus sequence data
@@ -148,11 +151,11 @@ By default you download `tsv` format data, which is given back to you as a `data
 ```r
 res <- bold_seqspec(taxon='Osmia', sepfasta=TRUE)
 res$fasta[1:2]
-#> $`ABEE151-17`
-#> [1] "----------------------------------------------------------TTTTTGCTATATGATCAGGTACAGTAGGTTCAGCTATAAGAATTATTATTCGAATAGAACTTAGAGTTCCAGGATCATGAATTTCTAATGACCAAATTTATAATACTTTAGTAACTGCTCATGCTTTTTTAATAATTTTCTTTCTTGTAATACCATTTCTAATTGGAGGATTTGGAAATTGATTAATTCCTTTAATATTAGGAATTCCAGATATAGCCTTTCCACGAATAAATAATATTAGATTTTGACTTTTACCACCTTCTTTAATATTATTAATATTAAGAAATTTTATAAATCCAAGTCCAGGAACTGGATGAACTGTTTATCCTCCTCTTTCATCTTATATATTTCATTCTTCCCCATCAGTAGATTTAGCAATTTTTTCATTACATATTTCCGGATTATCCTCTATTATAGGTTCATTAAATTTTATTGTCACAATTATTATAATAAAAAATATTTCATTAAAACATACTCAATTACCCTTATTTTCTTGATCTGTATTTATTACTACTATTTTATTACTTTTCTCTCTCCCAGTTTTAGCTGGAGCTATTACTATACTTTTATTTGATCGAAATTTTAACACCTCATTTTTTGACCCGACGGGAGGTGGAGATCCAATTTTATACCAACATTTATTTTGATTTTTTGGACAT-----------------------"
+#> [[1]]
+#> NULL
 #> 
-#> $`ABEE184-17`
-#> [1] "-------CTCACTATAGGGATTCAACCAATCATAAAGATATTGGAATTCTTTATATAATTTTTGCTATATGATCAGGTACAGTAGGTTCAGCTATAAGAATTATTATTCGAATAGAACTTAGAGTTCCAGGATCATGAATTTCTAATGACCAAATTTATAATACTTTAGTAACTGCTCATGCTTTTTTAATAATTTTCTTTCTTGTAATACCATTTCTAATTGGAGGATTTGGAAATTGATTAATTCCTTTAATATTAGGAATTCCAGATATAGCCTTTCCACGAATAAATAATATTAGATTTTGACTTTTACCACCTTCTTTAATATTATTAATATTAAGAAATTTTATAAATCCAAGTCCAGGAACTGGATGAACTGTTTATCCTCCTCTTTCATCTTATATATTTCATTCTTCCCCATCAGTAGATTTAGCAATTTTTTCATTACATATTTCCGGATTATCCTCTATTATAGGTTCATTAAATTTTATTGTCACAATTATTATAATAAAAAATATTTCATTAAAACATACTCAATTACCCTTATTTTCTTGATCTGTATTTATTACTACTATTTTATTACTTTTCTCTCTCCCAGTTTTAGCTGGAGCTATTACTATACTTTTATTTGATCGAAATTTTAACACCTCATTTTTTGACC-------------------------------------------------------------------------------"
+#> [[2]]
+#> NULL
 ```
 
 Or you can index to a specific sequence like
@@ -160,8 +163,8 @@ Or you can index to a specific sequence like
 
 ```r
 res$fasta['GBAH0293-06']
-#> $`GBAH0293-06`
-#> [1] "------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------TTAATGTTAGGGATTCCAGATATAGCTTTTCCACGAATAAATAATATTAGATTTTGACTGTTACCTCCATCTTTAATATTATTACTTTTAAGAAATTTTTTAAATCCAAGTCCTGGAACAGGATGAACAGTTTATCCTCCTTTATCATCAAATTTATTTCATTCTTCTCCTTCAGTTGATTTAGCAATTTTTTCTTTACATATTTCAGGTTTATCTTCTATTATAGGTTCATTAAATTTTATTGTTACAATTATTATAATAAAAAATATTTCTTTAAAATATATTCAATTACCTTTATTTTCTTGATCTGTATTTATTACTACTATTCTTTTATTATTTTCTTTACCTGTATTAGCTGGAGCTATTACTATATTATTATTTGATCGAAATTTTAATACATCTTTTTTTGATCCAACAGGAGGGGGAGATCCAATTCTTTATCAACATTTATTTTGATTTTTTGGTCATCCTGAAGTTTATATTTTAATTTTACCTGGATTTGGATTAATTTCTCAAATTATTTCTAATGAAAGAGGAAAAAAAGAAACTTTTGGAAATATTGGTATAATTTATGCTATATTAAGAATTGGACTTTTAGGTTTTATTGTT---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"
+#> [[1]]
+#> NULL
 ```
 
 ### Get trace files
@@ -201,7 +204,14 @@ Using `taxize::downstream` get children of _Arthropoda_
 
 ```r
 x <- downstream("Arthropoda", db = "ncbi", downto = "class")
+#> ══  1 queries  ═══════════════
+#> ══  Results  ═════════════════
+#> 
+#> ● Total: 1 
+#> ● Found: 0 
+#> ● Not Found: 0
 nms <- x$Arthropoda$childtaxa_name
+#> Error in x$Arthropoda$childtaxa_name: $ operator is invalid for atomic vectors
 ```
 
 Optionally, check that the name exists in BOLD's data. Any that are not in 
@@ -210,26 +220,10 @@ BOLD will give back a row of NAs
 
 ```r
 checks <- bold_tax_name(nms)
+#> Error in lapply(name, function(x) get_response(bc(list(taxName = x, fuzzy = if (fuzzy) "true" else NULL)), : object 'nms' not found
 # all is good
 checks[,1:5]
-#>     taxid         taxon tax_rank tax_division parentid
-#> 1   26059   Pycnogonida    class      Animals       20
-#> 2      63     Arachnida    class      Animals       20
-#> 3      74   Merostomata    class      Animals       20
-#> 4  493944     Pauropoda    class      Animals       20
-#> 5   80390      Symphyla    class      Animals       20
-#> 6      85     Diplopoda    class      Animals       20
-#> 7      75     Chilopoda    class      Animals       20
-#> 8      82       Insecta    class      Animals       20
-#> 9     372    Collembola    class      Animals       20
-#> 10 734357       Protura    class      Animals       20
-#> 11     84     Remipedia    class      Animals       20
-#> 12     73 Cephalocarida    class      Animals       20
-#> 13     68  Branchiopoda    class      Animals       20
-#> 14 765970   Hexanauplia    class      Animals       20
-#> 15     69  Malacostraca    class      Animals       20
-#> 16 889450 Ichthyostraca    class      Animals       20
-#> 17     80     Ostracoda    class      Animals       20
+#> Error in eval(expr, envir, enclos): object 'checks' not found
 ```
 
 Then pass those names to `bold_seq()`. You could pass all names in at once,
