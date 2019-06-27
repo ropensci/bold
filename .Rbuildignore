@@ -16,3 +16,4 @@ revdep
 ^codemeta\.json$
 notes.R
 ^revdep$
+bold_trace_files

@@ -15,7 +15,7 @@
 
 -----
 
-This version xxx.
+This version implements a number of minor fixes and improvements.
 
 Thanks! 
 Scott Chamberlain
