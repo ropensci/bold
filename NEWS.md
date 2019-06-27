@@ -1,3 +1,18 @@
+bold 0.9.0
+==========
+
+### MINOR IMPROVEMENTS
+
+* improved test coverage (#58)
+* allow curl options to be passed into `bold_identify_parents()` (#64)
+* fix instructions in README for package `sangerseqR` - instructions depend on which version of R is being used (#65) thanks @KevCaz
+
+### BUG FIXES
+
+* fixes in package for `_R_CHECK_LENGTH_1_LOGIC2_` (#57)
+* `bold_identify()` fix: ampersands needed to be escaped (#62) thanks @devonorourke
+
+
 bold 0.8.6
 ==========
 

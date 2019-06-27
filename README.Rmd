@@ -22,7 +22,7 @@ This package retrieves data from the BOLD database of barcode clusters, and allo
 
 [Documentation for the BOLD API](http://v4.boldsystems.org/index.php/api_home).
 
-See also the taxize book for more options for taxonomic workflows with BOLD: <https://ropensci.github.io/taxize-book/>
+See also the taxize book for more options for taxonomic workflows with BOLD: <https://ropenscilabs.github.io/taxize-book/>
 
 ## Package status and installation
 
@@ -41,14 +41,23 @@ install.packages("bold")
 
 __Development Version__
 
-Install `sangerseqR` first
+Install `sangerseqR` first (used in function `bold::bold_trace()` only)
+
+For R < 3.5
 
 ```{r eval=FALSE}
 source("http://bioconductor.org/biocLite.R")
 biocLite("sangerseqR")
 ```
 
-Then `bold`
+For R >= 3.5
+
+```{r eval=FALSE}
+install.packages('BiocManager')
+BiocManager::install('sangerseqR')
+```
+
+Then install `bold`
 
 ```{r eval=FALSE}
 devtools::install_github("ropensci/bold")
@@ -157,6 +166,8 @@ Get citation information for `bold` in R by running: `citation(package = 'bold')
 * Please [report any issues or bugs](https://github.com/ropensci/bold/issues)
 * License: MIT
 * Get citation information for `bold` in R doing `citation(package = 'bold')`
-* Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
+* Please note that this project is released with a [Contributor Code of Conduct][coc]. By participating in this project you agree to abide by its terms.
 
 [![ropensci_footer](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)
+
+[coc]: https://github.com/ropensci/bold/blob/master/CODE_OF_CONDUCT.md

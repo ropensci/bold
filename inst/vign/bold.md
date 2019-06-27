@@ -13,7 +13,7 @@
 + [BOLD home page](http://boldsystems.org/)
 + [BOLD API docs](http://v4.boldsystems.org/index.php/api_home)
 
-See also the taxize book for more options for taxonomic workflows with BOLD: <https://ropensci.github.io/taxize-book/>
+See also the taxize book for more options for taxonomic workflows with BOLD: <https://ropenscilabs.github.io/taxize-book/>
 
 ### Using bold
 

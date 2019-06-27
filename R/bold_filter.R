@@ -30,7 +30,7 @@ bold_filter <- function(x, by, how = "max") {
   if (!how %in% c("min", "max")) stop("'how' must be one of 'min' or 'max'")
   if (!by %in% names(x)) stop(sprintf("'%s' is not a valid column in 'x'", by))
   xsp <- split(x, x[[by]])
-  tibble::as_data_frame(setrbind(lapply(xsp, function(z) {
+  tibble::as_tibble(setrbind(lapply(xsp, function(z) {
     lgts <- vapply(z$nucleotides, function(w) nchar(gsub("-", "", w)), 1,
                    USE.NAMES = FALSE)
     z[eval(parse(text = paste0("which.", how)))(lgts), ]
