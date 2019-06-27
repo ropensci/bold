@@ -98,7 +98,7 @@ res$response_headers
 #> [1] "HTTP/1.1 200 OK"
 #> 
 #> $date
-#> [1] "Wed, 26 Jun 2019 02:48:47 GMT"
+#> [1] "Thu, 27 Jun 2019 17:28:47 GMT"
 #> 
 #> $server
 #> [1] "Apache/2.2.15 (Red Hat)"
@@ -205,13 +205,13 @@ Using `taxize::downstream` get children of _Arthropoda_
 ```r
 x <- downstream("Arthropoda", db = "ncbi", downto = "class")
 #> ══  1 queries  ═══════════════
+#> ✔  Found:  Arthropoda
 #> ══  Results  ═════════════════
 #> 
 #> ● Total: 1 
-#> ● Found: 0 
+#> ● Found: 1 
 #> ● Not Found: 0
 nms <- x$Arthropoda$childtaxa_name
-#> Error in x$Arthropoda$childtaxa_name: $ operator is invalid for atomic vectors
 ```
 
 Optionally, check that the name exists in BOLD's data. Any that are not in 
@@ -220,10 +220,26 @@ BOLD will give back a row of NAs
 
 ```r
 checks <- bold_tax_name(nms)
-#> Error in lapply(name, function(x) get_response(bc(list(taxName = x, fuzzy = if (fuzzy) "true" else NULL)), : object 'nms' not found
 # all is good
 checks[,1:5]
-#> Error in eval(expr, envir, enclos): object 'checks' not found
+#>     taxid         taxon tax_rank tax_division parentid
+#> 1   26059   Pycnogonida    class      Animals       20
+#> 2      63     Arachnida    class      Animals       20
+#> 3      74   Merostomata    class      Animals       20
+#> 4  493944     Pauropoda    class      Animals       20
+#> 5   80390      Symphyla    class      Animals       20
+#> 6      85     Diplopoda    class      Animals       20
+#> 7      75     Chilopoda    class      Animals       20
+#> 8      82       Insecta    class      Animals       20
+#> 9     372    Collembola    class      Animals       20
+#> 10 734357       Protura    class      Animals       20
+#> 11     84     Remipedia    class      Animals       20
+#> 12     73 Cephalocarida    class      Animals       20
+#> 13     68  Branchiopoda    class      Animals       20
+#> 14 765970   Hexanauplia    class      Animals       20
+#> 15     69  Malacostraca    class      Animals       20
+#> 16 889450 Ichthyostraca    class      Animals       20
+#> 17     80     Ostracoda    class      Animals       20
 ```
 
 Then pass those names to `bold_seq()`. You could pass all names in at once,
@@ -244,6 +260,8 @@ Get citation information for `bold` in R by running: `citation(package = 'bold')
 * Please [report any issues or bugs](https://github.com/ropensci/bold/issues)
 * License: MIT
 * Get citation information for `bold` in R doing `citation(package = 'bold')`
-* Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
+* Please note that this project is released with a [Contributor Code of Conduct][coc]. By participating in this project you agree to abide by its terms.
 
 [![ropensci_footer](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)
+
+[coc]: https://github.com/ropensci/bold/blob/master/CODE_OF_CONDUCT.md
