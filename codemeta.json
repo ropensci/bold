@@ -10,14 +10,14 @@
   "codeRepository": "https://github.com/ropensci/bold",
   "issueTracker": "https://github.com/ropensci/bold/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.8.6",
+  "version": "0.9.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.5.1",
+    "version": "3.6.0",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.5.1 Patched (2018-11-18 r75627)",
+  "runtimePlatform": "R version 3.6.0 Patched (2019-04-30 r76446)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -96,7 +96,7 @@
       "@type": "SoftwareApplication",
       "identifier": "vcr",
       "name": "vcr",
-      "version": ">= 0.2.0",
+      "version": ">= 0.2.2",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -212,5 +212,8 @@
   "developmentStatus": "active",
   "releaseNotes": "https://github.com/ropensci/bold/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/bold/blob/master/README.md",
-  "fileSize": "558.333KB"
+  "fileSize": "694.063KB",
+  "contributor": {},
+  "copyrightHolder": {},
+  "funder": {}
 }
