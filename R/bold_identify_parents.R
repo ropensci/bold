@@ -2,57 +2,57 @@
 #'
 #' @export
 #' @param x (data.frame/list) list of data.frames - the output from a call to
-#' \code{\link{bold_identify}}. or a single data.frame from the output from
-#' same. required.
+#' [bold_identify()]. or a single data.frame from the output from same.
+#' required.
 #' @param wide (logical) output in long or wide format. See Details.
-#' Default: \code{FALSE}
+#' Default: `FALSE`
 #' @param taxid  (character) A taxid name. Optional. See `Filtering` below.
 #' @param taxon (character) A taxon name. Optional. See `Filtering` below.
-#' @param tax_rank (character) A tax_rank name. Optional. See `Filtering` 
+#' @param tax_rank (character) A tax_rank name. Optional. See `Filtering`
 #' below.
-#' @param tax_division (character) A tax_division name. Optional. See 
+#' @param tax_division (character) A tax_division name. Optional. See
 #' `Filtering` below.
-#' @param parentid (character) A parentid name. Optional. See `Filtering` 
+#' @param parentid (character) A parentid name. Optional. See `Filtering`
 #' below.
-#' @param parentname (character) A parentname name. Optional. See `Filtering` 
+#' @param parentname (character) A parentname name. Optional. See `Filtering`
 #' below.
-#' @param taxonrep (character) A taxonrep name. Optional. See `Filtering` 
+#' @param taxonrep (character) A taxonrep name. Optional. See `Filtering`
 #' below.
-#' @param specimenrecords (character) A specimenrecords name. Optional. 
+#' @param specimenrecords (character) A specimenrecords name. Optional.
 #' See `Filtering` below.
-#' @param ... Further args passed on to \code{\link[crul]{verb-GET}}, main 
+#' @param ... Further args passed on to [crul::verb-GET], main
 #' purpose being curl debugging
-#' 
+#'
 #' @details This function gets unique set of taxonomic names from the input
-#' data.frame, then queries \code{\link{bold_tax_name}} to get the
-#' taxonomic ID, passing it to \code{\link{bold_tax_id}} to get the parent
+#' data.frame, then queries [bold_tax_name()] to get the
+#' taxonomic ID, passing it to [bold_tax_id()] to get the parent
 #' names, then attaches those to the input data.
 #'
 #' Records in the input data that do not have matches for parent names
 #' simply get NA values in the added columns.
 #'
 #' @section Filtering:
-#' The parameters `taxid`, `taxon`, `tax_rank`, `tax_division`, 
-#' `parentid`, `parentname`,`taxonrep`, and `specimenrecords` are not used 
-#' in the search sent to BOLD, but are used in filtering the data down 
-#' to a subset that is closer to the target you want. For all these 
-#' parameters, you can use regex strings since we use [grep()] internally 
-#' to match. Filtering narrows down to the set that matches your query, 
-#' and removes the rest. The data.frame that we filter on with these 
+#' The parameters `taxid`, `taxon`, `tax_rank`, `tax_division`,
+#' `parentid`, `parentname`,`taxonrep`, and `specimenrecords` are not used
+#' in the search sent to BOLD, but are used in filtering the data down
+#' to a subset that is closer to the target you want. For all these
+#' parameters, you can use regex strings since we use [grep()] internally
+#' to match. Filtering narrows down to the set that matches your query,
+#' and removes the rest. The data.frame that we filter on with these
 #' parameters internally is the result of a call to the [bold_tax_name()]
-#' function. 
-#' 
+#' function.
+#'
 #' @section wide vs long format:
-#' When \code{wide = FALSE} you get many rows for each record. Essentially,
-#' we \code{cbind} the taxonomic classification onto the one row from the
-#' result of \code{\link{bold_identify}}, giving as many rows as there are
+#' When `wide = FALSE` you get many rows for each record. Essentially,
+#' we `cbind` the taxonomic classification onto the one row from the
+#' result of [bold_identify()], giving as many rows as there are
 #' taxa in the taxonomic classification.
 #'
-#' When \code{wide = TRUE} you get one row for each record - thus the
+#' When `wide = TRUE` you get one row for each record - thus the
 #' dimensions of the input data stay the same. For this option, we take just
 #' the rows for taxonomic ID and name for each taxon in the taxonomic
 #' classification, and name the columns by the taxon rank, so you get
-#' \code{phylum} and \code{phylum_id}, and so on.
+#' `phylum` and `phylum_id`, and so on.
 #'
 #' @return a list of the same length as the input
 #'
@@ -68,40 +68,40 @@
 #' out <- bold_identify_parents(df, wide = TRUE)
 #' str(out)
 #' head(out[[1]])
-#' 
+#'
 #' x <- bold_seq(taxon = "Satyrium")
 #' out <- bold_identify(c(x[[1]]$sequence, x[[13]]$sequence))
 #' res <- bold_identify_parents(out)
 #' res
-#' 
+#'
 #' x <- bold_seq(taxon = 'Diplura')
 #' out <- bold_identify(vapply(x, "[[", "", "sequence")[1:20])
 #' res <- bold_identify_parents(out)
 #' }
-bold_identify_parents <- function(x, wide = FALSE, taxid = NULL, 
-  taxon = NULL, tax_rank = NULL, tax_division = NULL, parentid = NULL, 
+bold_identify_parents <- function(x, wide = FALSE, taxid = NULL,
+  taxon = NULL, tax_rank = NULL, tax_division = NULL, parentid = NULL,
   parentname = NULL, taxonrep = NULL, specimenrecords = NULL, ...) {
   UseMethod("bold_identify_parents")
 }
 
 #' @export
-bold_identify_parents.default <- function(x, wide = FALSE, taxid = NULL, 
-  taxon = NULL, tax_rank = NULL, tax_division = NULL, parentid = NULL, 
+bold_identify_parents.default <- function(x, wide = FALSE, taxid = NULL,
+  taxon = NULL, tax_rank = NULL, tax_division = NULL, parentid = NULL,
   parentname = NULL, taxonrep = NULL, specimenrecords = NULL, ...) {
   stop("no 'bold_identify_parents' method for ", class(x)[1L], call. = FALSE)
 }
 
 #' @export
-bold_identify_parents.data.frame <- function(x, wide = FALSE, taxid = NULL, 
-  taxon = NULL, tax_rank = NULL, tax_division = NULL, parentid = NULL, 
+bold_identify_parents.data.frame <- function(x, wide = FALSE, taxid = NULL,
+  taxon = NULL, tax_rank = NULL, tax_division = NULL, parentid = NULL,
   parentname = NULL, taxonrep = NULL, specimenrecords = NULL, ...) {
-  bold_identify_parents(list(x), wide, taxid, taxon, tax_rank, 
+  bold_identify_parents(list(x), wide, taxid, taxon, tax_rank,
     tax_division, parentid, parentname, taxonrep, specimenrecords)
 }
 
 #' @export
-bold_identify_parents.list <- function(x, wide = FALSE, taxid = NULL, 
-  taxon = NULL, tax_rank = NULL, tax_division = NULL, parentid = NULL, 
+bold_identify_parents.list <- function(x, wide = FALSE, taxid = NULL,
+  taxon = NULL, tax_rank = NULL, tax_division = NULL, parentid = NULL,
   parentname = NULL, taxonrep = NULL, specimenrecords = NULL, ...) {
 
   assert(wide, "logical")

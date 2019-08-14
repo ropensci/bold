@@ -9,40 +9,41 @@ bold_specimens(taxon = NULL, ids = NULL, bin = NULL,
   geo = NULL, response = FALSE, format = "tsv", ...)
 }
 \arguments{
-\item{taxon}{(character) Returns all records containing matching taxa. Taxa 
-includes the ranks of  phylum, class, order, family, subfamily, genus, 
+\item{taxon}{(character) Returns all records containing matching taxa. Taxa
+includes the ranks of  phylum, class, order, family, subfamily, genus,
 and species.}
 
-\item{ids}{(character) Returns all records containing matching IDs. IDs 
+\item{ids}{(character) Returns all records containing matching IDs. IDs
 include Sample IDs, Process IDs, Museum IDs and Field IDs.}
 
-\item{bin}{(character) Returns all records contained in matching BINs. A 
+\item{bin}{(character) Returns all records contained in matching BINs. A
 BIN is defined by a Barcode Index Number URI.}
 
-\item{container}{(character) Returns all records contained in matching 
+\item{container}{(character) Returns all records contained in matching
 projects or datasets. Containers include project codes and dataset codes}
 
-\item{institutions}{(character) Returns all records stored in matching 
+\item{institutions}{(character) Returns all records stored in matching
 institutions. Institutions are the Specimen Storing Site.}
 
-\item{researchers}{(character) Returns all records containing matching 
+\item{researchers}{(character) Returns all records containing matching
 researcher names. Researchers include collectors and specimen identifiers.}
 
-\item{geo}{(character) Returns all records collected in matching geographic 
+\item{geo}{(character) Returns all records collected in matching geographic
 sites. Geographic sites includes countries and province/states.}
 
-\item{response}{(logical) Note that response is the object that returns 
-from the Curl call, useful for debugging, and getting detailed info on 
+\item{response}{(logical) Note that response is the object that returns
+from the Curl call, useful for debugging, and getting detailed info on
 the API call.}
 
-\item{format}{(character) One of xml, json, tsv (default). tsv format gives 
+\item{format}{(character) One of xml, json, tsv (default). tsv format gives
 back a data.frame object. xml gives back parsed XML as \code{xml_document}
 object. 'json' (JavaScript Object Notation) and 'dwc' (Darwin Core Archive)
 are supported in theory, but the JSON can be malformed, so we don't support
 that here, and the DWC option actually returns TSV.}
 
-\item{...}{Further args passed on to \code{\link[crul]{HttpClient}}, main 
-purpose being curl debugging}
+\item{...}{Further args passed on to
+\code{\link[crul:verb-GET]{crul::verb-GET}}, main purpose being curl
+debugging}
 }
 \description{
 Search BOLD for specimens.

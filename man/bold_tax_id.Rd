@@ -10,19 +10,20 @@ bold_tax_id(id, dataTypes = "basic", includeTree = FALSE,
 \arguments{
 \item{id}{(integer) One or more BOLD taxonomic identifiers. required.}
 
-\item{dataTypes}{(character) Specifies the datatypes that will be 
-returned. 'all' returns all data. 'basic' returns basic taxon information. 
+\item{dataTypes}{(character) Specifies the datatypes that will be
+returned. 'all' returns all data. 'basic' returns basic taxon information.
 'images' returns specimen images.}
 
-\item{includeTree}{(logical) If TRUE (default: FALSE), returns a list 
+\item{includeTree}{(logical) If \code{TRUE} (default: \code{FALSE}), returns a list
 containing information for parent taxa as well as the specified taxon.}
 
-\item{response}{(logical) Note that response is the object that returns 
-from the Curl call, useful for debugging, and getting detailed info on 
+\item{response}{(logical) Note that response is the object that returns
+from the Curl call, useful for debugging, and getting detailed info on
 the API call.}
 
-\item{...}{Further args passed on to \code{\link[crul]{HttpClient}}, main 
-purpose being curl debugging}
+\item{...}{Further args passed on to
+\code{\link[crul:verb-GET]{crul::verb-GET}}, main purpose being curl
+debugging}
 }
 \description{
 Search BOLD for taxonomy data by BOLD ID.
@@ -60,5 +61,5 @@ bold_tax_id(id=88899, verbose = TRUE)
 \url{http://v4.boldsystems.org/index.php/resources/api?type=taxonomy}
 }
 \seealso{
-\code{bold_tax_name}
+\code{\link[=bold_tax_name]{bold_tax_name()}}
 }

@@ -4,15 +4,15 @@
 #' @template args
 #' @template otherargs
 #' @references
-#' \url{http://v4.boldsystems.org/index.php/resources/api?type=webservices}
+#' <http://v4.boldsystems.org/index.php/resources/api?type=webservices>
 #'
 #' @param marker (character) Returns all records containing matching marker
 #' codes. See Details.
 #' @param format (character) One of xml or tsv (default). tsv format gives
 #' back a data.frame object. xml gives back parsed xml as a
-#' @param sepfasta (logical) If \code{TRUE}, the fasta data is separated into
+#' @param sepfasta (logical) If `TRUE`, the fasta data is separated into
 #' a list with names matching the processid's from the data frame.
-#' Default: \code{FALSE}
+#' Default: `FALSE`
 #'
 #' @return Either a data.frame, parsed xml, a http response object, or a list
 #' with length two (a data.frame w/o nucleotide data, and a list with

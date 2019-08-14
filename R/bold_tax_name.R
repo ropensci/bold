@@ -2,14 +2,14 @@
 #'
 #' @export
 #' @param name (character) One or more scientific names. required.
-#' @param fuzzy (logical) Whether to use fuzzy search or not (default: FALSE).
+#' @param fuzzy (logical) Whether to use fuzzy search or not (default: `FALSE`)
 #' @template otherargs
 #' @references 
-#' \url{http://v4.boldsystems.org/index.php/resources/api?type=taxonomy}
-#' @details The \code{dataTypes} parameter is not supported in this function. 
+#' <http://v4.boldsystems.org/index.php/resources/api?type=taxonomy>
+#' @details The `dataTypes` parameter is not supported in this function. 
 #' If you want to use that parameter, get an ID from this function and pass 
-#' it into \code{bold_tax_id}, and then use the \code{dataTypes} parameter.
-#' @seealso \code{\link{bold_tax_id}}
+#' it into `bold_tax_id`, and then use the `dataTypes` parameter.
+#' @seealso [bold_tax_id()]
 #' @examples \dontrun{
 #' bold_tax_name(name='Diplura')
 #' bold_tax_name(name='Osmia')

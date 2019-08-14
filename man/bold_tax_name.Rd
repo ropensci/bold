@@ -9,21 +9,22 @@ bold_tax_name(name, fuzzy = FALSE, response = FALSE, ...)
 \arguments{
 \item{name}{(character) One or more scientific names. required.}
 
-\item{fuzzy}{(logical) Whether to use fuzzy search or not (default: FALSE).}
+\item{fuzzy}{(logical) Whether to use fuzzy search or not (default: \code{FALSE})}
 
-\item{response}{(logical) Note that response is the object that returns 
-from the Curl call, useful for debugging, and getting detailed info on 
+\item{response}{(logical) Note that response is the object that returns
+from the Curl call, useful for debugging, and getting detailed info on
 the API call.}
 
-\item{...}{Further args passed on to \code{\link[crul]{HttpClient}}, main 
-purpose being curl debugging}
+\item{...}{Further args passed on to
+\code{\link[crul:verb-GET]{crul::verb-GET}}, main purpose being curl
+debugging}
 }
 \description{
 Search BOLD for taxonomy data by taxonomic name
 }
 \details{
-The \code{dataTypes} parameter is not supported in this function. 
-If you want to use that parameter, get an ID from this function and pass 
+The \code{dataTypes} parameter is not supported in this function.
+If you want to use that parameter, get an ID from this function and pass
 it into \code{bold_tax_id}, and then use the \code{dataTypes} parameter.
 }
 \examples{
@@ -52,5 +53,5 @@ bold_tax_name(name='Diplura', verbose = TRUE)
 \url{http://v4.boldsystems.org/index.php/resources/api?type=taxonomy}
 }
 \seealso{
-\code{\link{bold_tax_id}}
+\code{\link[=bold_tax_id]{bold_tax_id()}}
 }

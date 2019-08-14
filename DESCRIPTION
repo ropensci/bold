@@ -5,7 +5,7 @@ Description: A programmatic interface to the Web Service methods provided by
     Functions include methods for searching by sequences by taxonomic names,
     ids, collectors, and institutions; as well as a function for searching
     for specimens, and downloading trace files.
-Version: 0.9.0.9100
+Version: 0.9.1.9100
 License: MIT + file LICENSE
 Authors@R: c(person("Scott", "Chamberlain",
     role = c("aut", "cre"),
@@ -16,6 +16,7 @@ BugReports: https://github.com/ropensci/bold/issues
 VignetteBuilder: knitr
 LazyData: yes
 Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
 Imports:
     xml2,
     crul (>= 0.3.8),

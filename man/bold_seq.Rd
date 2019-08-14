@@ -9,51 +9,52 @@ bold_seq(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
   marker = NULL, response = FALSE, ...)
 }
 \arguments{
-\item{taxon}{(character) Returns all records containing matching taxa. Taxa 
-includes the ranks of  phylum, class, order, family, subfamily, genus, 
+\item{taxon}{(character) Returns all records containing matching taxa. Taxa
+includes the ranks of  phylum, class, order, family, subfamily, genus,
 and species.}
 
-\item{ids}{(character) Returns all records containing matching IDs. IDs 
+\item{ids}{(character) Returns all records containing matching IDs. IDs
 include Sample IDs, Process IDs, Museum IDs and Field IDs.}
 
-\item{bin}{(character) Returns all records contained in matching BINs. A 
+\item{bin}{(character) Returns all records contained in matching BINs. A
 BIN is defined by a Barcode Index Number URI.}
 
-\item{container}{(character) Returns all records contained in matching 
+\item{container}{(character) Returns all records contained in matching
 projects or datasets. Containers include project codes and dataset codes}
 
-\item{institutions}{(character) Returns all records stored in matching 
+\item{institutions}{(character) Returns all records stored in matching
 institutions. Institutions are the Specimen Storing Site.}
 
-\item{researchers}{(character) Returns all records containing matching 
+\item{researchers}{(character) Returns all records containing matching
 researcher names. Researchers include collectors and specimen identifiers.}
 
-\item{geo}{(character) Returns all records collected in matching geographic 
+\item{geo}{(character) Returns all records collected in matching geographic
 sites. Geographic sites includes countries and province/states.}
 
-\item{marker}{(character) Returns all records containing matching 
+\item{marker}{(character) Returns all records containing matching
 marker codes.}
 
-\item{response}{(logical) Note that response is the object that returns 
-from the Curl call, useful for debugging, and getting detailed info on 
+\item{response}{(logical) Note that response is the object that returns
+from the Curl call, useful for debugging, and getting detailed info on
 the API call.}
 
-\item{...}{Further args passed on to \code{\link[crul]{HttpClient}}, main 
-purpose being curl debugging}
+\item{...}{Further args passed on to
+\code{\link[crul:verb-GET]{crul::verb-GET}}, main purpose being curl
+debugging}
 }
 \value{
-A list with each element of length 4 with slots for id, name, 
+A list with each element of length 4 with slots for id, name,
 gene, and sequence.
 }
 \description{
-Get sequences for a taxonomic name, id, bin, container, institution, 
+Get sequences for a taxonomic name, id, bin, container, institution,
 researcher, geographic, place, or gene.
 }
 \section{If a request times out}{
 
-This is likely because you're request was for a large number of 
-sequences and the BOLD service timed out. You still should get 
-some output, those sequences that were retrieved before the time 
+This is likely because you're request was for a large number of
+sequences and the BOLD service timed out. You still should get
+some output, those sequences that were retrieved before the time
 out happened. See the README (https://github.com/ropensci/bold/#bold)
 for an example of dealing with large data problems with this function.
 }
