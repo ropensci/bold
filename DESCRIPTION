@@ -11,7 +11,7 @@ Authors@R: c(person("Scott", "Chamberlain",
     role = c("aut", "cre"),
     email = "myrmecocystus@gmail.com",
     comment = c(ORCID="0000-0003-1444-9135")))
-URL: https://github.com/ropensci/bold
+URL: https://docs.ropensci.org/bold, https://github.com/ropensci/bold
 BugReports: https://github.com/ropensci/bold/issues
 VignetteBuilder: knitr
 LazyData: yes
