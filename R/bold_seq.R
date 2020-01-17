@@ -7,6 +7,8 @@
 #' @export
 #' @template args
 #' @template otherargs
+#' @template large-requests
+#' @template marker
 #' @references 
 #' <http://v4.boldsystems.org/index.php/resources/api?type=webservices>
 #'
@@ -15,13 +17,6 @@
 #'
 #' @return A list with each element of length 4 with slots for id, name, 
 #' gene, and sequence.
-#' 
-#' @section If a request times out:
-#' This is likely because you're request was for a large number of 
-#' sequences and the BOLD service timed out. You still should get 
-#' some output, those sequences that were retrieved before the time 
-#' out happened. See the README (https://github.com/ropensci/bold/#bold)
-#' for an example of dealing with large data problems with this function.
 #' 
 #' @examples \dontrun{
 #' res <- bold_seq(taxon='Coelioxys')
