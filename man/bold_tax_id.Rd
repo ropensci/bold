@@ -4,8 +4,13 @@
 \alias{bold_tax_id}
 \title{Search BOLD for taxonomy data by BOLD ID.}
 \usage{
-bold_tax_id(id, dataTypes = "basic", includeTree = FALSE,
-  response = FALSE, ...)
+bold_tax_id(
+  id,
+  dataTypes = "basic",
+  includeTree = FALSE,
+  response = FALSE,
+  ...
+)
 }
 \arguments{
 \item{id}{(integer) One or more BOLD taxonomic identifiers. required.}

@@ -4,9 +4,19 @@
 \alias{bold_identify_parents}
 \title{Add taxonomic parent names to a data.frame}
 \usage{
-bold_identify_parents(x, wide = FALSE, taxid = NULL, taxon = NULL,
-  tax_rank = NULL, tax_division = NULL, parentid = NULL,
-  parentname = NULL, taxonrep = NULL, specimenrecords = NULL, ...)
+bold_identify_parents(
+  x,
+  wide = FALSE,
+  taxid = NULL,
+  taxon = NULL,
+  tax_rank = NULL,
+  tax_division = NULL,
+  parentid = NULL,
+  parentname = NULL,
+  taxonrep = NULL,
+  specimenrecords = NULL,
+  ...
+)
 }
 \arguments{
 \item{x}{(data.frame/list) list of data.frames - the output from a call to

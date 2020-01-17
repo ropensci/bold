@@ -4,9 +4,18 @@
 \alias{bold_stats}
 \title{Get BOLD stats}
 \usage{
-bold_stats(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
-  institutions = NULL, researchers = NULL, geo = NULL,
-  dataType = "drill_down", response = FALSE, ...)
+bold_stats(
+  taxon = NULL,
+  ids = NULL,
+  bin = NULL,
+  container = NULL,
+  institutions = NULL,
+  researchers = NULL,
+  geo = NULL,
+  dataType = "drill_down",
+  response = FALSE,
+  ...
+)
 }
 \arguments{
 \item{taxon}{(character) Returns all records containing matching taxa. Taxa

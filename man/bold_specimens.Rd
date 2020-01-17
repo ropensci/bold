@@ -4,9 +4,18 @@
 \alias{bold_specimens}
 \title{Search BOLD for specimens.}
 \usage{
-bold_specimens(taxon = NULL, ids = NULL, bin = NULL,
-  container = NULL, institutions = NULL, researchers = NULL,
-  geo = NULL, response = FALSE, format = "tsv", ...)
+bold_specimens(
+  taxon = NULL,
+  ids = NULL,
+  bin = NULL,
+  container = NULL,
+  institutions = NULL,
+  researchers = NULL,
+  geo = NULL,
+  response = FALSE,
+  format = "tsv",
+  ...
+)
 }
 \arguments{
 \item{taxon}{(character) Returns all records containing matching taxa. Taxa
