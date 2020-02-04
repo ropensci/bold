@@ -15,7 +15,7 @@ This package retrieves data from the BOLD database of barcode clusters, and allo
 
 [Documentation for the BOLD API](http://v4.boldsystems.org/index.php/api_home).
 
-See also the taxize book for more options for taxonomic workflows with BOLD: <https://ropenscilabs.github.io/taxize-book/>
+See also the taxize book for more options for taxonomic workflows with BOLD: <https://taxize.dev/>
 
 ## Package status and installation
 
