@@ -5,9 +5,6 @@
 \alias{bold-package}
 \alias{bold}
 \title{bold: A programmatic interface to the Barcode of Life data.}
-\description{
-bold: A programmatic interface to the Barcode of Life data.
-}
 \section{About}{
 
 
