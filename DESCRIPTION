@@ -5,7 +5,7 @@ Description: A programmatic interface to the Web Service methods provided by
     Functions include methods for searching by sequences by taxonomic names,
     ids, collectors, and institutions; as well as a function for searching
     for specimens, and downloading trace files.
-Version: 0.9.2.92
+Version: 0.9.4.91
 License: MIT + file LICENSE
 Authors@R: c(person("Scott", "Chamberlain",
     role = c("aut", "cre"),
@@ -30,7 +30,7 @@ Suggests:
     sangerseqR,
     knitr,
     testthat,
-    vcr (>= 0.2.2)
+    vcr (>= 0.5.4)
 RoxygenNote: 7.1.0
 X-schema.org-applicationCategory: Data Access
 X-schema.org-keywords: biodiversity, barcode, DNA, sequences, fasta
