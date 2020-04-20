@@ -12,7 +12,10 @@ knitr::opts_chunk$set(
 
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![cran version](https://www.r-pkg.org/badges/version/bold)](https://cran.r-project.org/package=bold)
-
+[![cran checks](https://cranchecks.info/badges/worst/bold)](https://cranchecks.info/pkgs/bold)
+[![Build Status](https://travis-ci.org/ropensci/bold.svg?branch=master)](https://travis-ci.org/ropensci/bold)
+[![codecov.io](https://codecov.io/github/ropensci/bold/coverage.svg?branch=master)](https://codecov.io/github/ropensci/bold?branch=master)
+[![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/bold)](https://github.com/metacran/cranlogs.app)
 
 `bold` accesses BOLD barcode data.
 
@@ -20,16 +23,11 @@ The Barcode of Life Data Systems (BOLD) is designed to support the generation an
 
 This package retrieves data from the BOLD database of barcode clusters, and allows for searching of over 1.7M public records using multiple search criteria including sequence data, specimen data, specimen *plus* sequence data, as well as trace files.
 
-[Documentation for the BOLD API](http://v4.boldsystems.org/index.php/api_home).
+Documentation for the BOLD API: http://v4.boldsystems.org/index.php/api_home
 
-See also the taxize book for more options for taxonomic workflows with BOLD: <https://taxize.dev/>
+See also the taxize book for more options for taxonomic workflows with BOLD: https://taxize.dev/
 
-## Package status and installation
-
-[![cran checks](https://cranchecks.info/badges/worst/bold)](https://cranchecks.info/pkgs/bold)
-[![Build Status](https://travis-ci.org/ropensci/bold.svg?branch=master)](https://travis-ci.org/ropensci/bold)
-[![codecov.io](https://codecov.io/github/ropensci/bold/coverage.svg?branch=master)](https://codecov.io/github/ropensci/bold?branch=master)
-[![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/bold)](https://github.com/metacran/cranlogs.app)
+## Installation
 
 __Installation instructions__
 
