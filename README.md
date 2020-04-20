@@ -49,8 +49,10 @@ For R >= 3.5
 
 
 ```r
-install.packages('BiocManager')
-BiocManager::install('sangerseqR')
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("sangerseqR")
 ```
 
 Then install `bold`
@@ -95,13 +97,16 @@ You can optionally get back the `crul` response object
 res <- bold_seq(taxon='Coelioxys', response=TRUE)
 res$response_headers
 #> $status
-#> [1] "HTTP/1.1 200 OK"
-#> 
-#> $date
-#> [1] "Fri, 17 Jan 2020 16:54:19 GMT"
+#> [1] "HTTP/2 200 "
 #> 
 #> $server
-#> [1] "Apache/2.2.15 (Red Hat)"
+#> [1] "nginx"
+#> 
+#> $date
+#> [1] "Mon, 20 Apr 2020 16:11:50 GMT"
+#> 
+#> $`content-type`
+#> [1] "application/x-download"
 #> 
 #> $`x-powered-by`
 #> [1] "PHP/5.3.15"
@@ -109,14 +114,14 @@ res$response_headers
 #> $`content-disposition`
 #> [1] "attachment; filename=fasta.fas"
 #> 
-#> $connection
-#> [1] "close"
+#> $`x-frame-options`
+#> [1] "SAMEORIGIN"
 #> 
-#> $`transfer-encoding`
-#> [1] "chunked"
+#> $`x-content-type-options`
+#> [1] "nosniff"
 #> 
-#> $`content-type`
-#> [1] "application/x-download"
+#> $`x-xss-protection`
+#> [1] "1; mode=block"
 ```
 
 ### Search for specimen data only
@@ -127,20 +132,20 @@ By default you download `tsv` format data, which is given back to you as a `data
 ```r
 res <- bold_specimens(taxon='Osmia')
 head(res[,1:8])
-#>     processid       sampleid recordID   catalognum           fieldnum
-#> 1  ABEE075-17   NHMW-HYM 875  8115253 NHMW-HYM 875 Schoedl 04.07.2004
-#> 2 ASGCB255-13 BIOUG07489-F04  3955532                  BIOUG07489-F04
-#> 3 BBHYL359-10   10BBCHY-3313  1769802 10BBCHY-3313     L#PC2010YO-001
-#> 4 BEECA186-06     03-BC-0186   281216                      03-BC-0186
-#> 5 BEECA373-06     05-NT-0373   514740                      05-NT-0373
-#> 6 BEECA601-06     06-YT-0601   516953                      06-YT-0601
-#>                  institution_storing collection_code      bin_uri
-#> 1      Naturhistorisches Museum Wien              NA             
-#> 2  Biodiversity Institute of Ontario              NA BOLD:ABZ2181
-#> 3   Centre for Biodiversity Genomics              NA BOLD:AAF2159
-#> 4 York University, Packer Collection              NA BOLD:AAC2237
-#> 5 York University, Packer Collection              NA BOLD:AAI2013
-#> 6 York University, Packer Collection              NA BOLD:AAB4644
+#>      processid   sampleid recordID catalognum   fieldnum
+#> 1  BEECA373-06 05-NT-0373   514740            05-NT-0373
+#> 2  BEECA607-06 05-NT-0607   516959            05-NT-0607
+#> 3  BEECA963-07 01-OR-0790   554153            01-OR-0790
+#> 4  BEECB358-07 04-WA-1076   596920 BBSL697174 04-WA-1076
+#> 5  BEECB438-07 00-UT-1157   597000 BBSL432653 00-UT-1157
+#> 6 BEECC1176-09 02-UT-2849  1060879 BBSL442586 02-UT-2849
+#>                    institution_storing collection_code      bin_uri
+#> 1   York University, Packer Collection              NA BOLD:AAI2013
+#> 2   York University, Packer Collection              NA BOLD:AAC8510
+#> 3   York University, Packer Collection              NA BOLD:ABZ3184
+#> 4 Utah State University, Logan Bee Lab              NA BOLD:AAC5797
+#> 5 Utah State University, Logan Bee Lab              NA BOLD:AAF2159
+#> 6   York University, Packer Collection              NA BOLD:AAE5368
 ```
 
 ### Search for specimen plus sequence data
@@ -151,11 +156,11 @@ By default you download `tsv` format data, which is given back to you as a `data
 ```r
 res <- bold_seqspec(taxon='Osmia', sepfasta=TRUE)
 res$fasta[1:2]
-#> $`ABEE075-17`
-#> [1] ""
+#> $`BEECA373-06`
+#> [1] "-ATTTTATATATAATTTTTGCTATATGATCAGGTATAATCGGATCAGCAATAAGAATTATTATTCGTATAGAATTAAGAATTCCTGGTTCATGAATTTCAAATGATCAAACTTATAACTCTTTAGTAACTGCTCATGCTTTTTTAATAATTTTTTTCTTAGTTATACCTTTTTTAATTGGAGGATTTGGAAATTGATTAATTCCTTTAATATTAGGAATCCCGGATATAGCTTTCCCTCGAATAAATAATATTAGATTTTGACTTTTACCCCCTTCATTAATATTATTACTTTTAAGAAATTTTATAAATCCAAGACCAGGTACTGGATGAACTGTTTATCCTCCTCTTTCTTCTCATTTATTTCATTCTTCTCCTTCAGTTGATATAGCCATTTTTTCTTTACATATTTCCGGTTTATCTTCTATTATAGGTTCGTTAAATTTTATTGTTACAATTATTATAATAAAAAATATTTCTTTAAAACATATCCAATTACCTTTATTTCCATGATCTGTTTTTATTACTACTATCTTATTACTTTTTTCTTTACCTGTTTTAGCAGGAGCTATTACTATATTATTATTTGATCGAAATTTTAATACTTCATTTTTTGATCCTACAGGAGGTGGAGATCCAATCCTTTATCAACATTTATTT"
 #> 
-#> $`ASGCB255-13`
-#> [1] "-------------------------------GGAATAATTGGTTCTGCTATAAGTATTATTATTCGAATAGAATTAAGAATTCCTGGATCATTCATTTCTAATGATCAAACTTATAATTCTTTAGTAACAGCTCATGCTTTTTTAATAATTTTTTTTCTTGTAATACCATTTTTAATTGGTGGATTTGGAAATTGATTAATTCCATTAATATTAGGAATCCCAGATATAGCATTTCCTCGAATAAATAATATTAGATTTTGACTTTTACCCCCATCCTTAATAATTTTACTTTTAAGAAATTTCTTAAATCCAAGTCCAGGAACAGGTTGAACTGTATATCCCCCCCTTTCTTCTTATTTATTTCATTCTTCCCCTTCTGTTGATTTAGCTATTTTTTCTCTTCATATTTCTGGTTTATCTTCCATCATAGGTTCTTTAAATTTTATTGTTACAATTATTATAATAAAAAATATTTCATTAAAACATATTCAATTACCTTTATTTCCTTGATCCGTTTTTATTACAACTATTTTACTATTATTTTCTTTACCTGTTCTAGCAGGAGCTATTACTATATTATTATTTGATCGAAACTTTAATACTTCATTTTTTGATCCAACTGGAGGAGGAGATCCAATTTTATATCAACATTTATTC"
+#> $`BEECA607-06`
+#> [1] "AATATTATATATAATTTTTGCTTTGTGATCTGGAATAATTGGTTCATCTATAAGAATTATTATTCGTATAGAATTAAGAATTCCTGGTTCATGAATTTCAAATGATCAAGTTTATAATTCATTAGTTACAGCTCATGCTTTTTTAATAATTTTTTTTTTAGTTATACCATTTATAATTGGAGGATTTGGAAATTGATTAGTTCCTTTAATATTAGGAATTCCTGATATAGCTTTTCCTCGAATAAATAATATTAGATTTTGATTATTACCACCATCATTAATACTTTTACTTTTAAGAAATTTTTTTAATCCAAGTTCAGGAACTGGATGAACTGTATATCCTCCTCTTTCATCATATTTATTTCATTCTTCACCTTCTGTTGATTTAGCTATTTTTTCTCTTCATATATCAGGTTTATCTTCTATTATAGGTTCATTAAACTTTATTGTAACTATTATTATAATAAAAAATATTTCTTTAAAGTATATTCAATTGCCATTATTTCCATGATCTGTTTTTATTACTACAATTCTTTTATTATTATCATTACCAGTTTTAGCAGGTGCTATTACTATATTATTATTTGATCGAAATTTTAATACTTCATTTTTTGATCCTACAGGAGGGGGAG--------------------------"
 ```
 
 Or you can index to a specific sequence like

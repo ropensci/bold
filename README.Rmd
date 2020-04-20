@@ -53,8 +53,10 @@ biocLite("sangerseqR")
 For R >= 3.5
 
 ```{r eval=FALSE}
-install.packages('BiocManager')
-BiocManager::install('sangerseqR')
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("sangerseqR")
 ```
 
 Then install `bold`
