@@ -1,19 +1,24 @@
-<!--
-%\VignetteEngine{knitr::knitr}
-%\VignetteIndexEntry{bold vignette}
-%\VignetteEncoding{UTF-8}
--->
+---
+title: "bold introduction"
+author: "Scott Chamberlain"
+date: "2020-04-20"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{bold introduction}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
 
 
 
-`bold` is an R package to connect to [BOLD Systems](http://www.boldsystems.org/) via their API. Functions in `bold` let you search for sequence data, specimen data, sequence + specimen data, and download raw trace files.
+`bold` is an R package to connect to BOLD Systems (https://www.boldsystems.org/) via their API. Functions in `bold` let you search for sequence data, specimen data, sequence + specimen data, and download raw trace files.
 
 ### bold info
 
-+ [BOLD home page](http://boldsystems.org/)
-+ [BOLD API docs](http://v4.boldsystems.org/index.php/api_home)
++ BOLD home page: https://boldsystems.org/
++ BOLD API docs: https://v4.boldsystems.org/index.php/api_home
 
-See also the taxize book for more options for taxonomic workflows with BOLD: <https://taxize.dev/>
+See also the taxize book for more options for taxonomic workflows with BOLD: https://taxize.dev/
 
 ### Using bold
 
@@ -31,7 +36,7 @@ Or install the development version from GitHub
 
 
 ```r
-devtools::install_github("ropensci/bold")
+remotes::install_github("ropensci/bold")
 ```
 
 Load the package
@@ -50,30 +55,30 @@ library("bold")
 ```r
 bold_tax_name(name = 'Diplura')
 #>    taxid   taxon tax_rank tax_division parentid       parentname
-#> 1 603673 Diplura    genus     Protists    53974 Scytosiphonaceae
-#> 2 734358 Diplura    class      Animals       20       Arthropoda
-#>   specimenrecords taxonrep          representitive_image.image
-#> 1               6     <NA>                                <NA>
-#> 2             294  Diplura SSWLA/BIOUG09581-E05+1434047314.jpg
+#> 1 603673 Diplura    genus     Protista    53974 Scytosiphonaceae
+#> 2 734358 Diplura    class     Animalia       20       Arthropoda
+#>   specimenrecords taxonrep     representitive_image.image
+#> 1               6     <NA>                           <NA>
+#> 2             308  Diplura BSOIL/GBOL20120+1540220834.jpg
 #>   representitive_image.apectratio   input
 #> 1                              NA Diplura
-#> 2                           1.339 Diplura
+#> 2                           0.841 Diplura
 ```
 
 
 ```r
 bold_tax_name(name = c('Diplura', 'Osmia'))
 #>    taxid   taxon tax_rank tax_division parentid       parentname
-#> 1 603673 Diplura    genus     Protists    53974 Scytosiphonaceae
-#> 2 734358 Diplura    class      Animals       20       Arthropoda
-#> 3   4940   Osmia    genus      Animals     4962     Megachilinae
-#>   specimenrecords taxonrep          representitive_image.image
-#> 1               6     <NA>                                <NA>
-#> 2             294  Diplura SSWLA/BIOUG09581-E05+1434047314.jpg
-#> 3            2238    Osmia                   BUSA/IMG_3061.jpg
+#> 1 603673 Diplura    genus     Protista    53974 Scytosiphonaceae
+#> 2 734358 Diplura    class     Animalia       20       Arthropoda
+#> 3   4940   Osmia    genus     Animalia     4962     Megachilinae
+#>   specimenrecords taxonrep     representitive_image.image
+#> 1               6     <NA>                           <NA>
+#> 2             308  Diplura BSOIL/GBOL20120+1540220834.jpg
+#> 3            3007    Osmia              BUSA/IMG_3061.jpg
 #>   representitive_image.apectratio   input
 #> 1                              NA Diplura
-#> 2                           1.339 Diplura
+#> 2                           0.841 Diplura
 #> 3                           1.486   Osmia
 ```
 
@@ -86,15 +91,15 @@ bold_tax_name(name = c('Diplura', 'Osmia'))
 ```r
 bold_tax_id(id = 88899)
 #>   input taxid   taxon tax_rank tax_division parentid parentname
-#> 1 88899 88899 Momotus    genus      Animals    88898  Momotidae
+#> 1 88899 88899 Momotus    genus     Animalia    88898  Momotidae
 ```
 
 
 ```r
 bold_tax_id(id = c(88899, 125295))
 #>    input  taxid      taxon tax_rank tax_division parentid  parentname
-#> 1  88899  88899    Momotus    genus      Animals    88898   Momotidae
-#> 2 125295 125295 Helianthus    genus       Plants   151101 Asteroideae
+#> 1  88899  88899    Momotus    genus     Animalia    88898   Momotidae
+#> 2 125295 125295 Helianthus    genus      Plantae   151101 Asteroideae
 #>     taxonrep
 #> 1       <NA>
 #> 2 Helianthus
@@ -112,30 +117,30 @@ The default is to get a list back
 bold_seq(taxon = 'Coelioxys')[1:2]
 #> [[1]]
 #> [[1]]$id
-#> [1] "ABEE013-17"
+#> [1] "ABEE117-17"
 #> 
 #> [[1]]$name
-#> [1] "Coelioxys afra"
+#> [1] "Coelioxys elongata"
 #> 
 #> [[1]]$gene
-#> [1] "ABEE013-17"
+#> [1] "ABEE117-17"
 #> 
 #> [[1]]$sequence
-#> [1] "AATATTATATATAATTTTTGCAATTTGATCAGGTATAATTGGATCTTCATTAAGAATAATTATTCGAATAGAATTAAGAACTCCAGGAAGATGAATCAACAACGATCAAATTTATAATTCTTTTATTACAGCTCATGCATTTTTAATAATTTTTTTTTTAGTAATACCATTTTTAATTGGAGGATTTGGAAATTGATTAGTACCTTTAATACTAGGAGCCCCCGATATAGCTTTTCCACGAATAAATAATGTAAGATTTTGACTATTACCTCCCTCAATTTTCTTATTATTATCAAGAACCCTAATTAACCCAAGAGCTGGTACTGGATGAACTGTATATCCTCCTTTATCCTTATATACATTTCATGCCTCACCTTCCGTTGATTTAGCAATTTTTTCACTTCATTTATCAGGAATTTCATCAATTATTGGATCAATAAATTTTATTGTTACAATCTTAATAATAAAAAATTTTTCTTTAAATTATAGACAAATACCATTATTTTCATGATCAGTTTTAATTACTACAATTTTACTTTTATTATCACTACCAATTTTAGCTGGAGCAATTACTATACTCCTATTTGATCGAAATTTAAATACCTCATTCTTTGACCCAATAGGAGGAGGAGATCCAATTTTATATCAACATTTATTT-----------------"
+#> [1] "------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------TTATCATTATATACATATCATCCTTCCCCATCAGTTGATTTAGCAATTTTTTYTTTACATTTATCAGGAATTTYTTYTATTATCGGATCAATAAATTTTATTGTAACAATTTTAATAATAAAAAATTATTCAATAAATTATAATCAAATACCTTTATTTCCATGATCAATTTTAATTACTACAATTTTATTATTATTATCATTACCTGTATTAGCAGGAGCTATTACAATATTATTATTTGATCGTAATTTAAATTCATCATTTTTTGACCCAATAGGAGGAGGAGATCCTATTTTATATCAACATTTATTTTG------------------------------------"
 #> 
 #> 
 #> [[2]]
 #> [[2]]$id
-#> [1] "ABEE014-17"
+#> [1] "ABEE193-17"
 #> 
 #> [[2]]$name
-#> [1] "Coelioxys aurolimbata"
+#> [1] "Coelioxys rufescens"
 #> 
 #> [[2]]$gene
-#> [1] "ABEE014-17"
+#> [1] "ABEE193-17"
 #> 
 #> [[2]]$sequence
-#> [1] "------------------TGCAATCTGATCAGGAATAATTGGATCTTCATTAAGAATAATTATTCGAATAGAATTAAGAATCCCAGGATCTTGGATTAATAATGATCAAATTTATAACTCTTTTATTACAGCTCATGCATTTTTAATAATTTTTTTTCTGGTTATACCATTTTTAATTGGAGGATTTGGAAATTGATTAGCCCCTTTAATGTTAGGAGCTCCAGATATAGCCTTCCCTCGAATAAATAATATTAGATTTTGATTATTACCTCCTTCTTTATTAATATTATTAATTAGTAATTTAATTAACCCTAGACCAGGAACAGGATGAACAATTTACCCTCCTTTATCTTTATATAATTATCATCCATCACCATCTGTAGATTTAGCAATTTTTTCTTTACATTTATCAGGAGTTTCATCTATTATCGGGTCAATAAATTTTATTGTAACAATTTTAATAATAAAAAATTATTCAATAAACTACAATCAAATACCTTTATTCCCATGATCAGTTTTGATTACTACAATTTTATTATTATTATCTCTACCTGTTTTAGCAGGAGCAATCACAATATTATTATTTGATCGTAATTTAAACTCATCATTTTTTGACCCTTTAGGAGGAGGAGATCCTATTCTATACCAACATTTATTT-----------------"
+#> [1] "---------------------------------------------------------------------------------------------------------------------------------------------AATAATGATATAATTTATAACTCTTTTATTACAGCTCATGCATTTTTAATAATTTTTTTTTTAGTTATACCTTTTTTAATTGGAGGATTTGGAAATTGATTAGCTCCTTTAATATTAGGAGCTCCAGATATAGCATTCCCTCGAATAAATAATATTAGATTTTGATTATTACCTCCTTCTTTATTAATATTATTAACTAGTAATTTAATTAATCCTAGACCAGGAACAGGATGAACAATTTATCCTCCTTTATCTTTATATAATTATCATCCTTCACCATCAGTAGATTTAGCAATTTTTTCTTTACATTTATCAGGAGTATCATCTATTATTGGTTCAATAAATTTTATTGTAACAATTTTATTAATAAAAAATTATTCAATAAATTATAATCAAATACCTTTATTCCCAKGATCAATTTTAATCACTACAATTTTATTATTATTATCTTTGCCTGTTTTAGCAGGAGCAATTACAATATTATTATTTGATCGAAATCTAAATTCATCCTTTTTTGACCCTTTAGGAGGAGGGGATCCAATTTTATACCAACATTTATTTTGATTTTTTGGACATCC---------------------"
 ```
 
 You can optionally get back the `crul` response object
@@ -145,13 +150,16 @@ You can optionally get back the `crul` response object
 res <- bold_seq(taxon = 'Coelioxys', response = TRUE)
 res$response_headers
 #> $status
-#> [1] "HTTP/1.1 200 OK"
-#> 
-#> $date
-#> [1] "Wed, 14 Nov 2018 00:48:10 GMT"
+#> [1] "HTTP/2 200 "
 #> 
 #> $server
-#> [1] "Apache/2.2.15 (Red Hat)"
+#> [1] "nginx"
+#> 
+#> $date
+#> [1] "Mon, 20 Apr 2020 16:23:04 GMT"
+#> 
+#> $`content-type`
+#> [1] "application/x-download"
 #> 
 #> $`x-powered-by`
 #> [1] "PHP/5.3.15"
@@ -159,14 +167,14 @@ res$response_headers
 #> $`content-disposition`
 #> [1] "attachment; filename=fasta.fas"
 #> 
-#> $connection
-#> [1] "close"
+#> $`x-frame-options`
+#> [1] "SAMEORIGIN"
 #> 
-#> $`transfer-encoding`
-#> [1] "chunked"
+#> $`x-content-type-options`
+#> [1] "nosniff"
 #> 
-#> $`content-type`
-#> [1] "application/x-download"
+#> $`x-xss-protection`
+#> [1] "1; mode=block"
 ```
 
 You can do geographic searches
@@ -250,16 +258,16 @@ And you can search by researcher name
 ```r
 bold_seq(researchers = 'Thibaud Decaens')[[1]]
 #> $id
-#> [1] "MORCA001-14"
+#> [1] "COLNO015-09"
 #> 
 #> $name
-#> [1] "Lepidoptera"
+#> [1] "Ptiliidae"
 #> 
 #> $gene
-#> [1] "MORCA001-14"
+#> [1] "COLNO015-09"
 #> 
 #> $sequence
-#> [1] "AACATTATATTTTATTTTTGGTATTTGAGCAGGAATAATTGGAACTTCTTTAAGTTTATTAATTCGAGCTGAATTGGGTAATCCCGGTTCTTTAATTGGTGATGACCAAATCTATAATACTATTGTAACAGCCCATGCTTTTATTATAATTTTCTTTATAGTTATACCTATTATAATTGGAGGATTTGGAAATTGACTAGTTCCTTTAATACTAGGAGCCCCTGATATAGCTTTCCCCCGAATAAATAATATAAGATTTTGATTACTACCCCCTTCAATTACACTTTTAATTTCTAGAAGAATTGTAGAAAATGGAGCAGGTACTGGATGAACAGTCTACCCCCCTCTTTCATCTAATATCGCTCATGGAGGTAGTTCAGTTGATTTAGCTATTTTTTCCTTACATTTAGCTGGTATTTCATCTATTTTAGGTGCTATTAATTTTATTACAACAATTATTAACATACGATTAAATAAACTATCATTTGATCAAATACCCCTATTTGTTTGAGCTGTAGGAATTACAGCATTTTTACTTTTATTATCTTTACCTGTTTTAGCGGGAGCTATTACAATACTATTAACTGATCGTAATTTAAACACTTCATTTTTTGATCCCGCGGGAGGAGGAGATCCAATTTTATATCAACACTTATTT"
+#> [1] "AACCTTGTATTTTATGTTCGGNGCTTGAGCTGGAATAGTCGGGACAAGTTTGAGTCTCCTTATCCGAACTGAACTCGGCACTCCAGGTTCACTAATTGGAGACGACCAAATCTACAACGTAATCGTAACAGCTCATGCTTTTGTGATGATTTTTTTTATGGTCATGCCGATTTTAATCGGAGGTTTCGGAAACTGACTTGTTCCCTTGATACTTGGAGCCCCTGATATAGCTTTCCCTCGAATGAACAACATAAGGTTCTGGCTCCTCCCCCCTTCTCTGACCCTACTTTTAATGAGAAGGATAGTAGAAAGCGGAGCAGGAACAGGGTGAACAGTTTATCCTCCCCTAGCTTCAAATATTGCTCATGGTGGAGCATCAGTTGATTTGGCGATTTTTAGGCTCCATTTAGCTGGAATCTCTTCCATTCTAGGAGCCGTAAATTTCATCACAACAATTCTCAACATACGAACTCCTCAAATAAGGTTTGATCAAATGCCATTGTTTGTTTGGGCTGTTGGAATTACAGCTCTCCTTCTTCTTCTTTCACTTCCNGTTTTAGCCGGAGCTATCACAATATTGCTAAC-------------------------------------------------------------------------"
 ```
 
 by taxon IDs
@@ -301,13 +309,13 @@ by container (containers include project codes and dataset codes)
 ```r
 bold_seq(container = 'ACRJP')[[1]]
 #> $id
-#> [1] "ACRJP001-09"
+#> [1] "ACRJP003-09"
 #> 
 #> $name
 #> [1] "Lepidoptera"
 #> 
 #> $gene
-#> [1] "ACRJP001-09"
+#> [1] "ACRJP003-09"
 #> 
 #> $sequence
 #> [1] "AACATTATATTTTATTTTTGGGATCTGATCTGGAATAGTAGGGACATCTTTAAGTATACTAATTCGAATAGAACTAGGAAATCCTGGATGTTTAATTGGGGATGATCAAATTTATAATACTATTGTTACAGCTCATGCTTTTATTATAATTTTTTTTATAGTTATACCCATTATAATTGGAGGTTTTGGCAATTGACTTGTACCATTAATATTAGGAGCCCCTGATATAGCATTTCCCCGAATAAATAATATAAGATTTTGACTTCTTCCCCCCTCATTAATTTTATTAATTTCAAGAAGAATTGTTGAAAATGGAGCAGGAACAGGATGAACAGTCTATCCTCCATTATCTTCTAATATTGCGCATAGAGGATCCTCTGTTGATTTAGCTATTTTCTCACTTCATTTAGCAGGAATTTCTTCTATTTTAGGAGCAATTAATTTTATTACAACTATTATTAATATACGAATAAATAATTTACTTTTTGACCAAATACCTCTATTTGTTTGAGCAGTAGGTATTACAGCTGTTCTTCTTTTATTATCATTACCAGTATTAGCAGGAGCAATTACCATACTATTAACAGATCGTAATTTAAATACTTCTTTCTTTGATCCTGCTGGAGGAGGAGATCCAATTTTATACCAACATTTATTT"
@@ -342,27 +350,20 @@ The BOLD specimen API doesn't give back sequences, only specimen data. By defaul
 ```r
 res <- bold_specimens(taxon = 'Osmia')
 head(res[,1:8])
-#>     processid      sampleid recordID    catalognum
-#> 1  ABEE151-17  NHMW-HYM 773  8362250              
-#> 2  ABEE184-17 NHMW-HYM 2142  8362283 NHMW-HYM 2142
-#> 3  ABEE185-17 NHMW-HYM 2144  8362284 NHMW-HYM 2144
-#> 4  ABEE188-17 NHMW-HYM 2242  8362287 NHMW-HYM 2242
-#> 5  ABEE190-17 NHMW-HYM 2259  8362289 NHMW-HYM 2259
-#> 6 GBAH3878-08      EU726629   856409      EU726629
-#>                                                       fieldnum
-#> 1                                                             
-#> 2 NBH2 Zimmermann 2017.04.03 Oesterreich WienAUTWienZimmermann
-#> 3 NBH2 Zimmermann 2017.04.03 Oesterreich WienAUTWienZimmermann
-#> 4       NHB3 Schoder 2017.05.30 Oesterreich WienAUTWienSchoder
-#> 5       NBH9 Schoder 2017.06.15 Oesterreich WienAUTWienSchoder
-#> 6                                                             
-#>             institution_storing collection_code      bin_uri
-#> 1 Naturhistorisches Museum Wien              NA BOLD:AAE5409
-#> 2 Naturhistorisches Museum Wien              NA BOLD:AAE5409
-#> 3 Naturhistorisches Museum Wien              NA BOLD:ADJ1069
-#> 4 Naturhistorisches Museum Wien              NA BOLD:AAF2155
-#> 5 Naturhistorisches Museum Wien              NA BOLD:AAD0313
-#> 6      Mined from GenBank, NCBI              NA BOLD:AAA4494
+#>      processid   sampleid recordID catalognum   fieldnum
+#> 1  BEECA373-06 05-NT-0373   514740            05-NT-0373
+#> 2  BEECA607-06 05-NT-0607   516959            05-NT-0607
+#> 3  BEECA963-07 01-OR-0790   554153            01-OR-0790
+#> 4  BEECB358-07 04-WA-1076   596920 BBSL697174 04-WA-1076
+#> 5  BEECB438-07 00-UT-1157   597000 BBSL432653 00-UT-1157
+#> 6 BEECC1176-09 02-UT-2849  1060879 BBSL442586 02-UT-2849
+#>                    institution_storing collection_code      bin_uri
+#> 1   York University, Packer Collection              NA BOLD:AAI2013
+#> 2   York University, Packer Collection              NA BOLD:AAC8510
+#> 3   York University, Packer Collection              NA BOLD:ABZ3184
+#> 4 Utah State University, Logan Bee Lab              NA BOLD:AAC5797
+#> 5 Utah State University, Logan Bee Lab              NA BOLD:AAF2159
+#> 6   York University, Packer Collection              NA BOLD:AAE5368
 ```
 
 You can optionally get back the data in `XML` format
@@ -395,18 +396,21 @@ You can choose to get the `crul` response object back if you'd rather work with 
 ```r
 res <- bold_specimens(taxon = 'Osmia', format = 'xml', response = TRUE)
 res$url
-#> [1] "http://v4.boldsystems.org/index.php/API_Public/specimen?taxon=Osmia&format=xml"
+#> [1] "https://v4.boldsystems.org/index.php/API_Public/specimen?taxon=Osmia&format=xml"
 res$status_code
 #> [1] 200
 res$response_headers
 #> $status
-#> [1] "HTTP/1.1 200 OK"
-#> 
-#> $date
-#> [1] "Wed, 14 Nov 2018 00:48:44 GMT"
+#> [1] "HTTP/2 200 "
 #> 
 #> $server
-#> [1] "Apache/2.2.15 (Red Hat)"
+#> [1] "nginx"
+#> 
+#> $date
+#> [1] "Mon, 20 Apr 2020 16:23:41 GMT"
+#> 
+#> $`content-type`
+#> [1] "application/x-download"
 #> 
 #> $`x-powered-by`
 #> [1] "PHP/5.3.15"
@@ -414,14 +418,14 @@ res$response_headers
 #> $`content-disposition`
 #> [1] "attachment; filename=bold_data.xml"
 #> 
-#> $connection
-#> [1] "close"
+#> $`x-frame-options`
+#> [1] "SAMEORIGIN"
 #> 
-#> $`transfer-encoding`
-#> [1] "chunked"
+#> $`x-content-type-options`
+#> [1] "nosniff"
 #> 
-#> $`content-type`
-#> [1] "application/x-download"
+#> $`x-xss-protection`
+#> [1] "1; mode=block"
 ```
 
 ### Search for specimen plus sequence data
@@ -432,11 +436,11 @@ The specimen/sequence combined API gives back specimen and sequence data. Like t
 ```r
 res <- bold_seqspec(taxon = 'Osmia', sepfasta = TRUE)
 res$fasta[1:2]
-#> $`ABEE151-17`
-#> [1] "----------------------------------------------------------TTTTTGCTATATGATCAGGTACAGTAGGTTCAGCTATAAGAATTATTATTCGAATAGAACTTAGAGTTCCAGGATCATGAATTTCTAATGACCAAATTTATAATACTTTAGTAACTGCTCATGCTTTTTTAATAATTTTCTTTCTTGTAATACCATTTCTAATTGGAGGATTTGGAAATTGATTAATTCCTTTAATATTAGGAATTCCAGATATAGCCTTTCCACGAATAAATAATATTAGATTTTGACTTTTACCACCTTCTTTAATATTATTAATATTAAGAAATTTTATAAATCCAAGTCCAGGAACTGGATGAACTGTTTATCCTCCTCTTTCATCTTATATATTTCATTCTTCCCCATCAGTAGATTTAGCAATTTTTTCATTACATATTTCCGGATTATCCTCTATTATAGGTTCATTAAATTTTATTGTCACAATTATTATAATAAAAAATATTTCATTAAAACATACTCAATTACCCTTATTTTCTTGATCTGTATTTATTACTACTATTTTATTACTTTTCTCTCTCCCAGTTTTAGCTGGAGCTATTACTATACTTTTATTTGATCGAAATTTTAACACCTCATTTTTTGACCCGACGGGAGGTGGAGATCCAATTTTATACCAACATTTATTTTGATTTTTTGGACAT-----------------------"
+#> $`BEECA373-06`
+#> [1] "-ATTTTATATATAATTTTTGCTATATGATCAGGTATAATCGGATCAGCAATAAGAATTATTATTCGTATAGAATTAAGAATTCCTGGTTCATGAATTTCAAATGATCAAACTTATAACTCTTTAGTAACTGCTCATGCTTTTTTAATAATTTTTTTCTTAGTTATACCTTTTTTAATTGGAGGATTTGGAAATTGATTAATTCCTTTAATATTAGGAATCCCGGATATAGCTTTCCCTCGAATAAATAATATTAGATTTTGACTTTTACCCCCTTCATTAATATTATTACTTTTAAGAAATTTTATAAATCCAAGACCAGGTACTGGATGAACTGTTTATCCTCCTCTTTCTTCTCATTTATTTCATTCTTCTCCTTCAGTTGATATAGCCATTTTTTCTTTACATATTTCCGGTTTATCTTCTATTATAGGTTCGTTAAATTTTATTGTTACAATTATTATAATAAAAAATATTTCTTTAAAACATATCCAATTACCTTTATTTCCATGATCTGTTTTTATTACTACTATCTTATTACTTTTTTCTTTACCTGTTTTAGCAGGAGCTATTACTATATTATTATTTGATCGAAATTTTAATACTTCATTTTTTGATCCTACAGGAGGTGGAGATCCAATCCTTTATCAACATTTATTT"
 #> 
-#> $`ABEE184-17`
-#> [1] "-------CTCACTATAGGGATTCAACCAATCATAAAGATATTGGAATTCTTTATATAATTTTTGCTATATGATCAGGTACAGTAGGTTCAGCTATAAGAATTATTATTCGAATAGAACTTAGAGTTCCAGGATCATGAATTTCTAATGACCAAATTTATAATACTTTAGTAACTGCTCATGCTTTTTTAATAATTTTCTTTCTTGTAATACCATTTCTAATTGGAGGATTTGGAAATTGATTAATTCCTTTAATATTAGGAATTCCAGATATAGCCTTTCCACGAATAAATAATATTAGATTTTGACTTTTACCACCTTCTTTAATATTATTAATATTAAGAAATTTTATAAATCCAAGTCCAGGAACTGGATGAACTGTTTATCCTCCTCTTTCATCTTATATATTTCATTCTTCCCCATCAGTAGATTTAGCAATTTTTTCATTACATATTTCCGGATTATCCTCTATTATAGGTTCATTAAATTTTATTGTCACAATTATTATAATAAAAAATATTTCATTAAAACATACTCAATTACCCTTATTTTCTTGATCTGTATTTATTACTACTATTTTATTACTTTTCTCTCTCCCAGTTTTAGCTGGAGCTATTACTATACTTTTATTTGATCGAAATTTTAACACCTCATTTTTTGACC-------------------------------------------------------------------------------"
+#> $`BEECA607-06`
+#> [1] "AATATTATATATAATTTTTGCTTTGTGATCTGGAATAATTGGTTCATCTATAAGAATTATTATTCGTATAGAATTAAGAATTCCTGGTTCATGAATTTCAAATGATCAAGTTTATAATTCATTAGTTACAGCTCATGCTTTTTTAATAATTTTTTTTTTAGTTATACCATTTATAATTGGAGGATTTGGAAATTGATTAGTTCCTTTAATATTAGGAATTCCTGATATAGCTTTTCCTCGAATAAATAATATTAGATTTTGATTATTACCACCATCATTAATACTTTTACTTTTAAGAAATTTTTTTAATCCAAGTTCAGGAACTGGATGAACTGTATATCCTCCTCTTTCATCATATTTATTTCATTCTTCACCTTCTGTTGATTTAGCTATTTTTTCTCTTCATATATCAGGTTTATCTTCTATTATAGGTTCATTAAACTTTATTGTAACTATTATTATAATAAAAAATATTTCTTTAAAGTATATTCAATTGCCATTATTTCCATGATCTGTTTTTATTACTACAATTCTTTTATTATTATCATTACCAGTTTTAGCAGGTGCTATTACTATATTATTATTTGATCGAAATTTTAATACTTCATTTTTTGATCCTACAGGAGGGGGAG--------------------------"
 ```
 
 Or you can index to a specific sequence like

@@ -1,26 +1,34 @@
-<!--
-%\VignetteEngine{knitr::knitr}
-%\VignetteIndexEntry{bold vignette}
-%\VignetteEncoding{UTF-8}
--->
+---
+title: "bold introduction"
+author: "Scott Chamberlain"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{bold introduction}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
 
-```{r, eval=TRUE, echo=FALSE}
+```{r eval=TRUE, echo=FALSE, warning = FALSE, message = FALSE}
+NOT_CRAN <- identical(tolower(Sys.getenv("NOT_CRAN")), "true")
 knitr::opts_chunk$set(
   comment = "#>",
   warning = FALSE,
   message = FALSE,
-  collapse = TRUE
+  collapse = TRUE,
+  purl = NOT_CRAN,
+  eval = NOT_CRAN
 )
 ```
 
-`bold` is an R package to connect to [BOLD Systems](http://www.boldsystems.org/) via their API. Functions in `bold` let you search for sequence data, specimen data, sequence + specimen data, and download raw trace files.
+`bold` is an R package to connect to BOLD Systems (https://www.boldsystems.org/) via their API. Functions in `bold` let you search for sequence data, specimen data, sequence + specimen data, and download raw trace files.
 
 ### bold info
 
-+ [BOLD home page](http://boldsystems.org/)
-+ [BOLD API docs](http://v4.boldsystems.org/index.php/api_home)
++ BOLD home page: https://boldsystems.org/
++ BOLD API docs: https://v4.boldsystems.org/index.php/api_home
 
-See also the taxize book for more options for taxonomic workflows with BOLD: <https://taxize.dev/>
+See also the taxize book for more options for taxonomic workflows with BOLD: https://taxize.dev/
 
 ### Using bold
 
@@ -36,7 +44,7 @@ install.packages("bold")
 Or install the development version from GitHub
 
 ```{r, eval=FALSE}
-devtools::install_github("ropensci/bold")
+remotes::install_github("ropensci/bold")
 ```
 
 Load the package
