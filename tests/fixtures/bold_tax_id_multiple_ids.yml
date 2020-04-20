@@ -1,12 +1,12 @@
 http_interactions:
 - request:
     method: get
-    uri: http://v4.boldsystems.org/index.php/API_Tax/TaxonData?taxId=88899&dataTypes=basic
+    uri: https://v4.boldsystems.org/index.php/API_Tax/TaxonData?taxId=88899&dataTypes=basic
     body:
       encoding: ''
       string: ''
     headers:
-      User-Agent: libcurl/7.54.0 r-curl/4.3 crul/0.9.0
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
   response:
@@ -15,27 +15,29 @@ http_interactions:
       message: OK
       explanation: Request fulfilled, document follows
     headers:
-      status: HTTP/1.1 200 OK
-      date: Fri, 17 Jan 2020 16:56:53 GMT
-      server: Apache/2.2.15 (Red Hat)
-      x-powered-by: PHP/5.3.15
-      content-length: '120'
-      connection: close
+      status: 'HTTP/2 200 '
+      server: nginx
+      date: Mon, 20 Apr 2020 16:02:05 GMT
       content-type: text/html; charset=utf-8
+      content-length: '120'
+      x-powered-by: PHP/5.3.15
+      x-frame-options: SAMEORIGIN
+      x-content-type-options: nosniff
+      x-xss-protection: 1; mode=block
     body:
       encoding: UTF-8
       file: no
       string: '{"taxid":88899,"taxon":"Momotus","tax_rank":"genus","tax_division":"Animalia","parentid":88898,"parentname":"Momotidae"}'
-  recorded_at: 2020-01-17 16:56:54 GMT
-  recorded_with: vcr/0.4.0, webmockr/0.5.0
+  recorded_at: 2020-04-20 16:02:06 GMT
+  recorded_with: vcr/0.5.4, webmockr/0.6.2
 - request:
     method: get
-    uri: http://v4.boldsystems.org/index.php/API_Tax/TaxonData?taxId=125295&dataTypes=basic
+    uri: https://v4.boldsystems.org/index.php/API_Tax/TaxonData?taxId=125295&dataTypes=basic
     body:
       encoding: ''
       string: ''
     headers:
-      User-Agent: libcurl/7.54.0 r-curl/4.3 crul/0.9.0
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
   response:
@@ -44,16 +46,18 @@ http_interactions:
       message: OK
       explanation: Request fulfilled, document follows
     headers:
-      status: HTTP/1.1 200 OK
-      date: Fri, 17 Jan 2020 16:56:54 GMT
-      server: Apache/2.2.15 (Red Hat)
-      x-powered-by: PHP/5.3.15
-      content-length: '150'
-      connection: close
+      status: 'HTTP/2 200 '
+      server: nginx
+      date: Mon, 20 Apr 2020 16:02:06 GMT
       content-type: text/html; charset=utf-8
+      content-length: '150'
+      x-powered-by: PHP/5.3.15
+      x-frame-options: SAMEORIGIN
+      x-content-type-options: nosniff
+      x-xss-protection: 1; mode=block
     body:
       encoding: UTF-8
       file: no
       string: '{"taxid":125295,"taxon":"Helianthus","tax_rank":"genus","tax_division":"Plantae","parentid":151101,"parentname":"Asteroideae","taxonrep":"Helianthus"}'
-  recorded_at: 2020-01-17 16:56:54 GMT
-  recorded_with: vcr/0.4.0, webmockr/0.5.0
+  recorded_at: 2020-04-20 16:02:06 GMT
+  recorded_with: vcr/0.5.4, webmockr/0.6.2

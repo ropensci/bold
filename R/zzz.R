@@ -1,4 +1,4 @@
-bbase <- function() 'http://v4.boldsystems.org/index.php/'
+bbase <- function() 'https://v4.boldsystems.org/index.php/'
 
 bc <- function(x) Filter(Negate(is.null), x)
 

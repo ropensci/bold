@@ -1,12 +1,12 @@
 http_interactions:
 - request:
     method: get
-    uri: http://v4.boldsystems.org/index.php/API_Tax/TaxonSearch?taxName=Diplura
+    uri: https://v4.boldsystems.org/index.php/API_Tax/TaxonSearch?taxName=Diplura
     body:
       encoding: ''
       string: ''
     headers:
-      User-Agent: libcurl/7.54.0 r-curl/4.3 crul/0.9.0
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
   response:
@@ -15,27 +15,29 @@ http_interactions:
       message: OK
       explanation: Request fulfilled, document follows
     headers:
-      status: HTTP/1.1 200 OK
-      date: Fri, 17 Jan 2020 16:56:55 GMT
-      server: Apache/2.2.15 (Red Hat)
-      x-powered-by: PHP/5.3.15
-      content-length: '449'
-      connection: close
+      status: 'HTTP/2 200 '
+      server: nginx
+      date: Mon, 20 Apr 2020 16:02:06 GMT
       content-type: text/html; charset=utf-8
+      content-length: '449'
+      x-powered-by: PHP/5.3.15
+      x-frame-options: SAMEORIGIN
+      x-content-type-options: nosniff
+      x-xss-protection: 1; mode=block
     body:
       encoding: UTF-8
       file: no
       string: '{"top_matched_names":[{"taxid":603673,"taxon":"Diplura","tax_rank":"genus","tax_division":"Protista","parentid":53974,"parentname":"Scytosiphonaceae","specimenrecords":"6"},{"taxid":734358,"taxon":"Diplura","tax_rank":"class","tax_division":"Animalia","parentid":20,"parentname":"Arthropoda","taxonrep":"Diplura","representitive_image":{"image":"BSOIL\/GBOL20120+1540220834.jpg","apectratio":0.841},"specimenrecords":"308"}],"total_matched_names":2}'
-  recorded_at: 2020-01-17 16:56:58 GMT
-  recorded_with: vcr/0.4.0, webmockr/0.5.0
+  recorded_at: 2020-04-20 16:02:09 GMT
+  recorded_with: vcr/0.5.4, webmockr/0.6.2
 - request:
     method: get
-    uri: http://v4.boldsystems.org/index.php/API_Tax/TaxonSearch?taxName=Diplura
+    uri: https://v4.boldsystems.org/index.php/API_Tax/TaxonSearch?taxName=Diplura
     body:
       encoding: ''
       string: ''
     headers:
-      User-Agent: libcurl/7.54.0 r-curl/4.3 crul/0.9.0
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
   response:
@@ -44,27 +46,29 @@ http_interactions:
       message: OK
       explanation: Request fulfilled, document follows
     headers:
-      status: HTTP/1.1 200 OK
-      date: Fri, 17 Jan 2020 16:56:55 GMT
-      server: Apache/2.2.15 (Red Hat)
-      x-powered-by: PHP/5.3.15
-      content-length: '449'
-      connection: close
+      status: 'HTTP/2 200 '
+      server: nginx
+      date: Mon, 20 Apr 2020 16:02:07 GMT
       content-type: text/html; charset=utf-8
+      content-length: '449'
+      x-powered-by: PHP/5.3.15
+      x-frame-options: SAMEORIGIN
+      x-content-type-options: nosniff
+      x-xss-protection: 1; mode=block
     body:
       encoding: UTF-8
       file: no
       string: '{"top_matched_names":[{"taxid":603673,"taxon":"Diplura","tax_rank":"genus","tax_division":"Protista","parentid":53974,"parentname":"Scytosiphonaceae","specimenrecords":"6"},{"taxid":734358,"taxon":"Diplura","tax_rank":"class","tax_division":"Animalia","parentid":20,"parentname":"Arthropoda","taxonrep":"Diplura","representitive_image":{"image":"BSOIL\/GBOL20120+1540220834.jpg","apectratio":0.841},"specimenrecords":"308"}],"total_matched_names":2}'
-  recorded_at: 2020-01-17 16:56:58 GMT
-  recorded_with: vcr/0.4.0, webmockr/0.5.0
+  recorded_at: 2020-04-20 16:02:09 GMT
+  recorded_with: vcr/0.5.4, webmockr/0.6.2
 - request:
     method: get
-    uri: http://v4.boldsystems.org/index.php/API_Tax/TaxonSearch?taxName=Osmia
+    uri: https://v4.boldsystems.org/index.php/API_Tax/TaxonSearch?taxName=Osmia
     body:
       encoding: ''
       string: ''
     headers:
-      User-Agent: libcurl/7.54.0 r-curl/4.3 crul/0.9.0
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
   response:
@@ -73,27 +77,29 @@ http_interactions:
       message: OK
       explanation: Request fulfilled, document follows
     headers:
-      status: HTTP/1.1 200 OK
-      date: Fri, 17 Jan 2020 16:56:56 GMT
-      server: Apache/2.2.15 (Red Hat)
-      x-powered-by: PHP/5.3.15
+      status: 'HTTP/2 200 '
+      server: nginx
+      date: Mon, 20 Apr 2020 16:02:07 GMT
+      content-type: text/html; charset=utf-8
       content-length: '284'
-      connection: close
-      content-type: text/html; charset=utf-8
+      x-powered-by: PHP/5.3.15
+      x-frame-options: SAMEORIGIN
+      x-content-type-options: nosniff
+      x-xss-protection: 1; mode=block
     body:
       encoding: UTF-8
       file: no
-      string: '{"top_matched_names":[{"taxid":4940,"taxon":"Osmia","tax_rank":"genus","tax_division":"Animalia","parentid":4962,"parentname":"Megachilinae","taxonrep":"Osmia","representitive_image":{"image":"BUSA\/IMG_3061.jpg","apectratio":1.486},"specimenrecords":"2819"}],"total_matched_names":1}'
-  recorded_at: 2020-01-17 16:56:58 GMT
-  recorded_with: vcr/0.4.0, webmockr/0.5.0
+      string: '{"top_matched_names":[{"taxid":4940,"taxon":"Osmia","tax_rank":"genus","tax_division":"Animalia","parentid":4962,"parentname":"Megachilinae","taxonrep":"Osmia","representitive_image":{"image":"BUSA\/IMG_3061.jpg","apectratio":1.486},"specimenrecords":"3007"}],"total_matched_names":1}'
+  recorded_at: 2020-04-20 16:02:09 GMT
+  recorded_with: vcr/0.5.4, webmockr/0.6.2
 - request:
     method: get
-    uri: http://v4.boldsystems.org/index.php/API_Tax/TaxonSearch?taxName=Apis
+    uri: https://v4.boldsystems.org/index.php/API_Tax/TaxonSearch?taxName=Apis
     body:
       encoding: ''
       string: ''
     headers:
-      User-Agent: libcurl/7.54.0 r-curl/4.3 crul/0.9.0
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
   response:
@@ -102,27 +108,29 @@ http_interactions:
       message: OK
       explanation: Request fulfilled, document follows
     headers:
-      status: HTTP/1.1 200 OK
-      date: Fri, 17 Jan 2020 16:56:56 GMT
-      server: Apache/2.2.15 (Red Hat)
-      x-powered-by: PHP/5.3.15
+      status: 'HTTP/2 200 '
+      server: nginx
+      date: Mon, 20 Apr 2020 16:02:08 GMT
+      content-type: text/html; charset=utf-8
       content-length: '289'
-      connection: close
-      content-type: text/html; charset=utf-8
+      x-powered-by: PHP/5.3.15
+      x-frame-options: SAMEORIGIN
+      x-content-type-options: nosniff
+      x-xss-protection: 1; mode=block
     body:
       encoding: UTF-8
       file: no
-      string: '{"top_matched_names":[{"taxid":1937,"taxon":"Apis","tax_rank":"genus","tax_division":"Animalia","parentid":2183,"parentname":"Apinae","taxonrep":"Apis","representitive_image":{"image":"BOFTH\/B3260-B09+1247093258.jpg","apectratio":1.362},"specimenrecords":"3536"}],"total_matched_names":1}'
-  recorded_at: 2020-01-17 16:56:58 GMT
-  recorded_with: vcr/0.4.0, webmockr/0.5.0
+      string: '{"top_matched_names":[{"taxid":1937,"taxon":"Apis","tax_rank":"genus","tax_division":"Animalia","parentid":2183,"parentname":"Apinae","taxonrep":"Apis","representitive_image":{"image":"BOFTH\/B3265-E08+1262794266.jpg","apectratio":1.362},"specimenrecords":"3567"}],"total_matched_names":1}'
+  recorded_at: 2020-04-20 16:02:09 GMT
+  recorded_with: vcr/0.5.4, webmockr/0.6.2
 - request:
     method: get
-    uri: http://v4.boldsystems.org/index.php/API_Tax/TaxonSearch?taxName=Puma%20concolor
+    uri: https://v4.boldsystems.org/index.php/API_Tax/TaxonSearch?taxName=Puma%20concolor
     body:
       encoding: ''
       string: ''
     headers:
-      User-Agent: libcurl/7.54.0 r-curl/4.3 crul/0.9.0
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
   response:
@@ -131,28 +139,30 @@ http_interactions:
       message: OK
       explanation: Request fulfilled, document follows
     headers:
-      status: HTTP/1.1 200 OK
-      date: Fri, 17 Jan 2020 16:56:57 GMT
-      server: Apache/2.2.15 (Red Hat)
-      x-powered-by: PHP/5.3.15
-      content-length: '314'
-      connection: close
+      status: 'HTTP/2 200 '
+      server: nginx
+      date: Mon, 20 Apr 2020 16:02:08 GMT
       content-type: text/html; charset=utf-8
+      content-length: '314'
+      x-powered-by: PHP/5.3.15
+      x-frame-options: SAMEORIGIN
+      x-content-type-options: nosniff
+      x-xss-protection: 1; mode=block
     body:
       encoding: UTF-8
       file: no
       string: '{"top_matched_names":[{"taxid":12521,"taxon":"Puma concolor","tax_rank":"species","tax_division":"Animalia","parentid":4372,"parentname":"Puma","taxonrep":"Puma
         concolor","representitive_image":{"image":"FCMUN\/IBUNAM_CNMA_1314+1276871340.JPG","apectratio":1.493},"specimenrecords":"358"}],"total_matched_names":1}'
-  recorded_at: 2020-01-17 16:56:58 GMT
-  recorded_with: vcr/0.4.0, webmockr/0.5.0
+  recorded_at: 2020-04-20 16:02:09 GMT
+  recorded_with: vcr/0.5.4, webmockr/0.6.2
 - request:
     method: get
-    uri: http://v4.boldsystems.org/index.php/API_Tax/TaxonSearch?taxName=Pinus%20concolor
+    uri: https://v4.boldsystems.org/index.php/API_Tax/TaxonSearch?taxName=Pinus%20concolor
     body:
       encoding: ''
       string: ''
     headers:
-      User-Agent: libcurl/7.54.0 r-curl/4.3 crul/0.9.0
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
   response:
@@ -161,16 +171,18 @@ http_interactions:
       message: OK
       explanation: Request fulfilled, document follows
     headers:
-      status: HTTP/1.1 200 OK
-      date: Fri, 17 Jan 2020 16:56:58 GMT
-      server: Apache/2.2.15 (Red Hat)
-      x-powered-by: PHP/5.3.15
-      content-length: '48'
-      connection: close
+      status: 'HTTP/2 200 '
+      server: nginx
+      date: Mon, 20 Apr 2020 16:02:08 GMT
       content-type: text/html; charset=utf-8
+      content-length: '48'
+      x-powered-by: PHP/5.3.15
+      x-frame-options: SAMEORIGIN
+      x-content-type-options: nosniff
+      x-xss-protection: 1; mode=block
     body:
       encoding: UTF-8
       file: no
       string: '{"top_matched_names":[],"total_matched_names":0}'
-  recorded_at: 2020-01-17 16:56:58 GMT
-  recorded_with: vcr/0.4.0, webmockr/0.5.0
+  recorded_at: 2020-04-20 16:02:09 GMT
+  recorded_with: vcr/0.5.4, webmockr/0.6.2
