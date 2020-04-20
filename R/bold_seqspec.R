@@ -62,6 +62,7 @@ bold_seqspec <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
   } else {
     tt <- paste0(rawToChar(out$content, multiple = TRUE), collapse = "")
     if (tt == "") return(NA)
+    Encoding(tt) <- "UTF-8"
     if (grepl("Fatal error", tt)) {
       stop("BOLD servers returned an error - we're not sure what happened\n ",
         "try a smaller query - or open an issue and we'll try to help")
