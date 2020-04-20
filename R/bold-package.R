@@ -1,5 +1,5 @@
-#' bold: A programmatic interface to the Barcode of Life data.
-#'
+#' @title bold
+#' @description bold: A programmatic interface to the Barcode of Life data
 #' @section About:
 #'
 #' This package gives you access to data from BOLD System
