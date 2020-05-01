@@ -17,7 +17,7 @@ http_interactions:
     headers:
       status: 'HTTP/2 200 '
       server: nginx
-      date: Mon, 20 Apr 2020 16:02:05 GMT
+      date: Fri, 01 May 2020 20:36:26 GMT
       content-type: text/html; charset=utf-8
       content-length: '120'
       x-powered-by: PHP/5.3.15
@@ -28,7 +28,7 @@ http_interactions:
       encoding: UTF-8
       file: no
       string: '{"taxid":88899,"taxon":"Momotus","tax_rank":"genus","tax_division":"Animalia","parentid":88898,"parentname":"Momotidae"}'
-  recorded_at: 2020-04-20 16:02:06 GMT
+  recorded_at: 2020-05-01 20:36:26 GMT
   recorded_with: vcr/0.5.4, webmockr/0.6.2
 - request:
     method: get
@@ -48,7 +48,7 @@ http_interactions:
     headers:
       status: 'HTTP/2 200 '
       server: nginx
-      date: Mon, 20 Apr 2020 16:02:06 GMT
+      date: Fri, 01 May 2020 20:36:26 GMT
       content-type: text/html; charset=utf-8
       content-length: '150'
       x-powered-by: PHP/5.3.15
@@ -59,5 +59,5 @@ http_interactions:
       encoding: UTF-8
       file: no
       string: '{"taxid":125295,"taxon":"Helianthus","tax_rank":"genus","tax_division":"Plantae","parentid":151101,"parentname":"Asteroideae","taxonrep":"Helianthus"}'
-  recorded_at: 2020-04-20 16:02:06 GMT
+  recorded_at: 2020-05-01 20:36:26 GMT
   recorded_with: vcr/0.5.4, webmockr/0.6.2

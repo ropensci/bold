@@ -17,9 +17,9 @@ http_interactions:
     headers:
       status: 'HTTP/2 200 '
       server: nginx
-      date: Mon, 20 Apr 2020 16:02:09 GMT
+      date: Fri, 01 May 2020 20:38:08 GMT
       content-type: text/html; charset=utf-8
-      content-length: '7021'
+      content-length: '7039'
       x-powered-by: PHP/5.3.15
       x-frame-options: SAMEORIGIN
       x-content-type-options: nosniff
@@ -41,7 +41,7 @@ http_interactions:
         indentata","tax_rank":"species","tax_division":"Animalia","parentid":92159,"parentname":"Diplurodes","taxonrep":"Diplurodes
         indentata","representitive_image":{"image":"GWOTE\/BC_ZSM_Lep_add_57874+1332406662.JPG","apectratio":1.333},"specimenrecords":"2"},{"taxid":466257,"taxon":"Diplurodes
         inundata","tax_rank":"species","tax_division":"Animalia","parentid":92159,"parentname":"Diplurodes","taxonrep":"Diplurodes
-        inundata","representitive_image":{"image":"GWOTE\/BC_ZSM_Lep_add_57872+1332406658.JPG","apectratio":1.333},"specimenrecords":"4"},{"taxid":92160,"taxon":"Diplurodes
+        inundata","representitive_image":{"image":"LEVIE\/RMNH_INS_541897_dor_a_[aperture_=_f25]+1357328856.jpg","apectratio":1.506},"specimenrecords":"4"},{"taxid":92160,"taxon":"Diplurodes
         kerangatis","tax_rank":"species","tax_division":"Animalia","parentid":92159,"parentname":"Diplurodes","taxonrep":"Diplurodes
         kerangatis","representitive_image":{"image":"GWOTE\/BC_ZSM_Lep_add_57875+1332406666.JPG","apectratio":1.333},"specimenrecords":"3"},{"taxid":456634,"taxon":"Diplurodes
         luzonensis","tax_rank":"species","tax_division":"Animalia","parentid":92159,"parentname":"Diplurodes","taxonrep":"Diplurodes
@@ -63,7 +63,7 @@ http_interactions:
         submontana","representitive_image":{"image":"GWOTE\/BC_ZSM_Lep_add_57871+1332406652.JPG","apectratio":1.333},"specimenrecords":"5"},{"taxid":535185,"taxon":"Diplurodes
         sugillata","tax_rank":"species","tax_division":"Animalia","parentid":92159,"parentname":"Diplurodes","taxonrep":"Diplurodes
         sugillata","representitive_image":{"image":"GWORK\/BC_ZSM_Lep_74362+1424362924.JPG","apectratio":1.333},"specimenrecords":"2"}],"total_matched_names":32}'
-  recorded_at: 2020-04-20 16:02:10 GMT
+  recorded_at: 2020-05-01 20:38:09 GMT
   recorded_with: vcr/0.5.4, webmockr/0.6.2
 - request:
     method: get
@@ -83,7 +83,7 @@ http_interactions:
     headers:
       status: 'HTTP/2 200 '
       server: nginx
-      date: Mon, 20 Apr 2020 16:02:10 GMT
+      date: Fri, 01 May 2020 20:38:08 GMT
       content-type: text/html; charset=utf-8
       content-length: '48'
       x-powered-by: PHP/5.3.15
@@ -94,5 +94,5 @@ http_interactions:
       encoding: UTF-8
       file: no
       string: '{"top_matched_names":[],"total_matched_names":0}'
-  recorded_at: 2020-04-20 16:02:10 GMT
+  recorded_at: 2020-05-01 20:38:09 GMT
   recorded_with: vcr/0.5.4, webmockr/0.6.2
