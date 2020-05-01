@@ -10,14 +10,14 @@
   "codeRepository": "https://github.com/ropensci/bold",
   "issueTracker": "https://github.com/ropensci/bold/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.9.0",
+  "version": "1.0.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.6.0",
+    "version": "4.0.0",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.6.0 Patched (2019-04-30 r76446)",
+  "runtimePlatform": "R version 4.0.0 (2020-04-24)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -43,19 +43,6 @@
     }
   ],
   "softwareSuggestions": [
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "roxygen2",
-      "name": "roxygen2",
-      "version": ">= 6.1.1",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=roxygen2"
-    },
     {
       "@type": "SoftwareApplication",
       "identifier": "sangerseqR",
@@ -96,7 +83,7 @@
       "@type": "SoftwareApplication",
       "identifier": "vcr",
       "name": "vcr",
-      "version": ">= 0.2.2",
+      "version": ">= 0.5.4",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -212,8 +199,9 @@
   "developmentStatus": "active",
   "releaseNotes": "https://github.com/ropensci/bold/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/bold/blob/master/README.md",
-  "fileSize": "694.063KB",
+  "fileSize": "1364.336KB",
   "contributor": {},
   "copyrightHolder": {},
-  "funder": {}
+  "funder": {},
+  "relatedLink": "https://docs.ropensci.org/bold"
 }

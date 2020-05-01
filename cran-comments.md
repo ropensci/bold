@@ -1,7 +1,6 @@
 ## Test environments
 
-* local OS X install, R 3.6.0 Patched
-* ubuntu 14.04 (on travis-ci), R 3.6.0
+* local OS X install, R 4.0.0
 * win-builder (devel and release)
 
 ## R CMD check results
@@ -11,11 +10,12 @@
 ## Reverse dependencies
 
 * I have run R CMD check on the 1 downstream dependency.
-  (Summary at <https://github.com/ropensci/bold/blob/master/revdep/README.md>). No problems were found.
+(Summary at <https://github.com/ropensci/bold/blob/master/revdep/README.md>).
+No problems were found.
 
 -----
 
-This version implements a number of minor fixes and improvements.
+This version fixes a few bugs and improves documentation.
 
 Thanks! 
 Scott Chamberlain
