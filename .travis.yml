@@ -1,11 +1,12 @@
 language: r
-sudo: false
 cache: packages
+os: linux
+dist: xenial
 
 r_binary_packages:
   - covr
 
-matrix:
+jobs:
   include:
     - os: linux
       r: release
