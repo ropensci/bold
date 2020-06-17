@@ -126,5 +126,5 @@ bold_seq(taxon='Coelioxys', verbose = TRUE)[1:2]
 }
 }
 \references{
-\url{http://v4.boldsystems.org/index.php/resources/api?type=webservices}
+http://v4.boldsystems.org/index.php/resources/api?type=webservices
 }

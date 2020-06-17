@@ -89,5 +89,5 @@ if (requireNamespace("sangerseqR", quietly = TRUE)) {
 }
 }
 \references{
-\url{http://v4.boldsystems.org/index.php/resources/api?type=webservices}
+http://v4.boldsystems.org/index.php/resources/api?type=webservices
 }

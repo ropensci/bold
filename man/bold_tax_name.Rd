@@ -50,7 +50,7 @@ bold_tax_name(name='Diplura', verbose = TRUE)
 }
 }
 \references{
-\url{http://v4.boldsystems.org/index.php/resources/api?type=taxonomy}
+http://v4.boldsystems.org/index.php/resources/api?type=taxonomy
 }
 \seealso{
 \code{\link[=bold_tax_id]{bold_tax_id()}}

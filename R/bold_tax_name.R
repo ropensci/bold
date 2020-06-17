@@ -5,7 +5,7 @@
 #' @param fuzzy (logical) Whether to use fuzzy search or not (default: `FALSE`)
 #' @template otherargs
 #' @references 
-#' <http://v4.boldsystems.org/index.php/resources/api?type=taxonomy>
+#' http://v4.boldsystems.org/index.php/resources/api?type=taxonomy
 #' @details The `dataTypes` parameter is not supported in this function. 
 #' If you want to use that parameter, get an ID from this function and pass 
 #' it into `bold_tax_id`, and then use the `dataTypes` parameter.

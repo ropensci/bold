@@ -8,7 +8,7 @@
 #' the total counts of (BINs, Countries, Storing Institutions, Orders, 
 #' Families, Genus, Species)
 #' @references 
-#' <http://v4.boldsystems.org/index.php/resources/api?type=webservices>
+#' http://v4.boldsystems.org/index.php/resources/api?type=webservices
 #'
 #' @examples \dontrun{
 #' x <- bold_stats(taxon='Osmia')

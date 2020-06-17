@@ -4,7 +4,7 @@
 #' @template args
 #' @template otherargs
 #' @references 
-#' <http://v4.boldsystems.org/index.php/resources/api?type=webservices>
+#' http://v4.boldsystems.org/index.php/resources/api?type=webservices
 #'
 #' @param format (character) One of xml, json, tsv (default). tsv format gives 
 #' back a data.frame object. xml gives back parsed XML as `xml_document`

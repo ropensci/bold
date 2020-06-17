@@ -47,7 +47,7 @@
 #' @return A data.frame with details for each specimen matched. if a
 #' failed request, returns `NULL`
 #' @references
-#' <http://v4.boldsystems.org/index.php/resources/api?type=idengine>
+#' http://v4.boldsystems.org/index.php/resources/api?type=idengine
 #' @seealso [bold_identify_parents()]
 #' @examples \dontrun{
 #' seq <- sequences$seq1

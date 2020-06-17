@@ -132,5 +132,5 @@ head(bold_seqspec(taxon='Osmia', verbose = TRUE))
 }
 }
 \references{
-\url{http://v4.boldsystems.org/index.php/resources/api?type=webservices}
+http://v4.boldsystems.org/index.php/resources/api?type=webservices
 }

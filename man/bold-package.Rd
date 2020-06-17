@@ -12,8 +12,8 @@ bold: A programmatic interface to the Barcode of Life data
 
 
 This package gives you access to data from BOLD System
-\url{http://www.boldsystems.org/} via their API
-(\url{http://v4.boldsystems.org/index.php/api_home})
+http://www.boldsystems.org/ via their API
+(http://v4.boldsystems.org/index.php/api_home)
 }
 
 \section{Functions}{

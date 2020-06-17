@@ -63,7 +63,7 @@ bold_tax_id(id=88899, verbose = TRUE)
 }
 }
 \references{
-\url{http://v4.boldsystems.org/index.php/resources/api?type=taxonomy}
+http://v4.boldsystems.org/index.php/resources/api?type=taxonomy
 }
 \seealso{
 \code{\link[=bold_tax_name]{bold_tax_name()}}

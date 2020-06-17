@@ -6,7 +6,7 @@
 #' @template large-requests
 #' @template marker
 #' @references
-#' <http://v4.boldsystems.org/index.php/resources/api?type=webservices>
+#' http://v4.boldsystems.org/index.php/resources/api?type=webservices
 #'
 #' @param marker (character) Returns all records containing matching marker
 #' codes. See Details.
