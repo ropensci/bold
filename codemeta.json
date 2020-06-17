@@ -10,14 +10,14 @@
   "codeRepository": "https://github.com/ropensci/bold",
   "issueTracker": "https://github.com/ropensci/bold/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "4.0.0",
+    "version": "4.0.2",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.0.0 (2020-04-24)",
+  "runtimePlatform": "R version 4.0.2 RC (2020-06-14 r78689)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -199,7 +199,7 @@
   "developmentStatus": "active",
   "releaseNotes": "https://github.com/ropensci/bold/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/bold/blob/master/README.md",
-  "fileSize": "1364.336KB",
+  "fileSize": "1364.286KB",
   "contributor": {},
   "copyrightHolder": {},
   "funder": {},

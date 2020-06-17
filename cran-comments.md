@@ -1,6 +1,6 @@
 ## Test environments
 
-* local OS X install, R 4.0.0
+* local OS X install, R 4.0.1
 * win-builder (devel and release)
 
 ## R CMD check results
@@ -15,7 +15,7 @@ No problems were found.
 
 -----
 
-This version fixes a few bugs and improves documentation.
+This version fixes a broken test.
 
 Thanks! 
 Scott Chamberlain

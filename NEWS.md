@@ -1,3 +1,11 @@
+bold 1.1.0
+==========
+
+### MINOR IMPROVEMENTS
+
+* fix a failing test (#73)
+
+
 bold 1.0.0
 ==========
 
