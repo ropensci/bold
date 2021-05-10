@@ -1,7 +1,8 @@
 ## Test environments
 
-* local OS X install, R 4.0.1
+* local macOS install, R 4.0.5 patched
 * win-builder (devel and release)
+* GitHub Actions (linux, macos, windows)
 
 ## R CMD check results
 
@@ -15,8 +16,7 @@ No problems were found.
 
 -----
 
-This version fixes a broken test.
+This version fixes the rmarkdown/markdown dependency issue for vignettes that Kurt emailed maintainers about.
 
 Thanks! 
 Scott Chamberlain
-

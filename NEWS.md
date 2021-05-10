@@ -1,3 +1,10 @@
+bold 1.2.0
+==========
+
+### MINOR IMPROVEMENTS
+
+* vignettes fix (#77)
+
 bold 1.1.0
 ==========
 
