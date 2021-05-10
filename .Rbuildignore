@@ -18,3 +18,4 @@ notes.R
 ^revdep$
 bold_trace_files
 vignettes/
+^LICENSE\.md$
