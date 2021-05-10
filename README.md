@@ -7,7 +7,7 @@ bold
 [![cran checks](https://cranchecks.info/badges/worst/bold)](https://cranchecks.info/pkgs/bold)
 [![R-check](https://github.com/ropensci/bold/workflows/R-check/badge.svg)](https://github.com/ropensci/bold/actions/)
 [![codecov.io](https://codecov.io/github/ropensci/bold/coverage.svg?branch=master)](https://codecov.io/github/ropensci/bold?branch=master)
-[![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/bold)](https://github.com/metacran/cranlogs.app)
+[![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/bold)](https://github.com/r-hub/cranlogs.app)
 
 `bold` accesses BOLD barcode data.
 
