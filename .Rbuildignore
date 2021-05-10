@@ -17,5 +17,4 @@ revdep
 notes.R
 ^revdep$
 bold_trace_files
-vignettes/cache
-vignettes/bold_trace_files
+vignettes/

@@ -11,9 +11,9 @@ Authors@R: c(person("Scott", "Chamberlain",
     role = c("aut", "cre"),
     email = "myrmecocystus@gmail.com",
     comment = c(ORCID="0000-0003-1444-9135")))
-URL: https://docs.ropensci.org/bold, https://github.com/ropensci/bold
+URL: https://docs.ropensci.org/bold (documentation)
+    https://github.com/ropensci/bold (source)
 BugReports: https://github.com/ropensci/bold/issues
-VignetteBuilder: knitr
 LazyData: yes
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
@@ -28,7 +28,6 @@ Imports:
     tibble
 Suggests:
     sangerseqR,
-    knitr,
     testthat,
     vcr (>= 0.5.4)
 RoxygenNote: 7.1.1
