@@ -72,6 +72,6 @@ bold_seq <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
       tt <- strdrop(str = tt, pattern = "Fatal+")[[1]]
     }
     res <- strsplit(tt, ">")[[1]][-1]
-    lapply(res, split_fasta)
+    split_fasta(res)
   }
 }
