@@ -3,12 +3,9 @@ bbase <- function() 'https://v4.boldsystems.org/index.php/'
 bc <- function(x) Filter(Negate(is.null), x)
 
 split_fasta <- function(x){
-  temp <- paste(">", x, sep = "")
-  seq <- str_replace_all(str_split(str_replace(temp[[1]], "\n", "<<<"), 
-                                   "<<<")[[1]][[2]], "\n", "")
-  seq <- gsub("\\\r|\\\n", "", seq)
-  stuff <- str_split(x, "\\|")[[1]][c(1:3)]
-  list(id = stuff[1], name = stuff[2], gene = stuff[1], sequence = seq)
+  tmp <- as.data.frame(stringr::str_split_fixed(gsub("\\\r\\\n", "|",x), "\\|", n = 6))[-6]
+  colnames(tmp) = c("processid", "identification", "marker", "accession","sequence")
+  return(tmp)
 }
 
 pipeornull <- function(x){
