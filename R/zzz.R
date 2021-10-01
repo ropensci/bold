@@ -3,9 +3,9 @@ bbase <- function() 'https://v4.boldsystems.org/index.php/'
 bc <- function(x) Filter(Negate(is.null), x)
 
 split_fasta <- function(x){
-  tmp <- as.data.frame(stringr::str_split_fixed(gsub("\\\r\\\n", "|",x), "\\|", n = 6))[-6]
-  colnames(tmp) = c("processid", "identification", "marker", "accession","sequence")
-  return(tmp)
+  df <- as.data.frame(str_split_fixed(x, "\\\r\\\n|\\|", n = 6))[-6]
+  colnames(df) = c("processid", "identification", "marker", "accession","sequence")
+  return(df)
 }
 
 pipeornull <- function(x){
