@@ -3,7 +3,7 @@
 #' Get sequences for a taxonomic name, id, bin, container, institution, 
 #' researcher, geographic, place, or gene.
 #'
-#' @importFrom stringr str_replace_all str_replace str_split
+#' @importFrom stringr str_split
 #' @export
 #' @template args
 #' @template otherargs
@@ -15,8 +15,8 @@
 #' @param marker (character) Returns all records containing matching 
 #' marker codes.
 #'
-#' @return A list with each element of length 4 with slots for id, name, 
-#' gene, and sequence.
+#' @return A data.frame with each element as row and 5 columns for processid, identification, 
+#' marker, accession, and sequence.
 #' 
 #' @examples \dontrun{
 #' res <- bold_seq(taxon='Coelioxys')
@@ -46,22 +46,21 @@
 bold_seq <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL, 
   institutions = NULL, researchers = NULL, geo = NULL, marker = NULL, 
   response=FALSE, ...) {
-  
-  args <- bc(
-    list(
-      taxon = pipeornull(taxon), geo = pipeornull(geo), 
-      ids = pipeornull(ids), bin = pipeornull(bin), 
-      container = pipeornull(container), 
-      institutions = pipeornull(institutions),
-      researchers = pipeornull(researchers), marker = pipeornull(marker)
-    )
-  )
-  check_args_given_nonempty(
-    args, 
-    c('taxon','ids','bin','container','institutions','researchers',
-      'geo','marker')
-  )
-  out <- b_GET(paste0(bbase(), 'API_Public/sequence'), args, ...)
+  params <- list(taxon = taxon,
+                  ids = ids,
+                  bin = bin,
+                  container = container,
+                  institutions = institutions,
+                  researchers = researchers,
+                  geo = geo,
+                  marker = marker)
+  paramsNames = names(params)
+  params = params[!vapply(params, is.null, F)]
+  if(length(params)==0){
+    stop(paste0("You must provide a non-empty value to at least one of\n", paste(paramsNames, collapse = "\n")))
+  }
+  params <- vapply(params[vapply(params, is.character, F)], paste, collapse = "|", "")
+  out <- b_GET(paste0(bbase(), 'API_Public/sequence'), params, ...)
   if (response) { 
     out 
   } else {
