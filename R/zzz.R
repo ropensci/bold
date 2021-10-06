@@ -3,8 +3,10 @@ bbase <- function() 'https://v4.boldsystems.org/index.php/'
 bc <- function(x) Filter(Negate(is.null), x)
 
 split_fasta <- function(x){
-  df <- as.data.frame(str_split_fixed(x, "\\\r\\\n|\\|", n = 6))[-6]
+  tmp = as.data.frame(stringr::str_split_fixed(x, "\\\r\\\n", n = 3))
+  df = cbind(stringr::str_split_fixed(tmp[,1], "\\|", n = 4), tmp[,2])
   colnames(df) = c("processid", "identification", "marker", "accession","sequence")
+  df[df==""] = NA
   return(df)
 }
 
