@@ -72,10 +72,11 @@ library("bold")
 
 ### Search for sequence data only
 
-Default is to get a list back
+By default you download `fasta` file, which is given back to you as a `data.frame`
 
 ```{r}
-bold_seq(taxon='Coelioxys')[[1]]
+res <- bold_seq(taxon='Coelioxys')
+head(res)
 ```
 
 You can optionally get back the `crul` response object
