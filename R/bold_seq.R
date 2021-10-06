@@ -54,11 +54,11 @@ bold_seq <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
                   geo = geo,
                   marker = marker)
   paramsNames = names(params)
-  params = params[!vapply(params, is.null, F)]
+  params = params[vapply(params, function(x){is.character(x)&&x!=""}, F)]
   if(length(params)==0){
-    stop(paste0("You must provide a non-empty value to at least one of\n", paste(paramsNames, collapse = "\n")))
+    stop(paste0("You must provide a non-empty value to at least one of\n  ", paste(paramsNames, collapse = "\n  ")))
   }
-  params <- vapply(params[vapply(params, is.character, F)], paste, collapse = "|", "")
+  params <- vapply(params, paste, collapse = "|", "")
   out <- b_GET(paste0(bbase(), 'API_Public/sequence'), params, ...)
   if (response) { 
     out 
