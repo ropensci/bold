@@ -3,7 +3,6 @@
 #' Get sequences for a taxonomic name, id, bin, container, institution, 
 #' researcher, geographic, place, or gene.
 #'
-#' @importFrom stringr str_split
 #' @export
 #' @template args
 #' @template otherargs
@@ -15,7 +14,7 @@
 #' @param marker (character) Returns all records containing matching 
 #' marker codes.
 #'
-#' @return A data.frame with each element as row and 5 columns for processid, identification, 
+#' @return A data frame with each element as row and 5 columns for processid, identification, 
 #' marker, accession, and sequence.
 #' 
 #' @examples \dontrun{
