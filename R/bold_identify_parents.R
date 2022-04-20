@@ -23,7 +23,8 @@
 #' @param ... Further args passed on to [crul::verb-GET], main
 #' purpose being curl debugging
 #'
-#' @details This function gets unique set of taxonomic names from the input
+#' @details DEPRECATED. See \code\link{[bold]{bold_identify_taxonomy()}}.
+#' This function gets unique set of taxonomic names from the input
 #' data.frame, then queries [bold_tax_name()] to get the
 #' taxonomic ID, passing it to [bold_tax_id()] to get the parent
 #' names, then attaches those to the input data.
@@ -79,30 +80,34 @@
 #' res <- bold_identify_parents(out)
 #' }
 bold_identify_parents <- function(x, wide = FALSE, taxid = NULL,
-  taxon = NULL, tax_rank = NULL, tax_division = NULL, parentid = NULL,
-  parentname = NULL, taxonrep = NULL, specimenrecords = NULL, ...) {
+                                  taxon = NULL, tax_rank = NULL, tax_division = NULL, parentid = NULL,
+                                  parentname = NULL, taxonrep = NULL, specimenrecords = NULL, ...) {
   UseMethod("bold_identify_parents")
 }
 
 #' @export
 bold_identify_parents.default <- function(x, wide = FALSE, taxid = NULL,
-  taxon = NULL, tax_rank = NULL, tax_division = NULL, parentid = NULL,
-  parentname = NULL, taxonrep = NULL, specimenrecords = NULL, ...) {
+                                          taxon = NULL, tax_rank = NULL, tax_division = NULL, parentid = NULL,
+                                          parentname = NULL, taxonrep = NULL, specimenrecords = NULL, ...) {
   stop("no 'bold_identify_parents' method for ", class(x)[1L], call. = FALSE)
 }
 
 #' @export
 bold_identify_parents.data.frame <- function(x, wide = FALSE, taxid = NULL,
-  taxon = NULL, tax_rank = NULL, tax_division = NULL, parentid = NULL,
-  parentname = NULL, taxonrep = NULL, specimenrecords = NULL, ...) {
+                                             taxon = NULL, tax_rank = NULL, tax_division = NULL, parentid = NULL,
+                                             parentname = NULL, taxonrep = NULL, specimenrecords = NULL, ...) {
   bold_identify_parents(list(x), wide, taxid, taxon, tax_rank,
-    tax_division, parentid, parentname, taxonrep, specimenrecords)
+                        tax_division, parentid, parentname, taxonrep, specimenrecords)
 }
 
 #' @export
 bold_identify_parents.list <- function(x, wide = FALSE, taxid = NULL,
-  taxon = NULL, tax_rank = NULL, tax_division = NULL, parentid = NULL,
-  parentname = NULL, taxonrep = NULL, specimenrecords = NULL, ...) {
+                                       taxon = NULL, tax_rank = NULL, tax_division = NULL, parentid = NULL,
+                                       parentname = NULL, taxonrep = NULL, specimenrecords = NULL, ...) {
+  # not using deprecated because I want users to see this *before* it goes on.
+  warning("\n'bold_identify_parents' is deprecated.",
+          "\nUse 'bold_identify_taxonomy' instead.",
+          "\nSee help(\"Deprecated\")", call. = FALSE, immediate. = TRUE)
 
   assert(wide, "logical")
 
