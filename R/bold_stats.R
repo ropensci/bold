@@ -2,12 +2,21 @@
 #'
 #' @export
 #' @inheritParams bold_specimens
-#' @param dataType (character) one of "overview" or "drill_down" (default).
-#' "drill_down": a detailed summary of information which provides record 
-#' counts by (BINs, Country, Storing Institution, Species). "overview": 
-#' the total counts of (BINs, Countries, Storing Institutions, Orders, 
-#' Families, Genus, Species)
-#' @references 
+#' @param dataType (character) one of "overview"(default) or "drill_down".
+#' "overview": the total record counts of (BINs, Countries, Storing Institutions,
+#' Orders, Families, Genus, Species). "drill_down": a detailed summary of
+#' information which provides record counts by (BINs, Country,
+#' Storing Institution, Species).
+#'
+#' @details The option 'drill_down' for dataTypes currently seems to only
+#' returns NA values. This is a problem with the API.
+#'
+#' @return By default, return a data.frame with the count of total records,
+#' records with species name, bins, countries, depositories,
+#' order, family, genus, species. If dataType is set to 'drill_down', will
+#' return a list.
+#'
+#' @references
 #' http://v4.boldsystems.org/index.php/resources/api?type=webservices
 #'
 #' @examples \dontrun{
@@ -21,10 +30,7 @@
 #' x$family
 #' x$genus
 #' x$species
-#' 
-#' # just get all counts
-#' lapply(Filter(is.list, x), "[[", "count")
-#' 
+#'
 #' res <- bold_stats(taxon='Osmia', response=TRUE)
 #' res$url
 #' res$status_code
@@ -40,19 +46,25 @@
 #' # bold_stats(geo='Costa Rica', timeout_ms = 6)
 #' }
 
-bold_stats <- function(taxon = NULL, ids = NULL, bin = NULL, 
-  container = NULL, institutions = NULL, researchers = NULL, geo = NULL, 
-  dataType = "drill_down", response=FALSE, ...) {
-  
-  args <- bc(list(taxon = pipeornull(taxon), geo = pipeornull(geo), 
-                  ids = pipeornull(ids), bin = pipeornull(bin), 
-                  container = pipeornull(container), 
-                  institutions = pipeornull(institutions), 
-                  researchers = pipeornull(researchers), 
-                  dataType = dataType, format = "json"))
-  check_args_given_nonempty(args, c('taxon','ids','bin','container',
-                                    'institutions','researchers','geo'))
-  out <- b_GET(paste0(bbase(), 'API_Public/stats'), args, ...)
-  if (response) return(out)
-  jsonlite::fromJSON(out$parse("UTF-8"))
+bold_stats <- function(taxon = NULL, ids = NULL, bin = NULL,
+  container = NULL, institutions = NULL, researchers = NULL, geo = NULL,
+  dataType = "overview", response=FALSE, ...) {
+  assert(response, "logical")
+  assert(dataType, "character")
+  if(!dataType %in% c("overview", "drill_down"))
+    stop("'dataType' must be one of 'overview', 'drill_down'")
+  params <- c(pipe_params(taxon = taxon, geo = geo,
+                          ids = ids, bin = bin,
+                          container = container,
+                          institutions = institutions,
+                          researchers = researchers),
+              dataType = dataType, format = 'json')
+  tmp <- b_GET(b_url('API_Public/stats'), params, ...)
+  if (response) return(tmp)
+  out <- jsonlite::fromJSON(rawToChar(tmp$content))
+  if(dataType == "drill_down"){
+    out
+  } else {
+    list2DF(out)
+  }
 }
