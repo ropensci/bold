@@ -109,8 +109,8 @@ parse_identify_xml <- function(res){
   nodes <- xml2::xml_find_all(xml, toget)
 
   nodes.len <- length(nodes)
-  nodes.data <- xml_text(nodes)
-  nodes.name <- xml_name(nodes)
+  nodes.data <- xml2::xml_text(nodes)
+  nodes.name <- xml2::xml_name(nodes)
 
   #-- making a data.frame from the tips :
   # each match (node) has these 10 fields (in toget);
