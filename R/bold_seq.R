@@ -1,6 +1,6 @@
 #' Search BOLD for sequences.
 #'
-#' Get sequences for a taxonomic name, id, bin, container, institution, 
+#' Get sequences for a taxonomic name, id, bin, container, institution,
 #' researcher, geographic, place, or gene.
 #'
 #' @export
@@ -8,15 +8,15 @@
 #' @template otherargs
 #' @template large-requests
 #' @template marker
-#' @references 
+#' @references
 #' http://v4.boldsystems.org/index.php/resources/api?type=webservices
 #'
-#' @param marker (character) Returns all records containing matching 
+#' @param marker (character) Returns all records containing matching
 #' marker codes.
 #'
-#' @return A data frame with each element as row and 5 columns for processid, identification, 
+#' @return A data frame with each element as row and 5 columns for processid, identification,
 #' marker, accession, and sequence.
-#' 
+#'
 #' @examples \dontrun{
 #' res <- bold_seq(taxon='Coelioxys')
 #' bold_seq(taxon='Aglae')
@@ -36,16 +36,17 @@
 #' res$response_headers
 #'
 #' ## curl debugging
-#' ### You can do many things, including get verbose output on the curl 
+#' ### You can do many things, including get verbose output on the curl
 #' ### call, and set a timeout
 #' bold_seq(taxon='Coelioxys', verbose = TRUE)[1:2]
 #' # bold_seqspec(taxon='Coelioxys', timeout_ms = 10)
 #' }
 
-bold_seq <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL, 
-  institutions = NULL, researchers = NULL, geo = NULL, marker = NULL, 
+bold_seq <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
+  institutions = NULL, researchers = NULL, geo = NULL, marker = NULL,
   response=FALSE, ...) {
-  params <- list(taxon = taxon,
+  assert(response, "logical")
+  params <- pipe_params(taxon = taxon,
                   ids = ids,
                   bin = bin,
                   container = container,
@@ -53,23 +54,27 @@ bold_seq <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
                   researchers = researchers,
                   geo = geo,
                   marker = marker)
-  paramsNames = names(params)
-  params = params[vapply(params, function(x){is.character(x)&&x!=""}, F)]
-  if(length(params)==0){
-    stop(paste0("You must provide a non-empty value to at least one of\n  ", paste(paramsNames, collapse = "\n  ")))
-  }
-  params <- vapply(params, paste, collapse = "|", "")
-  out <- b_GET(paste0(bbase(), 'API_Public/sequence'), params, ...)
-  if (response) { 
-    out 
+  tmp <- b_GET(b_url('API_Public/sequence'), params, ...)
+  if (response) {
+    tmp
   } else {
-    tt <- out$parse("UTF-8")
-    if (grepl("error", tt)) {
+    out <- rawToChar(tmp)
+    if (grepl("error", out)) {
       warning("the request timed out, see 'If a request times out'\n",
         "returning partial output")
-      tt <- strdrop(str = tt, pattern = "Fatal+")[[1]]
+      out <- strdrop(str = out, pattern = "Fatal+")[[1]]
     }
-    res <- strsplit(tt, ">")[[1]][-1]
-    split_fasta(res)
+    split_fasta(out)
   }
+}
+
+split_fasta <- function(x){
+  x <- strsplit(x, ">")[[1]][-1]
+  tmp <- as.data.frame(stringi::stri_split_fixed(x, "\\\r\\\n", n = 3))
+  df <- cbind(as.data.frame(stringi::stri_split_fixed(tmp[,1], "\\|", n = 4)),
+              tmp[,2])
+  colnames(df) <- c("processid", "identification", "marker",
+                    "accession", "sequence")
+  df[df==""] <- NA
+  df
 }
