@@ -45,6 +45,7 @@
 bold_seq <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
   institutions = NULL, researchers = NULL, geo = NULL, marker = NULL,
   response=FALSE, ...) {
+
   assert(response, "logical")
   params <- pipe_params(taxon = taxon,
                   ids = ids,
@@ -58,13 +59,13 @@ bold_seq <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
   if (response) {
     tmp
   } else {
-    out <- rawToChar(tmp)
-    if (grepl("error", out)) {
+    tt <- rawToChar(tmp)
+    if (grepl("error", tt)) {
       warning("the request timed out, see 'If a request times out'\n",
         "returning partial output")
-      out <- strdrop(str = out, pattern = "Fatal+")[[1]]
+      tt <- strdrop(str = tt, pattern = "Fatal+")[[1]]
     }
-    split_fasta(out)
+    split_fasta(tt)
   }
 }
 

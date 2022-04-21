@@ -47,6 +47,7 @@ bold_seqspec <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
   response=FALSE, format = 'tsv', sepfasta=FALSE, ...) {
 
   if(!format %in% c('xml', 'tsv')) stop("'format' should be onf of 'xml' or 'tsv'")
+  assert(response, "logical")
 
   params <- c(pipe_params(taxon = taxon, geo = geo, ids = ids,
                           bin = bin, container = container,

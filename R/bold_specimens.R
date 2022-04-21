@@ -3,10 +3,10 @@
 #' @export
 #' @template args
 #' @template otherargs
-#' @references 
+#' @references
 #' http://v4.boldsystems.org/index.php/resources/api?type=webservices
 #'
-#' @param format (character) One of xml, json, tsv (default). tsv format gives 
+#' @param format (character) One of xml, json, tsv (default). tsv format gives
 #' back a data.frame object. xml gives back parsed XML as `xml_document`
 #' object. 'json' (JavaScript Object Notation) and 'dwc' (Darwin Core Archive)
 #' are supported in theory, but the JSON can be malformed, so we don't support
@@ -25,30 +25,28 @@
 #' bold_specimens(taxon=c('Coelioxys','Osmia'))
 #'
 #' ## curl debugging
-#' ### These examples below take a long time, so you can set a timeout so that 
+#' ### These examples below take a long time, so you can set a timeout so that
 #' ### it stops by X sec
 #' head(bold_specimens(taxon='Osmia', verbose = TRUE))
 #' # head(bold_specimens(geo='Costa Rica', timeout_ms = 6))
 #' }
 
-bold_specimens <- function(taxon = NULL, ids = NULL, bin = NULL, 
-  container = NULL, institutions = NULL, researchers = NULL, geo = NULL, 
+bold_specimens <- function(taxon = NULL, ids = NULL, bin = NULL,
+  container = NULL, institutions = NULL, researchers = NULL, geo = NULL,
   response=FALSE, format = 'tsv', ...) {
 
-  format <- match.arg(format, choices = c("xml", "tsv"))
-  args <- bc(list(taxon = pipeornull(taxon), geo = pipeornull(geo), 
-                  ids = pipeornull(ids), bin = pipeornull(bin), 
-                  container = pipeornull(container), 
-                  institutions = pipeornull(institutions), 
-                  researchers = pipeornull(researchers), 
-                  format = format))
-  check_args_given_nonempty(args, c('taxon','ids','bin','container',
-                                    'institutions','researchers','geo'))
-  out <- b_GET(paste0(bbase(), 'API_Public/specimen'), args, ...)
+  assert(response, "logical")
+  if(!format %in% c('xml', 'tsv')) stop("'format' should be onf of 'xml' or 'tsv'")
+  params <- c(pipe_params(taxon = taxon, geo = geo, ids = ids,
+                            bin = bin, container = container,
+                            institutions = institutions,
+                            researchers = researchers), format = format)
+  tmp <- b_GET(b_url('API_Public/specime
+                     n'), params, ...)
   if (response) {
-    out
+    tmp
   } else {
-    tt <- rawToChar(out$content)
+    tt <- rawToChar(tmp$content)
     switch(format,
            xml = xml2::read_xml(tt),
            tsv = utils::read.delim(text = tt, header = TRUE, sep = "\t",
