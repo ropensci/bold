@@ -71,7 +71,7 @@ bold_seqspec <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
       format,
       xml = xml2::read_xml(tt),
       tsv = utils::read.delim(text = tt, header = TRUE, sep = "\t",
-                       stringsAsFactors = FALSE)
+                       stringsAsFactors = FALSE, quote = "")
     )
     if (!sepfasta) {
       temp
