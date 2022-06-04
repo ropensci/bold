@@ -4,39 +4,49 @@
 \alias{bold_seqspec}
 \title{Get BOLD specimen + sequence data.}
 \usage{
-bold_seqspec(taxon = NULL, ids = NULL, bin = NULL,
-  container = NULL, institutions = NULL, researchers = NULL,
-  geo = NULL, marker = NULL, response = FALSE, format = "tsv",
-  sepfasta = FALSE, ...)
+bold_seqspec(
+  taxon = NULL,
+  ids = NULL,
+  bin = NULL,
+  container = NULL,
+  institutions = NULL,
+  researchers = NULL,
+  geo = NULL,
+  marker = NULL,
+  response = FALSE,
+  format = "tsv",
+  sepfasta = FALSE,
+  ...
+)
 }
 \arguments{
-\item{taxon}{(character) Returns all records containing matching taxa. Taxa 
-includes the ranks of  phylum, class, order, family, subfamily, genus, 
+\item{taxon}{(character) Returns all records containing matching taxa. Taxa
+includes the ranks of  phylum, class, order, family, subfamily, genus,
 and species.}
 
-\item{ids}{(character) Returns all records containing matching IDs. IDs 
+\item{ids}{(character) Returns all records containing matching IDs. IDs
 include Sample IDs, Process IDs, Museum IDs and Field IDs.}
 
-\item{bin}{(character) Returns all records contained in matching BINs. A 
+\item{bin}{(character) Returns all records contained in matching BINs. A
 BIN is defined by a Barcode Index Number URI.}
 
-\item{container}{(character) Returns all records contained in matching 
+\item{container}{(character) Returns all records contained in matching
 projects or datasets. Containers include project codes and dataset codes}
 
-\item{institutions}{(character) Returns all records stored in matching 
+\item{institutions}{(character) Returns all records stored in matching
 institutions. Institutions are the Specimen Storing Site.}
 
-\item{researchers}{(character) Returns all records containing matching 
+\item{researchers}{(character) Returns all records containing matching
 researcher names. Researchers include collectors and specimen identifiers.}
 
-\item{geo}{(character) Returns all records collected in matching geographic 
+\item{geo}{(character) Returns all records collected in matching geographic
 sites. Geographic sites includes countries and province/states.}
 
 \item{marker}{(character) Returns all records containing matching marker
 codes. See Details.}
 
-\item{response}{(logical) Note that response is the object that returns 
-from the Curl call, useful for debugging, and getting detailed info on 
+\item{response}{(logical) Note that response is the object that returns
+from the Curl call, useful for debugging, and getting detailed info on
 the API call.}
 
 \item{format}{(character) One of xml or tsv (default). tsv format gives
@@ -46,8 +56,9 @@ back a data.frame object. xml gives back parsed xml as a}
 a list with names matching the processid's from the data frame.
 Default: \code{FALSE}}
 
-\item{...}{Further args passed on to \code{\link[crul]{HttpClient}}, main 
-purpose being curl debugging}
+\item{...}{Further args passed on to
+\code{\link[crul:verb-GET]{crul::verb-GET}}, main purpose being curl
+debugging}
 }
 \value{
 Either a data.frame, parsed xml, a http response object, or a list
@@ -57,11 +68,40 @@ nucleotide data)
 \description{
 Get BOLD specimen + sequence data.
 }
+\section{Large requests}{
+
+Some requests can lead to errors. These often have to do with requesting
+data for a rank that is quite high in the tree, such as an Order,
+for example, Coleoptera. If your request is taking a long time,
+it's likely that something will go wrong on the BOLD server side,
+or we'll not be able to parse the result here in R because
+R can only process strings of a certain length. \code{bold}
+users have reported errors in which the resulting response from
+BOLD is so large that we could not parse it.
+
+A good strategy for when you want data for a high rank is to
+do many separate requests for lower ranks within your target
+rank. You can do this manually, or use the function
+\code{taxize::downstream} to get all the names of a lower
+rank within a target rank. There's an example in the README
+(https://docs.ropensci.org/bold/#large-data)
+}
+
+\section{If a request times out}{
+
+This is likely because you're request was for a large number of
+sequences and the BOLD service timed out. You still should get
+some output, those sequences that were retrieved before the time
+out happened. As above, see the README
+(https://docs.ropensci.org/bold/#large-data) for an example of
+dealing with large data problems with this function.
+}
+
 \section{Marker}{
 
 Notes from BOLD on the \code{marker} param:
-"All markers for a specimen matching the search string will be returned. 
-ie. A record with COI-5P and ITS will return sequence data for both 
+"All markers for a specimen matching the search string will be returned.
+ie. A record with COI-5P and ITS will return sequence data for both
 markers even if only COI-5P was specified."
 
 You will likely end up with data with markers that you did not request -
@@ -92,5 +132,5 @@ head(bold_seqspec(taxon='Osmia', verbose = TRUE))
 }
 }
 \references{
-\url{http://v4.boldsystems.org/index.php/resources/api?type=webservices}
+http://v4.boldsystems.org/index.php/resources/api?type=webservices
 }

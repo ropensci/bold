@@ -4,45 +4,55 @@
 \alias{bold_stats}
 \title{Get BOLD stats}
 \usage{
-bold_stats(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
-  institutions = NULL, researchers = NULL, geo = NULL,
-  dataType = "drill_down", response = FALSE, ...)
+bold_stats(
+  taxon = NULL,
+  ids = NULL,
+  bin = NULL,
+  container = NULL,
+  institutions = NULL,
+  researchers = NULL,
+  geo = NULL,
+  dataType = "drill_down",
+  response = FALSE,
+  ...
+)
 }
 \arguments{
-\item{taxon}{(character) Returns all records containing matching taxa. Taxa 
-includes the ranks of  phylum, class, order, family, subfamily, genus, 
+\item{taxon}{(character) Returns all records containing matching taxa. Taxa
+includes the ranks of  phylum, class, order, family, subfamily, genus,
 and species.}
 
-\item{ids}{(character) Returns all records containing matching IDs. IDs 
+\item{ids}{(character) Returns all records containing matching IDs. IDs
 include Sample IDs, Process IDs, Museum IDs and Field IDs.}
 
-\item{bin}{(character) Returns all records contained in matching BINs. A 
+\item{bin}{(character) Returns all records contained in matching BINs. A
 BIN is defined by a Barcode Index Number URI.}
 
-\item{container}{(character) Returns all records contained in matching 
+\item{container}{(character) Returns all records contained in matching
 projects or datasets. Containers include project codes and dataset codes}
 
-\item{institutions}{(character) Returns all records stored in matching 
+\item{institutions}{(character) Returns all records stored in matching
 institutions. Institutions are the Specimen Storing Site.}
 
-\item{researchers}{(character) Returns all records containing matching 
+\item{researchers}{(character) Returns all records containing matching
 researcher names. Researchers include collectors and specimen identifiers.}
 
-\item{geo}{(character) Returns all records collected in matching geographic 
+\item{geo}{(character) Returns all records collected in matching geographic
 sites. Geographic sites includes countries and province/states.}
 
 \item{dataType}{(character) one of "overview" or "drill_down" (default).
-"drill_down": a detailed summary of information which provides record 
-counts by [BINs, Country, Storing Institution, Species]. "overview": 
-the total counts of [BINs, Countries, Storing Institutions, Orders, 
-Families, Genus, Species]}
+"drill_down": a detailed summary of information which provides record
+counts by (BINs, Country, Storing Institution, Species). "overview":
+the total counts of (BINs, Countries, Storing Institutions, Orders,
+Families, Genus, Species)}
 
-\item{response}{(logical) Note that response is the object that returns 
-from the Curl call, useful for debugging, and getting detailed info on 
+\item{response}{(logical) Note that response is the object that returns
+from the Curl call, useful for debugging, and getting detailed info on
 the API call.}
 
-\item{...}{Further args passed on to \code{\link[crul]{HttpClient}}, main 
-purpose being curl debugging}
+\item{...}{Further args passed on to
+\code{\link[crul:verb-GET]{crul::verb-GET}}, main purpose being curl
+debugging}
 }
 \description{
 Get BOLD stats
@@ -79,5 +89,5 @@ bold_stats(taxon='Osmia', verbose = TRUE)
 }
 }
 \references{
-\url{http://v4.boldsystems.org/index.php/resources/api?type=webservices}
+http://v4.boldsystems.org/index.php/resources/api?type=webservices
 }

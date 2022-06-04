@@ -1,29 +1,22 @@
 # Platform
 
-|field    |value                                       |
-|:--------|:-------------------------------------------|
-|version  |R version 3.5.1 Patched (2018-11-02 r75543) |
-|os       |macOS High Sierra 10.13.6                   |
-|system   |x86_64, darwin15.6.0                        |
-|ui       |X11                                         |
-|language |(EN)                                        |
-|collate  |en_US.UTF-8                                 |
-|ctype    |en_US.UTF-8                                 |
-|tz       |US/Pacific                                  |
-|date     |2018-11-13                                  |
+|field    |value                                  |
+|:--------|:--------------------------------------|
+|version  |R version 4.0.2 RC (2020-06-14 r78689) |
+|os       |macOS Catalina 10.15.5                 |
+|system   |x86_64, darwin17.0                     |
+|ui       |X11                                    |
+|language |(EN)                                   |
+|collate  |en_US.UTF-8                            |
+|ctype    |en_US.UTF-8                            |
+|tz       |US/Pacific                             |
+|date     |2020-06-17                             |
 
 # Dependencies
 
-|package |old   |new |Δ  |
-|:-------|:-----|:---|:--|
-|bold    |0.8.0 |NA  |*  |
+|package |old   |new   |Δ  |
+|:-------|:-----|:-----|:--|
+|bold    |1.0.0 |1.1.0 |*  |
 
 # Revdeps
-
-## All (2)
-
-|package                          |version |error |warning |note |
-|:--------------------------------|:-------|:-----|:-------|:----|
-|[funbarRF](problems.md#funbarrf) |1.0.1   |      |        |1    |
-|taxize                           |0.9.4   |      |        |     |
 

@@ -1,12 +1,12 @@
 http_interactions:
 - request:
     method: get
-    uri: http://v4.boldsystems.org/index.php/API_Tax/TaxonData?taxId=125295&dataTypes=basic
+    uri: https://v4.boldsystems.org/index.php/API_Tax/TaxonData?taxId=125295&dataTypes=basic
     body:
       encoding: ''
       string: ''
     headers:
-      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.6.0
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
   response:
@@ -15,15 +15,18 @@ http_interactions:
       message: OK
       explanation: Request fulfilled, document follows
     headers:
-      status: HTTP/1.1 200 OK
-      date: Tue, 13 Nov 2018 23:20:29 GMT
-      server: Apache/2.2.15 (Red Hat)
-      x-powered-by: PHP/5.3.15
-      content-length: '149'
-      connection: close
+      status: 'HTTP/2 200 '
+      server: nginx
+      date: Mon, 20 Apr 2020 15:48:29 GMT
       content-type: text/html; charset=utf-8
+      content-length: '150'
+      x-powered-by: PHP/5.3.15
+      x-frame-options: SAMEORIGIN
+      x-content-type-options: nosniff
+      x-xss-protection: 1; mode=block
     body:
       encoding: UTF-8
-      string: '{"taxid":125295,"taxon":"Helianthus","tax_rank":"genus","tax_division":"Plants","parentid":151101,"parentname":"Asteroideae","taxonrep":"Helianthus"}'
-  recorded_at: 2018-11-13 23:20:29 GMT
-  recorded_with: vcr/0.2.0, webmockr/0.2.9
+      file: no
+      string: '{"taxid":125295,"taxon":"Helianthus","tax_rank":"genus","tax_division":"Plantae","parentid":151101,"parentname":"Asteroideae","taxonrep":"Helianthus"}'
+  recorded_at: 2020-04-20 15:48:29 GMT
+  recorded_with: vcr/0.5.4, webmockr/0.6.2

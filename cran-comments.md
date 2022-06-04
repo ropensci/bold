@@ -1,8 +1,8 @@
 ## Test environments
 
-* local OS X install, R 3.6.0 Patched
-* ubuntu 14.04 (on travis-ci), R 3.6.0
+* local macOS install, R 4.0.5 patched
 * win-builder (devel and release)
+* GitHub Actions (linux, macos, windows)
 
 ## R CMD check results
 
@@ -10,13 +10,13 @@
 
 ## Reverse dependencies
 
-* I have run R CMD check on the 2 downstream dependencies.
-  (Summary at <https://github.com/ropensci/bold/blob/master/revdep/README.md>). No problems were found.
+* I have run R CMD check on the 1 downstream dependency.
+(Summary at <https://github.com/ropensci/bold/blob/master/revdep/README.md>).
+No problems were found.
 
 -----
 
-This version xxx.
+This version fixes the rmarkdown/markdown dependency issue for vignettes that Kurt emailed maintainers about.
 
 Thanks! 
 Scott Chamberlain
-

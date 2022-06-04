@@ -19,17 +19,17 @@ vcr::use_cassette("bold_tax_id2", {
   })
 })
 
-vcr::use_cassette("bold_tax_id_multiple_ids", {
-  test_that("bold_tax_id works with multiple ids passed in", {
-    skip_on_cran()
+test_that("bold_tax_id works with multiple ids passed in", {
+  skip_on_cran()
 
+  vcr::use_cassette("bold_tax_id_multiple_ids", {
     aa <- bold_tax_id(c(88899, 125295))
+  }, match_requests_on = c("method", "uri", "query"))
 
-    expect_is(aa, "data.frame")
-    expect_equal(NROW(aa), 2)
-    expect_equal(aa$taxid, aa$input)
-  })
-}, record = "all", match_requests_on = c("method", "uri", "query"))
+  expect_is(aa, "data.frame")
+  expect_equal(NROW(aa), 2)
+  expect_equal(aa$taxid, aa$input)
+})
 
 vcr::use_cassette("bold_tax_id_datatypes_param_basic", {
   test_that("bold_tax_id dataTypes param works as expected", {

@@ -44,9 +44,11 @@ test_that("bold_identify_parents fails well", {
 })
 
 test_that("bold_identify_parents: catch wrong type param inputs", {
+  skip_on_cran()
+  
   vcr::use_cassette("bold_identify_parents_wrong_type", {
     w <- bold_seq(ids = "COLNO026-09")
-    ww <- bold_identify(w[[1]]$sequence)
+    ww <- bold_identify(w$sequence)
   })
 
   expect_error(bold_identify_parents(ww[[1]][1, ], tax_rank = 5),

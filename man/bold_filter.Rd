@@ -8,8 +8,8 @@ bold_filter(x, by, how = "max")
 }
 \arguments{
 \item{x}{(data.frame) a data.frame, as returned from
-\code{\link{bold_seqspec}}. Note that some combinations of parameters
-in \code{\link{bold_seqspec}} don't return a data.frame. Stops with
+\code{\link[=bold_seqspec]{bold_seqspec()}}. Note that some combinations of parameters
+in \code{\link[=bold_seqspec]{bold_seqspec()}} don't return a data.frame. Stops with
 error message if this is not a data.frame. Required.}
 
 \item{by}{(character) the column by which to group. For example,

@@ -2,15 +2,15 @@
 #'
 #' @export
 #' @param id (integer) One or more BOLD taxonomic identifiers. required.
-#' @param dataTypes (character) Specifies the datatypes that will be 
-#' returned. 'all' returns all data. 'basic' returns basic taxon information. 
+#' @param dataTypes (character) Specifies the datatypes that will be
+#' returned. 'all' returns all data. 'basic' returns basic taxon information.
 #' 'images' returns specimen images.
-#' @param includeTree (logical) If TRUE (default: FALSE), returns a list 
+#' @param includeTree (logical) If `TRUE` (default: `FALSE`), returns a list
 #' containing information for parent taxa as well as the specified taxon.
 #' @template otherargs
-#' @references 
-#' \url{http://v4.boldsystems.org/index.php/resources/api?type=taxonomy}
-#' @seealso \code{bold_tax_name}
+#' @references
+#' http://v4.boldsystems.org/index.php/resources/api?type=taxonomy
+#' @seealso [bold_tax_name()]
 #' @examples \dontrun{
 #' bold_tax_id(id=88899)
 #' bold_tax_id(id=88899, includeTree=TRUE)
@@ -39,25 +39,25 @@
 #' bold_tax_id(id=88899, verbose = TRUE)
 #' }
 
-bold_tax_id <- function(id, dataTypes = 'basic', includeTree = FALSE, 
+bold_tax_id <- function(id, dataTypes = 'basic', includeTree = FALSE,
                         response = FALSE, ...) {
-  
+
   tmp <- lapply(id, function(x)
     get_response(args = bc(list(
-      taxId = x, dataTypes = dataTypes, 
+      taxId = x, dataTypes = dataTypes,
       includeTree = if (includeTree) 'true' else NULL)),
       url = paste0(bbase(), "API_Tax/TaxonData"), ...)
   )
-  if (response) { 
-    tmp 
+  if (response) {
+    tmp
   } else {
-    res <- do.call(rbind.fill, Map(process_response, x = tmp, y = id, 
+    res <- do.call(rbind.fill, Map(process_response, x = tmp, y = id,
                                    z = includeTree, w = dataTypes))
-    if (NCOL(res) == 1) { 
+    if (NCOL(res) == 1) {
       res$noresults <- NA
       return(res)
-    } else { 
-      res 
+    } else {
+      res
     }
   }
 }

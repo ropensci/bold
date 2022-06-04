@@ -2,10 +2,12 @@ bold
 ====
 
 
-
-[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![cran version](https://www.r-pkg.org/badges/version/bold)](https://cran.r-project.org/package=bold)
-
+[![cran checks](https://cranchecks.info/badges/worst/bold)](https://cranchecks.info/pkgs/bold)
+[![R-check](https://github.com/ropensci/bold/workflows/R-check/badge.svg)](https://github.com/ropensci/bold/actions/)
+[![codecov.io](https://codecov.io/github/ropensci/bold/coverage.svg?branch=master)](https://codecov.io/github/ropensci/bold?branch=master)
+[![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/bold)](https://github.com/r-hub/cranlogs.app)
 
 `bold` accesses BOLD barcode data.
 
@@ -13,16 +15,11 @@ The Barcode of Life Data Systems (BOLD) is designed to support the generation an
 
 This package retrieves data from the BOLD database of barcode clusters, and allows for searching of over 1.7M public records using multiple search criteria including sequence data, specimen data, specimen *plus* sequence data, as well as trace files.
 
-[Documentation for the BOLD API](http://v4.boldsystems.org/index.php/api_home).
+Documentation for the BOLD API: http://v4.boldsystems.org/index.php/api_home
 
-See also the taxize book for more options for taxonomic workflows with BOLD: <https://ropenscilabs.github.io/taxize-book/>
+See also the taxize book for more options for taxonomic workflows with BOLD: https://taxize.dev/
 
-## Package status and installation
-
-[![cran checks](https://cranchecks.info/badges/worst/bold)](https://cranchecks.info/pkgs/bold)
-[![Build Status](https://travis-ci.org/ropensci/bold.svg?branch=master)](https://travis-ci.org/ropensci/bold)
-[![codecov.io](https://codecov.io/github/ropensci/bold/coverage.svg?branch=master)](https://codecov.io/github/ropensci/bold?branch=master)
-[![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/bold)](https://github.com/metacran/cranlogs.app)
+## Installation
 
 __Installation instructions__
 
@@ -49,15 +46,17 @@ For R >= 3.5
 
 
 ```r
-install.packages('BiocManager')
-BiocManager::install('sangerseqR')
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("sangerseqR")
 ```
 
 Then install `bold`
 
 
 ```r
-devtools::install_github("ropensci/bold")
+remotes::install_github("ropensci/bold")
 ```
 
 
@@ -95,13 +94,16 @@ You can optionally get back the `crul` response object
 res <- bold_seq(taxon='Coelioxys', response=TRUE)
 res$response_headers
 #> $status
-#> [1] "HTTP/1.1 200 OK"
-#> 
-#> $date
-#> [1] "Thu, 27 Jun 2019 17:28:47 GMT"
+#> [1] "HTTP/2 200 "
 #> 
 #> $server
-#> [1] "Apache/2.2.15 (Red Hat)"
+#> [1] "nginx"
+#> 
+#> $date
+#> [1] "Mon, 20 Apr 2020 16:11:50 GMT"
+#> 
+#> $`content-type`
+#> [1] "application/x-download"
 #> 
 #> $`x-powered-by`
 #> [1] "PHP/5.3.15"
@@ -109,14 +111,14 @@ res$response_headers
 #> $`content-disposition`
 #> [1] "attachment; filename=fasta.fas"
 #> 
-#> $connection
-#> [1] "close"
+#> $`x-frame-options`
+#> [1] "SAMEORIGIN"
 #> 
-#> $`transfer-encoding`
-#> [1] "chunked"
+#> $`x-content-type-options`
+#> [1] "nosniff"
 #> 
-#> $`content-type`
-#> [1] "application/x-download"
+#> $`x-xss-protection`
+#> [1] "1; mode=block"
 ```
 
 ### Search for specimen data only
@@ -127,20 +129,20 @@ By default you download `tsv` format data, which is given back to you as a `data
 ```r
 res <- bold_specimens(taxon='Osmia')
 head(res[,1:8])
-#>     processid       sampleid recordID catalognum       fieldnum
-#> 1 ASGCB255-13 BIOUG07489-F04  3955532            BIOUG07489-F04
-#> 2 BEECA122-06     04-ON-0122   281152                04-ON-0122
-#> 3 BEECA186-06     03-BC-0186   281216                03-BC-0186
-#> 4 BEECA373-06     05-NT-0373   514740                05-NT-0373
-#> 5 BEECA501-06     06-ON-0501   514868                06-ON-0501
-#> 6 BEECA601-06     06-YT-0601   516953                06-YT-0601
-#>                  institution_storing collection_code      bin_uri
-#> 1  Biodiversity Institute of Ontario              NA BOLD:ABZ2181
-#> 2 York University, Packer Collection              NA BOLD:AAC8510
-#> 3 York University, Packer Collection              NA BOLD:AAC2237
-#> 4 York University, Packer Collection              NA BOLD:AAI2013
-#> 5 York University, Packer Collection              NA BOLD:AAC5789
-#> 6 York University, Packer Collection              NA BOLD:AAB4644
+#>      processid   sampleid recordID catalognum   fieldnum
+#> 1  BEECA373-06 05-NT-0373   514740            05-NT-0373
+#> 2  BEECA607-06 05-NT-0607   516959            05-NT-0607
+#> 3  BEECA963-07 01-OR-0790   554153            01-OR-0790
+#> 4  BEECB358-07 04-WA-1076   596920 BBSL697174 04-WA-1076
+#> 5  BEECB438-07 00-UT-1157   597000 BBSL432653 00-UT-1157
+#> 6 BEECC1176-09 02-UT-2849  1060879 BBSL442586 02-UT-2849
+#>                    institution_storing collection_code      bin_uri
+#> 1   York University, Packer Collection              NA BOLD:AAI2013
+#> 2   York University, Packer Collection              NA BOLD:AAC8510
+#> 3   York University, Packer Collection              NA BOLD:ABZ3184
+#> 4 Utah State University, Logan Bee Lab              NA BOLD:AAC5797
+#> 5 Utah State University, Logan Bee Lab              NA BOLD:AAF2159
+#> 6   York University, Packer Collection              NA BOLD:AAE5368
 ```
 
 ### Search for specimen plus sequence data
@@ -151,11 +153,11 @@ By default you download `tsv` format data, which is given back to you as a `data
 ```r
 res <- bold_seqspec(taxon='Osmia', sepfasta=TRUE)
 res$fasta[1:2]
-#> [[1]]
-#> NULL
+#> $`BEECA373-06`
+#> [1] "-ATTTTATATATAATTTTTGCTATATGATCAGGTATAATCGGATCAGCAATAAGAATTATTATTCGTATAGAATTAAGAATTCCTGGTTCATGAATTTCAAATGATCAAACTTATAACTCTTTAGTAACTGCTCATGCTTTTTTAATAATTTTTTTCTTAGTTATACCTTTTTTAATTGGAGGATTTGGAAATTGATTAATTCCTTTAATATTAGGAATCCCGGATATAGCTTTCCCTCGAATAAATAATATTAGATTTTGACTTTTACCCCCTTCATTAATATTATTACTTTTAAGAAATTTTATAAATCCAAGACCAGGTACTGGATGAACTGTTTATCCTCCTCTTTCTTCTCATTTATTTCATTCTTCTCCTTCAGTTGATATAGCCATTTTTTCTTTACATATTTCCGGTTTATCTTCTATTATAGGTTCGTTAAATTTTATTGTTACAATTATTATAATAAAAAATATTTCTTTAAAACATATCCAATTACCTTTATTTCCATGATCTGTTTTTATTACTACTATCTTATTACTTTTTTCTTTACCTGTTTTAGCAGGAGCTATTACTATATTATTATTTGATCGAAATTTTAATACTTCATTTTTTGATCCTACAGGAGGTGGAGATCCAATCCTTTATCAACATTTATTT"
 #> 
-#> [[2]]
-#> NULL
+#> $`BEECA607-06`
+#> [1] "AATATTATATATAATTTTTGCTTTGTGATCTGGAATAATTGGTTCATCTATAAGAATTATTATTCGTATAGAATTAAGAATTCCTGGTTCATGAATTTCAAATGATCAAGTTTATAATTCATTAGTTACAGCTCATGCTTTTTTAATAATTTTTTTTTTAGTTATACCATTTATAATTGGAGGATTTGGAAATTGATTAGTTCCTTTAATATTAGGAATTCCTGATATAGCTTTTCCTCGAATAAATAATATTAGATTTTGATTATTACCACCATCATTAATACTTTTACTTTTAAGAAATTTTTTTAATCCAAGTTCAGGAACTGGATGAACTGTATATCCTCCTCTTTCATCATATTTATTTCATTCTTCACCTTCTGTTGATTTAGCTATTTTTTCTCTTCATATATCAGGTTTATCTTCTATTATAGGTTCATTAAACTTTATTGTAACTATTATTATAATAAAAAATATTTCTTTAAAGTATATTCAATTGCCATTATTTCCATGATCTGTTTTTATTACTACAATTCTTTTATTATTATCATTACCAGTTTTAGCAGGTGCTATTACTATATTATTATTTGATCGAAATTTTAATACTTCATTTTTTGATCCTACAGGAGGGGGAG--------------------------"
 ```
 
 Or you can index to a specific sequence like
@@ -163,8 +165,8 @@ Or you can index to a specific sequence like
 
 ```r
 res$fasta['GBAH0293-06']
-#> [[1]]
-#> NULL
+#> $`GBAH0293-06`
+#> [1] "------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------TTAATGTTAGGGATTCCAGATATAGCTTTTCCACGAATAAATAATATTAGATTTTGACTGTTACCTCCATCTTTAATATTATTACTTTTAAGAAATTTTTTAAATCCAAGTCCTGGAACAGGATGAACAGTTTATCCTCCTTTATCATCAAATTTATTTCATTCTTCTCCTTCAGTTGATTTAGCAATTTTTTCTTTACATATTTCAGGTTTATCTTCTATTATAGGTTCATTAAATTTTATTGTTACAATTATTATAATAAAAAATATTTCTTTAAAATATATTCAATTACCTTTATTTTCTTGATCTGTATTTATTACTACTATTCTTTTATTATTTTCTTTACCTGTATTAGCTGGAGCTATTACTATATTATTATTTGATCGAAATTTTAATACATCTTTTTTTGATCCAACAGGAGGGGGAGATCCAATTCTTTATCAACATTTATTTTGATTTTTTGGTCATCCTGAAGTTTATATTTTAATTTTACCTGGATTTGGATTAATTTCTCAAATTATTTCTAATGAAAGAGGAAAAAAAGAAACTTTTGGAAATATTGGTATAATTTATGCTATATTAAGAATTGGACTTTTAGGTTTTATTGTT---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"
 ```
 
 ### Get trace files
@@ -223,23 +225,24 @@ checks <- bold_tax_name(nms)
 # all is good
 checks[,1:5]
 #>     taxid         taxon tax_rank tax_division parentid
-#> 1   26059   Pycnogonida    class      Animals       20
-#> 2      63     Arachnida    class      Animals       20
-#> 3      74   Merostomata    class      Animals       20
-#> 4  493944     Pauropoda    class      Animals       20
-#> 5   80390      Symphyla    class      Animals       20
-#> 6      85     Diplopoda    class      Animals       20
-#> 7      75     Chilopoda    class      Animals       20
-#> 8      82       Insecta    class      Animals       20
-#> 9     372    Collembola    class      Animals       20
-#> 10 734357       Protura    class      Animals       20
-#> 11     84     Remipedia    class      Animals       20
-#> 12     73 Cephalocarida    class      Animals       20
-#> 13     68  Branchiopoda    class      Animals       20
-#> 14 765970   Hexanauplia    class      Animals       20
-#> 15     69  Malacostraca    class      Animals       20
-#> 16 889450 Ichthyostraca    class      Animals       20
-#> 17     80     Ostracoda    class      Animals       20
+#> 1   26059   Pycnogonida    class     Animalia       20
+#> 2      63     Arachnida    class     Animalia       20
+#> 3      74   Merostomata    class     Animalia       20
+#> 4  493944     Pauropoda    class     Animalia       20
+#> 5   80390      Symphyla    class     Animalia       20
+#> 6      85     Diplopoda    class     Animalia       20
+#> 7      75     Chilopoda    class     Animalia       20
+#> 8      82       Insecta    class     Animalia       20
+#> 9     372    Collembola    class     Animalia       20
+#> 10 734357       Protura    class     Animalia       20
+#> 11     84     Remipedia    class     Animalia       20
+#> 12     73 Cephalocarida    class     Animalia       20
+#> 13     68  Branchiopoda    class     Animalia       20
+#> 14 765970   Hexanauplia    class     Animalia       20
+#> 15     69  Malacostraca    class     Animalia       20
+#> 16 889450 Ichthyostraca    class     Animalia       20
+#> 17     NA          <NA>     <NA>         <NA>       NA
+#> 18     80     Ostracoda    class     Animalia       20
 ```
 
 Then pass those names to `bold_seq()`. You could pass all names in at once,
@@ -260,8 +263,4 @@ Get citation information for `bold` in R by running: `citation(package = 'bold')
 * Please [report any issues or bugs](https://github.com/ropensci/bold/issues)
 * License: MIT
 * Get citation information for `bold` in R doing `citation(package = 'bold')`
-* Please note that this project is released with a [Contributor Code of Conduct][coc]. By participating in this project you agree to abide by its terms.
-
-[![ropensci_footer](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)
-
-[coc]: https://github.com/ropensci/bold/blob/master/CODE_OF_CONDUCT.md
+* Please note that this project is released with a [Contributor Code of Conduct](https://ropensci.org/code-of-conduct/). By participating in this project you agree to abide by its terms.

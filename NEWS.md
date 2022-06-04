@@ -1,3 +1,29 @@
+bold 1.2.0
+==========
+
+### MINOR IMPROVEMENTS
+
+* vignettes fix (#77)
+
+bold 1.1.0
+==========
+
+### MINOR IMPROVEMENTS
+
+* fix a failing test (#73)
+
+
+bold 1.0.0
+==========
+
+### MINOR IMPROVEMENTS
+
+* change base url for all requests to https from http (#70)
+* fixed a warning arising from use of `bold_seqspec()` - we now set the encoding to "UTF-8" before parsing the string to XML (#71)
+* `bold_seqspec()` fix: capture "Fatal errors" returned by BOLD servers and pass that along to the user with advice (#66)
+* add "Marker" and "Large requests" documentation sections to both `bold_seq()` and `bold_seqspec()`. the marker section details that the marker parameter doesn't actually filter results that you get - but you can filter them yourself. the large requests section gives some caveats associated with large data requests and outlines how to sort it out (#61)
+
+
 bold 0.9.0
 ==========
 

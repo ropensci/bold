@@ -1,14 +1,13 @@
-bbase <- function() 'http://v4.boldsystems.org/index.php/'
+bbase <- function() 'https://v4.boldsystems.org/index.php/'
 
 bc <- function(x) Filter(Negate(is.null), x)
 
 split_fasta <- function(x){
-  temp <- paste(">", x, sep = "")
-  seq <- str_replace_all(str_split(str_replace(temp[[1]], "\n", "<<<"), 
-                                   "<<<")[[1]][[2]], "\n", "")
-  seq <- gsub("\\\r|\\\n", "", seq)
-  stuff <- str_split(x, "\\|")[[1]][c(1:3)]
-  list(id = stuff[1], name = stuff[2], gene = stuff[1], sequence = seq)
+  tmp = as.data.frame(stringr::str_split_fixed(x, "\\\r\\\n", n = 3))
+  df = cbind(as.data.frame(stringr::str_split_fixed(tmp[,1], "\\|", n = 4)), tmp[,2])
+  colnames(df) = c("processid", "identification", "marker", "accession", "sequence")
+  df[df==""] = NA
+  return(df)
 }
 
 pipeornull <- function(x){

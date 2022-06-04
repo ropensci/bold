@@ -3,29 +3,22 @@
 #' @export
 #' @template args
 #' @template otherargs
+#' @template large-requests
+#' @template marker
 #' @references
-#' \url{http://v4.boldsystems.org/index.php/resources/api?type=webservices}
+#' http://v4.boldsystems.org/index.php/resources/api?type=webservices
 #'
 #' @param marker (character) Returns all records containing matching marker
 #' codes. See Details.
 #' @param format (character) One of xml or tsv (default). tsv format gives
 #' back a data.frame object. xml gives back parsed xml as a
-#' @param sepfasta (logical) If \code{TRUE}, the fasta data is separated into
+#' @param sepfasta (logical) If `TRUE`, the fasta data is separated into
 #' a list with names matching the processid's from the data frame.
-#' Default: \code{FALSE}
+#' Default: `FALSE`
 #'
 #' @return Either a data.frame, parsed xml, a http response object, or a list
 #' with length two (a data.frame w/o nucleotide data, and a list with
 #' nucleotide data)
-#' 
-#' @section Marker:
-#' Notes from BOLD on the \code{marker} param:
-#' "All markers for a specimen matching the search string will be returned. 
-#' ie. A record with COI-5P and ITS will return sequence data for both 
-#' markers even if only COI-5P was specified."
-#' 
-#' You will likely end up with data with markers that you did not request -
-#' just be sure to filter those out as needed.
 #'
 #' @examples \dontrun{
 #' bold_seqspec(taxon='Osmia')
@@ -69,11 +62,16 @@ bold_seqspec <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
   } else {
     tt <- paste0(rawToChar(out$content, multiple = TRUE), collapse = "")
     if (tt == "") return(NA)
+    tt <- enc2utf8(tt)
+    if (grepl("Fatal error", tt)) {
+      stop("BOLD servers returned an error - we're not sure what happened\n ",
+        "try a smaller query - or open an issue and we'll try to help")
+    }
     temp <- switch(
       format,
       xml = xml2::read_xml(tt),
       tsv = utils::read.delim(text = tt, header = TRUE, sep = "\t",
-                       stringsAsFactors = FALSE)
+                       stringsAsFactors = FALSE, quote = "")
     )
     if (!sepfasta) {
       temp

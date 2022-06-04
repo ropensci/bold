@@ -10,46 +10,45 @@
 #' @param response (logical) Note that response is the object that returns
 #' from the Curl call, useful for debugging, and getting detailed info on
 #' the API call.
-#' @param ... Further args passed on to \code{\link[crul]{HttpClient}}, main
+#' @param ... Further args passed on to [crul::verb-GET], main
 #' purpose being curl debugging
 #'
-#' BOLD only allows one sequence per query. We internally \code{lapply}
-#' over the input values given to the \code{sequences} parameter to search
+#' BOLD only allows one sequence per query. We internally `lapply`
+#' over the input values given to the sequences` parameter to search
 #' with one sequence per query. Remember this if you have a lot of sequences -
 #' you are doing a separate query for each one, so it can take a long time -
 #' if you run into errors let us know.
 #'
 #' @section db parmeter options:
-#' \itemize{
-#'  \item COX1 Every COI barcode record on BOLD with a minimum sequence
+#'
+#' - COX1 Every COI barcode record on BOLD with a minimum sequence
 #'  length of 500bp (warning: unvalidated library and includes records without
 #'  species level identification). This includes many species represented by
 #'  only one or two specimens as well as all species with interim taxonomy. This
 #'  search only returns a list of the nearest matches and does not provide a
 #'  probability of placement to a taxon.
-#'  \item COX1_SPECIES Every COI barcode record with a species level
+#' - COX1_SPECIES Every COI barcode record with a species level
 #'  identification and a minimum sequence length of 500bp. This includes
 #'  many species represented by only one or two specimens as well as  all
 #'  species with interim taxonomy.
-#'  \item COX1_SPECIES_PUBLIC All published COI records from BOLD and GenBank
+#' - COX1_SPECIES_PUBLIC All published COI records from BOLD and GenBank
 #'  with a minimum sequence length of 500bp. This library is a collection of
 #'  records from the published projects section of BOLD.
-#'  \item OR COX1_L604bp Subset of the Species library with a minimum sequence
+#' - OR COX1_L604bp Subset of the Species library with a minimum sequence
 #'  length of 640bp and containing both public and private records. This library
 #'  is intended for short sequence identification as it provides maximum overlap
 #'  with short reads from the barcode region of COI.
-#' }
 #'
 #' @section Named outputs:
 #' To maintain names on the output list of data make sure to pass in a
-#' named list to the \code{sequences} parameter. You can for example,
-#' take a list of sequences, and use \code{\link{setNames}} to set names.
+#' named list to the `sequences` parameter. You can for example,
+#' take a list of sequences, and use [stats::setNames()] to set names.
 #'
 #' @return A data.frame with details for each specimen matched. if a
-#' failed request, returns \code{NULL}
+#' failed request, returns `NULL`
 #' @references
-#' \url{http://v4.boldsystems.org/index.php/resources/api?type=idengine}
-#' @seealso \code{\link{bold_identify_parents}}
+#' http://v4.boldsystems.org/index.php/resources/api?type=idengine
+#' @seealso [bold_identify_parents()]
 #' @examples \dontrun{
 #' seq <- sequences$seq1
 #' res <- bold_identify(sequences=seq)

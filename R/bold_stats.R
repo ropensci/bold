@@ -4,11 +4,11 @@
 #' @inheritParams bold_specimens
 #' @param dataType (character) one of "overview" or "drill_down" (default).
 #' "drill_down": a detailed summary of information which provides record 
-#' counts by [BINs, Country, Storing Institution, Species]. "overview": 
-#' the total counts of [BINs, Countries, Storing Institutions, Orders, 
-#' Families, Genus, Species]
+#' counts by (BINs, Country, Storing Institution, Species). "overview": 
+#' the total counts of (BINs, Countries, Storing Institutions, Orders, 
+#' Families, Genus, Species)
 #' @references 
-#' \url{http://v4.boldsystems.org/index.php/resources/api?type=webservices}
+#' http://v4.boldsystems.org/index.php/resources/api?type=webservices
 #'
 #' @examples \dontrun{
 #' x <- bold_stats(taxon='Osmia')

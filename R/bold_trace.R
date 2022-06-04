@@ -3,7 +3,7 @@
 #' @export
 #' @template args
 #' @references
-#' \url{http://v4.boldsystems.org/index.php/resources/api?type=webservices}
+#' http://v4.boldsystems.org/index.php/resources/api?type=webservices
 #'
 #' @param marker (character) Returns all records containing matching
 #' marker codes.
@@ -11,7 +11,7 @@
 #' @param overwrite (logical) Overwrite existing directory and file?
 #' @param progress (logical) Print progress or not. NOT AVAILABLE FOR NOW.
 #' HOPEFULLY WILL RETURN SOON.
-#' @param ... Further args passed on to \code{\link[crul]{HttpClient}}
+#' @param ... Further args passed on to [crul::verb-GET]
 #' @param x Object to print or read.
 #'
 #' @examples \dontrun{

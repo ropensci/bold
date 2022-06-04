@@ -4,41 +4,51 @@
 \alias{bold_identify_parents}
 \title{Add taxonomic parent names to a data.frame}
 \usage{
-bold_identify_parents(x, wide = FALSE, taxid = NULL, taxon = NULL,
-  tax_rank = NULL, tax_division = NULL, parentid = NULL,
-  parentname = NULL, taxonrep = NULL, specimenrecords = NULL, ...)
+bold_identify_parents(
+  x,
+  wide = FALSE,
+  taxid = NULL,
+  taxon = NULL,
+  tax_rank = NULL,
+  tax_division = NULL,
+  parentid = NULL,
+  parentname = NULL,
+  taxonrep = NULL,
+  specimenrecords = NULL,
+  ...
+)
 }
 \arguments{
 \item{x}{(data.frame/list) list of data.frames - the output from a call to
-\code{\link{bold_identify}}. or a single data.frame from the output from
-same. required.}
+\code{\link[=bold_identify]{bold_identify()}}. or a single data.frame from the output from same.
+required.}
 
 \item{wide}{(logical) output in long or wide format. See Details.
 Default: \code{FALSE}}
 
-\item{taxid}{(character) A taxid name. Optional. See `Filtering` below.}
+\item{taxid}{(character) A taxid name. Optional. See \code{Filtering} below.}
 
-\item{taxon}{(character) A taxon name. Optional. See `Filtering` below.}
+\item{taxon}{(character) A taxon name. Optional. See \code{Filtering} below.}
 
-\item{tax_rank}{(character) A tax_rank name. Optional. See `Filtering` 
+\item{tax_rank}{(character) A tax_rank name. Optional. See \code{Filtering}
 below.}
 
-\item{tax_division}{(character) A tax_division name. Optional. See 
-`Filtering` below.}
+\item{tax_division}{(character) A tax_division name. Optional. See
+\code{Filtering} below.}
 
-\item{parentid}{(character) A parentid name. Optional. See `Filtering` 
+\item{parentid}{(character) A parentid name. Optional. See \code{Filtering}
 below.}
 
-\item{parentname}{(character) A parentname name. Optional. See `Filtering` 
+\item{parentname}{(character) A parentname name. Optional. See \code{Filtering}
 below.}
 
-\item{taxonrep}{(character) A taxonrep name. Optional. See `Filtering` 
+\item{taxonrep}{(character) A taxonrep name. Optional. See \code{Filtering}
 below.}
 
-\item{specimenrecords}{(character) A specimenrecords name. Optional. 
-See `Filtering` below.}
+\item{specimenrecords}{(character) A specimenrecords name. Optional.
+See \code{Filtering} below.}
 
-\item{...}{Further args passed on to \code{\link[crul]{verb-GET}}, main 
+\item{...}{Further args passed on to \link[crul:verb-GET]{crul::verb-GET}, main
 purpose being curl debugging}
 }
 \value{
@@ -49,8 +59,8 @@ Add taxonomic parent names to a data.frame
 }
 \details{
 This function gets unique set of taxonomic names from the input
-data.frame, then queries \code{\link{bold_tax_name}} to get the
-taxonomic ID, passing it to \code{\link{bold_tax_id}} to get the parent
+data.frame, then queries \code{\link[=bold_tax_name]{bold_tax_name()}} to get the
+taxonomic ID, passing it to \code{\link[=bold_tax_id]{bold_tax_id()}} to get the parent
 names, then attaches those to the input data.
 
 Records in the input data that do not have matches for parent names
@@ -58,14 +68,14 @@ simply get NA values in the added columns.
 }
 \section{Filtering}{
 
-The parameters `taxid`, `taxon`, `tax_rank`, `tax_division`, 
-`parentid`, `parentname`,`taxonrep`, and `specimenrecords` are not used 
-in the search sent to BOLD, but are used in filtering the data down 
-to a subset that is closer to the target you want. For all these 
-parameters, you can use regex strings since we use [grep()] internally 
-to match. Filtering narrows down to the set that matches your query, 
-and removes the rest. The data.frame that we filter on with these 
-parameters internally is the result of a call to the [bold_tax_name()]
+The parameters \code{taxid}, \code{taxon}, \code{tax_rank}, \code{tax_division},
+\code{parentid}, \code{parentname},\code{taxonrep}, and \code{specimenrecords} are not used
+in the search sent to BOLD, but are used in filtering the data down
+to a subset that is closer to the target you want. For all these
+parameters, you can use regex strings since we use \code{\link[=grep]{grep()}} internally
+to match. Filtering narrows down to the set that matches your query,
+and removes the rest. The data.frame that we filter on with these
+parameters internally is the result of a call to the \code{\link[=bold_tax_name]{bold_tax_name()}}
 function.
 }
 
@@ -73,7 +83,7 @@ function.
 
 When \code{wide = FALSE} you get many rows for each record. Essentially,
 we \code{cbind} the taxonomic classification onto the one row from the
-result of \code{\link{bold_identify}}, giving as many rows as there are
+result of \code{\link[=bold_identify]{bold_identify()}}, giving as many rows as there are
 taxa in the taxonomic classification.
 
 When \code{wide = TRUE} you get one row for each record - thus the

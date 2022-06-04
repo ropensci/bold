@@ -10,14 +10,13 @@
   "codeRepository": "https://github.com/ropensci/bold",
   "issueTracker": "https://github.com/ropensci/bold/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.8.6",
+  "version": "1.2.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.5.1",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.5.1 Patched (2018-11-18 r75627)",
+  "runtimePlatform": "R version 4.0.5 Patched (2021-03-31 r80136)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -45,19 +44,6 @@
   "softwareSuggestions": [
     {
       "@type": "SoftwareApplication",
-      "identifier": "roxygen2",
-      "name": "roxygen2",
-      "version": ">= 6.1.1",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=roxygen2"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "sangerseqR",
       "name": "sangerseqR",
       "provider": {
@@ -67,18 +53,6 @@
         "url": "https://www.bioconductor.org"
       },
       "sameAs": "https://bioconductor.org/packages/release/bioc/html/sangerseqR.html"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "knitr",
-      "name": "knitr",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=knitr"
     },
     {
       "@type": "SoftwareApplication",
@@ -96,7 +70,7 @@
       "@type": "SoftwareApplication",
       "identifier": "vcr",
       "name": "vcr",
-      "version": ">= 0.2.0",
+      "version": ">= 0.5.4",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -208,9 +182,13 @@
   "applicationCategory": "DataAccess",
   "isPartOf": "https://ropensci.org",
   "keywords": ["biodiversity", "barcode", "DNA", "sequences", "fasta", "api-wrapper", "barcodes", "r", "rstats", "r-package", "taxize"],
-  "contIntegration": "https://travis-ci.org/ropensci/bold",
-  "developmentStatus": "active",
+  "contIntegration": "https://codecov.io/github/ropensci/bold?branch=master",
+  "developmentStatus": "https://www.repostatus.org/#active",
   "releaseNotes": "https://github.com/ropensci/bold/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/bold/blob/master/README.md",
-  "fileSize": "558.333KB"
+  "fileSize": "12180.385KB",
+  "contributor": {},
+  "copyrightHolder": {},
+  "funder": {},
+  "relatedLink": "https://docs.ropensci.org/bold"
 }

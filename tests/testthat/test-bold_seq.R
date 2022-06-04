@@ -6,17 +6,24 @@ vcr::use_cassette("bold_seq_works_taxon", {
     skip_on_cran()
   
     a <- bold_seq(taxon='Coelioxys')
-    expect_is(a, "list")
-    expect_is(a[[1]], "list")
-    expect_is(a[[1]]$id, "character")
-    expect_is(a[[1]]$sequence, "character")
+    expect_is(a, "data.frame")
+    expect_is(a$processid, "character")
+    expect_is(a$identification, "character")
+    expect_is(a$marker, "character")
+    expect_is(a$accession, "character")
+    expect_is(a$sequence, "character")
   })
 })
 
 vcr::use_cassette("bold_seq_works_bin", {
   test_that("bold_seq returns the correct dimensions/classes", {
     b <- bold_seq(bin='BOLD:AAA5125')
-    expect_is(b, "list")
+    expect_is(b, "data.frame")
+    expect_is(b$processid, "character")
+    expect_is(b$identification, "character")
+    expect_is(b$marker, "character")
+    expect_is(b$accession, "character")
+    expect_is(b$sequence, "character")
   })
 })
 
