@@ -62,14 +62,20 @@ bold_tax_id <- function(id, dataTypes = 'basic', includeTree = FALSE,
   assert(id, c("character", "numeric", "integer"))
 
   # corrects for the json typo in case the option is taken from a previous query
-  dataTypes[dataTypes %in% c("depo", "depository", "depositry")] <- "depositories"
-  dataTypes[dataTypes=="labs"] <- "sequencinglabs"
-  if(any(wrongType <- !dataTypes %in% c("basic","stats","geo","images","sequencinglabs",
-                                        "depositories","thirdparty","all")))
-  stop(dataTypes[wrongType], ' is not one of the possible dataTypes.
-  \n\tOptions are:
-  \n\t\t"basic", "stats", "geo", "images", "sequencinglabs (or labs)",
-  "depository (or depo)","thirdparty" and "all"')
+  dataTypes[dataTypes == "depo"] <- "depository"
+  dataTypes[dataTypes == "labs"] <- "sequencinglabs"
+  if(any(wrongType <- !dataTypes %in% c("basic", "stats", "geo", "images",
+                                        "sequencinglabs", "depository",
+                                        "depositories", "thirdparty", "all"))){
+    msg <- ' is not one of the possible dataTypes.
+      \n\tOptions are:
+      \n\t\t"basic", "stats", "geo", "images", "sequencinglabs (or labs)",
+      "depository (or depo)","thirdparty" and "all"'
+    if(sum(wrongType)>1)
+      stop(toStr(dataTypes[wrongType]), msg)
+    else
+      stop(dataTypes[wrongType], msg)
+  }
 
   #-- prep query params
   params <- list(
@@ -113,8 +119,6 @@ bold_tax_id <- function(id, dataTypes = 'basic', includeTree = FALSE,
     out
   }
 }
-tttt <- bold_tax_id(c(88899, 51), "all", includeTree = TRUE)
-tt <- bold_tax_id(c(88899, 51), "all", TRUE)
 process_tax_id <- function(x, ids, types, tree){#, oneRow){
   out <- if (nzchar(x$warning) || x$response$status_code > 202) NULL else
     jsonlite::fromJSON(rawToChar(x$response$content))
@@ -192,4 +196,3 @@ format_tax_id <- function(x, ids = NULL, li = NULL){
   }
   out <- if(length(tmp)==1) tmp[[1]] else tmp
 }
-
