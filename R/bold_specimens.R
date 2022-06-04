@@ -41,8 +41,7 @@ bold_specimens <- function(taxon = NULL, ids = NULL, bin = NULL,
                             bin = bin, container = container,
                             institutions = institutions,
                             researchers = researchers), format = format)
-  tmp <- b_GET(b_url('API_Public/specime
-                     n'), params, ...)
+  tmp <- b_GET(b_url('API_Public/specimen'), params, ...)
   if (response) {
     tmp
   } else {
@@ -50,7 +49,7 @@ bold_specimens <- function(taxon = NULL, ids = NULL, bin = NULL,
     switch(format,
            xml = xml2::read_xml(tt),
            tsv = utils::read.delim(text = tt, header = TRUE, sep = "\t",
-                            stringsAsFactors = FALSE)
+                            stringsAsFactors = FALSE, row.names = NULL)
     )
   }
 }
