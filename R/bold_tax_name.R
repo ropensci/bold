@@ -39,7 +39,7 @@ bold_tax_name <- function(name, fuzzy = FALSE, response = FALSE,
     assert(tax_division, "character")
     if(!all(tax_division %in% c("Animalia", "Protista", "Fungi", "Plantae")))
       stop("'tax_division' must be one or more of ",
-           c("Animalia", "Protista", "Fungi", "Plantae"))
+           toStr(c("Animalia", "Protista", "Fungi", "Plantae")))
   }
   if(length(tax_rank)){
     assert(tax_rank, "character")
