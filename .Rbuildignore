@@ -19,3 +19,4 @@ notes.R
 bold_trace_files
 vignettes/
 ^LICENSE\.md$
+^data-raw$

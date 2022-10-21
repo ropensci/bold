@@ -34,3 +34,5 @@ RoxygenNote: 7.1.1
 X-schema.org-applicationCategory: Data Access
 X-schema.org-keywords: biodiversity, barcode, DNA, sequences, fasta
 X-schema.org-isPartOf: https://ropensci.org
+Depends: 
+    R (>= 2.10)
