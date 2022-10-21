@@ -13,6 +13,9 @@ pipe_params <- function(..., paramnames = ...names(), params = list(...)) {
   vapply(params, paste, collapse = "|", character(1))
 }
 
+#-------------------------------------------------------------------------------
+# TODO: make sure all function using this one have been updated
+#-------------------------------------------------------------------------------
 get_response <- function(url, args, contentType = 'text/html; charset=utf-8',
                          raise = TRUE, ...) {
   cli <- crul::HttpClient$new(url = url)
@@ -33,6 +36,7 @@ get_response <- function(url, args, contentType = 'text/html; charset=utf-8',
 b_GET <- function(url, args, ...) {
   cli <- crul::HttpClient$new(url = url)
   out <- cli$get(query = args, ...)
+  #-- don't want to stop while looping, error are managed downstream
   # out$raise_for_status()
   # if (grepl("html", out$response_headers$`content-type`)) {
   #   stop(out$parse("UTF-8"))
@@ -47,30 +51,79 @@ strextract <- function(str, pattern) {
 strdrop <- function(str, pattern) {
   regmatches(str, regexpr(pattern, str), invert = TRUE)
 }
-
-assert <- function(x, what, name = deparse(substitute(x, env = environment()))) {
-  if (length(x) && !inherits(x = x, what = what))
-    stop(name, " must be of class ", paste0(what, collapse = ", "), call. = FALSE)
+toStr <- function(x, join_word = "and") {
+  if (!is.character(x)) x <- as.character(x)
+  x <- x[nzchar(x)]
+  n <- length(x)
+  if (n > 1)
+    paste(paste(x[-n], collapse = ", "), join_word, x[n])
+  else
+    x
 }
+check_class <- function(x, what, name) {
+  if (!inherits(x = x, what = what)) {
+    c(name = name, what = toStr(what, "or"))
+  } else
+    c(name = "", what = "")
+}
+assert <- function(x,
+                   what,
+                   name = NULL,
+                   checkLength = FALSE) {
+  msgLen <- NULL
+  msgClass <- NULL
+  if (!is.list(x)) {
+    if (missing(name))
+      name <- deparse(substitute(x))
+    if (checkLength &&
+        !length(x))
+      msgLen <- paste0("\n ", name, " must have length > 0")
+    else {
+      msgClass <- check_class(x, what, name)
+      if (!all(nzchar(msgClass))) msgClass <- NULL
+    }
+  }
+  else {
+    if (missing(name)) {
+      name <- names(x)
+      noNm <- which(!nzchar(name))
+      if (length(noNm))
+        name[noNm] <- as.character(substitute(x)[noNm + 1])
+    }
+    if (checkLength) {
+      noLen <- which(lengths(x) == 0)
+      msgLen <-
+        paste0("\n  ", toStr(name[noLen]), " must have length > 0")
+      x <- x[-noLen]
+      name <- name[-noLen]
+      what <- what[-noLen]
+    }
+    msgClass <- t(mapply(check_class, x, what, name))
+    if (nrow(msgClass) > 1)
+      msgClass <-
+      aggregate(
+        name ~ what,
+        data = msgClass,
+        subset =  rowSums(msgClass == "") == 0,
+        FUN = toStr
+      )
+    msgClass <- as.data.frame(msgClass)
+  }
+  if (length(msgClass)) {
+    msgClass <-
+      paste0("\n  ", msgClass[["name"]], " must be of class ", msgClass[["what"]])
+  }
+  msg <- c(msgLen, msgClass)
+  if (length(msg)) {
+    stop(msg, call. = FALSE)
+  }
+}
+
 
 setrbind <- function(x, fill = TRUE, use.names = TRUE, idcol = NULL) {
   (x <- data.table::setDF(
     data.table::rbindlist(l = x, fill = fill, use.names = use.names, idcol = idcol))
   )
-}
-
-splitByNchar <- function(x, maxN) {
-  x <- state.name
-  cs <- cumsum(nchar(state.name))
-  grps <- list()
-  i <- 1
-  while (length(x)) {
-    grps[[i]] <- x[cs < 50]
-    i <- i + 1
-    x <- x[cs >= 50]
-    cs <- cumsum(nchar(x))
-  }
-  grps
 }
 
 b_ranges <- function(l, by) {
@@ -86,10 +139,4 @@ b_ranges <- function(l, by) {
   }
   out[[lenOut]] <- b:l
   out
-}
-
-toStr <- function(x) {
-  if (!is.character(x)) x <- as.character(x)
-  n <- length(x)
-  paste(paste(x[-n], collapse = ", "), "and", x[n])
 }
