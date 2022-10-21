@@ -44,7 +44,7 @@ bold_tax_name <- function(name, fuzzy = FALSE, response = FALSE,
   if(length(tax_rank)){
     assert(tax_rank, "character")
     tax_rank <- tolower(tax_rank)
-    if(!tax_rank %in% names(all_ranks))
+    if(!tax_rank %in% c(rank_ref$rank, rank_ref$ranks))
       stop("Invalid tax_rank name.")
   }
 
