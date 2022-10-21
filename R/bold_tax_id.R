@@ -16,7 +16,7 @@
 #' "images" returns specimen images: includes copyright information, image URL, image metadata.
 #' "sequencinglabs" returns sequencing labs: includes lab name, record count.
 #' "depository" returns specimen depositories: includes depository name, record count.
-#' "thirdparty" returns information from third parties: includes Wikipedia summary, Wikipedia URL.
+#' "thirdparty" returns information from third parties: includes wikipedia_summary summary, wikipedia_summary URL.
 #' "all" returns all information: identical to specifying all data types at once.
 #' @template otherargs
 #' @references
@@ -51,148 +51,186 @@
 #' ## curl debugging
 #' bold_tax_id(id=88899, verbose = TRUE)
 #' }
-bold_tax_id <- function(id, dataTypes = 'basic', includeTree = FALSE,
-                        response = FALSE, ...) {
-  #-- arguments check
-  # no need to do the call if id is na
-  if(length(id)==1 && is.na(id)) return(data.frame(input = NA, noresults = NA))
-  assert(dataTypes, "character")
-  assert(includeTree, "logical")
-  # assert(oneRow, "logical")
-  assert(id, c("character", "numeric", "integer"))
+bold_tax_id <-
+  function(id,
+           dataTypes = 'basic',
+           includeTree = FALSE,
+           response = FALSE,
+           ...) {
+    #-- arguments check
+    # no need to do the call if id is na
+    if (length(id) == 1 &&
+        is.na(id))
+      return(data.frame(input = NA, noresults = NA))
+    assert(dataTypes, "character")
+    assert(includeTree, "logical")
+    # assert(oneRow, "logical")
+    assert(id, c("character", "numeric", "integer"))
 
-  # corrects for the json typo in case the option is taken from a previous query
-  dataTypes[dataTypes == "depo"] <- "depository"
-  dataTypes[dataTypes == "labs"] <- "sequencinglabs"
-  if(any(wrongType <- !dataTypes %in% c("basic", "stats", "geo", "images",
-                                        "sequencinglabs", "depository",
-                                        "depositories", "thirdparty", "all"))){
-    msg <- ' is not one of the possible dataTypes.
+    # corrects for the json typo in case the option is taken from a previous query
+    dataTypes[dataTypes == "depo"] <- "depository"
+    dataTypes[dataTypes == "depositories"] <- "depository"
+    dataTypes[dataTypes == "labs"] <- "sequencinglabs"
+    if (any(
+      wrongType <- !dataTypes %in% c(
+        "basic",
+        "stats",
+        "geo",
+        "images",
+        "sequencinglabs",
+        "depository",
+        "thirdparty",
+        "all"
+      )
+    )) {
+      msg <- ' is not one of the possible dataTypes.
       \n\tOptions are:
       \n\t\t"basic", "stats", "geo", "images", "sequencinglabs (or labs)",
       "depository (or depo)","thirdparty" and "all"'
-    if(sum(wrongType)>1)
-      stop(toStr(dataTypes[wrongType]), msg)
-    else
-      stop(dataTypes[wrongType], msg)
-  }
-
-  #-- prep query params
-  params <- list(
-    dataTypes = if(length(dataTypes)==1) dataTypes else
-      paste(dataTypes, collapse = ","),
-    includeTree = tolower(includeTree)
-  )
-  #-- make URL
-  URL <- b_url("API_Tax/TaxonData")
-  # fetch data from the api
-  res <- lapply(`names<-`(id, id), function(x)
-    get_response(args = c(taxId = x, params), url = URL, ...))
-  if (response) {
-    res
-  } else {
-    #-- make data.frame with the response(s)
-    out <- mapply(process_tax_id, res, ids = id,
-                  MoreArgs = list(types = dataTypes, tree = includeTree),
-                  SIMPLIFY = FALSE)
-    if(length(dataTypes) == 1 && dataTypes != "all"){
-       if(dataTypes %in% c("basic", "wikipedia", "images", "stats")){
-        out <- setrbind(out, idcol = "input")
-       } else {
-        out <- Reduce(function(.x, .y) merge(.x, .y,by = dataTypes), out)
-       }
-    } else {
-      if(!includeTree){
-        dataTypes <- unique(c(lapply(out, names), recursive = TRUE))
-        out <- c(b_set(out, dataTypes), b_merge(out, dataTypes))
-        names(out) <- dataTypes
-      }
+      if (sum(wrongType) > 1)
+        stop(toStr(dataTypes[wrongType]), msg)
+      else
+        stop(dataTypes[wrongType], msg)
     }
-    w <- vapply(res, `[[`, "", "warning")
-    # #-- add attributes to output
-    attr(out, "errors") <- bc(w[nzchar(w)])
-    attr(out, "params") <- c(params)#, oneRow = oneRow)
-    # # this happens when the API return an empty array ([])
-    # if (vapply(, NCOL, 0) == 1) {
-      # out$noresults <- NA
-    # }
-    out
+
+    #-- prep query params
+    params <- list(
+      dataTypes = paste(dataTypes, collapse = ","),
+      includeTree = tolower(includeTree)
+    )
+
+    #-- make URL
+    URL <- b_url("API_Tax/TaxonData")
+
+    #-- fetch data from the api
+    res <- lapply(`names<-`(id, id), function(x)
+      get_response(args = c(taxId = x, params), url = URL, ...))
+    if (response) {
+      res
+    } else {
+      #-- make data.frame with the response(s)
+      out <- mapply(
+        process_tax_id,
+        res,
+        ids = id,
+        MoreArgs = list(types = dataTypes, tree = includeTree),
+        SIMPLIFY = FALSE
+      )
+      if (length(dataTypes) == 1) {
+        if (dataTypes %in% c("basic", "thirdparty", "images", "stats")) {
+          out <- b_set(out, dataTypes, idcol = "input")
+        } else {
+          out <- Reduce(function(.x, .y) {
+            o <- merge(.x,
+                       .y,
+                       by = c("taxid", names(out), "count"),
+                       all = TRUE)
+            o[order(o[, "count"], decreasing = TRUE),]
+          }, lapply(out, `[[`, names(out)))
+        }
+      } else if (length(dataTypes) > 1 || dataTypes == "all") {
+        if (!includeTree) {
+          out <- b_set(out, idcol = "input")
+        }
+      }
+      w <- vapply(res, `[[`, "", "warning")
+
+
+      # -- add attributes to output
+      attr(out, "errors") <- bc(w[nzchar(w)])
+      attr(out, "params") <- c(params)
+      #-- this happens when the API return an empty array ([])
+      # if (any(lengths(out) == 0)) {
+      # attr(out, "empty") <- id[lengths(out)]
+      out
+    }
   }
-}
-process_tax_id <- function(x, ids, types, tree){#, oneRow){
-  out <- if (nzchar(x$warning) || x$response$status_code > 202) NULL else
+process_tax_id <- function(x, ids, types, tree) {
+  out <-
+    if (nzchar(x$warning) || x$response$status_code > 202)
+      NULL
+  else
     jsonlite::fromJSON(rawToChar(x$response$content))
-  if ( !length(out) || identical(out[[1]], list()) ) {
+  if (!length(out) || identical(out[[1]], list())) {
     data.frame(taxid  = NA, stringsAsFactors = FALSE)
   } else {
-    if(!tree) {
+    if (!tree) {
       out <- format_tax_id(out, ids = ids)
     } else {
-      tmp <- lapply(ids, format_tax_id, li = out)
-      types <- unique(c(lapply(tmp, names), recursive = TRUE))
-      out <- c(b_set(tmp, types), b_merge(tmp, types))
-      if("basic" %in% names(out) && "parentid" %in% names(out[["basic"]])){
-        out[["basic"]] <- out[["basic"]][order(out[["basic"]]$parentid),]
+      tmp <- lapply(names(out), \(id) format_tax_id(out[[id]], id))
+      out <- b_set(tmp)
+      if ("basic" %in% names(out) &&
+          "parentid" %in% names(out[["basic"]])) {
+        out[["basic"]] <-
+          out[["basic"]][order(out[["basic"]][["parentid"]]), ]
       }
-      names(out) <- types
     }
-    out
   }
+  out
 }
-b_set <- function(x, nms){
-  toSet <- c("basic", "wikipedia", "images", "stats")
-  toSet <- toSet[toSet %in% nms]
-  lapply(toSet, function(z){
-    setrbind(lapply(x, `[[`, z), idcol = "input")
+b_set <- function(x, nms = NULL, idcol = FALSE) {
+  if (missing(nms)) nms <- unique(c(lapply(x, names), recursive = TRUE))
+  out <- lapply(nms, function(nm) {
+    setrbind(lapply(x, `[[`, nm), idcol = idcol)
   })
+  `names<-`(out, nms)
 }
-b_merge <- function(x, nms){
-  toMerge <- c("country", "depositry", "geo", "sequencinglabs")
-  toMerge <- toMerge[toMerge %in% nms]
-  lapply(toMerge, function(z){
-    tmp <- lapply(x, `[[`, z)
-    if(any(lengths(tmp)==0)){
-      tmp
-    } else{
-      Reduce(function(.x, .y) merge(.x, .y, by = z, all=TRUE), tmp)
-    }
-  })
-}
-format_tax_id <- function(x, ids = NULL, li = NULL){
-  if(!is.null(li)){
-    ids <- x
-    x <- li[[as.character(x)]]
-  }
+format_tax_id <- function(x, ids) {
   # 'geo' isn't group like the others for some reason
   # it's split between country and site map, default
   # was to return only 'country' (although I'm not sure why),
   # so removing the sitemap
   x$sitemap <- NULL
   # some dataTypes returns data.frames or long lists
-  # unlisting all of those would make the data frame very large.
-  tmp <- list()
-  basic.names <- names(x) %in% c("taxid", "taxon", "tax_rank", "tax_division",
-                                  "parentid", "parentname")
-  if(length(x) > 1 && any(basic.names)){
-    tmp <- c(tmp, list(basic = data.frame(x[basic.names])))
+  # flattening all of those would make the data frame very large.
+  x <- checkIfIs(x, "basic")
+  x <- checkIfIs(x, "thirdparty")
+  x <- checkIfIs(x, "stats")
+  x <- checkIfIs(x, "list")
+  x
+}
+format_tax_id_stats <- function(x) {
+  dat <- data.frame(as.list(c(x, recursive = TRUE)))
+  names(dat) <-
+    gsub("^stats\\.|public(?=marker)", "", names(dat), perl = TRUE)
+  isMarker <- grepl("marker", names(dat))
+  dat[c(which(!isMarker), which(isMarker))]
+}
+format_tax_id_list <- function(x, ids) {
+  lapply(names(x), function(nm) {
+    z <- c(x[[nm]], recursive = TRUE, use.names = TRUE)
+    `names<-`(data.frame(ids, names(z), z, row.names = NULL),
+              c("taxid", nm, "count"))
+  })
+}
+checkIfIs <- function(x, what = NULL, ids = NULL) {
+  .is <- switch(
+    what,
+    basic = names(x) %in% c("taxid", "taxon", "tax_rank", "tax_division",
+                            "parentid", "parentname", "taxonrep"),
+    thirdparty = names(x) %in% c("wikipedia_summary", "wikipedia_link"),
+    stats = names(x) == "stats",
+    list = vapply(x, class, character(1L)) == "list"
+  )
+
+  if (any(.is)) {
+    x <- switch(what,
+                stats = {
+                  x[["stats"]] <- format_tax_id_stats(x[["stats"]])
+                  x
+                },
+                list = {
+                  x[.is] <- lapply(x[.is], format_tax_id_list, ids = ids)
+                  x
+                },
+                {
+                  x[[what]] <- data.frame(x[.is])
+                  if (sum(.is) > 1)
+                    x[c(.is, F)] <- NULL
+                  else
+                    x[[1]] <- NULL
+                  x
+                })
   }
-  if("stats" %in% names(x)){
-    dat <- data.frame(as.list(c(x[["stats"]], recursive=TRUE)))
-    names(dat) <- gsub("^stats\\.|public(?=marker)","", names(dat), perl = TRUE)
-    isMarker <- grepl("marker", names(dat))
-    tmp <- c(tmp, list(stats = dat[c(which(!isMarker), which(isMarker))]))
-    x[["stats"]] <- NULL
-  }
-  cls <-  vapply(x, class, "")
-  if(any(isList <- cls == "list")){
-    tmp <- c(tmp, `names<-`(lapply(names(x[isList]), function(nm){
-      z <-c(x[[nm]], recursive=TRUE)
-      `names<-`(data.frame(names(z), z, row.names = NULL),
-                c(nm, paste0("count.", ids)))
-    }), names(x[isList])))
-  }
-  if(any(isDF <- cls == "data.frame")){
-    tmp <- c(tmp, `names<-`(x[isDF], names(x[isDF])))
-  }
-  out <- if(length(tmp)==1) tmp[[1]] else tmp
+  x
 }
