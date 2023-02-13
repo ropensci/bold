@@ -5,6 +5,7 @@ inst/vign/bold_trace_files
 vignettes/cache
 vignettes/bold_trace_files
 inst/ignore
+*.Rproj
 .Rproj.user
 .Rhistory
 notes.R
@@ -12,3 +13,5 @@ revdep/checks.noindex
 revdep/data.sqlite
 revdep/library.noindex
 bold_trace_files/
+.Rdata
+2022-01-14.RData
