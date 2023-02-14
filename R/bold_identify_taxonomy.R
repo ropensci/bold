@@ -3,6 +3,7 @@
 #' @export
 #' @param x (data.frame|list) A single data.frame or a list of - the output from
 #' a call to \code{\link[bold]{bold_identify()}}. Required.
+#' @param taxOnly (logical) If TRUE, only the taxonomic names and ids are added. If FALSE, also joins the rest of the data returned by \code{\link[bold]{bold_specimens()}}.
 #' @template otherargs
 #'
 #' @details This function gets the process ids from the
@@ -19,26 +20,15 @@
 #' classification.
 #'
 #' @examples \dontrun{
-#' df <- bold_identify(sequences = sequences$seq2)
+#' seqs <- bold_identify(sequences = bold::sequences$seq2)
 #'
-#' # long format
-#' out <- bold_identify_taxonomy(df)
-#' str(out)
-#' head(out[[1]])
-#'
-#' # wide format
-#' out <- bold_identify_taxonomy(df, wide = TRUE)
-#' str(out)
-#' head(out[[1]])
+#' seqs_tax <- bold_identify_taxonomy(seqs)
+#' head(seqs_tax[[1]])
 #'
 #' x <- bold_seq(taxon = "Satyrium")
-#' out <- bold_identify(c(x[[1]]$sequence, x[[13]]$sequence))
-#' res <- bold_identify_taxonomy(out)
-#' res
-#'
-#' x <- bold_seq(taxon = 'Diplura')
-#' out <- bold_identify(vapply(x, "[[", "", "sequence")[1:20])
-#' res <- bold_identify_taxonomy(out)
+#' seqs <- bold_identify(x$sequence[1:2])
+#' seqs_tax <- bold_identify_taxonomy(seqs)
+#' seqs_tax
 #' }
 #'
 
@@ -56,7 +46,7 @@ bold_identify_taxonomy.data.frame <- function(x, taxOnly = TRUE, response = FALS
   assert(taxOnly, "logical")
   assert(response, "logical")
   IDS <- unique(x$ID)
-  tax <- bold_specimens(ids=IDS)
+  tax <- bold_specimens(ids = IDS)
   if(taxOnly){
     nms <- names(tax)
     nms <- nms[grep("_taxID|_name",nms)]
@@ -72,22 +62,27 @@ bold_identify_taxonomy.data.frame <- function(x, taxOnly = TRUE, response = FALS
 }
 
 #' @export
-bold_identify_taxonomy.list <- function(x, taxOnly = TRUE, response = FALSE, ...) {
-  assert(taxOnly, "logical")
-  assert(response, "logical")
-  lapply(x, function(dat){
-    IDS <- unique(dat$ID)
-    tax <- bold_specimens(ids=IDS)
-    if(taxOnly){
-      nms <- names(tax)
-      nms <- nms[grep("_taxID|_name",nms)]
-      tax <- tax[, c("processid", nms)]
-    }
-    tax[tax==""] <- NA
-    tax <- tax[,colSums(is.na(tax)) != nrow(tax)]
-    if(all(dat$ID == tax$processid))
-      cbind(dat, tax[,-1])
-    else
-      cbind(dat, tax[vapply(dat$ID, function(x) which(tax$processid==x), 0),-1])
-  })
-}
+bold_identify_taxonomy.list <-
+  function(x,
+           taxOnly = TRUE,
+           response = FALSE,
+           ...) {
+    assert(taxOnly, "logical")
+    assert(response, "logical")
+    lapply(x, function(dat) {
+      IDS <- unique(dat$ID)
+      tax <- bold_specimens(ids = IDS)
+      if (taxOnly) {
+        nms <- names(tax)
+        nms <- nms[grep("_taxID|_name", nms)]
+        tax <- tax[, c("processid", nms)]
+      }
+      tax[tax == ""] <- NA
+      tax <- tax[, colSums(is.na(tax)) != nrow(tax)]
+      if (all(dat$ID == tax$processid))
+        cbind(dat, tax[, -1])
+      else
+        cbind(dat, tax[vapply(dat$ID, function(x)
+          which(tax$processid == x), 0), -1])
+    })
+  }

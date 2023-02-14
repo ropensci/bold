@@ -11,14 +11,11 @@
 #' @references
 #' http://v4.boldsystems.org/index.php/resources/api?type=webservices
 #'
-#' @param marker (character) Returns all records containing matching
-#' marker codes.
-#'
 #' @return A data frame with each element as row and 5 columns for processid, identification,
 #' marker, accession, and sequence.
 #'
 #' @examples \dontrun{
-#' res <- bold_seq(taxon='Coelioxys')
+#' bold_seq(taxon='Coelioxys')
 #' bold_seq(taxon='Aglae')
 #' bold_seq(taxon=c('Coelioxys','Osmia'))
 #' bold_seq(ids='ACRJP618-11')

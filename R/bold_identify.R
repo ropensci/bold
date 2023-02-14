@@ -64,7 +64,7 @@
 
 bold_identify <- function(sequences, db = 'COX1', response=FALSE, keepSeq = TRUE, ...) {
   # make sure sequences are character before the queries
-  if(!all(vapply(sequences, inherits, NA, "character"))){
+  if (!all(vapply(sequences, inherits, NA, "character"))) {
     stop("`sequences` should be of type character.")
   }
   # loop over sequences since the API only accepts one at a time
@@ -77,25 +77,27 @@ bold_identify <- function(sequences, db = 'COX1', response=FALSE, keepSeq = TRUE
     if (response) {
       res
     } else {
-      out <- parse_identify_xml(res)
-      # add input sequence as attribute to prevent mixup if 'sequences' wasn't named
-      if(keepSeq) attr(out, "sequence") <- seq
+      out <- .parse_identify_xml(res)
+      # add input sequence as attribute to prevent mix up if 'sequences' wasn't named
+      if (keepSeq) {
+        attr(out, "sequence") <- seq
+      }
       attr(out, "errors") <- res$warning
       out
     }
   })
 }
 
-parse_identify_xml <- function(res){
+.parse_identify_xml <- function(res){
   cNames <- c('ID','sequencedescription','database','citation',
               'taxonomicidentification','similarity','specimen_url',
               'specimen_country', 'specimen_lat','specimen_lon')
   fNames <- c('ID','sequencedescription','database','citation',
               'taxonomicidentification','similarity','url','country',
               'lat', 'lon')
-  if(res$warning == "")
+  if (res$warning == "") {
     xml <- xml2::read_xml(res$response$parse('UTF-8'))
-  else {
+  } else {
     xml <- tryCatch(xml2::read_xml(res$response$parse('UTF-8')), error = function(e) NULL)
     if(is.null(xml)){
       return(NULL)
@@ -111,6 +113,7 @@ parse_identify_xml <- function(res){
   nodes.len <- length(nodes)
   nodes.data <- xml2::xml_text(nodes)
   nodes.name <- xml2::xml_name(nodes)
+  names(nodes.data) <- nodes.name
 
   #-- making a data.frame from the tips :
   # each match (node) has these 10 fields (in toget);
@@ -118,37 +121,40 @@ parse_identify_xml <- function(res){
   # but in case there are missing fields in their files...
   #--- first we check that each node has indeed 10 fields
   # and that they are the right 10 fields
-  nodes.lens <- diff(c(which(nodes.name == "ID"), nodes.len+1))
-  if(all(nodes.lens == 10) && all(unique(nodes.name) %in% fNames)){
+  nodes.lens <- diff(c(which(nodes.name == "ID"), nodes.len + 1))
+  if (all(nodes.lens == 10) &&
+     all(unique(nodes.name) %in% fNames)) {
     #--- if so they can be put in a 10 columns matrix by row
     out <- matrix(nodes.data, ncol = 10, byrow = TRUE,
                   dimnames = list(NULL, cNames))
   } else {
     #--- if not, we can place them in the matrix row by row
     #--- prep output matrix using names of the fields
-    out <- matrix("", nRow <- ceiling(nodes.len/10), 10,
+    nRow <- ceiling(nodes.len/10)
+    out <- matrix(NA_character_, nrow = nRow, ncol = 10,
                   dimnames = list(NULL, fNames))
     # set start range of first node
     b <- 1L
-    for(i in seq_len(nRow)){
+    for (i in seq_len(nRow)) {
       # how many field in that node
       n <- nodes.lens[[i]]
       # set (new) end range of node
-      e <- b+n-1
+      e <- b + n - 1
       # match tip's names with fields (column's names)
       out[i, nodes.name[b:e]] <- nodes.data[b:e]
       # set new start range of node
       b <- b + n
     }
     # rename the last 4 columns to match their default column's names
-    colnames(out)[7:10] <-c('specimen_url','specimen_country',
-                            'specimen_lat','specimen_lon')
+    colnames(out)[7:10] <- c('specimen_url',
+                             'specimen_country',
+                             'specimen_lat',
+                             'specimen_lon')
   }
-  out[out==""] <- NA_character_
   out <- data.frame(out)
   # change class of number columns
-  out$similarity <- as.numeric(out$similarity)
-  out$specimen_lat <- as.numeric(out$specimen_lat)
-  out$specimen_lon <- as.numeric(out$specimen_lon)
+  out[["similarity"]] <- as.numeric(out[["similarity"]])
+  out[["specimen_lat"]] <- as.numeric(out[["specimen_lat"]])
+  out[["specimen_lon"]] <- as.numeric(out[["specimen_lon"]])
   out
 }

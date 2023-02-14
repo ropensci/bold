@@ -104,7 +104,7 @@ bold_identify_parents.data.frame <- function(x, wide = FALSE, taxid = NULL,
 bold_identify_parents.list <- function(x, wide = FALSE, taxid = NULL,
                                        taxon = NULL, tax_rank = NULL, tax_division = NULL, parentid = NULL,
                                        parentname = NULL, taxonrep = NULL, specimenrecords = NULL, ...) {
-  # not using deprecated because I want users to see this *before* it goes on.
+  # not using deprecated() because I want users to see this *before* it goes on.
   warning("\n'bold_identify_parents' is deprecated.",
           "\nUse 'bold_identify_taxonomy' instead.",
           "\nSee help(\"Deprecated\")", call. = FALSE, immediate. = TRUE)
@@ -113,7 +113,7 @@ bold_identify_parents.list <- function(x, wide = FALSE, taxid = NULL,
 
   # get unique set of names
   uniqnms <-
-    unique(unname(unlist(lapply(x, function(z) z$taxonomicidentification))))
+    unique(c(lapply(x, function(z) z$taxonomicidentification), recursive = TRUE, use.names = FALSE))
   if (is.null(uniqnms)) {
     stop("no fields 'taxonomicidentification' found in input", call. = FALSE)
   }
