@@ -12,42 +12,61 @@ pipe_params <- function(..., paramnames = ...names(), params = list(...)) {
     stop(paste(names(wt)[wt], collapse = ", "), " must be character.")
   vapply(params, paste, collapse = "|", character(1))
 }
-
-#-------------------------------------------------------------------------------
-# TODO: make sure all function using this one have been updated
-#-------------------------------------------------------------------------------
+# b_GET <- function(url, args, ...) {
+#   cli <- crul::HttpClient$new(url = url)
+#   out <- cli$get(query = args, ...)
+#   #-- don't want to stop while looping, error are managed downstream
+#   # out$raise_for_status()
+#   # if (grepl("html", out$response_headers$`content-type`)) {
+#   #   stop(out$parse("UTF-8"))
+#   # }
+#   #out
+# }
+b_GET <- function(url, args, ...) {
+  cli <- crul::HttpClient$new(url = url)
+  cli$get(query = args, ...)
+}
 get_response <- function(url, args, contentType = 'text/html; charset=utf-8',
                          raise = TRUE, ...) {
-  cli <- crul::HttpClient$new(url = url)
-  out <- cli$get(query = args, ...)
+  out <- b_GET(url = url, args = args, ...)
   w <- ""
   if (out$status_code > 202) {
     x <- out$status_http()
-    w <- paste0("HTTP ", x$status_code, ": ", x$message, "\n ", x$explanation)
+    w <-
+      paste0("HTTP ", x$status_code, ": ", x$message, "\n ", x$explanation)
   } else if (out$response_headers$`content-type` != contentType) {
-    w <- paste0("Content was type '", out$headers$`content-type`,
-                "'. Should've been type '", contentType, "'.")
+    w <- paste0(
+      "Content was type '",
+      out$headers$`content-type`,
+      "'. Should've been type '",
+      contentType,
+      "'."
+    )
   }
   if (w != "") warning(w)
   list(response = out,
        warning = w)
 }
-
-b_GET <- function(url, args, ...) {
-  cli <- crul::HttpClient$new(url = url)
-  out <- cli$get(query = args, ...)
-  #-- don't want to stop while looping, error are managed downstream
-  # out$raise_for_status()
-  # if (grepl("html", out$response_headers$`content-type`)) {
-  #   stop(out$parse("UTF-8"))
-  # }
-  out
+setrbind <- function(x, fill = TRUE, use.names = TRUE, idcol = NULL) {
+  (x <- data.table::setDF(
+    data.table::rbindlist(l = x, fill = fill, use.names = use.names, idcol = idcol))
+  )
 }
-
-strextract <- function(str, pattern) {
-  regmatches(str, regexpr(pattern, str))
+# more efficient than utils::read.delim
+setread <- function(x, header = TRUE, sep = "\t", stringsAsFactors = FALSE) {
+  (x <- data.table::setDF(
+    data.table::fread(
+      text = x,
+      header = header,
+      sep = sep,
+      stringsAsFactors = stringsAsFactors
+    )
+  ))
 }
-
+## not used by anything
+# strextract <- function(str, pattern) {
+#   regmatches(str, regexpr(pattern, str))
+# }
 strdrop <- function(str, pattern) {
   regmatches(str, regexpr(pattern, str), invert = TRUE)
 }
@@ -117,26 +136,4 @@ assert <- function(x,
   if (length(msg)) {
     stop(msg, call. = FALSE)
   }
-}
-
-
-setrbind <- function(x, fill = TRUE, use.names = TRUE, idcol = NULL) {
-  (x <- data.table::setDF(
-    data.table::rbindlist(l = x, fill = fill, use.names = use.names, idcol = idcol))
-  )
-}
-
-b_ranges <- function(l, by) {
-  lenOut <- as.integer(ceiling(l/by))
-  out <- vector("list", lenOut)
-  b <- i <- 1L
-  e <- by
-  while (!is.na(i) && i < lenOut) {
-    out[[i]] <- b:e
-    b <- e + 1L
-    e <- e + by
-    i <- i + 1L
-  }
-  out[[lenOut]] <- b:l
-  out
 }
