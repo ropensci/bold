@@ -54,20 +54,20 @@ bold_seqspec <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
                           institutions = institutions,
                           researchers = researchers,
                           marker = marker), format = format)
-  tmp <- b_GET(b_url('API_Public/specimen'), params, ...)
+  res <- b_GET(b_url('API_Public/specimen'), params, ...)
   if (response) {
-    tmp
+    res
   } else {
-    tt <- paste0(rawToChar(tmp$content, multiple = TRUE), collapse = "")
-    tt <- enc2utf8(tt)
-    if (grepl("Fatal error", tt)) {
+    res <- paste0(rawToChar(res$content, multiple = TRUE), collapse = "")
+    res <- enc2utf8(res)
+    if (grepl("Fatal error", res)) {
       stop("BOLD servers returned an error - we're not sure what happened\n ",
         "try a smaller query - or open an issue and we'll try to help")
     }
     out <- switch(
       format,
-      xml = xml2::read_xml(tt),
-      tsv = utils::read.delim(text = tt, header = TRUE, sep = "\t",
+      xml = xml2::read_xml(res),
+      tsv = utils::read.delim(text = res, header = TRUE, sep = "\t",
                        stringsAsFactors = FALSE)
     )
     if (!sepfasta) {

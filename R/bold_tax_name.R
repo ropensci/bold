@@ -50,7 +50,7 @@ bold_tax_name <- function(name, fuzzy = FALSE, response = FALSE,
 
   res <- lapply(`names<-`(name, name), function(x)
     get_response(args = c(taxName = x, fuzzy = fuzzy),
-                 url =b_url("API_Tax/TaxonSearch"), ...)
+                 url = b_url("API_Tax/TaxonSearch"), ...)
   )
   if (response) {
     res

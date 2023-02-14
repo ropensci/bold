@@ -36,20 +36,27 @@ bold_specimens <- function(taxon = NULL, ids = NULL, bin = NULL,
   response=FALSE, format = 'tsv', ...) {
 
   assert(response, "logical")
-  if(!format %in% c('xml', 'tsv')) stop("'format' should be onf of 'xml' or 'tsv'")
-  params <- c(pipe_params(taxon = taxon, geo = geo, ids = ids,
-                            bin = bin, container = container,
-                            institutions = institutions,
-                            researchers = researchers), format = format)
-  tmp <- b_GET(b_url('API_Public/specimen'), params, ...)
+  if(!format %in% c('xml', 'tsv')) stop("'format' should be of of 'xml' or 'tsv'.")
+  params <- c(
+    pipe_params(
+      taxon = taxon,
+      geo = geo,
+      ids = ids,
+      bin = bin,
+      container = container,
+      institutions = institutions,
+      researchers = researchers
+    ),
+    format = format
+  )
+  res <- b_GET(b_url('API_Public/specimen'), params, ...)
   if (response) {
-    tmp
+    res
   } else {
-    tt <- rawToChar(tmp$content)
+    res <- rawToChar(res$content)
     switch(format,
-           xml = xml2::read_xml(tt),
-           tsv = utils::read.delim(text = tt, header = TRUE, sep = "\t",
-                            stringsAsFactors = FALSE, row.names = NULL)
+           xml = xml2::read_xml(res),
+           tsv = setread(res)
     )
   }
 }

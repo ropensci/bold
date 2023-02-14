@@ -55,27 +55,25 @@ bold_seq <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
                   researchers = researchers,
                   geo = geo,
                   marker = marker)
-  tmp <- b_GET(b_url('API_Public/sequence'), params, ...)
+  res <- b_GET(b_url('API_Public/sequence'), params, ...)
   if (response) {
-    tmp
+    res
   } else {
-    tt <- rawToChar(tmp)
-    if (grepl("error", tt)) {
+    res <- rawToChar(res$content)
+    if (grepl("error", res)) {
       warning("the request timed out, see 'If a request times out'\n",
         "returning partial output")
-      tt <- strdrop(str = tt, pattern = "Fatal+")[[1]]
+      res <- strdrop(str = res, pattern = "Fatal+")[[1]]
     }
-    split_fasta(tt)
+    split_fasta(res)
   }
 }
 
 split_fasta <- function(x){
-  x <- strsplit(x, ">")[[1]][-1]
-  tmp <- as.data.frame(stringi::stri_split_fixed(x, "\\\r\\\n", n = 3))
-  df <- cbind(as.data.frame(stringi::stri_split_fixed(tmp[,1], "\\|", n = 4)),
-              tmp[,2])
-  colnames(df) <- c("processid", "identification", "marker",
-                    "accession", "sequence")
-  df[df==""] <- NA
-  df
+  x <- stringi::stri_split_lines(str = x, omit_empty = TRUE)[[1]]
+  x <- stringi::stri_replace_all_fixed(str = x, pattern = ">", replacement = "")
+  tmp <- matrix(x, ncol = 2, byrow = TRUE)
+  out <- stringi::stri_split_fixed(str = tmp[,1], pattern = "|",  simplify = NA, n = 4)
+  colnames(out) <- c("processid", "identification", "marker", "accession")
+  data.frame(out, sequence = tmp[,2])
 }

@@ -71,18 +71,17 @@ bold_tax_id <-
     dataTypes[dataTypes == "depo"] <- "depository"
     dataTypes[dataTypes == "depositories"] <- "depository"
     dataTypes[dataTypes == "labs"] <- "sequencinglabs"
-    if (any(
-      wrongType <- !dataTypes %in% c(
-        "basic",
-        "stats",
-        "geo",
-        "images",
-        "sequencinglabs",
-        "depository",
-        "thirdparty",
-        "all"
-      )
-    )) {
+    wrongType <- !dataTypes %in% c(
+      "basic",
+      "stats",
+      "geo",
+      "images",
+      "sequencinglabs",
+      "depository",
+      "thirdparty",
+      "all"
+    )
+    if (any(wrongType)) {
       msg <- ' is not one of the possible dataTypes.
       \n\tOptions are:
       \n\t\t"basic", "stats", "geo", "images", "sequencinglabs (or labs)",
@@ -133,12 +132,15 @@ bold_tax_id <-
           out <- b_set(out, idcol = "input")
         }
       }
-      w <- vapply(res, `[[`, "", "warning")
+
+      if (length(out) == 1) out <- out[[1]]
 
 
       # -- add attributes to output
+      w <- vapply(res, `[[`, "", "warning")
       attr(out, "errors") <- bc(w[nzchar(w)])
       attr(out, "params") <- c(params)
+
       #-- this happens when the API return an empty array ([])
       # if (any(lengths(out) == 0)) {
       # attr(out, "empty") <- id[lengths(out)]
@@ -170,10 +172,9 @@ process_tax_id <- function(x, ids, types, tree) {
 }
 b_set <- function(x, nms = NULL, idcol = FALSE) {
   if (missing(nms)) nms <- unique(c(lapply(x, names), recursive = TRUE))
-  out <- lapply(nms, function(nm) {
+  lapply(`names<-`(nms, nms), function(nm) {
     setrbind(lapply(x, `[[`, nm), idcol = idcol)
   })
-  `names<-`(out, nms)
 }
 format_tax_id <- function(x, ids) {
   # 'geo' isn't group like the others for some reason
@@ -197,40 +198,51 @@ format_tax_id_stats <- function(x) {
   dat[c(which(!isMarker), which(isMarker))]
 }
 format_tax_id_list <- function(x, ids) {
-  lapply(names(x), function(nm) {
-    z <- c(x[[nm]], recursive = TRUE, use.names = TRUE)
-    `names<-`(data.frame(ids, names(z), z, row.names = NULL),
-              c("taxid", nm, "count"))
+  # nm <- names(x)
+  lapply(`names<-`(names(x), names(x)), function(nm) {
+  z <- c(x[[nm]], recursive = TRUE, use.names = TRUE)
+  print(z)
+  print(ids)
+  print(nm)
+  `names<-`(data.frame(ids, names(z), z, row.names = NULL),
+  c("taxid", nm, "count"))
   })
+  # `names<-`(data.frame(ids, names(z), z, row.names = NULL),
+            # c("taxid", nm, "count"))
 }
 checkIfIs <- function(x, what = NULL, ids = NULL) {
-  .is <- switch(
-    what,
-    basic = names(x) %in% c("taxid", "taxon", "tax_rank", "tax_division",
-                            "parentid", "parentname", "taxonrep"),
-    thirdparty = names(x) %in% c("wikipedia_summary", "wikipedia_link"),
-    stats = names(x) == "stats",
-    list = vapply(x, class, character(1L)) == "list"
-  )
+  # if (what == "list" && length(x) == 1) {
+  #   x <- lapply(x, format_tax_id_list, ids = ids)
+  #   print(x)
+  # } else {
+    .is <- switch(
+      what,
+      basic = names(x) %in% c("taxid", "taxon", "tax_rank", "tax_division",
+                              "parentid", "parentname", "taxonrep"),
+      thirdparty = names(x) %in% c("wikipedia_summary", "wikipedia_link"),
+      stats = names(x) == "stats",
+      list = vapply(x, class, character(1L)) == "list"
+    )
 
-  if (any(.is)) {
-    x <- switch(what,
-                stats = {
-                  x[["stats"]] <- format_tax_id_stats(x[["stats"]])
-                  x
-                },
-                list = {
-                  x[.is] <- lapply(x[.is], format_tax_id_list, ids = ids)
-                  x
-                },
-                {
-                  x[[what]] <- data.frame(x[.is])
-                  if (sum(.is) > 1)
-                    x[c(.is, F)] <- NULL
-                  else
-                    x[[1]] <- NULL
-                  x
-                })
-  }
+    if (any(.is)) {
+      x <- switch(what,
+                  stats = {
+                    x[["stats"]] <- format_tax_id_stats(x[["stats"]])
+                    x
+                  },
+                  list = {
+                    x[.is] <- format_tax_id_list(x[.is], ids = ids)
+                    x
+                  },
+                  {
+                    x[[what]] <- data.frame(x[.is])
+                    if (sum(.is) > 1)
+                      x[c(.is, F)] <- NULL
+                    else
+                      x[[1]] <- NULL
+                    x
+                  })
+    }
+  # }
   x
 }
