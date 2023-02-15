@@ -11,7 +11,7 @@
 #' @param overwrite (logical) Overwrite existing directory and file?
 #' @param progress (logical) Print progress or not. NOT AVAILABLE FOR NOW.
 #' HOPEFULLY WILL RETURN SOON.
-#' @param ... Further args passed on to [crul::verb-GET]
+#' @param ... Further args passed on to \code{\link{crul::verb-GET}}
 #' @param x Object to print or read.
 #'
 #' @examples \dontrun{
@@ -40,18 +40,25 @@
 #' }
 
 bold_trace <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
-  institutions = NULL, researchers = NULL, geo = NULL, marker = NULL, dest=NULL,
+  institutions = NULL, researchers = NULL, geo = NULL, marker = NULL, dest = NULL,
   overwrite = TRUE, progress = TRUE, ...) {
 
   if (!requireNamespace("sangerseqR", quietly = TRUE)) {
     stop("Please install sangerseqR", call. = FALSE)
   }
 
-  args <- bc(list(taxon=pipeornull(taxon), geo=pipeornull(geo),
-      ids=pipeornull(ids), bin=pipeornull(bin), container=pipeornull(container),
-      institutions=pipeornull(institutions), researchers=pipeornull(researchers),
-      marker=pipeornull(marker)))
-  url <- crul::url_build(paste0(bbase(), 'API_Public/trace'), query = args)
+  params <- c(
+    pipe_params(
+      taxon = taxon,
+      geo = geo,
+      ids = ids,
+      bin = bin,
+      container = container,
+      institutions = institutions,
+      researchers = researchers,
+      marker = marker
+    ))
+  url <- crul::url_build(b_url('API_Public/trace'), query = params)
   if (is.null(dest)) {
     destfile <- paste0(getwd(), "/bold_trace_files.tar")
     destdir <- paste0(getwd(), "/bold_trace_files")
@@ -59,7 +66,9 @@ bold_trace <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
     destdir <- path.expand(dest)
     destfile <- paste0(destdir, "/bold_trace_files.tar")
   }
-  dir.create(destdir, showWarnings = FALSE, recursive = TRUE)
+  if (!dir.exists(destdir)) {
+    dir.create(destdir, showWarnings = FALSE, recursive = TRUE)
+  }
   if (!file.exists(destfile)) file.create(destfile, showWarnings = FALSE)
   cli <- crul::HttpClient$new(url = url)
   res <- cli$get(disk = destfile, ...)
