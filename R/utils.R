@@ -12,16 +12,6 @@ pipe_params <- function(..., paramnames = ...names(), params = list(...)) {
     stop(paste(names(wt)[wt], collapse = ", "), " must be character.")
   vapply(params, paste, collapse = "|", character(1))
 }
-# b_GET <- function(url, args, ...) {
-#   cli <- crul::HttpClient$new(url = url)
-#   out <- cli$get(query = args, ...)
-#   #-- don't want to stop while looping, error are managed downstream
-#   # out$raise_for_status()
-#   # if (grepl("html", out$response_headers$`content-type`)) {
-#   #   stop(out$parse("UTF-8"))
-#   # }
-#   #out
-# }
 b_GET <- function(url, args, ...) {
   cli <- crul::HttpClient$new(url = url)
   cli$get(query = args, ...)
