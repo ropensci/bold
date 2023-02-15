@@ -118,19 +118,15 @@ assert <- function(x,
       what <- what[-noLen]
     }
     msgClass <- t(mapply(check_class, x, what, name))
-    if (nrow(msgClass) > 1)
+    if (length(msgClass)) {
+      if (nrow(msgClass) > 1) {
+        msgClass <- data.table::as.data.table(msgClass)
+        msgClass <- msgClass[which(rowSums(msgClass == "") == 0),
+                             toStr(name), by = "what"]
+      }
       msgClass <-
-      aggregate(
-        name ~ what,
-        data = msgClass,
-        subset =  rowSums(msgClass == "") == 0,
-        FUN = toStr
-      )
-    msgClass <- as.data.frame(msgClass)
-  }
-  if (length(msgClass)) {
-    msgClass <-
-      paste0("\n  ", msgClass[["name"]], " must be of class ", msgClass[["what"]])
+        paste0("\n  ", msgClass[["name"]], " must be of class ", msgClass[["what"]])
+    }
   }
   msg <- c(msgLen, msgClass)
   if (length(msg)) {
