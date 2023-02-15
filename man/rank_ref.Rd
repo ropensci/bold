@@ -22,8 +22,8 @@ Lookup-table for IDs of taxonomic ranks
 Used in the \code{\link{bold_tax_name-}} function.
 Taken from the data set of the same name in the package \code{\link{taxize}}.
 
-We use this data.frame to do data sorting/filtering based on the ordering
-of ranks. We change the format so each rank name would have its own row and
+This data.frame is used to do data sorting/filtering based on the ordering
+of ranks. The format was changed so each rank name would have its own row and
 added a column for the plural form of the names, since some function need to
 convert them to singular.
 }

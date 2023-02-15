@@ -104,9 +104,11 @@ bold_identify_parents.data.frame <- function(x, wide = FALSE, taxid = NULL,
 bold_identify_parents.list <- function(x, wide = FALSE, taxid = NULL,
                                        taxon = NULL, tax_rank = NULL, tax_division = NULL, parentid = NULL,
                                        parentname = NULL, taxonrep = NULL, specimenrecords = NULL, ...) {
-  # not using deprecated() because I want users to see this *before* it goes on.
+  # not using deprecated() because I want users to see this *before* it goes on,
+  # since this function takes time. That way they can cancel if needed.
   warning("\n'bold_identify_parents' is deprecated.",
           "\nUse 'bold_identify_taxonomy' instead.",
+          "It's more accurate as it uses the ID stored into 'x' to find the record's taxonomy.",
           "\nSee help(\"Deprecated\")", call. = FALSE, immediate. = TRUE)
 
   assert(wide, "logical")

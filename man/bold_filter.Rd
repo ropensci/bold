@@ -4,12 +4,12 @@
 \alias{bold_filter}
 \title{Filter BOLD specimen + sequence data (output of bold_seqspec)}
 \usage{
-bold_filter(x, by, how = "max")
+bold_filter(x, by, how = "max", returnTibble = TRUE)
 }
 \arguments{
 \item{x}{(data.frame) a data.frame, as returned from
-\code{\link[=bold_seqspec]{bold_seqspec()}}. Note that some combinations of parameters
-in \code{\link[=bold_seqspec]{bold_seqspec()}} don't return a data.frame. Stops with
+\code{\link{bold_seqspec}}. Note that some combinations of parameters
+in \code{\link{bold_seqspec}} don't return a data.frame. Stops with
 error message if this is not a data.frame. Required.}
 
 \item{by}{(character) the column by which to group. For example,
@@ -21,9 +21,15 @@ with message saying so. Required.}
 \code{which.max} or \code{which.min} to get the longest or shortest
 sequence, respectively. Note that we remove gap/alignment characters
 (\code{-})}
+
+\item{returnTibble}{Whether the output should be a tibble or
+a data.frame. Default is TRUE, but verifies that the \code{tibble} package is
+installed, if it's not, it will be returned as data.frame.
+Since this package is only used in this function, doing this so it can be
+moved to suggested instead of dependency without breaking old scripts.}
 }
 \value{
-a tibble/data.frame
+a data.frame
 }
 \description{
 Picks either shortest or longest sequences, for a given grouping variable

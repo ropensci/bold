@@ -37,10 +37,22 @@
       "@type": "Person",
       "givenName": "Salix",
       "familyName": "Dubois",
-      "email": "salixdubois+bold@gmail.com",
+      "email": "salixdubois+bold@gmail.com"
     }
   ],
   "softwareSuggestions": [
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "tibble",
+      "name": "tibble",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=tibble"
+    },
     {
       "@type": "SoftwareApplication",
       "identifier": "sangerseqR",
