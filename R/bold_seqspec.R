@@ -44,7 +44,7 @@
 
 bold_seqspec <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
   institutions = NULL, researchers = NULL, geo = NULL, marker = NULL,
-  response=FALSE, format = 'tsv', sepfasta=FALSE, ...) {
+  response=FALSE, format = 'tsv', sepfasta = FALSE, ...) {
 
   if(!format %in% c('xml', 'tsv')) stop("'format' should be onf of 'xml' or 'tsv'")
   assert(response, "logical")
@@ -54,7 +54,7 @@ bold_seqspec <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
                           institutions = institutions,
                           researchers = researchers,
                           marker = marker), format = format)
-  res <- b_GET(b_url('API_Public/specimen'), params, ...)
+  res <- b_GET(b_url('API_Public/combined'), params, ...)
   if (response) {
     res
   } else {
@@ -67,8 +67,7 @@ bold_seqspec <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
     out <- switch(
       format,
       xml = xml2::read_xml(res),
-      tsv = utils::read.delim(text = res, header = TRUE, sep = "\t",
-                       stringsAsFactors = FALSE)
+      tsv = setread(res)
     )
     if (!sepfasta) {
       out
