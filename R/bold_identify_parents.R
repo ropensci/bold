@@ -20,13 +20,13 @@
 #' below.
 #' @param specimenrecords (character) A specimenrecords name. Optional.
 #' See `Filtering` below.
-#' @param ... Further args passed on to [crul::verb-GET], main
+#' @param ... Further args passed on to \code{\link{crul::verb-GET}}, main
 #' purpose being curl debugging
 #'
-#' @details DEPRECATED. See \code\link{[bold]{bold_identify_taxonomy()}}.
+#' @details DEPRECATED. See \code{\link{bold_identify_taxonomy}}.
 #' This function gets unique set of taxonomic names from the input
-#' data.frame, then queries [bold_tax_name()] to get the
-#' taxonomic ID, passing it to [bold_tax_id()] to get the parent
+#' data.frame, then queries \code{\link{bold_tax_name}} to get the
+#' taxonomic ID, passing it to \code{\link{bold_tax_id}} to get the parent
 #' names, then attaches those to the input data.
 #'
 #' Records in the input data that do not have matches for parent names
@@ -37,16 +37,16 @@
 #' `parentid`, `parentname`,`taxonrep`, and `specimenrecords` are not used
 #' in the search sent to BOLD, but are used in filtering the data down
 #' to a subset that is closer to the target you want. For all these
-#' parameters, you can use regex strings since we use [grep()] internally
+#' parameters, you can use regex strings since we use \code{\link{grep()}} internally
 #' to match. Filtering narrows down to the set that matches your query,
 #' and removes the rest. The data.frame that we filter on with these
-#' parameters internally is the result of a call to the [bold_tax_name()]
+#' parameters internally is the result of a call to the \code{\link{bold_tax_name()}}
 #' function.
 #'
 #' @section wide vs long format:
 #' When `wide = FALSE` you get many rows for each record. Essentially,
 #' we `cbind` the taxonomic classification onto the one row from the
-#' result of [bold_identify()], giving as many rows as there are
+#' result of \code{\link{bold_identify()}}, giving as many rows as there are
 #' taxa in the taxonomic classification.
 #'
 #' When `wide = TRUE` you get one row for each record - thus the
@@ -169,7 +169,7 @@ bold_identify_parents.list <- function(x, wide = FALSE, taxid = NULL,
 
 # function to help filter get_*() functions for a rank name or rank itself ---
 filt <- function(df, col, z) {
-  assert_param(z, deparse(substitute(z)), "character")
+  assert(z, "character")
   if (NROW(df) == 0) {
     df
   } else {

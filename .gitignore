@@ -13,5 +13,3 @@ revdep/checks.noindex
 revdep/data.sqlite
 revdep/library.noindex
 bold_trace_files/
-.Rdata
-2022-01-14.RData

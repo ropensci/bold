@@ -48,7 +48,7 @@ below.}
 \item{specimenrecords}{(character) A specimenrecords name. Optional.
 See \code{Filtering} below.}
 
-\item{...}{Further args passed on to \link[crul:verb-GET]{crul::verb-GET}, main
+\item{...}{Further args passed on to \code{\link{crul::verb-GET}}, main
 purpose being curl debugging}
 }
 \value{
@@ -58,9 +58,10 @@ a list of the same length as the input
 Add taxonomic parent names to a data.frame
 }
 \details{
+DEPRECATED. See \code{\link{bold_identify_taxonomy}}.
 This function gets unique set of taxonomic names from the input
-data.frame, then queries \code{\link[=bold_tax_name]{bold_tax_name()}} to get the
-taxonomic ID, passing it to \code{\link[=bold_tax_id]{bold_tax_id()}} to get the parent
+data.frame, then queries \code{\link{bold_tax_name}} to get the
+taxonomic ID, passing it to \code{\link{bold_tax_id}} to get the parent
 names, then attaches those to the input data.
 
 Records in the input data that do not have matches for parent names
@@ -72,10 +73,10 @@ The parameters \code{taxid}, \code{taxon}, \code{tax_rank}, \code{tax_division},
 \code{parentid}, \code{parentname},\code{taxonrep}, and \code{specimenrecords} are not used
 in the search sent to BOLD, but are used in filtering the data down
 to a subset that is closer to the target you want. For all these
-parameters, you can use regex strings since we use \code{\link[=grep]{grep()}} internally
+parameters, you can use regex strings since we use \code{\link{grep()}} internally
 to match. Filtering narrows down to the set that matches your query,
 and removes the rest. The data.frame that we filter on with these
-parameters internally is the result of a call to the \code{\link[=bold_tax_name]{bold_tax_name()}}
+parameters internally is the result of a call to the \code{\link{bold_tax_name()}}
 function.
 }
 
@@ -83,7 +84,7 @@ function.
 
 When \code{wide = FALSE} you get many rows for each record. Essentially,
 we \code{cbind} the taxonomic classification onto the one row from the
-result of \code{\link[=bold_identify]{bold_identify()}}, giving as many rows as there are
+result of \code{\link{bold_identify()}}, giving as many rows as there are
 taxa in the taxonomic classification.
 
 When \code{wide = TRUE} you get one row for each record - thus the

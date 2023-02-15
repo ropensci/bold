@@ -18,31 +18,28 @@ bold_specimens(
 )
 }
 \arguments{
-\item{taxon}{(character) Returns all records containing matching taxa. Taxa
-includes the ranks of  phylum, class, order, family, subfamily, genus,
-and species.}
+\item{taxon}{(character) One or more taxonomic name. Optional.}
 
-\item{ids}{(character) Returns all records containing matching IDs. IDs
+\item{ids}{(character|integer|numeric) One or more IDs. Optional. IDs
 include Sample IDs, Process IDs, Museum IDs and Field IDs.}
 
-\item{bin}{(character) Returns all records contained in matching BINs. A
-BIN is defined by a Barcode Index Number URI.}
+\item{bin}{(character) One or more Barcode Index Number URI. Optional.}
 
-\item{container}{(character) Returns all records contained in matching
-projects or datasets. Containers include project codes and dataset codes}
+\item{container}{(character) One or more project codes or dataset codes.
+Optional.}
 
-\item{institutions}{(character) Returns all records stored in matching
-institutions. Institutions are the Specimen Storing Site.}
+\item{institutions}{(character) One or more institution's name. Optional.
+Institutions are the Specimen Storing Site.}
 
-\item{researchers}{(character) Returns all records containing matching
-researcher names. Researchers include collectors and specimen identifiers.}
+\item{researchers}{(character) One or more researcher names. Optional.
+Include collectors and specimen identifiers.}
 
-\item{geo}{(character) Returns all records collected in matching geographic
-sites. Geographic sites includes countries and province/states.}
+\item{geo}{(character) One or more geographic sites.
+Includes countries and province/states.}
 
-\item{response}{(logical) Note that response is the object that returns
-from the Curl call, useful for debugging, and getting detailed info on
-the API call.}
+\item{response}{(logical) Default : FALSE. If TRUE, returns the object from
+the Curl call. Useful for debugging and getting more detailed info on the
+API call.}
 
 \item{format}{(character) One of xml, json, tsv (default). tsv format gives
 back a data.frame object. xml gives back parsed XML as \code{xml_document}
@@ -71,7 +68,7 @@ res$response_headers
 bold_specimens(taxon=c('Coelioxys','Osmia'))
 
 ## curl debugging
-### These examples below take a long time, so you can set a timeout so that 
+### These examples below take a long time, so you can set a timeout so that
 ### it stops by X sec
 head(bold_specimens(taxon='Osmia', verbose = TRUE))
 # head(bold_specimens(geo='Costa Rica', timeout_ms = 6))

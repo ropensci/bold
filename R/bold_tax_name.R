@@ -3,13 +3,15 @@
 #' @export
 #' @param name (character) One or more scientific names. required.
 #' @param fuzzy (logical) Whether to use fuzzy search or not (default: `FALSE`)
+#' @param tax_division (character) Taxonomic division to filter the results.
+#' @param tax_rank (character) Taxonomic rank to filter the results.
 #' @template otherargs
 #' @references
 #' http://v4.boldsystems.org/index.php/resources/api?type=taxonomy
 #' @details The `dataTypes` parameter is not supported in this function.
 #' If you want to use that parameter, get an ID from this function and pass
 #' it into `bold_tax_id`, and then use the `dataTypes` parameter.
-#' @seealso \code{\link[bold]{bold_tax_id()}}
+#' @seealso \code{\link{bold_tax_id}}
 #' @examples \dontrun{
 #' bold_tax_name(name='Diplura')
 #' bold_tax_name(name='Osmia')
@@ -44,7 +46,7 @@ bold_tax_name <- function(name, fuzzy = FALSE, response = FALSE,
   if(length(tax_rank)){
     assert(tax_rank, "character")
     tax_rank <- tolower(tax_rank)
-    if(!tax_rank %in% c(rank_ref$rank, rank_ref$ranks))
+    if(!tax_rank %in% c(rank_ref[["rank"]], rank_ref[["ranks"]]))
       stop("Invalid tax_rank name.")
   }
 

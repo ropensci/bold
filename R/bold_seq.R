@@ -6,6 +6,8 @@
 #' @export
 #' @template args
 #' @template otherargs
+#' @param marker (character) Returns all records containing matching
+#' marker codes.
 #' @template large-requests
 #' @template marker
 #' @references

@@ -107,15 +107,15 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "stringr",
-      "name": "stringr",
+      "identifier": "stringi",
+      "name": "stringi",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=stringr"
+      "sameAs": "https://CRAN.R-project.org/package=stringi"
     },
     {
       "@type": "SoftwareApplication",
@@ -131,30 +131,6 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "reshape",
-      "name": "reshape",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=reshape"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "plyr",
-      "name": "plyr",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=plyr"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "data.table",
       "name": "data.table",
       "provider": {
@@ -164,18 +140,6 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=data.table"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "tibble",
-      "name": "tibble",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=tibble"
     }
   ],
   "applicationCategory": "DataAccess",

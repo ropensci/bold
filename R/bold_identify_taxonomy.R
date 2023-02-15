@@ -2,12 +2,12 @@
 #'
 #' @export
 #' @param x (data.frame|list) A single data.frame or a list of - the output from
-#' a call to \code{\link[bold]{bold_identify()}}. Required.
-#' @param taxOnly (logical) If TRUE, only the taxonomic names and ids are added. If FALSE, also joins the rest of the data returned by \code{\link[bold]{bold_specimens()}}.
+#' a call to \code{\link{bold_identify}}. Required.
+#' @param taxOnly (logical) If TRUE, only the taxonomic names and ids are added. If FALSE, also joins the rest of the data returned by \code{\link[=bold_specimens]{bold_specimens}}.
 #' @template otherargs
 #'
 #' @details This function gets the process ids from the
-#' input data.frame(s) (ID column), then queries \code\link{[bold]{bold_specimens()}}
+#' input data.frame(s) (ID column), then queries \code{\link[=bold_specimens]{bold_specimens}}
 #' to get the sample information and cbinds it to the input data.frame(s).
 #'
 #' Records in the input data that do not have matches for parent names

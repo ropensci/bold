@@ -12,7 +12,7 @@
 #' the API call.
 #' @param keepSeq (logical) If TRUE (default), returns each data.frame
 #' with an attribute 'sequence' containing sequence used to get those results.
-#' @param ... Further args passed on to [crul::verb-GET], main
+#' @param ... Further args passed on to \code{\link{crul::verb-GET}}, main
 #' purpose being curl debugging
 #'
 #' @details BOLD only allows one sequences per query. We internally `lapply`
@@ -43,7 +43,7 @@
 #'
 #' @section Named outputs:
 #' For a named output list, make sure to pass in a named list or vector to the
-#' `sequences` parameter. You can use [`names<-`()] or [stats::setNames()] to
+#' `sequences` parameter. You can use \code{\link{`names<-`}} or \code{\link{stats::setNames}} to
 #' set names on a list or vector of sequences.
 #'
 #' @return A data.frame or  list of (one per sequences) with the top specimen
@@ -54,7 +54,7 @@
 #'
 #' @references
 #' http://v4.boldsystems.org/index.php/resources/api?type=idengine
-#' @seealso [bold_identify_parents()]
+#' @seealso \code{\link{bold_identify_parents}}
 #' @examples \dontrun{
 #' seq <- sequences$seq1
 #' res <- bold_identify(sequences=seq)

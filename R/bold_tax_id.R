@@ -8,8 +8,7 @@
 #' information for parent taxa as well as the specified taxon.
 #' @param response (logical) If `TRUE` (default: `FALSE`), returns the curl
 #' response object.
-#' @details
-#' @section dataTypes
+#' @section dataTypes:
 #' "basic" returns basic taxonomy info: includes taxid, taxon name, tax rank, tax division, parent taxid, parent taxon name.
 #' "stats" returns specimen and sequence statistics: includes public species count, public BIN count, public marker counts, public record count, specimen count, sequenced specimen count, barcode specimen count, species count, barcode species count.
 #' "geo" returns collection site information: includes country, collection site map.
@@ -18,12 +17,12 @@
 #' "depository" returns specimen depositories: includes depository name, record count.
 #' "thirdparty" returns information from third parties: includes wikipedia_summary summary, wikipedia_summary URL.
 #' "all" returns all information: identical to specifying all data types at once.
-#' @section includeTree
+#' @section includeTree:
 #' When `includeTree` is set to true, for the `dataTypes` other than "basic" the information of the parent taxa are identified by their taxonomic id only. To get their ranks and names too, make sure "basic" is in `dataTypes`.
 #' @template otherargs
 #' @references
 #' http://v4.boldsystems.org/index.php/resources/api?type=taxonomy
-#' @seealso \code{\link[bold]{bold_tax_name()}}
+#' @seealso \code{\link{bold_tax_name}}
 #' @examples \dontrun{
 #' bold_tax_id(id=88899)
 #' bold_tax_id(id=88899, includeTree=TRUE)

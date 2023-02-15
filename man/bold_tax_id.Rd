@@ -13,18 +13,17 @@ bold_tax_id(
 )
 }
 \arguments{
-\item{id}{(integer) One or more BOLD taxonomic identifiers. required.}
+\item{id}{(integer|numeric|character) One or more BOLD taxonomic identifiers. required.}
 
-\item{dataTypes}{(character) Specifies the datatypes that will be
-returned. 'all' returns all data. 'basic' returns basic taxon information.
-'images' returns specimen images.}
+\item{dataTypes}{(character) One or more BOLD data type. Specifies the
+information that will be returned. See details for options.}
 
-\item{includeTree}{(logical) If \code{TRUE} (default: \code{FALSE}), returns a list
-containing information for parent taxa as well as the specified taxon.}
+\item{includeTree}{(logical) If \code{TRUE} (default: \code{FALSE}), returns the
+information for parent taxa as well as the specified taxon.}
 
-\item{response}{(logical) Note that response is the object that returns
-from the Curl call, useful for debugging, and getting detailed info on
-the API call.}
+\item{response}{(logical) Default : FALSE. If TRUE, returns the object from
+the Curl call. Useful for debugging and getting more detailed info on the
+API call.}
 
 \item{...}{Further args passed on to
 \code{\link[crul:verb-GET]{crul::verb-GET}}, main purpose being curl
@@ -33,6 +32,23 @@ debugging}
 \description{
 Search BOLD for taxonomy data by BOLD ID.
 }
+\section{dataTypes}{
+
+"basic" returns basic taxonomy info: includes taxid, taxon name, tax rank, tax division, parent taxid, parent taxon name.
+"stats" returns specimen and sequence statistics: includes public species count, public BIN count, public marker counts, public record count, specimen count, sequenced specimen count, barcode specimen count, species count, barcode species count.
+"geo" returns collection site information: includes country, collection site map.
+"images" returns specimen images: includes copyright information, image URL, image metadata.
+"sequencinglabs" returns sequencing labs: includes lab name, record count.
+"depository" returns specimen depositories: includes depository name, record count.
+"thirdparty" returns information from third parties: includes wikipedia_summary summary, wikipedia_summary URL.
+"all" returns all information: identical to specifying all data types at once.
+}
+
+\section{includeTree}{
+
+When \code{includeTree} is set to true, for the \code{dataTypes} other than "basic" the information of the parent taxa are identified by their taxonomic id only. To get their ranks and names too, make sure "basic" is in \code{dataTypes}.
+}
+
 \examples{
 \dontrun{
 bold_tax_id(id=88899)
@@ -47,8 +63,10 @@ bold_tax_id(id=88899, dataTypes = "images")
 bold_tax_id(id=88899, dataTypes = "geo")
 bold_tax_id(id=88899, dataTypes = "sequencinglabs")
 bold_tax_id(id=88899, dataTypes = "depository")
-bold_tax_id(id=c(88899,125295), dataTypes = "geo")
-bold_tax_id(id=c(88899,125295), dataTypes = "images")
+bold_tax_id(id=88899, dataTypes = "thirdparty")
+bold_tax_id(id=88899, dataTypes = "all")
+bold_tax_id(id=c(88899,125295), dataTypes = c("basic", "geo"))
+bold_tax_id(id=c(88899,125295), dataTypes = c("basic", "stats", "images"))
 
 ## Passing in NA
 bold_tax_id(id = NA)
@@ -66,5 +84,5 @@ bold_tax_id(id=88899, verbose = TRUE)
 http://v4.boldsystems.org/index.php/resources/api?type=taxonomy
 }
 \seealso{
-\code{\link[=bold_tax_name]{bold_tax_name()}}
+\code{\link{bold_tax_name}}
 }
