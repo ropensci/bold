@@ -32,28 +32,10 @@
 #' vapply(minn$nucleotides, nchar, 1, USE.NAMES = FALSE)
 #' }
 bold_filter <- function(x, by, how = "max", returnTibble = TRUE) {
-  if (!inherits(x, "data.frame")) stop("'x' must be a data.frame")
-  if (!how %in% c("min", "max")) stop("'how' must be one of 'min' or 'max'")
-  if (!by %in% names(x)) stop(sprintf("'%s' is not a valid column in 'x'", by))
-  xsp <- split(x, x[[by]])
-  out <- setrbind(lapply(xsp, function(z) {
-    lgts <- vapply(z$nucleotides, function(w) nchar(gsub("-", "", w)), 1,
-                   USE.NAMES = FALSE)
-    z[eval(parse(text = paste0("which.", how)))(lgts), ]
-  }))
-  if (returnTibble && requireNamespace("tibble", quietly = TRUE)) {
-    tibble::as.tibble(out)
-  } else {
-    out
-  }
-}
-bold_filter2 <- function(x, by, how = "max", returnTibble = TRUE) {
   if (!inherits(x, c("data.frame", "matrix"))) stop("'x' must be a data.frame or matrix")
   if (!by %in% names(x)) stop(sprintf("'%s' is not a valid column in 'x'", by))
   if (!how %in% c("min", "max")) stop("'how' must be one of 'min' or 'max'")
   .fun <- list(min = which.min, max = which.max)
-  # why not use this package if it's already a dependency.
-  # So much more efficient.
   xdt <- data.table::as.data.table(x)
   .rows <- xdt[,{
     lgts <- stringi::stri_count_regex(nucleotides,"[^-]")
@@ -69,4 +51,3 @@ bold_filter2 <- function(x, by, how = "max", returnTibble = TRUE) {
     out
   }
 }
-bench::mark(bold_filter(res, "species_name"), bold_filter2(res, "species_name")) # :)
