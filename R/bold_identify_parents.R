@@ -23,7 +23,8 @@
 #' @param ... Further args passed on to \code{\link{crul::verb-GET}}, main
 #' purpose being curl debugging
 #'
-#' @details DEPRECATED. See \code{\link{bold_identify_taxonomy}}.
+#' @details DEPRECATED. See \code{\link{bold_identify_taxonomy}}. It's faster and gets the accurate  taxonomy directly from the record of the sequence.
+#'
 #' This function gets unique set of taxonomic names from the input
 #' data.frame, then queries \code{\link{bold_tax_name}} to get the
 #' taxonomic ID, passing it to \code{\link{bold_tax_id}} to get the parent
@@ -79,6 +80,14 @@
 #' out <- bold_identify(vapply(x, "[[", "", "sequence")[1:20])
 #' res <- bold_identify_parents(out)
 #' }
+#' @name bold_identify_parents-deprecated
+#' @seealso \code{\link{bold-deprecated}}
+#' @keywords internal
+NULL
+#' @rdname bold-deprecated
+#' @section \code{bold_identify_parents}:
+#' For \code{bold_identify_parents}, use \code{\link{bold_identify_taxonomy}}.
+#'
 bold_identify_parents <- function(x, wide = FALSE, taxid = NULL,
                                   taxon = NULL, tax_rank = NULL, tax_division = NULL, parentid = NULL,
                                   parentname = NULL, taxonrep = NULL, specimenrecords = NULL, ...) {
@@ -112,7 +121,14 @@ bold_identify_parents.list <- function(x, wide = FALSE, taxid = NULL,
           "\nSee help(\"Deprecated\")", call. = FALSE, immediate. = TRUE)
 
   assert(wide, "logical")
-
+  assert_multi(taxid = taxid,
+               taxon = taxon,
+               tax_rank = tax_rank,
+               tax_division = tax_division,
+               parentid = parentid,
+               parentname = parentname,
+               taxonrep = taxonrep,
+               specimenrecords = specimenrecords)
   # get unique set of names
   uniqnms <-
     unique(c(lapply(x, function(z) z$taxonomicidentification), recursive = TRUE, use.names = FALSE))
@@ -121,7 +137,7 @@ bold_identify_parents.list <- function(x, wide = FALSE, taxid = NULL,
   }
 
   # get parent names via bold_tax_name and bold_tax_id
-  out <- stats::setNames(lapply(uniqnms, function(w) {
+  out <- lapply(`names<-`(uniqnms, uniqnms), function(w) {
     tmp <- bold_tax_name(w, ...)
     # if length(tmp) > 1, user decides which one
     if (NROW(tmp) > 1) {
@@ -141,7 +157,7 @@ bold_identify_parents.list <- function(x, wide = FALSE, taxid = NULL,
     } else {
       NULL
     }
-  }), uniqnms)
+  })
   # remove length zero elements
   out <- bc(out)
 
@@ -160,27 +176,28 @@ bold_identify_parents.list <- function(x, wide = FALSE, taxid = NULL,
     }
     zsplit <- split(z, z$ID)
     setrbind(
-      bc(lapply(zsplit, function(w) {
+      lapply(zsplit, function(w) {
         tmp <- out[names(out) %in% w$taxonomicidentification]
-        if (!length(tmp)) return(w)
-        suppressWarnings(cbind(w, tmp[[1]]))
-      }))
+        if (length(tmp)) {
+          suppressWarnings(cbind(w, tmp[[1]]))
+        } else {
+          w
+        }
+      })
     )
   })
 }
 
 # function to help filter get_*() functions for a rank name or rank itself ---
 filt <- function(df, col, z) {
-  assert(z, "character")
-  if (NROW(df) == 0) {
+  if (NROW(df) == 0 || is.null(z)) {
     df
   } else {
-    if (is.null(z)) return(df)
-    mtch <- grep(sprintf("%s", tolower(z)), tolower(df[, col]))
-    if (length(mtch) != 0) {
+    mtch <- grep(tolower(z), tolower(df[, col]))
+    if (length(mtch)) {
       df[mtch, ]
     } else {
-      data.frame(NULL)
+      NULL
     }
   }
 }

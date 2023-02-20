@@ -3,11 +3,11 @@
 #' @export
 #' @param x (data.frame|list) A single data.frame or a list of - the output from
 #' a call to \code{\link{bold_identify}}. Required.
-#' @param taxOnly (logical) If TRUE, only the taxonomic names and ids are added. If FALSE, also joins the rest of the data returned by \code{\link[=bold_specimens]{bold_specimens}}.
+#' @param taxOnly (logical) If TRUE, only the taxonomic names and ids are added (equivalent format to the results of \code{\link{bold_identify_parents}} when `wide`is set to TRUE. If FALSE, also joins the rest of the data returned by \code{\link{bold_specimens}}.
 #' @template otherargs
 #'
 #' @details This function gets the process ids from the
-#' input data.frame(s) (ID column), then queries \code{\link[=bold_specimens]{bold_specimens}}
+#' input data.frame(s) (ID column), then queries \code{\link{bold_specimens}}
 #' to get the sample information and cbinds it to the input data.frame(s).
 #'
 #' Records in the input data that do not have matches for parent names
@@ -32,57 +32,47 @@
 #' }
 #'
 
-bold_identify_taxonomy <- function(x, taxOnly = TRUE, response = FALSE, ...) {
+bold_identify_taxonomy <- function(x, taxOnly = TRUE) {
   UseMethod("bold_identify_taxonomy")
 }
-
 #' @export
-bold_identify_taxonomy.default <- function(x, taxOnly = TRUE, response = FALSE, ...) {
+bold_identify_taxonomy.default <- function(x, taxOnly = TRUE) {
   stop("no 'bold_identify_taxonomy' method for ", class(x)[1L], call. = FALSE)
 }
-
 #' @export
-bold_identify_taxonomy.data.frame <- function(x, taxOnly = TRUE, response = FALSE, ...) {
+bold_identify_taxonomy.matrix <- function(x, taxOnly = TRUE) {
   assert(taxOnly, "logical")
-  assert(response, "logical")
-  IDS <- unique(x$ID)
-  tax <- bold_specimens(ids = IDS)
-  if(taxOnly){
-    nms <- names(tax)
-    nms <- nms[grep("_taxID|_name",nms)]
-    tax <- tax[, c("processid", nms)]
-  }
-  tax[tax==""] <- NA
-  tax <- tax[,colSums(is.na(tax)) != nrow(tax)]
-  if(all(x$ID == tax$processid)) print(T)
-  if(all(x$ID == tax$processid))
-    cbind(x, tax[,-1])
-  else
-    cbind(x, tax[vapply(x$ID, function(x) which(tax$processid==x), 0),-1])
+  if (missing(x)) stop("argument 'x' is missing, with no default.")
+  if (!"ID" %in% colnames(x)) stop("no column 'ID' found in input.")
+  .bold_identify_taxonomy(x, taxOnly = taxOnly)
 }
-
 #' @export
-bold_identify_taxonomy.list <-
-  function(x,
-           taxOnly = TRUE,
-           response = FALSE,
-           ...) {
-    assert(taxOnly, "logical")
-    assert(response, "logical")
-    lapply(x, function(dat) {
-      IDS <- unique(dat$ID)
-      tax <- bold_specimens(ids = IDS)
-      if (taxOnly) {
-        nms <- names(tax)
-        nms <- nms[grep("_taxID|_name", nms)]
-        tax <- tax[, c("processid", nms)]
-      }
-      tax[tax == ""] <- NA
-      tax <- tax[, colSums(is.na(tax)) != nrow(tax)]
-      if (all(dat$ID == tax$processid))
-        cbind(dat, tax[, -1])
-      else
-        cbind(dat, tax[vapply(dat$ID, function(x)
-          which(tax$processid == x), 0), -1])
-    })
+bold_identify_taxonomy.data.frame <- function(x, taxOnly = TRUE) {
+  assert(taxOnly, "logical")
+  if (missing(x)) stop("argument 'x' is missing, with no default.")
+  if (!"ID" %in% colnames(x)) stop("no column 'ID' found in input.")
+  .bold_identify_taxonomy(x, taxOnly = taxOnly)
+}
+#' @export
+bold_identify_taxonomy.list <- function(x, taxOnly = TRUE) {
+  assert(taxOnly, "logical")
+  if (missing(x)) stop("argument 'x' is missing, with no default.")
+  if (!"ID" %in% colnames(x)) stop("no column 'ID' found in input.")
+  lapply(x, .bold_identify_taxonomy, taxOnly = taxOnly)
+}
+.bold_identify_taxonomy <- function(x, taxOnly){
+  # get the process ids
+  IDs <- x[,"ID", drop = TRUE]
+  # get the taxonomic data
+  tax <- bold_specimens(ids = unique(IDs))
+  if (taxOnly) {
+    # only returns the taxonomic data
+    tax <- tax[, c("processid", grep("_taxID|_name", names(tax), value = TRUE))]
   }
+  tax[tax == ""] <- NA
+  # remove empty columns
+  tax <- tax[,colSums(is.na(tax)) != nrow(tax)]
+  # sort output by input IDs
+  rownames(tax) <- tax[,"processid"]
+  data.frame(x, tax[IDs, -1], row.names =  NULL)
+}

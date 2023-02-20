@@ -4,13 +4,13 @@
 \alias{bold_identify_taxonomy}
 \title{Add taxonomic parent names to a data.frame}
 \usage{
-bold_identify_taxonomy(x, taxOnly = TRUE, response = FALSE, ...)
+bold_identify_taxonomy(x, taxOnly = TRUE)
 }
 \arguments{
 \item{x}{(data.frame|list) A single data.frame or a list of - the output from
 a call to \code{\link{bold_identify}}. Required.}
 
-\item{taxOnly}{(logical) If TRUE, only the taxonomic names and ids are added. If FALSE, also joins the rest of the data returned by \code{\link[=bold_specimens]{bold_specimens}}.}
+\item{taxOnly}{(logical) If TRUE, only the taxonomic names and ids are added (equivalent format to the results of \code{\link{bold_identify_parents}} when \code{wide}is set to TRUE. If FALSE, also joins the rest of the data returned by \code{\link{bold_specimens}}.}
 
 \item{response}{(logical) Default : FALSE. If TRUE, returns the object from
 the Curl call. Useful for debugging and getting more detailed info on the
@@ -29,7 +29,7 @@ Add taxonomic parent names to a data.frame
 }
 \details{
 This function gets the process ids from the
-input data.frame(s) (ID column), then queries \code{\link[=bold_specimens]{bold_specimens}}
+input data.frame(s) (ID column), then queries \code{\link{bold_specimens}}
 to get the sample information and cbinds it to the input data.frame(s).
 
 Records in the input data that do not have matches for parent names

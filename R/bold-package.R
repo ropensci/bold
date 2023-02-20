@@ -15,10 +15,11 @@
 #' - \code{\link{read_trace}} - Read trace files into R
 #' - \code{\link{bold_tax_name}} - Get taxonomic names via input names
 #' - \code{\link{bold_tax_id}} - Get taxonomic names via BOLD identifiers
+#' - \code{\link{bold_tax_id2}} - Get taxonomic names via BOLD identifiers (improved)
 #' - \code{\link{bold_identify}} - Search for match given a COI sequence
 #'
 #' Interestingly, they provide xml and tsv format data for the specimen data,
-#' while  they provide fasta data format for the sequence data. So for the
+#' while they provide fasta data format for the sequence data. So for the
 #' specimen data you can get back raw XML, or a data frame parsed from the
 #' tsv data, while for sequence data you get back a list (b/c sequences are
 #' quite long and would make a data frame unwieldy).
@@ -54,6 +55,7 @@ NULL
 #' added a column for the plural form of the names, since some function need to
 #' convert them to singular.
 #'
+#' @name rank_ref
 #' @format data.frame of 64 rows, with 3 columns:
 #' \itemize{
 #'   \item{rankid}{: a numeric vector of rank ids, consecutive}
@@ -62,4 +64,4 @@ NULL
 #' }
 #' @docType data
 #' @keywords data
-"rank_ref"
+NULL

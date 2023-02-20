@@ -26,11 +26,12 @@ http://www.boldsystems.org/ via their API
 \item \code{\link{read_trace}} - Read trace files into R
 \item \code{\link{bold_tax_name}} - Get taxonomic names via input names
 \item \code{\link{bold_tax_id}} - Get taxonomic names via BOLD identifiers
+\item \code{\link{bold_tax_id2}} - Get taxonomic names via BOLD identifiers (improved)
 \item \code{\link{bold_identify}} - Search for match given a COI sequence
 }
 
 Interestingly, they provide xml and tsv format data for the specimen data,
-while  they provide fasta data format for the sequence data. So for the
+while they provide fasta data format for the sequence data. So for the
 specimen data you can get back raw XML, or a data frame parsed from the
 tsv data, while for sequence data you get back a list (b/c sequences are
 quite long and would make a data frame unwieldy).
