@@ -53,6 +53,7 @@ bold_specimens <- function(taxon = NULL, ids = NULL, bin = NULL,
   if (response) {
     res
   } else {
+    res$raise_for_status()
     res <- rawToChar(res$content)
     switch(format,
            xml = xml2::read_xml(res),

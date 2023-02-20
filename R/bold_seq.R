@@ -58,6 +58,7 @@ bold_seq <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
   if (response) {
     res
   } else {
+    res$raise_for_status()
     res <- rawToChar(res$content)
     if (grepl("error", res)) {
       warning("the request timed out, see 'If a request times out'\n",
