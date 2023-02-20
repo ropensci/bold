@@ -49,6 +49,7 @@ bold_identify_taxonomy.data.frame <- function(x, taxOnly = TRUE) {
   if (!"ID" %in% colnames(x)) stop("no column 'ID' found in input.")
   .bold_identify_taxonomy(x, taxOnly = taxOnly)
 }
+#' @export
 bold_identify_taxonomy.list <- function(x, taxOnly = TRUE) {
   assert(taxOnly, "logical")
   if (missing(x)) stop("argument 'x' is missing, with no default.")
