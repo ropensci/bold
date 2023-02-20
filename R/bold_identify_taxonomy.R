@@ -31,15 +31,18 @@
 bold_identify_taxonomy <- function(x, taxOnly = TRUE) {
   UseMethod("bold_identify_taxonomy")
 }
+#' @export
 bold_identify_taxonomy.default <- function(x, taxOnly = TRUE) {
   stop("no 'bold_identify_taxonomy' method for ", class(x)[1L], call. = FALSE)
 }
+#' @export
 bold_identify_taxonomy.matrix <- function(x, taxOnly = TRUE) {
   assert(taxOnly, "logical")
   if (missing(x)) stop("argument 'x' is missing, with no default.")
   if (!"ID" %in% colnames(x)) stop("no column 'ID' found in input.")
   .bold_identify_taxonomy(x, taxOnly = taxOnly)
 }
+#' @export
 bold_identify_taxonomy.data.frame <- function(x, taxOnly = TRUE) {
   assert(taxOnly, "logical")
   if (missing(x)) stop("argument 'x' is missing, with no default.")
