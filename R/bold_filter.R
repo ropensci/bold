@@ -31,9 +31,9 @@
 #' vapply(maxx$nucleotides, nchar, 1, USE.NAMES = FALSE)
 #' vapply(minn$nucleotides, nchar, 1, USE.NAMES = FALSE)
 #' }
-bold_filter <- function(x, by, how = "max", returnTibble = TRUE) {
+bold_filter <- function(x, by, how = "max", returnTibble = TRUE){
   if (!inherits(x, c("data.frame", "matrix"))) stop("'x' must be a data.frame or matrix")
-  if (!by %in% names(x)) stop(sprintf("'%s' is not a valid column in 'x'", by))
+  if (!by %in% colnames(x)) stop(sprintf("'%s' is not a valid column in 'x'", by))
   if (!how %in% c("min", "max")) stop("'how' must be one of 'min' or 'max'")
   .fun <- list(min = which.min, max = which.max)
   xdt <- data.table::as.data.table(x)
@@ -43,10 +43,10 @@ bold_filter <- function(x, by, how = "max", returnTibble = TRUE) {
   }, by = by]$V1
   out <- x[.rows,]
   # so the output is ordered in the same way as before
-  out <- out[order(out[[by]]),]
+  out <- out[order(out[,by]),]
   rownames(out) <- NULL
   if (returnTibble && requireNamespace("tibble", quietly = TRUE)) {
-    tibble::as.tibble(out)
+    tibble::as_tibble(out)
   } else {
     out
   }
