@@ -1,6 +1,5 @@
 #' Get BOLD specimen + sequence data.
 #'
-#' @export
 #' @template args
 #' @template otherargs
 #' @template large-requests
@@ -41,7 +40,8 @@
 #' ## timeout
 #' # head(bold_seqspec(taxon='Osmia', timeout_ms = 1))
 #' }
-
+#'
+#' @export
 bold_seqspec <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
   institutions = NULL, researchers = NULL, geo = NULL, marker = NULL,
   response=FALSE, format = 'tsv', sepfasta = FALSE, ...) {

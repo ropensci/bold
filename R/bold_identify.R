@@ -1,7 +1,5 @@
 #' Search for matches to sequences against the BOLD COI database.
 #'
-#' @export
-#'
 #' @param sequences (character) A vector or list of sequences to identify.
 #' Required. See Details.
 #' @param db (character) The database to match against, one of COX1 (default),
@@ -12,14 +10,14 @@
 #' the API call.
 #' @param keepSeq (logical) If TRUE (default), returns each data.frame
 #' with an attribute 'sequence' containing sequence used to get those results.
-#' @param ... Further args passed on to \code{\link{crul::verb-GET}}, main
+#' @param ... Further args passed on to \code{\link[crul]{verb-GET}}, main
 #' purpose being curl debugging
 #'
-#' @details BOLD only allows one sequences per query. We internally `lapply`
-#' over the input values given to the sequences` parameter to search
-#' with one sequences per query. Remember this if you have a lot of sequences -
-#' you are doing a separate query for each one, so it can take a long time -
-#' if you run into errors let us know.
+#' @details BOLD only allows one sequences per query. We internally
+#' \code{\link[base]{lapply}} over the input values given to the sequences`
+#' parameter to search with one sequences per query. Remember this if you have a
+#'  lot of sequences - you are doing a separate query for each one, so it can
+#' take a long time - if you run into errors let us know.
 #'
 #' @section db parmeter options:
 #'
@@ -45,8 +43,8 @@
 #'
 #' @section Named outputs:
 #' For a named output list, make sure to pass in a named list or vector to the
-#' `sequences` parameter. You can use \code{\link{`names<-`}} or \code{\link{stats::setNames}} to
-#' set names on a list or vector of sequences.
+#' `sequences` parameter. You can use \code{\link[base]{names<-}} or
+#' \code{\link[stats]{setNames}} to set names on a list or vector of sequences.
 #'
 #' @return A data.frame or  list of (one per sequences) with the top specimen
 #' matches (up to 100) and their details. If the query fails, returns `NULL`.
@@ -63,7 +61,8 @@
 #' head(res[[1]])
 #' head(bold_identify(sequences=seq, db='COX1_SPECIES')[[1]])
 #' }
-
+#'
+#' @export
 bold_identify <- function(sequences, db = 'COX1', response = FALSE, keepSeq = TRUE, ...) {
   # make sure sequences are character before the queries
   if (is.list(sequences)) {

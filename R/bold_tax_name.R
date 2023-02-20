@@ -1,6 +1,5 @@
 #' Search BOLD for taxonomy data by taxonomic name
 #'
-#' @export
 #' @param name (character) One or more scientific names. required.
 #' @param fuzzy (logical) Whether to use fuzzy search or not (default: `FALSE`)
 #' @param tax_division (character) Taxonomic division to filter the results.
@@ -33,6 +32,7 @@
 #' bold_tax_name(name='Diplura', verbose = TRUE)
 #' }
 
+#' @export
 bold_tax_name <- function(name, fuzzy = FALSE, response = FALSE,
                           tax_division = NULL, tax_rank = NULL, ...) {
   assert(name, "character")

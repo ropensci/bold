@@ -3,7 +3,6 @@
 #' Picks either shortest or longest sequences, for a given grouping variable
 #' (e.g., species name)
 #'
-#' @export
 #' @param x (data.frame) a data.frame, as returned from
 #' \code{\link{bold_seqspec}}. Note that some combinations of parameters
 #' in \code{\link{bold_seqspec}} don't return a data.frame. Stops with
@@ -31,6 +30,7 @@
 #' vapply(maxx$nucleotides, nchar, 1, USE.NAMES = FALSE)
 #' vapply(minn$nucleotides, nchar, 1, USE.NAMES = FALSE)
 #' }
+#' @export
 bold_filter <- function(x, by, how = "max", returnTibble = TRUE){
   if (!inherits(x, c("data.frame", "matrix"))) stop("'x' must be a data.frame or matrix")
   if (!by %in% colnames(x)) stop(sprintf("'%s' is not a valid column in 'x'", by))

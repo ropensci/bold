@@ -73,6 +73,7 @@ bold_specimens(taxon=c('Coelioxys','Osmia'))
 head(bold_specimens(taxon='Osmia', verbose = TRUE))
 # head(bold_specimens(geo='Costa Rica', timeout_ms = 6))
 }
+
 }
 \references{
 http://v4.boldsystems.org/index.php/resources/api?type=webservices

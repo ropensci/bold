@@ -14,9 +14,11 @@
 #' - \code{\link{bold_trace}} - Get trace files - saves to disk
 #' - \code{\link{read_trace}} - Read trace files into R
 #' - \code{\link{bold_tax_name}} - Get taxonomic names via input names
-#' - \code{\link{bold_tax_id}} - Get taxonomic names via BOLD identifiers
+#' - \code{\link{bold_tax_id}} - Get taxonomic names via BOLD identifiers (Deprecated)
 #' - \code{\link{bold_tax_id2}} - Get taxonomic names via BOLD identifiers (improved)
 #' - \code{\link{bold_identify}} - Search for match given a COI sequence
+#' - \code{\link{bold_identify_parents}} - Adds guessed parent ranks (Deprecated)
+#' - \code{\link{bold_identify_taxonomy}} - Adds real parent ranks.
 #'
 #' Interestingly, they provide xml and tsv format data for the specimen data,
 #' while they provide fasta data format for the sequence data. So for the
@@ -47,8 +49,8 @@ NULL
 #' Lookup-table for IDs of taxonomic ranks
 #'
 #' @details
-#' Used in the \code{\link{bold_tax_name-}} function.
-#' Taken from the data set of the same name in the package \code{\link{taxize}}.
+#' Used in the \code{\link{bold_tax_name}} function.
+#' Taken from the data set of the same name in the package \pkg{taxize}.
 #'
 #' This data.frame is used to do data sorting/filtering based on the ordering
 #' of ranks. The format was changed so each rank name would have its own row and

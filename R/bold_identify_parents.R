@@ -1,7 +1,7 @@
 #' Add taxonomic parent names to a data.frame
 #'
 #' @param x (data.frame/list) list of data.frames - the output from a call to
-#' [bold_identify()]. or a single data.frame from the output from same.
+#' \code{\link{bold_identify}}. or a single data.frame from the output from same.
 #' required.
 #' @param wide (logical) output in long or wide format. See Details.
 #' Default: `FALSE`
@@ -19,8 +19,17 @@
 #' below.
 #' @param specimenrecords (character) A specimenrecords name. Optional.
 #' See `Filtering` below.
-#' @param ... Further args passed on to \code{\link{crul::verb-GET}}, main
+#' @param ... Further args passed on to \code{\link[crul]{verb-GET}}, main
 #' purpose being curl debugging
+#'
+#'
+#' @name bold_identify_parents-deprecated
+#' @seealso \code{\link{bold-deprecated}}
+#' @keywords internal
+NULL
+#' @rdname bold-deprecated
+#' @section \code{bold_identify_parents}:
+#' For \code{bold_identify_parents}, use \code{\link{bold_identify_taxonomy}}.
 #'
 #' @details DEPRECATED. See \code{\link{bold_identify_taxonomy}}. It's faster and gets the accurate  taxonomy directly from the record of the sequence.
 #'
@@ -37,16 +46,16 @@
 #' `parentid`, `parentname`,`taxonrep`, and `specimenrecords` are not used
 #' in the search sent to BOLD, but are used in filtering the data down
 #' to a subset that is closer to the target you want. For all these
-#' parameters, you can use regex strings since we use \code{\link{grep()}} internally
-#' to match. Filtering narrows down to the set that matches your query,
-#' and removes the rest. The data.frame that we filter on with these
-#' parameters internally is the result of a call to the \code{\link{bold_tax_name()}}
-#' function.
+#' parameters, you can use regex strings since we use \code{\link[base]{grep}}
+#' internally to match. Filtering narrows down to the set that matches your
+#' query, and removes the rest. The data.frame that we filter on with these
+#' parameters internally is the result of a call to the
+#' \code{\link{bold_tax_name}} function.
 #'
 #' @section wide vs long format:
 #' When `wide = FALSE` you get many rows for each record. Essentially,
 #' we `cbind` the taxonomic classification onto the one row from the
-#' result of \code{\link{bold_identify()}}, giving as many rows as there are
+#' result of \code{\link{bold_identify}}, giving as many rows as there are
 #' taxa in the taxonomic classification.
 #'
 #' When `wide = TRUE` you get one row for each record - thus the
@@ -79,14 +88,6 @@
 #' out <- bold_identify(vapply(x, "[[", "", "sequence")[1:20])
 #' res <- bold_identify_parents(out)
 #' }
-#' @name bold_identify_parents-deprecated
-#' @seealso \code{\link{bold-deprecated}}
-#' @keywords internal
-NULL
-#' @rdname bold-deprecated
-#' @section \code{bold_identify_parents}:
-#' For \code{bold_identify_parents}, use \code{\link{bold_identify_taxonomy}}.
-#'
 #' @export
 bold_identify_parents <- function(x, wide = FALSE, taxid = NULL,
                                   taxon = NULL, tax_rank = NULL, tax_division = NULL, parentid = NULL,

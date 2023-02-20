@@ -16,8 +16,8 @@ data.frame of 64 rows, with 3 columns:
 Lookup-table for IDs of taxonomic ranks
 }
 \details{
-Used in the \code{\link{bold_tax_name-}} function.
-Taken from the data set of the same name in the package \code{\link{taxize}}.
+Used in the \code{\link{bold_tax_name}} function.
+Taken from the data set of the same name in the package \pkg{taxize}.
 
 This data.frame is used to do data sorting/filtering based on the ordering
 of ranks. The format was changed so each rank name would have its own row and

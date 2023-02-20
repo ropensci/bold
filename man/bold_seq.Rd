@@ -121,6 +121,7 @@ res$response_headers
 bold_seq(taxon='Coelioxys', verbose = TRUE)[1:2]
 # bold_seqspec(taxon='Coelioxys', timeout_ms = 10)
 }
+
 }
 \references{
 http://v4.boldsystems.org/index.php/resources/api?type=webservices

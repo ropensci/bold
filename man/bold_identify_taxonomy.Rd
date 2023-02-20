@@ -11,14 +11,6 @@ bold_identify_taxonomy(x, taxOnly = TRUE)
 a call to \code{\link{bold_identify}}. Required.}
 
 \item{taxOnly}{(logical) If TRUE, only the taxonomic names and ids are added (equivalent format to the results of \code{\link{bold_identify_parents}} when \code{wide}is set to TRUE. If FALSE, also joins the rest of the data returned by \code{\link{bold_specimens}}.}
-
-\item{response}{(logical) Default : FALSE. If TRUE, returns the object from
-the Curl call. Useful for debugging and getting more detailed info on the
-API call.}
-
-\item{...}{Further args passed on to
-\code{\link[crul:verb-GET]{crul::verb-GET}}, main purpose being curl
-debugging}
 }
 \value{
 a data.frame or a list of data.frames with added taxonomic

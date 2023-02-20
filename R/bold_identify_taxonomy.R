@@ -1,10 +1,8 @@
 #' Add taxonomic parent names to a data.frame
 #'
-#' @export
 #' @param x (data.frame|list) A single data.frame or a list of - the output from
 #' a call to \code{\link{bold_identify}}. Required.
 #' @param taxOnly (logical) If TRUE, only the taxonomic names and ids are added (equivalent format to the results of \code{\link{bold_identify_parents}} when `wide`is set to TRUE. If FALSE, also joins the rest of the data returned by \code{\link{bold_specimens}}.
-#' @template otherargs
 #'
 #' @details This function gets the process ids from the
 #' input data.frame(s) (ID column), then queries \code{\link{bold_specimens}}
@@ -12,9 +10,6 @@
 #'
 #' Records in the input data that do not have matches for parent names
 #' simply get NA values in the added columns.
-#'
-#'
-#'
 #'
 #' @return a data.frame or a list of data.frames with added taxonomic
 #' classification.
@@ -32,28 +27,25 @@
 #' }
 #'
 
+#' @export
 bold_identify_taxonomy <- function(x, taxOnly = TRUE) {
   UseMethod("bold_identify_taxonomy")
 }
-#' @export
 bold_identify_taxonomy.default <- function(x, taxOnly = TRUE) {
   stop("no 'bold_identify_taxonomy' method for ", class(x)[1L], call. = FALSE)
 }
-#' @export
 bold_identify_taxonomy.matrix <- function(x, taxOnly = TRUE) {
   assert(taxOnly, "logical")
   if (missing(x)) stop("argument 'x' is missing, with no default.")
   if (!"ID" %in% colnames(x)) stop("no column 'ID' found in input.")
   .bold_identify_taxonomy(x, taxOnly = taxOnly)
 }
-#' @export
 bold_identify_taxonomy.data.frame <- function(x, taxOnly = TRUE) {
   assert(taxOnly, "logical")
   if (missing(x)) stop("argument 'x' is missing, with no default.")
   if (!"ID" %in% colnames(x)) stop("no column 'ID' found in input.")
   .bold_identify_taxonomy(x, taxOnly = taxOnly)
 }
-#' @export
 bold_identify_taxonomy.list <- function(x, taxOnly = TRUE) {
   assert(taxOnly, "logical")
   if (missing(x)) stop("argument 'x' is missing, with no default.")

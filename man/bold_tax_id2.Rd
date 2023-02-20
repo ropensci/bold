@@ -79,6 +79,7 @@ bold_tax_id(id = c(88899, 125295), response = TRUE)
 ## curl debugging
 bold_tax_id(id = 88899, verbose = TRUE)
 }
+
 }
 \references{
 http://v4.boldsystems.org/index.php/resources/api?type=taxonomy

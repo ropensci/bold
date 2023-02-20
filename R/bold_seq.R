@@ -3,7 +3,6 @@
 #' Get sequences for a taxonomic name, id, bin, container, institution,
 #' researcher, geographic, place, or gene.
 #'
-#' @export
 #' @template args
 #' @template otherargs
 #' @param marker (character) Returns all records containing matching
@@ -40,7 +39,8 @@
 #' bold_seq(taxon='Coelioxys', verbose = TRUE)[1:2]
 #' # bold_seqspec(taxon='Coelioxys', timeout_ms = 10)
 #' }
-
+#'
+#' @export
 bold_seq <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
   institutions = NULL, researchers = NULL, geo = NULL, marker = NULL,
   response=FALSE, ...) {

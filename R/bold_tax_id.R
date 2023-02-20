@@ -1,6 +1,5 @@
 #' Search BOLD for taxonomy data by BOLD ID.
 #'
-#' @export
 #' @param id (integer) One or more BOLD taxonomic identifiers. required.
 #' @param dataTypes (character) Specifies the datatypes that will be
 #' returned. 'all' returns all data. 'basic' returns basic taxon information.
@@ -8,6 +7,16 @@
 #' @param includeTree (logical) If `TRUE` (default: `FALSE`), returns a list
 #' containing information for parent taxa as well as the specified taxon.
 #' @template otherargs
+#'
+#' @name bold_tax_id-deprecated
+#' @seealso \code{\link{bold-deprecated}}
+#' @keywords internal
+NULL
+
+#' @rdname bold-deprecated
+#' @section \code{bold_tax_id}:
+#' For \code{bold_tax_id}, use \code{\link{bold_tax_id2}}.
+#'
 #' @references
 #' http://v4.boldsystems.org/index.php/resources/api?type=taxonomy
 #' @seealso [bold_tax_name()]
@@ -38,15 +47,8 @@
 #' ## curl debugging
 #' bold_tax_id(id = 88899, verbose = TRUE)
 #' }
-#' @name bold_tax_id-deprecated
-#' @seealso \code{\link{bold-deprecated}}
-#' @keywords internal
-NULL
-
-#' @rdname bold-deprecated
-#' @section \code{bold_tax_id}:
-#' For \code{bold_tax_id}, use \code{\link{bold_tax_id2}}.
 #'
+#' @export
 bold_tax_id <- function(id, dataTypes = 'basic', includeTree = FALSE,
                         response = FALSE, ...) {
   .Deprecated('bold_tax_id2')

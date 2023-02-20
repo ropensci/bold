@@ -21,7 +21,7 @@ the API call.}
 \item{keepSeq}{(logical) If TRUE (default), returns each data.frame
 with an attribute 'sequence' containing sequence used to get those results.}
 
-\item{...}{Further args passed on to \code{\link{crul::verb-GET}}, main
+\item{...}{Further args passed on to \code{\link[crul]{verb-GET}}, main
 purpose being curl debugging}
 }
 \value{
@@ -35,11 +35,11 @@ error message given from a failed request.
 Search for matches to sequences against the BOLD COI database.
 }
 \details{
-BOLD only allows one sequences per query. We internally \code{lapply}
-over the input values given to the sequences` parameter to search
-with one sequences per query. Remember this if you have a lot of sequences -
-you are doing a separate query for each one, so it can take a long time -
-if you run into errors let us know.
+BOLD only allows one sequences per query. We internally
+\code{\link[base]{lapply}} over the input values given to the sequences`
+parameter to search with one sequences per query. Remember this if you have a
+lot of sequences - you are doing a separate query for each one, so it can
+take a long time - if you run into errors let us know.
 }
 \section{db parmeter options}{
 
@@ -69,8 +69,8 @@ with short reads from the barcode region of COI.
 \section{Named outputs}{
 
 For a named output list, make sure to pass in a named list or vector to the
-\code{sequences} parameter. You can use \code{\link{`names<-`}} or \code{\link{stats::setNames}} to
-set names on a list or vector of sequences.
+\code{sequences} parameter. You can use \code{\link[base]{names<-}} or
+\code{\link[stats]{setNames}} to set names on a list or vector of sequences.
 }
 
 \examples{
@@ -80,6 +80,7 @@ res <- bold_identify(sequences=seq)
 head(res[[1]])
 head(bold_identify(sequences=seq, db='COX1_SPECIES')[[1]])
 }
+
 }
 \references{
 http://v4.boldsystems.org/index.php/resources/api?type=idengine

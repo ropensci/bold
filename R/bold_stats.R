@@ -1,6 +1,5 @@
 #' Get BOLD stats
 #'
-#' @export
 #' @inheritParams bold_specimens
 #' @param dataType (character) one of "drill_down"(default) or "overview".
 #' "drill_down": a detailed summary of information which provides record counts
@@ -49,7 +48,8 @@
 #' bold_stats(taxon='Osmia', verbose = TRUE)
 #' # bold_stats(geo='Costa Rica', timeout_ms = 6)
 #' }
-
+#'
+#' @export
 bold_stats <- function(taxon = NULL, ids = NULL, bin = NULL,
   container = NULL, institutions = NULL, researchers = NULL, geo = NULL,
   dataType = "drill_down", response=FALSE, simplify = FALSE, ...) {

@@ -96,6 +96,7 @@ bold_stats(taxon=c('Coelioxys','Osmia'))
 bold_stats(taxon='Osmia', verbose = TRUE)
 # bold_stats(geo='Costa Rica', timeout_ms = 6)
 }
+
 }
 \references{
 http://v4.boldsystems.org/index.php/resources/api?type=webservices

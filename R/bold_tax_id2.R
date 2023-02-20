@@ -1,6 +1,5 @@
 #' Search BOLD for taxonomy data by BOLD ID.
 #'
-#' @export
 #' @param id (integer|numeric|character) One or more BOLD taxonomic identifiers. required.
 #' @param dataTypes (character) One or more BOLD data type. Specifies the
 #' information that will be returned. See details for options.
@@ -52,6 +51,8 @@
 #' ## curl debugging
 #' bold_tax_id(id = 88899, verbose = TRUE)
 #' }
+#'
+#' @export
 bold_tax_id2 <-
   function(id,
            dataTypes = 'basic',

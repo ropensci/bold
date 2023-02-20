@@ -1,6 +1,5 @@
 #' Search BOLD for specimens.
 #'
-#' @export
 #' @template args
 #' @template otherargs
 #' @references
@@ -30,7 +29,8 @@
 #' head(bold_specimens(taxon='Osmia', verbose = TRUE))
 #' # head(bold_specimens(geo='Costa Rica', timeout_ms = 6))
 #' }
-
+#'
+#' @export
 bold_specimens <- function(taxon = NULL, ids = NULL, bin = NULL,
   container = NULL, institutions = NULL, researchers = NULL, geo = NULL,
   response=FALSE, format = 'tsv', ...) {

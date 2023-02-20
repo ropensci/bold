@@ -52,7 +52,7 @@ marker codes.}
 \item{progress}{(logical) Print progress or not. NOT AVAILABLE FOR NOW.
 HOPEFULLY WILL RETURN SOON.}
 
-\item{...}{Further args passed on to \code{\link{crul::verb-GET}}}
+\item{...}{Further args passed on to \code{\link[crul]{verb-GET}}}
 
 \item{x}{Object to print or read.}
 }

@@ -24,41 +24,7 @@ debugging}
 \description{
 Search BOLD for taxonomy data by BOLD ID.
 }
-\examples{
-\dontrun{
-bold_tax_id(id = 88899)
-bold_tax_id(id = 88899, includeTree = TRUE)
-bold_tax_id(id = 88899, includeTree = TRUE, dataTypes = "stats")
-bold_tax_id(id = c(88899,125295))
-
-## dataTypes parameters
-bold_tax_id(id = 88899, dataTypes = "basic")
-bold_tax_id(id = 88899, dataTypes = "stats")
-bold_tax_id(id = 88899, dataTypes = "images")
-bold_tax_id(id = 88899, dataTypes = "geo")
-bold_tax_id(id = 88899, dataTypes = "sequencinglabs")
-bold_tax_id(id = 88899, dataTypes = "depository")
-bold_tax_id(id = c(88899, 125295), dataTypes = "geo")
-bold_tax_id(id = c(88899, 125295), dataTypes = "images")
-
-## Passing in NA
-bold_tax_id(id = NA)
-bold_tax_id(id = c(88899,125295,NA))
-
-## get http response object only
-bold_tax_id(id = 88899, response=TRUE)
-bold_tax_id(id = c(88899,125295), response=TRUE)
-
-## curl debugging
-bold_tax_id(id=88899, verbose = TRUE)
-}
-}
-\references{
-http://v4.boldsystems.org/index.php/resources/api?type=taxonomy
-}
 \seealso{
-\code{\link[=bold_tax_name]{bold_tax_name()}}
-
 \code{\link{bold-deprecated}}
 }
 \keyword{internal}

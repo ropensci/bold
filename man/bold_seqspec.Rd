@@ -127,6 +127,7 @@ head(bold_seqspec(taxon='Osmia', verbose = TRUE))
 ## timeout
 # head(bold_seqspec(taxon='Osmia', timeout_ms = 1))
 }
+
 }
 \references{
 http://v4.boldsystems.org/index.php/resources/api?type=webservices

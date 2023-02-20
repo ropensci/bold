@@ -25,9 +25,11 @@ http://www.boldsystems.org/ via their API
 \item \code{\link{bold_trace}} - Get trace files - saves to disk
 \item \code{\link{read_trace}} - Read trace files into R
 \item \code{\link{bold_tax_name}} - Get taxonomic names via input names
-\item \code{\link{bold_tax_id}} - Get taxonomic names via BOLD identifiers
+\item \code{\link{bold_tax_id}} - Get taxonomic names via BOLD identifiers (Deprecated)
 \item \code{\link{bold_tax_id2}} - Get taxonomic names via BOLD identifiers (improved)
 \item \code{\link{bold_identify}} - Search for match given a COI sequence
+\item \code{\link{bold_identify_parents}} - Adds guessed parent ranks (Deprecated)
+\item \code{\link{bold_identify_taxonomy}} - Adds real parent ranks.
 }
 
 Interestingly, they provide xml and tsv format data for the specimen data,
