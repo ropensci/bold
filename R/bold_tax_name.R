@@ -36,6 +36,7 @@
 bold_tax_name <- function(name, fuzzy = FALSE, response = FALSE,
                           tax_division = NULL, tax_rank = NULL, ...) {
   assert(name, "character")
+  if(!missing(response)) assert(response, "logical")
   if(!missing(fuzzy)) assert(fuzzy, "logical")
   if(length(tax_division)){
     assert(tax_division, "character")
@@ -51,7 +52,7 @@ bold_tax_name <- function(name, fuzzy = FALSE, response = FALSE,
   }
 
   res <- lapply(`names<-`(name, name), function(x)
-    get_response(args = c(taxName = x, fuzzy = fuzzy),
+    get_response(args = c(taxName = x, fuzzy = tolower(fuzzy)),
                  url = b_url("API_Tax/TaxonSearch"), ...)
   )
   if (response) {
@@ -62,7 +63,7 @@ bold_tax_name <- function(name, fuzzy = FALSE, response = FALSE,
                            tax_rank = tax_rank),
                     idcol = "input")
     w <- vapply(res, `[[`, "", "warning")
-    attr(out, "errors") <- bc(w[nzchar(w)])
+    attr(out, "errors") <- bc(w)
     out
   }
 }

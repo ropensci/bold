@@ -1,15 +1,15 @@
 b_url <- function(api) paste0('https://v4.boldsystems.org/index.php/', api)
 
-bc <- function(x) if (!length(x)) NULL else x[lengths(x) > 0]
+bc <- function(x) if (!length(x)) NULL else x[lengths(x) > 0 & nzchar(x)]
 
 pipe_params <- function(..., paramnames = ...names(), params = list(...)) {
   params <- bc(params)
   if (!length(params))
-    stop("You must provide a non-empty value to at least one of\n  - ",
-         paste0(paramnames, collapse = "\n  - "))
+    stop("You must provide a non-empty value to at least one of:\n\t",
+         toStr(paramnames, join_word = "or", quote = TRUE), call. = FALSE)
   wt <- !vapply(params, is.character, logical(1))
   if (any(wt))
-    stop(paste(names(wt)[wt], collapse = ", "), " must be character.")
+    stop(paste(names(wt)[wt], collapse = ", "), " must be of class character.", call. = FALSE)
   vapply(params, paste, collapse = "|", character(1))
 }
 b_GET <- function(url, args, ...) {
@@ -60,9 +60,12 @@ setread <- function(x, header = TRUE, sep = "\t", stringsAsFactors = FALSE) {
 strdrop <- function(str, pattern) {
   regmatches(str, regexpr(pattern, str), invert = TRUE)
 }
-toStr <- function(x, join_word = "and") {
+toStr <- function(x, join_word = "and", quote = FALSE) {
   if (!is.character(x)) x <- as.character(x)
   x <- x[nzchar(x)]
+  if (quote) {
+    x <- paste0("'", x, "'")
+  }
   n <- length(x)
   if (n > 1)
     paste(paste(x[-n], collapse = ", "), join_word, x[n])
@@ -91,9 +94,8 @@ assert <- function(x,
       msgClass <- check_class(x, what, name)
       if (!all(nzchar(msgClass))) msgClass <- NULL
     }
-  }
-  else {
-    if (missing(name)) {
+  } else {
+    if (is.null(name)) {
       name <- names(x)
       noNm <- which(!nzchar(name))
       if (length(noNm))
@@ -114,12 +116,25 @@ assert <- function(x,
         msgClass <- msgClass[which(rowSums(msgClass == "") == 0),
                              toStr(name), by = "what"]
       }
-      msgClass <-
-        paste0("\n  ", msgClass[["name"]], " must be of class ", msgClass[["what"]])
     }
+  }
+  if (length(msgClass)) {
+    msgClass <- paste0("'", msgClass[["name"]], "' must be of class ",
+                       msgClass[["what"]], ".")
   }
   msg <- c(msgLen, msgClass)
   if (length(msg)) {
     stop(msg, call. = FALSE)
   }
+}
+assert_multi <- function(..., what = "character", params = list(...)) {
+  if (is.null(names(params))) {
+    names(params) <- paste0("param", seq_along(params))
+  } else if (any(names(params) == "")) {
+    names(params)[names(params) == ""] <-  paste0("param", seq_along(params)[names(params) == ""])
+  }
+  params <- bc(params)
+  wt <- !vapply(params, inherits, logical(1), what = what)
+  if (any(wt))
+    stop(toStr(names(wt)[wt], quote = TRUE), " must be of class character.")
 }
