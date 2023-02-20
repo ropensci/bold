@@ -11,7 +11,7 @@ bold_identify(sequences, db = "COX1", response = FALSE, keepSeq = TRUE, ...)
 Required. See Details.}
 
 \item{db}{(character) The database to match against, one of COX1 (default),
-COX1_SPECIES, COX1_SPECIES_PUBLIC, OR COX1_L604bp. See Details for
+COX1_SPECIES, COX1_SPECIES_PUBLIC, OR COX1_L640bp. See Details for
 more information.}
 
 \item{response}{(logical) Note that response is the object that returns
@@ -54,10 +54,12 @@ probability of placement to a taxon.
 identification and a minimum sequences length of 500bp. This includes
 many species represented by only one or two specimens as well as  all
 species with interim taxonomy.
+Note : Sometimes it does return matches that don't have a species level
+identification. Will be checking with BOLD.
 \item COX1_SPECIES_PUBLIC All published COI records from BOLD and GenBank
 with a minimum sequences length of 500bp. This library is a collection of
 records from the published projects section of BOLD.
-\item OR COX1_L604bp Subset of the Species library with a minimum sequences
+\item OR COX1_L640bp Subset of the Species library with a minimum sequences
 length of 640bp and containing both public and private records. This library
 is intended for short sequences identification as it provides maximum overlap
 with short reads from the barcode region of COI.

@@ -5,7 +5,7 @@
 #' @param sequences (character) A vector or list of sequences to identify.
 #' Required. See Details.
 #' @param db (character) The database to match against, one of COX1 (default),
-#' COX1_SPECIES, COX1_SPECIES_PUBLIC, OR COX1_L604bp. See Details for
+#' COX1_SPECIES, COX1_SPECIES_PUBLIC, OR COX1_L640bp. See Details for
 #' more information.
 #' @param response (logical) Note that response is the object that returns
 #' from the Curl call, useful for debugging, and getting detailed info on
@@ -33,10 +33,12 @@
 #'  identification and a minimum sequences length of 500bp. This includes
 #'  many species represented by only one or two specimens as well as  all
 #'  species with interim taxonomy.
+#'  Note : Sometimes it does return matches that don't have a species level
+#'  identification. Will be checking with BOLD.
 #' - COX1_SPECIES_PUBLIC All published COI records from BOLD and GenBank
 #'  with a minimum sequences length of 500bp. This library is a collection of
 #'  records from the published projects section of BOLD.
-#' - OR COX1_L604bp Subset of the Species library with a minimum sequences
+#' - OR COX1_L640bp Subset of the Species library with a minimum sequences
 #'  length of 640bp and containing both public and private records. This library
 #'  is intended for short sequences identification as it provides maximum overlap
 #'  with short reads from the barcode region of COI.
@@ -67,6 +69,12 @@ bold_identify <- function(sequences, db = 'COX1', response=FALSE, keepSeq = TRUE
   if (!all(vapply(sequences, inherits, NA, "character"))) {
     stop("`sequences` should be of type character.")
   }
+  if (!missing(db)) {
+    assert(db, "character", checkLength = TRUE)
+    if (!db %in% c("COX1", "COX1_SPECIES", "COX1_SPECIES_PUBLIC", "COX1_L640bp")) {
+      stop("'db' must be on of 'COX1', 'COX1_SPECIES', 'COX1_SPECIES_PUBLIC' or 'COX1_L640bp'")
+    }
+  }
   # loop over sequences since the API only accepts one at a time
   lapply(sequences, function(seq){
     res <- get_response(
@@ -95,11 +103,14 @@ bold_identify <- function(sequences, db = 'COX1', response=FALSE, keepSeq = TRUE
   fNames <- c('ID','sequencedescription','database','citation',
               'taxonomicidentification','similarity','url','country',
               'lat', 'lon')
+  cont <- rawToChar(res$response$content)
+  # DON'T REMOVE, it's there for a reason, see tests
+  cont <- stringi::stri_replace_all_fixed(str = cont, pattern = "&", replacement = "&amp;")
   if (res$warning == "") {
-    xml <- xml2::read_xml(res$response$parse('UTF-8'))
+    xml <- xml2::read_xml(cont)
   } else {
-    xml <- tryCatch(xml2::read_xml(res$response$parse('UTF-8')), error = function(e) NULL)
-    if(is.null(xml)){
+    xml <- tryCatch(xml2::read_xml(cont), error = function(e) NULL)
+    if (is.null(xml)) {
       return(NULL)
     }
   }

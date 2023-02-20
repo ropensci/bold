@@ -12,9 +12,6 @@ data.frame of 64 rows, with 3 columns:
 \item{order}{: a numeric vector of the ranks order (from domain to unspecified)}
 }
 }
-\usage{
-rank_ref
-}
 \description{
 Lookup-table for IDs of taxonomic ranks
 }
