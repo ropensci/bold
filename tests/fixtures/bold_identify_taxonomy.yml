@@ -1,0 +1,332 @@
+http_interactions:
+- request:
+    method: get
+    uri: https://v4.boldsystems.org/index.php/API_Public/specimen?ids=BBWP038-09%7CBBWP016-09%7CBBWP015-09%7CBBWP014-09%7CBBWP013-09%7CASBEE036-08%7CASBEE035-08%7CBBWP042-09%7CBBWP040-09%7CBBWP039-09%7CBBWP397-10%7CASBEE133-08%7CBBWP398-10%7CBBWP392-10%7CBBWP061-09%7CBBWP060-09%7CBBWP023-09%7CASBEE039-08%7CBBWP303-09%7CBBWP302-09%7CBBWP030-09%7CBBWP393-10%7CBBWP394-10%7CBBWP396-10%7CGBMIN71949-17%7CBBWP301-09%7CBBWP010-09%7CBBWP009-09%7CBBBO317-10%7CBBBO318-10%7CBBBO319-10%7CBBBO320-10%7CBBWP011-09%7CBBWP072-09%7CBBWP420-10%7CBBWP145-09%7CBBWP078-09%7CBBWP077-09%7CBBWP076-09%7CBBWP075-09%7CBBWP058-09%7CBBWP057-09%7CGBAH0411-06%7CBBWP160-09%7CBBWP159-09%7CBBWP158-09%7CBBWP156-09%7CBBWP154-09%7CBBWP069-09%7CASBEE132-08%7CBBWP137-09%7CNGNAS1399-14%7CBBWP068-09%7CNGNAS1385-14%7CNGNAT581-14%7CGBMIN72050-17%7CBBWP299-09%7CBBWP298-09%7CBBWP297-09%7CBBWP005-09%7CBBWP164-09%7CBBWP161-09%7CBBWP157-09%7CBBWP155-09%7CBBWP074-09%7CBBWP070-09%7CBBWP067-09%7CBBWP065-09%7CBBWP064-09%7CBBWP028-09%7CBBWP008-09%7CBBWP007-09%7CBBWP399-10%7CBBWP400-10%7CBBWP401-10%7CBBWP402-10%7CBBWP403-10%7CBBWP404-10%7CBBWP405-10%7CBBWP406-10%7CBBWP408-10%7CBBWP409-10%7CBBWP410-10%7CBBWP411-10%7CBBWP413-10%7CBBWP414-10%7CBBWP416-10%7CBBWP417-10%7CBBWP419-10%7CBBWP395-10%7CBBBO321-10%7CBCA061-10%7CNGNAK504-13%7CBBWP415-10%7CNGNAS1379-14%7CNGNAS1384-14%7CBBWP036-09%7CSSWLE066-13%7CSSWLE5549-13%7CNGNAN4045-14&format=tsv
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3.3 crul/1.3
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx
+      date: Mon, 20 Feb 2023 17:49:17 GMT
+      content-type: application/x-download
+      transfer-encoding: chunked
+      connection: keep-alive
+      x-powered-by: PHP/5.3.15
+      content-disposition: attachment; filename=bold_data.txt
+    body:
+      encoding: UTF-8
+      file: no
+      string: "processid\tsampleid\trecordID\tcatalognum\tfieldnum\tinstitution_storing\tcollection_code\tbin_uri\tphylum_taxID\tphylum_name\tclass_taxID\tclass_name\torder_taxID\torder_name\tfamily_taxID\tfamily_name\tsubfamily_taxID\tsubfamily_name\tgenus_taxID\tgenus_name\tspecies_taxID\tspecies_name\tsubspecies_taxID\tsubspecies_name\tidentification_provided_by\tidentification_method\tidentification_reference\ttax_note\tvoucher_status\ttissue_type\tcollection_event_id\tcollectors\tcollectiondate_start\tcollectiondate_end\tcollectiontime\tcollection_note\tsite_code\tsampling_protocol\tlifestage\tsex\treproduction\thabitat\tassociated_specimens\tassociated_taxa\textrainfo\tnotes\tlat\tlon\tcoord_source\tcoord_accuracy\telev\tdepth\telev_accuracy\tdepth_accuracy\tcountry\tprovince_state\tregion\tsector\texactsite\timage_ids\timage_urls\tmedia_descriptors\tcaptions\tcopyright_holders\tcopyright_years\tcopyright_licenses\tcopyright_institutions\tphotographers\nASBEE035-08\tB3262-D01-CHN\t813704\tST00172\tB3262-D01-CHN\tResearch
+        Collection of Paul H. Williams\t\tBOLD:ABA0356\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t160018\tBombus
+        amurensis\t\t\tPaul H. Williams\t\tRadoszkowski, 1862\t\t\t\t\tP. Williams\t\t\t\t\t\t\tA\tF\tA\t\t\t\t172\t\t43.218\t117.315\t\t\t1168\t\t\t\tChina\tInner
+        Mongolia\tKeshenketang\t\tMajiazi\t\t\t\t\t\t\t\t\t\r\nASBEE036-08\tB3262-D02-CHN\t813705\tST00179\tB3262-D02-CHN\tResearch
+        Collection of Paul H. Williams\t\tBOLD:ABA0356\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t160018\tBombus
+        amurensis\t\t\tPaul H. Williams\t\tRadoszkowski, 1862\t\t\t\t\tP. Williams\t\t\t\t\t\t\tA\tM\tS\t\t\t\t179\t\t43.247\t118.108\t\t\t752\t\t\t\tChina\tInner
+        Mongolia\tShuangjingdian\t\troadside\t\t\t\t\t\t\t\t\t\r\nASBEE039-08\tB3262-D05-MON\t813708\tST00169\tB3262-D05-MON\tResearch
+        Collection of Paul H. Williams\t\tBOLD:ACE5962\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t365182\tBombus
+        mongolensis\t\t\tPaul H. Williams\t\t\t\t\t\t\tD.A. Sheppard\t\t\t\t\t\t\tA\tM\tS\t\t\t\t169\t\t51\t100\t\t\t\t\t\t\tMongolia\tHovsgol\tHvsgl
+        Nuur\t\t\t\t\t\t\t\t\t\t\t\r\nASBEE132-08\tB3263-D04-CHN\t813801\tST00141\tB3263-D04-CHN\tResearch
+        Collection of Paul H. Williams\t\tBOLD:AAA5912\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t32123\tBombus
+        melanurus\t\t\tPaul H. Williams\t\tLepeletier, 1835\t\t\t\t\tP. Williams\t\t\t\t\t\t\tA\tM\tS\t\t\t\t0141
+        tschitscherini\t\t43.247\t118.108\t\t\t752\t\t\t\tChina\tInner Mongolia\tShuangjingdian\t\troadside\t\t\t\t\t\t\t\t\t\r\nASBEE133-08\tB3263-D05-MON\t813802\tST00169\tB3263-D05-MON\tResearch
+        Collection of Paul H. Williams\t\tBOLD:ACE5962\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t365182\tBombus
+        mongolensis\t\t\tPaul H. Williams\t\t\t\t\t\t\tD.A. Sheppard\t\t\t\t\t\t\tA\tM\tS\t\t\t\t0169
+        (b)\t\t51\t100\t\t\t\t\t\t\tMongolia\tHovsgol\tHvsgl Nuur\t\t\t\t\t\t\t\t\t\t\t\r\nBBBO317-10\t6876C08\t1746805\t6876C08\t6876C08\tResearch
+        Collection of Paul H. Williams\t\tBOLD:ACE5963\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t193205\tBombus
+        difficillimus\t\t\tPaul H. Williams\t\t\t\t\t\t\t\t\t\t\t\t\t\tA\tF\tA\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\nBBBO318-10\t6876C09\t1746806\t6876C09\t6876C09\tResearch
+        Collection of Paul H. Williams\t\tBOLD:ACE5963\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t193205\tBombus
+        difficillimus\t\t\tPaul H. Williams\t\t\t\t\t\t\t\t\t\t\t\t\t\tA\tM\tS\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\nBBBO319-10\t6876C10\t1746807\t6876C10\t6876C10\tResearch
+        Collection of Paul H. Williams\t\tBOLD:ACE5963\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t193205\tBombus
+        difficillimus\t\t\tPaul H. Williams\t\t\t\t\t\t\t\t\t\t\t\t\t\tA\tM\tS\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\nBBBO320-10\t6876C11\t1746808\t6876C11\t6876C11\tResearch
+        Collection of Paul H. Williams\t\tBOLD:ACE5963\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t193205\tBombus
+        difficillimus\t\t\tPaul H. Williams\t\t\t\t\t\t\t\t\t\t\t\t\t\tA\tM\tS\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\nBBBO321-10\t6876C12\t1746809\t6876C12\t6876C12\tResearch
+        Collection of Paul H. Williams\t\tBOLD:AAA5912\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t32123\tBombus
+        melanurus\t\t\tPaul H. Williams\t\tLepeletier, 1835\t\t\t\t\t\t\t\t\t\t\t\tA\tM\tS\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\nBBWP005-09\t1311-CHN\t1157701\tST01311\t595A05-1311-CHN\tChinese
+        Academy of Sciences, Institute of Apiculture\t\tBOLD:AAA5912\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t32123\tBombus
+        melanurus\t\t\tPaul H. Williams\t\tLepeletier, 1835\t\t\t\t\tS. Luo, Y. Du\t\t\t\t\t\t\tA\tF\tA\t\t\t\t1311
+        tschitscherini\t\t38.157\t100.195\t\t\t2912\t\t\t\tChina\tGansu\tMenyan\t\tMenyan\t\t\t\t\t\t\t\t\t\r\nBBWP007-09\t1313-CHN\t1157703\tST01313\t595A07-1313-CHN\tChinese
+        Academy of Sciences, Institute of Apiculture\t\tBOLD:AAA5912\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t32123\tBombus
+        melanurus\t\t\tPaul H. Williams\t\tLepeletier, 1835\t\t\t\t\tS. Luo, Y. Du\t\t\t\t\t\t\tA\tF\tA\t\t\t\t1313
+        tschitscherini\t\t38.157\t100.195\t\t\t2912\t\t\t\tChina\tGansu\tMenyan\t\tMenyan\t\t\t\t\t\t\t\t\t\r\nBBWP008-09\t1314-CHN\t1157704\tST01314\t595A08-1314-CHN\tChinese
+        Academy of Sciences, Institute of Apiculture\t\tBOLD:AAA5912\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t32123\tBombus
+        melanurus\t\t\tPaul H. Williams\t\tLepeletier, 1835\t\t\t\t\tS. Luo, Y. Du\t\t\t\t\t\t\tA\tF\tA\t\t\t\t1314
+        tschitscherini\t\t38.157\t100.195\t\t\t2912\t\t\t\tChina\tGansu\tMenyan\t\tMenyan\t\t\t\t\t\t\t\t\t\r\nBBWP009-09\t1435-CHN\t1157705\tST01435\t595A09-1435-CHN\tChinese
+        Academy of Sciences, Institute of Apiculture\t\tBOLD:ACE5963\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t193205\tBombus
+        difficillimus\t\t\tPaul H. Williams\t\t\t\t\t\t\tS. Luo, Y. Du\t\t\t\t\t\t\tA\tF\tA\t\t\t\t1435\t\t38.157\t100.195\t\t\t2912\t\t\t\tChina\tGansu\tMenyan\t\tMenyan\t\t\t\t\t\t\t\t\t\r\nBBWP010-09\t1436-CHN\t1157706\tST01436\t595A10-1436-CHN\tChinese
+        Academy of Sciences, Institute of Apiculture\t\tBOLD:ACE5963\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t193205\tBombus
+        difficillimus\t\t\tPaul H. Williams\t\t\t\t\t\t\tS. Luo, Y. Du\t\t\t\t\t\t\tA\tF\tA\t\t\t\t1436\t\t38.157\t100.195\t\t\t2912\t\t\t\tChina\tGansu\tMenyan\t\tMenyan\t\t\t\t\t\t\t\t\t\r\nBBWP011-09\t1437-CHN\t1157707\tST01437\t595A11-1437-CHN\tChinese
+        Academy of Sciences, Institute of Apiculture\t\tBOLD:ACE5963\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t193205\tBombus
+        difficillimus\t\t\tPaul H. Williams\t\t\t\t\t\t\tS. Luo, Y. Du\t\t\t\t\t\t\tA\tF\tA\t\t\t\t1437\t\t38.157\t100.195\t\t\t2912\t\t\t\tChina\tGansu\tMenyan\t\tMenyan\t\t\t\t\t\t\t\t\t\r\nBBWP013-09\t1486-CHN\t1157709\tST01486\t595B01-1486-CHN\tChinese
+        Academy of Sciences, Institute of Apiculture\t\tBOLD:ABA0356\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t160018\tBombus
+        amurensis\t\t\tPaul H. Williams\t\tRadoszkowski, 1862\t\t\t\t\tJ. Huang\t\t\t\t\t\t\tA\tF\tA\t\t\t\t1486\t\t41.324\t114.559\t\t\t1353\t\t\t\tChina\tHebei\tZhangbei\t\tDonghao\t\t\t\t\t\t\t\t\t\r\nBBWP014-09\t1487-CHN\t1157710\tST01487\t595B02-1487-CHN\tChinese
+        Academy of Sciences, Institute of Apiculture\t\tBOLD:ABA0356\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t160018\tBombus
+        amurensis\t\t\tPaul H. Williams\t\tRadoszkowski, 1862\t\t\t\t\tJ. Huang\t\t\t\t\t\t\tA\tF\tA\t\t\t\t1487\t\t41.324\t114.559\t\t\t1353\t\t\t\tChina\tHebei\tZhangbei\t\tDonghao\t\t\t\t\t\t\t\t\t\r\nBBWP015-09\t1488-CHN\t1157711\tST01488\t595B03-1488-CHN\tChinese
+        Academy of Sciences, Institute of Apiculture\t\tBOLD:ABA0356\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t160018\tBombus
+        amurensis\t\t\tPaul H. Williams\t\tRadoszkowski, 1862\t\t\t\t\tJ. Huang\t\t\t\t\t\t\tA\tF\tA\t\t\t\t1488\t\t41.324\t114.559\t\t\t1353\t\t\t\tChina\tHebei\tZhangbei\t\tDonghao\t\t\t\t\t\t\t\t\t\r\nBBWP016-09\t1489-CHN\t1157712\tST01489\t595B04-1489-CHN\tChinese
+        Academy of Sciences, Institute of Apiculture\t\tBOLD:ABA0356\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t160018\tBombus
+        amurensis\t\t\tPaul H. Williams\t\tRadoszkowski, 1862\t\t\t\t\tJ. Huang\t\t\t\t\t\t\tA\tF\tA\t\t\t\t1489\t\t41.324\t114.559\t\t\t1353\t\t\t\tChina\tHebei\tZhangbei\t\tDonghao\t\t\t\t\t\t\t\t\t\r\nBBWP023-09\t0168-MON\t1157719\tST00168\t595B11-0168-MON\tResearch
+        Collection of Paul H. Williams\t\tBOLD:ACE5962\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t365182\tBombus
+        mongolensis\t\t\tPaul H. Williams\t\t\t\t\t\t\tD.A. Sheppard\t\t\t\t\t\t\tA\tM\tS\t\t\t\t168\t\t51.05\t100.733\t\t\t1650\t\t\t\tMongolia\tHovsgol\t\t\tHoevsgoel
+        Nuur\t\t\t\t\t\t\t\t\t\r\nBBWP028-09\t1965-CHN\t1157724\tST01965\t595C04-1965-CHN\tOberoesterreichisches
+        Landesmuseum, Biologiezentrum, Linz\t\tBOLD:AAA5912\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t32123\tBombus
+        melanurus\t\t\tPaul H. Williams\t\tLepeletier, 1835\t\t\t\t\tJ. Halada\t\t\t\t\t\t\tA\tF\tS\t\t\t\t1965
+        tschitscherini\t\t34.7\t111.7\t\t\t660\t\t\t\tChina\tHenan\t\t\tHuang He\t\t\t\t\t\t\t\t\t\r\nBBWP030-09\t0009-CHN\t1157726\tST00009\t595C06-0009-CHN\tResearch
+        Collection of Paul H. Williams\t\tBOLD:ACE5963\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t193205\tBombus
+        difficillimus\t\t\tPaul H. Williams\t\t\t\t\t\t\tP.H. Williams\t\t\t\t\t\t\tA\tF\tA\t\t\t\t9\t\t33.3424\t102.499\t\t\t3468\t\t\t\tChina\tSichuan\tZoige\t\tZoige\t\t\t\t\t\t\t\t\t\r\nBBWP036-09\t1991-KAZ\t1157732\tST01991\t595C12-1991-KAZ\tOberoesterreichisches
+        Landesmuseum, Biologiezentrum, Linz\t\tBOLD:ABA0419\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t158414\tBombus
+        fragrans\t\t\tPaul H. Williams\t\tPallas, 1771\t\t\t\t\tJ. Halada\t\t\t\t\t\t\tA\tF\tA\t\t\t\t1991\t\t46.3602\t78.8\t\t\t370\t\t\t\tKazakhstan\tAlmaty\t\t\tLepsi\t\t\t\t\t\t\t\t\t\r\nBBWP038-09\t0170-CHN\t1157734\tST00170\t595D02-0170-CHN\tResearch
+        Collection of Paul H. Williams\t\tBOLD:ABA0356\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t160018\tBombus
+        amurensis\t\t\tPaul H. Williams\t\tRadoszkowski, 1862\t\t\t\t\tP.H. Williams\t\t\t\t\t\t\tA\tF\tA\t\t\t\t170\t\t43.2176\t117.315\t\t\t1168\t\t\t\tChina\tInner
+        Mongolia\tKeshenketang\t\tMajiazi\t\t\t\t\t\t\t\t\t\r\nBBWP039-09\t0173-CHN\t1157735\tST00173\t595D03-0173-CHN\tResearch
+        Collection of Paul H. Williams\t\tBOLD:ABA0356\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t160018\tBombus
+        amurensis\t\t\tPaul H. Williams\t\tRadoszkowski, 1862\t\t\t\t\tP.H. Williams\t\t\t\t\t\t\tA\tM\tS\t\t\t\t173\t\t43.2176\t117.315\t\t\t1168\t\t\t\tChina\tInner
+        Mongolia\tKeshenketang\t\tMajiazi\t\t\t\t\t\t\t\t\t\r\nBBWP040-09\t0175-CHN\t1157736\tST00175\t595D04-0175-CHN\tResearch
+        Collection of Paul H. Williams\t\tBOLD:ABA0356\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t160018\tBombus
+        amurensis\t\t\tPaul H. Williams\t\tRadoszkowski, 1862\t\t\t\t\tP.H. Williams\t\t\t\t\t\t\tA\tM\tS\t\t\t\t175\t\t43.2176\t117.315\t\t\t1168\t\t\t\tChina\tInner
+        Mongolia\tKeshenketang\t\tMajiazi\t\t\t\t\t\t\t\t\t\r\nBBWP042-09\t1970-MON\t1157738\tST01970\t595D06-1970-MON\tOberoesterreichisches
+        Landesmuseum, Biologiezentrum, Linz\t\tBOLD:ABA0356\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t160018\tBombus
+        amurensis\t\t\tPaul H. Williams\t\tRadoszkowski, 1862\t\t\t\t\tJ. Halada\t\t\t\t\t\t\tA\tF\tA\t\t\t\t1970\t\t47.7514\t102.718\t\t\t1400\t\t\t\tMongolia\tArhangay\t\t\tOgiu
+        Nuur\t\t\t\t\t\t\t\t\t\r\nBBWP057-09\t0283-NEP\t1157753\tST00283\t595E09-0283-NEP\tNaturkundemuseum
+        Erfurt\t\tBOLD:ACE4700\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t32123\tBombus
+        melanurus\t\t\tPaul H. Williams\t\tLepeletier, 1835\t\t\t\t\tM. Hartmann\t\t\t\t\t\t\tA\tF\tS\t\t\t\t0283
+        tschitscherini\t\t29.3373\t82.3868\t\t\t3250\t\t\t\tNepal\t\tKarnali, Jumla\t\tMaharigaon\t\t\t\t\t\t\t\t\t\r\nBBWP058-09\t0284-NEP\t1157754\tST00284\t595E10-0284-NEP\tNaturkundemuseum
+        Erfurt\t\tBOLD:ACE4700\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t32123\tBombus
+        melanurus\t\t\tPaul H. Williams\t\tLepeletier, 1835\t\t\t\t\tM. Hartmann\t\t\t\t\t\t\tA\tF\tS\t\t\t\t0284
+        tschitscherini\t\t29.3373\t82.3868\t\t\t3250\t\t\t\tNepal\t\tKarnali, Jumla\t\tMaharigaon\t\t\t\t\t\t\t\t\t\r\nBBWP060-09\t1921-MON\t1157756\tST01921\t595E12-1921-MON\tOberoesterreichisches
+        Landesmuseum, Biologiezentrum, Linz\t\tBOLD:ACE5962\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t365182\tBombus
+        mongolensis\t\t\tPaul H. Williams\t\t\t\t\t\t\tJ. Halada\t\t\t\t\t\t\tA\tF\tA\t\t\t\t1921\t\t47.1833\t99.7167\t\t\t2100\t\t\t\tMongolia\tArhangay\t\t\tTsetserleg\t\t\t\t\t\t\t\t\t\r\nBBWP061-09\t1922-MON\t1157757\tST01922\t595F01-1922-MON\tOberoesterreichisches
+        Landesmuseum, Biologiezentrum, Linz\t\tBOLD:ACE5962\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t365182\tBombus
+        mongolensis\t\t\tPaul H. Williams\t\t\t\t\t\t\tJ. Halada\t\t\t\t\t\t\tA\tF\tA\t\t\t\t1922\t\t47.1833\t99.7167\t\t\t2100\t\t\t\tMongolia\tArhangay\t\t\tTsetserleg\t\t\t\t\t\t\t\t\t\r\nBBWP064-09\t1959-MON\t1157760\tST01959\t595F04-1959-MON\tOberoesterreichisches
+        Landesmuseum, Biologiezentrum, Linz\t\tBOLD:AAA5912\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t32123\tBombus
+        melanurus\t\t\tPaul H. Williams\t\tLepeletier, 1835\t\t\t\t\tM. Kadlekova\t\t\t\t\t\t\tA\tF\tA\t\t\t\t1959
+        tschitscherini\t\t48.05\t102.425\t\t\t1400\t\t\t\tMongolia\tArhangay\t\t\tTsetserleg\t\t\t\t\t\t\t\t\t\r\nBBWP065-09\t1961-MON\t1157761\tST01961\t595F05-1961-MON\tOberoesterreichisches
+        Landesmuseum, Biologiezentrum, Linz\t\tBOLD:AAA5912\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t32123\tBombus
+        melanurus\t\t\tPaul H. Williams\t\tLepeletier, 1835\t\t\t\t\tJ. Halada\t\t\t\t\t\t\tA\tF\tA\t\t\t\t1961
+        tschitscherini\t\t47.4\t103.65\t\t\t1320\t\t\t\tMongolia\tArhangay\t\t\tEls\t\t\t\t\t\t\t\t\t\r\nBBWP067-09\t0139-CHN\t1157763\tST00139\t595F07-0139-CHN\tResearch
+        Collection of Paul H. Williams\t\tBOLD:AAA5912\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t32123\tBombus
+        melanurus\t\t\tPaul H. Williams\t\tLepeletier, 1835\t\t\t\t\tP.H. Williams\t\t\t\t\t\t\tA\tM\tS\t\t\t\t0139
+        tschitscherini\t\t43.247\t118.108\t\t\t752\t\t\t\tChina\tInner Mongolia\tShuangjingdian\t\tShuangjingdian\t\t\t\t\t\t\t\t\t\r\nBBWP068-09\t0140-CHN\t1157764\tST00140\t595F08-0140-CHN\tResearch
+        Collection of Paul H. Williams\t\tBOLD:AAA5912\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t32123\tBombus
+        melanurus\t\t\tPaul H. Williams\t\tLepeletier, 1835\t\t\t\t\tP.H. Williams\t\t\t\t\t\t\tA\tM\tS\t\t\t\t0140
+        tschitscherini\t\t43.247\t118.108\t\t\t752\t\t\t\tChina\tInner Mongolia\tShuangjingdian\t\tShuangjingdian\t\t\t\t\t\t\t\t\t\r\nBBWP069-09\t1871-MON\t1157765\tST01871\t595F09-1871-MON\tOberoesterreichisches
+        Landesmuseum, Biologiezentrum, Linz\t\tBOLD:ACE4699\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t32123\tBombus
+        melanurus\t\t\tPaul H. Williams\t\tLepeletier, 1835\t\t\t\t\tJ. Halada\t\t\t\t\t\t\tA\tF\tA\t\t\t\t1871
+        yellow face\t\t47.4781\t96.4725\t\t\t1740\t\t\t\tMongolia\tDzavhan\t\t\tUliastay\t\t\t\t\t\t\t\t\t\r\nBBWP070-09\t1872-MON\t1157766\tST01872\t595F10-1872-MON\tOberoesterreichisches
+        Landesmuseum, Biologiezentrum, Linz\t\tBOLD:ACE4699\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t32123\tBombus
+        melanurus\t\t\tPaul H. Williams\t\tLepeletier, 1835\t\t\t\t\tJ. Halada\t\t\t\t\t\t\tA\tF\tA\t\t\t\t1872
+        yellow face\t\t47.4781\t96.4725\t\t\t1740\t\t\t\tMongolia\tDzavhan\t\t\tUliastay\t\t\t\t\t\t\t\t\t\r\nBBWP072-09\t1874-MON\t1157768\tST01874\t595F12-1874-MON\tOberoesterreichisches
+        Landesmuseum, Biologiezentrum, Linz\t\tBOLD:ACE4699\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t32123\tBombus
+        melanurus\t\t\tPaul H. Williams\t\tLepeletier, 1835\t\t\t\t\tJ. Halada\t\t\t\t\t\t\tA\tF\tA\t\t\t\t1874
+        yellow face\t\t47.4781\t96.4725\t\t\t1740\t\t\t\tMongolia\tDzavhan\t\t\tUliastay\t\t\t\t\t\t\t\t\t\r\nBBWP074-09\t1910-KYR\t1157770\tST01910\t595G02-1910-KYR\tOberoesterreichisches
+        Landesmuseum, Biologiezentrum, Linz\t\tBOLD:ACE4699\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t32123\tBombus
+        melanurus\t\t\tPaul H. Williams\t\tLepeletier, 1835\t\t\t\t\tH. Rausch, R.
+        Rausch\t\t\t\t\t\t\tA\tF\tA\t\t\t\t1910\t\t39.4761\t71.8933\t\t\t2400\t\t\t\tKyrgyzstan\tOsh\tChon-Alai\t\tKyzyl-Suu
+        valley\t\t\t\t\t\t\t\t\t\r\nBBWP075-09\t0142-IRN\t1157771\tST00142\t595G03-0142-IRN\tResearch
+        Collection of Paul H. Williams\t\tBOLD:ACE4699\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t32123\tBombus
+        melanurus\t\t\tPaul H. Williams\t\tLepeletier, 1835\t\t\t\t\tA. Monfared\t\t\t\t\t\t\tA\tF\tS\t\t\t\t142\t\t38.2809\t47.7182\t\t\t2730\t\t\t\tIran\tArdabil\t\t\tShabil\t\t\t\t\t\t\t\t\t\r\nBBWP076-09\t0143-IRN\t1157772\tST00143\t595G04-0143-IRN\tResearch
+        Collection of Paul H. Williams\t\tBOLD:ACE4699\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t32123\tBombus
+        melanurus\t\t\tPaul H. Williams\t\tLepeletier, 1835\t\t\t\t\tA. Monfared\t\t\t\t\t\t\tA\tF\tS\t\t\t\t143\t\t38.5387\t47.9109\t\t\t2500\t\t\t\tIran\tArdabil\t\t\tGhutur
+        Suee\t\t\t\t\t\t\t\t\t\r\nBBWP077-09\t0144-IRN\t1157773\tST00144\t595G05-0144-IRN\tResearch
+        Collection of Paul H. Williams\t\tBOLD:ACE4699\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t32123\tBombus
+        melanurus\t\t\tPaul H. Williams\t\tLepeletier, 1835\t\t\t\t\tA. Monfared\t\t\t\t\t\t\tA\tF\tA\t\t\t\t144\t\t37.7969\t46.2415\t\t\t2233\t\t\t\tIran\tEast
+        Azerbaijan\t\t\tKandovan\t\t\t\t\t\t\t\t\t\r\nBBWP078-09\t0146-IRN\t1157774\tST00146\t595G06-0146-IRN\tResearch
+        Collection of Paul H. Williams\t\tBOLD:ACE4699\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t32123\tBombus
+        melanurus\t\t\tPaul H. Williams\t\tLepeletier, 1835\t\t\t\t\tA. Monfared\t\t\t\t\t\t\tA\tF\tS\t\t\t\t146\t\t38.315\t47.7595\t\t\t1937\t\t\t\tIran\tArdabil\tMeshkinshahr\t\tWalazir\t\t\t\t\t\t\t\t\t\r\nBBWP137-09\t0147-KYR\t1157833\tST00147\t596D06-0147-KYR\tResearch
+        Collection of Paul H. Williams\t\tBOLD:ACE4699\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t32123\tBombus
+        melanurus\t\t\tPaul H. Williams\t\tLepeletier, 1835\t\t\t\t\tRead\t\t\t\t\t\t\tA\tF\tS\t\t\t\t147\t\t41.1833\t72.65\t\t\t1500\t\t\t\tKyrgyzstan\tJalal-Abad\tBabash
+        Ata mts\t\tAlash\t\t\t\t\t\t\t\t\t\r\nBBWP145-09\t1857-TUR\t1157841\tST01857\t596E02-1857-TUR\tOberoesterreichisches
+        Landesmuseum, Biologiezentrum, Linz\t\tBOLD:ACE4699\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t32123\tBombus
+        melanurus\t\t\tPaul H. Williams\t\tLepeletier, 1835\t\t\t\t\tK. Warncke\t\t\t\t\t\t\tA\tM\tS\t\t\t\t1857\t\t37.9718\t34.6775\t\t\t3000\t\t\t\tTurkey\tNigde\tNE
+        Camardi\t\tNigde\t\t\t\t\t\t\t\t\t\r\nBBWP154-09\t1862-MON\t1157850\tST01862\t596E11-1862-MON\tOberoesterreichisches
+        Landesmuseum, Biologiezentrum, Linz\t\tBOLD:ACE4699\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t32123\tBombus
+        melanurus\t\t\tPaul H. Williams\t\tLepeletier, 1835\t\t\t\t\tJ. Halada\t\t\t\t\t\t\tA\tF\tS\t\t\t\t1862\t\t43.573\t104.008\t\t\t2000\t\t\t\tMongolia\t\tOemnoegovi
+        Aymag, Gurven Sayhan NP\t\tDalanzadgad\t\t\t\t\t\t\t\t\t\r\nBBWP155-09\t1863-MON\t1157851\tST01863\t596E12-1863-MON\tOberoesterreichisches
+        Landesmuseum, Biologiezentrum, Linz\t\tBOLD:ACE4699\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t32123\tBombus
+        melanurus\t\t\tPaul H. Williams\t\tLepeletier, 1835\t\t\t\t\tJ. Halada\t\t\t\t\t\t\tA\tF\tS\t\t\t\t1863\t\t43.573\t104.008\t\t\t2000\t\t\t\tMongolia\t\tOemnoegovi
+        Aymag, Gurven Sayhan NP\t\tDalanzadgad\t\t\t\t\t\t\t\t\t\r\nBBWP156-09\t1864-MON\t1157852\tST01864\t596F01-1864-MON\tOberoesterreichisches
+        Landesmuseum, Biologiezentrum, Linz\t\tBOLD:ACE4699\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t32123\tBombus
+        melanurus\t\t\tPaul H. Williams\t\tLepeletier, 1835\t\t\t\t\tJ. Halada\t\t\t\t\t\t\tA\tF\tS\t\t\t\t1864\t\t43.573\t104.008\t\t\t2000\t\t\t\tMongolia\t\tOemnoegovi
+        Aymag, Gurven Sayhan NP\t\tDalanzadgad\t\t\t\t\t\t\t\t\t\r\nBBWP157-09\t1865-MON\t1157853\tST01865\t596F02-1865-MON\tOberoesterreichisches
+        Landesmuseum, Biologiezentrum, Linz\t\tBOLD:ACE4699\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t32123\tBombus
+        melanurus\t\t\tPaul H. Williams\t\tLepeletier, 1835\t\t\t\t\tJ. Halada\t\t\t\t\t\t\tA\tF\tS\t\t\t\t1865\t\t43.573\t104.008\t\t\t2000\t\t\t\tMongolia\t\tOemnoegovi
+        Aymag, Gurven Sayhan NP\t\tDalanzadgad\t\t\t\t\t\t\t\t\t\r\nBBWP158-09\t1885-MON\t1157854\tST01885\t596F03-1885-MON\tOberoesterreichisches
+        Landesmuseum, Biologiezentrum, Linz\t\tBOLD:ACE4699\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t32123\tBombus
+        melanurus\t\t\tPaul H. Williams\t\tLepeletier, 1835\t\t\t\t\tJ. Halada\t\t\t\t\t\t\tA\tF\tA\t\t\t\t1885
+        yellow face\t\t47.478\t96.472\t\t\t1740\t\t\t\tMongolia\tDzavhan\t\t\tUliastay\t\t\t\t\t\t\t\t\t\r\nBBWP159-09\t1886-MON\t1157855\tST01886\t596F04-1886-MON\tOberoesterreichisches
+        Landesmuseum, Biologiezentrum, Linz\t\tBOLD:ACE4699\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t32123\tBombus
+        melanurus\t\t\tPaul H. Williams\t\tLepeletier, 1835\t\t\t\t\tJ. Halada\t\t\t\t\t\t\tA\tF\tA\t\t\t\t1886
+        yellow face\t\t47.478\t96.472\t\t\t1740\t\t\t\tMongolia\tDzavhan\t\t\tUliastay\t\t\t\t\t\t\t\t\t\r\nBBWP160-09\t1900-MON\t1157856\tST01900\t596F05-1900-MON\tOberoesterreichisches
+        Landesmuseum, Biologiezentrum, Linz\t\tBOLD:ACE4699\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t32123\tBombus
+        melanurus\t\t\tPaul H. Williams\t\tLepeletier, 1835\t\t\t\t\tJ. Halada\t\t\t\t\t\t\tA\tF\tA\t\t\t\t1900
+        yellow face\t\t47.478\t96.472\t\t\t1740\t\t\t\tMongolia\tDzavhan\t\t\tUliastay\t\t\t\t\t\t\t\t\t\r\nBBWP161-09\t1902-MON\t1157857\tST01902\t596F06-1902-MON\tOberoesterreichisches
+        Landesmuseum, Biologiezentrum, Linz\t\tBOLD:ACE4699\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t32123\tBombus
+        melanurus\t\t\tPaul H. Williams\t\tLepeletier, 1835\t\t\t\t\tJ. Halada\t\t\t\t\t\t\tA\tF\tA\t\t\t\t1902
+        yellow face\t\t47.478\t96.472\t\t\t1740\t\t\t\tMongolia\tDzavhan\t\t\tUliastay\t\t\t\t\t\t\t\t\t\r\nBBWP164-09\t2504-MON\t1157860\tST02504\t596F09-2504-MON\tMartin
+        Luther University of Halle-Wittenberg, Zoological Institute\t\tBOLD:AAA5912\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t32123\tBombus
+        melanurus\t\t\tPaul H. Williams\t\tLepeletier, 1835\t\t\t\t\tDorn\t\t\t\t\t\t\tA\tF\tA\t\t\t\t2504
+        tschitscherini\t\t47.817\t107\t\t\t2070\t\t\t\tMongolia\t\tUlaanbaatar Hot\t\tBogd
+        Uul\t\t\t\t\t\t\t\t\t\r\nBBWP297-09\t1550-1940-MON\t1239635\tST01940\t1550A12-MON\tOberoesterreichisches
+        Landesmuseum, Biologiezentrum, Linz\t\tBOLD:AAA5912\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t32123\tBombus
+        melanurus\t\t\tPaul H. Williams\t\tLepeletier, 1835\t\t\t\t\tM. Kadlekova\t\t\t\t\t\t\tA\tF\tA\t\t\t\t1940
+        tschitscherini\t\t47.75\t106.992\t\t\t1630\t\t\t\tMongolia\tTov\tUlaanbaatar\t\tZuunmod\t\t\t\t\t\t\t\t\t\r\nBBWP298-09\t1550-1954-MON\t1239636\tST01954\t1550B01-MON\tOberoesterreichisches
+        Landesmuseum, Biologiezentrum, Linz\t\tBOLD:AAA5912\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t32123\tBombus
+        melanurus\t\t\tPaul H. Williams\t\tLepeletier, 1835\t\t\t\t\tJ. Halada\t\t\t\t\t\t\tA\tF\tA\t\t\t\t1954
+        tschitscherini\t\t47.4\t103.65\t\t\t1320\t\t\t\tMongolia\tArhangay\t\t\tEls\t\t\t\t\t\t\t\t\t\r\nBBWP299-09\t1550-1949-MON\t1239637\tST01949\t1550B02-MON\tOberoesterreichisches
+        Landesmuseum, Biologiezentrum, Linz\t\tBOLD:AAA5912\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t32123\tBombus
+        melanurus\t\t\tPaul H. Williams\t\tLepeletier, 1835\t\t\t\t\tJ. Halada\t\t\t\t\t\t\tA\tF\tA\t\t\t\t1949
+        tschitscherini\t\t47.4\t103.65\t\t\t1320\t\t\t\tMongolia\tArhangay\t\t\tEls\t\t\t\t\t\t\t\t\t\r\nBBWP301-09\t1550-1934-MON\t1239639\tST01934\t1550B04-MON\tOberoesterreichisches
+        Landesmuseum, Biologiezentrum, Linz\t\tBOLD:ACE5962\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t365182\tBombus
+        mongolensis\t\t\tPaul H. Williams\t\t\t\t\t\t\tJ. Halada\t\t\t\t\t\t\tA\tF\tA\t\t\t\t1934\t\t47.183\t99.717\t\t\t2100\t\t\t\tMongolia\tArhangay\t\t\tTsetserleg\t\t\t\t\t\t\t\t\t\r\nBBWP302-09\t1550-1932-MON\t1239640\tST01932\t1550B05-MON\tOberoesterreichisches
+        Landesmuseum, Biologiezentrum, Linz\t\tBOLD:ACE5962\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t365182\tBombus
+        mongolensis\t\t\tPaul H. Williams\t\t\t\t\t\t\tJ. Halada\t\t\t\t\t\t\tA\tF\tA\t\t\t\t1932\t\t47.183\t99.717\t\t\t2100\t\t\t\tMongolia\tArhangay\t\t\tTsetserleg\t\t\t\t\t\t\t\t\t\r\nBBWP303-09\t1550-1938-MON\t1239641\tST01938\t1550B06-MON\tOberoesterreichisches
+        Landesmuseum, Biologiezentrum, Linz\t\tBOLD:ACE5962\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t365182\tBombus
+        mongolensis\t\t\tPaul H. Williams\t\t\t\t\t\t\tJ. Halada\t\t\t\t\t\t\tA\tF\tA\t\t\t\t1938\t\t46.495\t98.084\t\t\t2020\t\t\t\tMongolia\tBayanhongor\t\t\tGuulin\t\t\t\t\t\t\t\t\t\r\nBBWP392-10\t1936-MON\t1322201\tST01936\t1936-MON\tOberoesterreichisches
+        Landesmuseum, Biologiezentrum, Linz\t\tBOLD:ACE5962\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t365182\tBombus
+        mongolensis\t\t\tPaul H. Williams\t\t\t\t\t\t\tJ. Halada\t\t\t\t\t\t\tA\tF\tA\t\t\t\t1936\t\t47.183\t99.717\t\t\t2100\t\t\t\tMongolia\tArhangay\t\t\tTsetserleg\t\t\t\t\t\t\t\t\t\r\nBBWP393-10\t1931-MON\t1322202\tST01931\t1931-MON\tOberoesterreichisches
+        Landesmuseum, Biologiezentrum, Linz\t\tBOLD:ACE5962\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t365182\tBombus
+        mongolensis\t\t\tPaul H. Williams\t\t\t\t\t\t\tJ. Halada\t\t\t\t\t\t\tA\tF\tA\t\t\t\t1931\t\t47.183\t99.717\t\t\t2100\t\t\t\tMongolia\tArhangay\t\t\tTsetserleg\t\t\t\t\t\t\t\t\t\r\nBBWP394-10\t1939-MON\t1322203\tST01939\t1939-MON\tOberoesterreichisches
+        Landesmuseum, Biologiezentrum, Linz\t\tBOLD:ACE5962\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t365182\tBombus
+        mongolensis\t\t\tPaul H. Williams\t\t\t\t\t\t\tJ. Halada\t\t\t\t\t\t\tA\tF\tA\t\t\t\t1939\t\t46.495\t98.084\t\t\t2020\t\t\t\tMongolia\tBayanhongor\t\t\tGuulin\t\t\t\t\t\t\t\t\t\r\nBBWP395-10\t1928-MON\t1322204\tST01928\t1928-MON\tOberoesterreichisches
+        Landesmuseum, Biologiezentrum, Linz\t\tBOLD:AAA5912\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t32123\tBombus
+        melanurus\t\t\tPaul H. Williams\t\tLepeletier, 1835\t\t\t\t\tJ. Halada\t\t\t\t\t\t\tA\tF\tA\t\t\t\t1928
+        tschitscherini\t\t47.183\t99.717\t\t\t2100\t\t\t\tMongolia\tArhangay\t\t\tTsetserleg\t\t\t\t\t\t\t\t\t\r\nBBWP396-10\t1929-MON\t1322205\tST01929\t1929-MON\tOberoesterreichisches
+        Landesmuseum, Biologiezentrum, Linz\t\tBOLD:ACE5962\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t365182\tBombus
+        mongolensis\t\t\tPaul H. Williams\t\t\t\t\t\t\tJ. Halada\t\t\t\t\t\t\tA\tF\tA\t\t\t\t1929\t\t47.183\t99.717\t\t\t2100\t\t\t\tMongolia\tArhangay\t\t\tTsetserleg\t\t\t\t\t\t\t\t\t\r\nBBWP397-10\t1935-MON\t1322206\tST01935\t1935-MON\tOberoesterreichisches
+        Landesmuseum, Biologiezentrum, Linz\t\tBOLD:ACE5962\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t365182\tBombus
+        mongolensis\t\t\tPaul H. Williams\t\t\t\t\t\t\tJ. Halada\t\t\t\t\t\t\tA\tF\tA\t\t\t\t1935\t\t47.183\t99.717\t\t\t2100\t\t\t\tMongolia\tArhangay\t\t\tTsetserleg\t\t\t\t\t\t\t\t\t\r\nBBWP398-10\t1930-MON\t1322207\tST01930\t1930-MON\tOberoesterreichisches
+        Landesmuseum, Biologiezentrum, Linz\t\tBOLD:ACE5962\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t365182\tBombus
+        mongolensis\t\t\tPaul H. Williams\t\t\t\t\t\t\tJ. Halada\t\t\t\t\t\t\tA\tF\tA\t\t\t\t1930\t\t47.183\t99.717\t\t\t2100\t\t\t\tMongolia\tArhangay\t\t\tTsetserleg\t\t\t\t\t\t\t\t\t\r\nBBWP399-10\t1955-MON\t1322208\tST01955\t1955-MON\tOberoesterreichisches
+        Landesmuseum, Biologiezentrum, Linz\t\tBOLD:AAA5912\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t32123\tBombus
+        melanurus\t\t\tPaul H. Williams\t\tLepeletier, 1835\t\t\t\t\tJ. Halada\t\t\t\t\t\t\tA\tF\tA\t\t\t\t1955
+        tschitscherini\t\t47.333\t103.675\t\t\t1250\t\t\t\tMongolia\tOvorhangay\t\t\tArvayheer\t\t\t\t\t\t\t\t\t\r\nBBWP400-10\t1960-MON\t1322209\tST01960\t1960-MON\tOberoesterreichisches
+        Landesmuseum, Biologiezentrum, Linz\t\tBOLD:AAA5912\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t32123\tBombus
+        melanurus\t\t\tPaul H. Williams\t\tLepeletier, 1835\t\t\t\t\tJ. Halada\t\t\t\t\t\t\tA\tF\tA\t\t\t\t1960
+        tschitscherini\t\t47.751\t102.718\t\t\t1400\t\t\t\tMongolia\tArhangay\t\t\tOgiu
+        Nuur\t\t\t\t\t\t\t\t\t\r\nBBWP401-10\t1951-MON\t1322210\tST01951\t1951-MON\tOberoesterreichisches
+        Landesmuseum, Biologiezentrum, Linz\t\tBOLD:AAA5912\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t32123\tBombus
+        melanurus\t\t\tPaul H. Williams\t\tLepeletier, 1835\t\t\t\t\tJ. Halada\t\t\t\t\t\t\tA\tF\tA\t\t\t\t1951
+        tschitscherini\t\t47.4\t103.65\t\t\t1320\t\t\t\tMongolia\tArhangay\t\t\tEls\t\t\t\t\t\t\t\t\t\r\nBBWP402-10\t1925-MON\t1322211\tST01925\t1925-MON\tOberoesterreichisches
+        Landesmuseum, Biologiezentrum, Linz\t\tBOLD:AAA5912\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t32123\tBombus
+        melanurus\t\t\tPaul H. Williams\t\tLepeletier, 1835\t\t\t\t\tJ. Halada\t\t\t\t\t\t\tA\tF\tA\t\t\t\t1925
+        tschitscherini\t\t47.183\t99.717\t\t\t2100\t\t\t\tMongolia\tArhangay\t\t\tTsetserleg\t\t\t\t\t\t\t\t\t\r\nBBWP403-10\t1927-MON\t1322212\tST01927\t1927-MON\tOberoesterreichisches
+        Landesmuseum, Biologiezentrum, Linz\t\tBOLD:AAA5912\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t32123\tBombus
+        melanurus\t\t\tPaul H. Williams\t\tLepeletier, 1835\t\t\t\t\tJ. Halada\t\t\t\t\t\t\tA\tF\tA\t\t\t\t1927
+        tschitscherini\t\t47.183\t99.717\t\t\t2100\t\t\t\tMongolia\tArhangay\t\t\tTsetserleg\t\t\t\t\t\t\t\t\t\r\nBBWP404-10\t1933-MON\t1322213\tST01933\t1933-MON\tOberoesterreichisches
+        Landesmuseum, Biologiezentrum, Linz\t\tBOLD:AAA5912\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t32123\tBombus
+        melanurus\t\t\tPaul H. Williams\t\tLepeletier, 1835\t\t\t\t\tJ. Halada\t\t\t\t\t\t\tA\tF\tA\t\t\t\t1933
+        tschitscherini\t\t47.183\t99.717\t\t\t2100\t\t\t\tMongolia\tArhangay\t\t\tTsetserleg\t\t\t\t\t\t\t\t\t\r\nBBWP405-10\t1941-MON\t1322214\tST01941\t1941-MON\tOberoesterreichisches
+        Landesmuseum, Biologiezentrum, Linz\t\tBOLD:AAA5912\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t32123\tBombus
+        melanurus\t\t\tPaul H. Williams\t\tLepeletier, 1835\t\t\t\t\tM. Kadlekova\t\t\t\t\t\t\tA\tF\tA\t\t\t\t1941
+        tschitscherini\t\t47.4\t103.65\t\t\t1320\t\t\t\tMongolia\tArhangay\t\t\tEls\t\t\t\t\t\t\t\t\t\r\nBBWP406-10\t1942-MON\t1322215\tST01942\t1942-MON\tOberoesterreichisches
+        Landesmuseum, Biologiezentrum, Linz\t\tBOLD:AAA5912\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t32123\tBombus
+        melanurus\t\t\tPaul H. Williams\t\tLepeletier, 1835\t\t\t\t\tM. Kadlekova\t\t\t\t\t\t\tA\tF\tA\t\t\t\t1942
+        tschitscherini\t\t47.4\t103.65\t\t\t1320\t\t\t\tMongolia\tArhangay\t\t\tEls\t\t\t\t\t\t\t\t\t\r\nBBWP408-10\t1950-MON\t1322217\tST01950\t1950-MON\tOberoesterreichisches
+        Landesmuseum, Biologiezentrum, Linz\t\tBOLD:AAA5912\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t32123\tBombus
+        melanurus\t\t\tPaul H. Williams\t\tLepeletier, 1835\t\t\t\t\tJ. Halada\t\t\t\t\t\t\tA\tF\tA\t\t\t\t1950
+        tschitscherini\t\t47.4\t103.65\t\t\t1320\t\t\t\tMongolia\tArhangay\t\t\tEls\t\t\t\t\t\t\t\t\t\r\nBBWP409-10\t1944-MON\t1322218\tST01944\t1944-MON\tOberoesterreichisches
+        Landesmuseum, Biologiezentrum, Linz\t\tBOLD:AAA5912\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t32123\tBombus
+        melanurus\t\t\tPaul H. Williams\t\tLepeletier, 1835\t\t\t\t\tJ. Halada\t\t\t\t\t\t\tA\tF\tA\t\t\t\t1944
+        tschitscherini\t\t47.4\t103.65\t\t\t1320\t\t\t\tMongolia\tArhangay\t\t\tEls\t\t\t\t\t\t\t\t\t\r\nBBWP410-10\t1945-MON\t1322219\tST01945\t1945-MON\tOberoesterreichisches
+        Landesmuseum, Biologiezentrum, Linz\t\tBOLD:AAA5912\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t32123\tBombus
+        melanurus\t\t\tPaul H. Williams\t\tLepeletier, 1835\t\t\t\t\tJ. Halada\t\t\t\t\t\t\tA\tF\tA\t\t\t\t1945
+        tschitscherini\t\t47.4\t103.65\t\t\t1320\t\t\t\tMongolia\tArhangay\t\t\tEls\t\t\t\t\t\t\t\t\t\r\nBBWP411-10\t1946-MON\t1322220\tST01946\t1946-MON\tOberoesterreichisches
+        Landesmuseum, Biologiezentrum, Linz\t\tBOLD:AAA5912\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t32123\tBombus
+        melanurus\t\t\tPaul H. Williams\t\tLepeletier, 1835\t\t\t\t\tJ. Halada\t\t\t\t\t\t\tA\tF\tA\t\t\t\t1946
+        tschitscherini\t\t47.4\t103.65\t\t\t1320\t\t\t\tMongolia\tArhangay\t\t\tEls\t\t\t\t\t\t\t\t\t\r\nBBWP413-10\t1952-MON\t1322222\tST01952\t1952-MON\tOberoesterreichisches
+        Landesmuseum, Biologiezentrum, Linz\t\tBOLD:AAA5912\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t32123\tBombus
+        melanurus\t\t\tPaul H. Williams\t\tLepeletier, 1835\t\t\t\t\tJ. Halada\t\t\t\t\t\t\tA\tF\tA\t\t\t\t1952
+        tschitscherini\t\t47.4\t103.65\t\t\t1320\t\t\t\tMongolia\tArhangay\t\t\tEls\t\t\t\t\t\t\t\t\t\r\nBBWP414-10\t1956-MON\t1322223\tST01956\t1956-MON\tOberoesterreichisches
+        Landesmuseum, Biologiezentrum, Linz\t\tBOLD:AAA5912\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t32123\tBombus
+        melanurus\t\t\tPaul H. Williams\t\tLepeletier, 1835\t\t\t\t\tJ. Halada\t\t\t\t\t\t\tA\tF\tA\t\t\t\t1956
+        tschitscherini\t\t47.333\t103.675\t\t\t1250\t\t\t\tMongolia\tOvorhangay\t\t\tArvayheer\t\t\t\t\t\t\t\t\t\r\nBBWP415-10\t1957-MON\t1322224\tST01957\t1957-MON\tOberoesterreichisches
+        Landesmuseum, Biologiezentrum, Linz\t\tBOLD:AAA5912\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t32123\tBombus
+        melanurus\t\t\tPaul H. Williams\t\tLepeletier, 1835\t\t\t\t\tJ. Halada\t\t\t\t\t\t\tA\tF\tA\t\t\t\t1957
+        tschitscherini\t\t47.333\t103.675\t\t\t1250\t\t\t\tMongolia\tOvorhangay\t\t\tArvayheer\t\t\t\t\t\t\t\t\t\r\nBBWP416-10\t1958-MON\t1322225\tST01958\t1958-MON\tOberoesterreichisches
+        Landesmuseum, Biologiezentrum, Linz\t\tBOLD:AAA5912\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t32123\tBombus
+        melanurus\t\t\tPaul H. Williams\t\tLepeletier, 1835\t\t\t\t\tJ. Halada\t\t\t\t\t\t\tA\tF\tA\t\t\t\t1958
+        tschitscherini\t\t47.838\t106.642\t\t\t1230\t\t\t\tMongolia\t\tUlaanbaatar
+        Hot\t\tTuul Gol\t\t\t\t\t\t\t\t\t\r\nBBWP417-10\t1926-MON\t1322226\tST01926\t1926-MON\tOberoesterreichisches
+        Landesmuseum, Biologiezentrum, Linz\t\tBOLD:AAA5912\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t32123\tBombus
+        melanurus\t\t\tPaul H. Williams\t\tLepeletier, 1835\t\t\t\t\tJ. Halada\t\t\t\t\t\t\tA\tF\tA\t\t\t\t1926
+        tschitscherini\t\t47.183\t99.717\t\t\t2100\t\t\t\tMongolia\tArhangay\t\t\tTsetserleg\t\t\t\t\t\t\t\t\t\r\nBBWP419-10\t3829-KYR\t1322228\tST03829\t3829-KYR\tResearch
+        Collection of Lincoln Best\t\tBOLD:ACE4699\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t32123\tBombus
+        melanurus\t\t\tPaul H. Williams\t\tLepeletier, 1835\t\t\t\t\tL.R. Best\t\t\t\t\t\t\tA\tF\tS\t\t\t\t3829\t\t42.475\t76.244\t\t\t1639\t\t\t\tKyrgyzstan\tYsyk-Kol\t\t\tBalykchy\t\t\t\t\t\t\t\t\t\r\nBBWP420-10\t3830-KYR\t1322229\tST03830\t3830-KYR\tResearch
+        Collection of Lincoln Best\t\tBOLD:ACE4699\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t32123\tBombus
+        melanurus\t\t\tPaul H. Williams\t\tLepeletier, 1835\t\t\t\t\tL.R. Best\t\t\t\t\t\t\tA\tF\tA\t\t\t\t3830\t\t42.475\t76.244\t\t\t1639\t\t\t\tKyrgyzstan\tYsyk-Kol\t\t\tBalykchy\t\t\t\t\t\t\t\t\t\r\nBCA061-10\tB03764F01-TJK\t1328121\t\tB03764F01-TJK\tYork
+        University, Packer Collection\t\tBOLD:ACE4699\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t\t\t\t\t\t\t\t\t\t\tJason
+        Gibbs\t\t\t\t\t\t\tL.R. Best\t\t\t\t\t\t\tA\tF\tS\t\t\t\t\t\t37.481\t71.594\t\t\t2114\t\t\t\tTajikistan\t\t\t\t\t658958\thttp://www.boldsystems.org/pics/BCA/3764f01+1264803642.jpg\tDorsal\t\tPacker
+        Collection at York University\t2010\tCreativeCommons - Attribution Non-Commercial
+        Share-Alike\tYork University\tPacker Collection at York University\r\nGBAH0411-06\tAF385817\t472540\t\t\tMined
+        from GenBank, NCBI\t\tBOLD:AAA5912\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t32123\tBombus
+        melanurus\t\t\t\t\tLepeletier, 1835\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tMongolia\t\tUlaanbaatar\t\t\t\t\t\t\t\t\t\t\t\r\nGBMIN71949-17\tKX791754\t8411685\t\tKX791754\tMined
+        from GenBank, NCBI\t\tBOLD:ACE5963\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t193205\tBombus
+        difficillimus\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tChina\t\tGansu\t\t\t\t\t\t\t\t\t\t\t\r\nGBMIN72050-17\tKX791745\t8411786\t\tKX791745\tMined
+        from GenBank, NCBI\t\tBOLD:AAA5912\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t32123\tBombus
+        melanurus\t\t\t\t\tLepeletier, 1835\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tChina\t\tGansu\t\t\t\t\t\t\t\t\t\t\t\r\nNGNAK504-13\tBIOUG08115-A02\t3764696\tBIOUG08115-A02\tGMP#01967\tCentre
+        for Biodiversity Genomics\t\tBOLD:ABZ3073\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t96607\tBombus
+        appositus\t\t\tAngela Telfer\tBIN Taxonomy Match\tCresson, 1878\t\tVouchered:Registered
+        Collection\t\t\tChrystal Simon\t\t\t\t\tBIOUG:AFTONMINE:C2\tMalaise Trap\t\t\t\tGrassland\t\t\t\tcollected
+        June 20 - June 27, 2013\t50.672\t-120.533\tGoogle Earth (December 2013)\t\t709\t\t\t\tCanada\tBritish
+        Columbia\t10 km W Kamloops\tNew Afton Mine\tGrassland Protected Area (control)
+        - Site 4\t\t\t\t\t\t\t\t\t\r\nNGNAN4045-14\tBIOUG10190-B05\t4156524\tBIOUG10190-B05\tGMP#01951\tCentre
+        for Biodiversity Genomics\t\tBOLD:ABZ3073\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t96607\tBombus
+        appositus\t\t\tAngela Telfer\tBIN Taxonomy Match\tCresson, 1878\t\tVouchered:Registered
+        Collection\t\t\tChrystal Simon\t\t\t\t\tBIOUG:AFTONMINE:S1\tMalaise Trap\t\t\t\tWetland\t\t\t\tcollected
+        July 18-25, 2013\t50.643\t-120.517\tGoogle Earth (December 2013)\t\t759\t\t\t\tCanada\tBritish
+        Columbia\t10 km W Kamloops\tNew Afton Mine\tWetland Remediated Area (treatment)
+        - Site 1\t\t\t\t\t\t\t\t\t\r\nNGNAS1379-14\tBIOUG11226-A06\t4267543\tBIOUG11226-A06\tGMP#01931\tCentre
+        for Biodiversity Genomics\t\tBOLD:ABZ3073\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t96607\tBombus
+        appositus\t\t\tAngela Telfer\tBIN Taxonomy Match\tCresson, 1878\t\tVouchered:Registered
+        Collection\t\t\tChrystal Simon\t\t\t\t\tBIOUG:AFTONMINE:S2\tMalaise Trap\t\t\t\tGrassland\t\t\t\tcollected
+        July 18-25, 2013\t50.658\t-120.528\tGoogle Earth (December 2013)\t\t668\t\t\t\tCanada\tBritish
+        Columbia\t10 km W Kamloops\tNew Afton Mine\tGrassland Remediated Area (treatment)
+        - Site 2\t\t\t\t\t\t\t\t\t\r\nNGNAS1384-14\tBIOUG11226-A11\t4267548\tBIOUG11226-A11\tGMP#01931\tCentre
+        for Biodiversity Genomics\t\tBOLD:ABZ3073\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t96607\tBombus
+        appositus\t\t\tAngela Telfer\tBIN Taxonomy Match\tCresson, 1878\t\tVouchered:Registered
+        Collection\t\t\tChrystal Simon\t\t\t\t\tBIOUG:AFTONMINE:S2\tMalaise Trap\t\t\t\tGrassland\t\t\t\tcollected
+        July 18-25, 2013\t50.658\t-120.528\tGoogle Earth (December 2013)\t\t668\t\t\t\tCanada\tBritish
+        Columbia\t10 km W Kamloops\tNew Afton Mine\tGrassland Remediated Area (treatment)
+        - Site 2\t\t\t\t\t\t\t\t\t\r\nNGNAS1385-14\tBIOUG11226-A12\t4267549\tBIOUG11226-A12\tGMP#01931\tCentre
+        for Biodiversity Genomics\t\tBOLD:ABZ3073\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t96607\tBombus
+        appositus\t\t\tAngela Telfer\tBIN Taxonomy Match\tCresson, 1878\t\tVouchered:Registered
+        Collection\t\t\tChrystal Simon\t\t\t\t\tBIOUG:AFTONMINE:S2\tMalaise Trap\t\t\t\tGrassland\t\t\t\tcollected
+        July 18-25, 2013\t50.658\t-120.528\tGoogle Earth (December 2013)\t\t668\t\t\t\tCanada\tBritish
+        Columbia\t10 km W Kamloops\tNew Afton Mine\tGrassland Remediated Area (treatment)
+        - Site 2\t\t\t\t\t\t\t\t\t\r\nNGNAS1399-14\tBIOUG11226-C02\t4267563\tBIOUG11226-C02\tGMP#01931\tCentre
+        for Biodiversity Genomics\t\tBOLD:ABZ3073\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t96607\tBombus
+        appositus\t\t\tAngela Telfer\tBIN Taxonomy Match\tCresson, 1878\t\tVouchered:Registered
+        Collection\t\t\tChrystal Simon\t\t\t\t\tBIOUG:AFTONMINE:S2\tMalaise Trap\t\t\t\tGrassland\t\t\t\tcollected
+        July 18-25, 2013\t50.658\t-120.528\tGoogle Earth (December 2013)\t\t668\t\t\t\tCanada\tBritish
+        Columbia\t10 km W Kamloops\tNew Afton Mine\tGrassland Remediated Area (treatment)
+        - Site 2\t\t\t\t\t\t\t\t\t\r\nNGNAT581-14\tBIOUG11218-A02\t4267342\tBIOUG11218-A02\tGMP#01933\tCentre
+        for Biodiversity Genomics\t\tBOLD:ABZ3073\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t96607\tBombus
+        appositus\t\t\tAngela Telfer\tBIN Taxonomy Match\tCresson, 1878\t\tVouchered:Registered
+        Collection\t\t\tChrystal Simon\t\t\t\t\tBIOUG:AFTONMINE:S2\tMalaise Trap\t\t\t\tGrassland\t\t\t\tcollected
+        August 1-8, 2013\t50.658\t-120.528\tGoogle Earth (December 2013)\t\t668\t\t\t\tCanada\tBritish
+        Columbia\t10 km W Kamloops\tNew Afton Mine\tGrassland Remediated Area (treatment)
+        - Site 2\t\t\t\t\t\t\t\t\t\r\nSSWLE066-13\tBIOUG06716-D01\t3438541\tBIOUG06716-D01\tL#12BIOBUS-1575\tCentre
+        for Biodiversity Genomics\t\tBOLD:ABZ3073\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t96607\tBombus
+        appositus\t\t\tAngela Telfer\tBIN Taxonomy Match\tCresson, 1878\t\tVouchered:Registered
+        Collection\tTissue\t\tBIOBus 2012\t\t\t\t5 min sweep x4 collectors (3)|Sunny,
+        clear sky, 33C|Moraine grassland, well established\tBIOUG:WATERTON-NP:5\tSweep
+        Net\t\t\t\tGrassland\t\t\tWaterton Lakes NP\t\t49.088\t-113.883\tGPSmap 60Cx\t\t1328\t\t\t\tCanada\tAlberta\tWaterton
+        Lakes National Park\tRed Rock Parkway\t\t\t\t\t\t\t\t\t\t\r\nSSWLE5549-13\tBIOUG08719-C06\t3972423\tBIOUG08719-C06\tL#12BIOBUS-1617\tCentre
+        for Biodiversity Genomics\t\tBOLD:ABZ3073\t20\tArthropoda\t82\tInsecta\t125\tHymenoptera\t621\tApidae\t2183\tApinae\t2087\tBombus\t96607\tBombus
+        appositus\t\t\tAngela Telfer\tBIN Taxonomy Match\tCresson, 1878\t\tVouchered:Registered
+        Collection\tTissue\t\tBIOBus 2012\t\t\t\t2 Malaise Traps|Overcast, 19C|Moraine
+        grassland, well established\tBIOUG:WATERTON-NP:5\tMalaise Trap\t\t\t\tGrassland\t\t\tWaterton
+        Lakes NP\tAug 8, moved both malaise traps beyond ridge and out of sight of
+        parkway as per request of park staff\t49.088\t-113.883\tGPSmap 60Cx\t\t1328\t\t\t\tCanada\tAlberta\tWaterton
+        Lakes National Park\tRed Rock Parkway\t\t\t\t\t\t\t\t\t\t\r\n"
+  recorded_at: 2023-02-20 17:49:20 GMT
+  recorded_with: vcr/1.0.2, webmockr/0.8.0

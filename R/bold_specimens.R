@@ -36,7 +36,7 @@ bold_specimens <- function(taxon = NULL, ids = NULL, bin = NULL,
   response=FALSE, format = 'tsv', ...) {
 
   assert(response, "logical")
-  if(!format %in% c('xml', 'tsv')) stop("'format' should be of of 'xml' or 'tsv'.")
+  if (!format %in% c('xml', 'tsv')) stop("'format' should be of of 'xml' or 'tsv'.")
   params <- c(
     pipe_params(
       taxon = taxon,

@@ -64,34 +64,44 @@
 #' head(bold_identify(sequences=seq, db='COX1_SPECIES')[[1]])
 #' }
 
-bold_identify <- function(sequences, db = 'COX1', response=FALSE, keepSeq = TRUE, ...) {
+bold_identify <- function(sequences, db = 'COX1', response = FALSE, keepSeq = TRUE, ...) {
   # make sure sequences are character before the queries
-  if (!all(vapply(sequences, inherits, NA, "character"))) {
-    stop("`sequences` should be of type character.")
+  if (is.list(sequences)) {
+    if (!all(vapply(sequences, inherits, NA, "character"))) {
+      stop("'sequences' should be of class character.")
+    }
+  } else {
+    assert(sequences, "character")
   }
   if (!missing(db)) {
     assert(db, "character", checkLength = TRUE)
     if (!db %in% c("COX1", "COX1_SPECIES", "COX1_SPECIES_PUBLIC", "COX1_L640bp")) {
-      stop("'db' must be on of 'COX1', 'COX1_SPECIES', 'COX1_SPECIES_PUBLIC' or 'COX1_L640bp'")
+      stop("'db' must be one of 'COX1', 'COX1_SPECIES', 'COX1_SPECIES_PUBLIC' or 'COX1_L640bp'")
     }
   }
+  assert(response, "logical")
+  assert(keepSeq, "logical")
   # loop over sequences since the API only accepts one at a time
   lapply(sequences, function(seq){
-    res <- get_response(
-      args = bc(list(sequence = seq, db = db)),
-      url = b_url('Ids_xml'),
-      contentType = 'text/xml'
-    )
-    if (response) {
-      res
-    } else {
-      out <- .parse_identify_xml(res)
-      # add input sequence as attribute to prevent mix up if 'sequences' wasn't named
-      if (keepSeq) {
-        attr(out, "sequence") <- seq
+    if (nzchar(seq)) {
+      res <- get_response(
+        args = bc(list(sequence = seq, db = db)),
+        url = b_url('Ids_xml'),
+        contentType = 'text/xml'
+      )
+      if (response) {
+        res
+      } else {
+        out <- .parse_identify_xml(res)
+        # add input sequence as attribute to prevent mix up if 'sequences' wasn't named
+        if (keepSeq) {
+          attr(out, "sequence") <- seq
+        }
+        attr(out, "errors") <- res$warning
+        out
       }
-      attr(out, "errors") <- res$warning
-      out
+    } else {
+      NULL
     }
   })
 }
@@ -104,7 +114,7 @@ bold_identify <- function(sequences, db = 'COX1', response=FALSE, keepSeq = TRUE
               'taxonomicidentification','similarity','url','country',
               'lat', 'lon')
   cont <- rawToChar(res$response$content)
-  # DON'T REMOVE, it's there for a reason, see tests
+  # DON'T REMOVE next line, it's there for a reason, see tests
   cont <- stringi::stri_replace_all_fixed(str = cont, pattern = "&", replacement = "&amp;")
   if (res$warning == "") {
     xml <- xml2::read_xml(cont)

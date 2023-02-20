@@ -164,6 +164,9 @@ bold_tax_id2 <-
   if (!tree) {
     lapply(`names<-`(nms, nms), function(nm) {
       o <- setrbind(lapply(x, `[[`, nm), idcol = idcol)
+      if (idcol == "input") {
+        o[["input"]] <- as.integer(o[["input"]])
+      }
       if (any(names(o) == "col2rm")) {
         o[["col2rm"]] <- NULL
       }
@@ -257,6 +260,7 @@ bold_tax_id2 <-
         !types %in% c("basic", "thirdparty", "images", "stats")) {
       x <- setrbind(unlist(x, recursive = FALSE, use.names = T), idcol = "input")
       x[["input"]] <- stringi::stri_extract_all_regex(x[,"input"], "^[0-9]+(?=\\.)")
+      x[["input"]] <- as.integer(x[["input"]])
   }  else {
     x <- .grp_dataTypes(x, nms = types, idcol = "input")
   }

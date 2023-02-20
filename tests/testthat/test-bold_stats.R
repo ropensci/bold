@@ -1,39 +1,32 @@
 context("bold_stats")
 
-vcr::use_cassette("bold_stats", {
-  test_that("bold_stats works as expected", {
-    aa <- bold_stats(taxon = "Osmia")
-    expect_is(aa, "list")
-    expect_type(aa$total_records, "integer")
-    expect_type(aa$records_with_species_name, "integer")
-    expect_is(aa$bins, "list")
-    expect_is(aa$countries, "list")
-    expect_is(aa$order, "list")
+test_that("bold_stats works as expected", {
+  vcr::use_cassette("bold_stats", {
+    test <- bold_stats(taxon = "Coelioxys")
   })
+  expect_is(test, "list")
+  expect_type(test$total_records, "integer")
+  expect_type(test$records_with_species_name, "integer")
+  expect_is(test$bins, "list")
+  expect_is(test$countries, "list")
+  expect_is(test$order, "list")
 })
 
-vcr::use_cassette("bold_stats_response_true", {
-  test_that("bold_stats return response", {
-    aa <- res <- bold_stats(taxon = "Osmia", response = TRUE)
-    expect_is(aa, "HttpResponse")
-    expect_equal(aa$status_code, 200)
-    expect_is(aa$parse("UTF-8"), "character")
-    expect_match(aa$parse("UTF-8"), "countries")
+test_that("bold_stats return response", {
+  vcr::use_cassette("bold_stats", {
+    test <-  bold_stats(taxon = "Coelioxys", response = TRUE)
   })
+  expect_is(test, "HttpResponse")
+  expect_equal(test$status_code, 200)
+  expect_is(test$parse("UTF-8"), "character")
+  expect_match(test$parse("UTF-8"), "countries")
 })
 
-vcr::use_cassette("bold_stats_many_taxa", {
-  test_that("bold_stats many taxa passed to taxon param", {
-    aa <- bold_stats(taxon = c("Coelioxys", "Osmia"))
-    expect_is(aa, "list")
+test_that("bold_stats many taxa passed to taxon param", {
+  vcr::use_cassette("bold_stats", {
+    test <- bold_stats(taxon = c("Coelioxys", "Osmia"))
   })
-})
-
-vcr::use_cassette("bold_stats_many_taxa", {
-  test_that("bold_stats many taxa passed to taxon param", {
-    aa <- bold_stats(taxon = c("Coelioxys", "Osmia"))
-    expect_is(aa, "list")
-  })
+  expect_is(test, "list")
 })
 
 test_that("bold_stats fails well", {
@@ -41,4 +34,7 @@ test_that("bold_stats fails well", {
 
   expect_error(bold_stats(),
     "You must provide a non-empty value to at least one of")
+  expect_error(bold_stats(taxon = 5), "'taxon' must be of class character.")
+  expect_error(bold_stats(taxon = 5, bin = 1), "'taxon' and 'bin' must be of class character.")
+  expect_error(bold_stats(taxon = "Osmia", response = 5), "'response' must be of class logical.")
 })

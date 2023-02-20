@@ -1,12 +1,12 @@
 http_interactions:
 - request:
     method: get
-    uri: https://v4.boldsystems.org/index.php/API_Tax/TaxonData?taxId=125295&dataTypes=basic
+    uri: https://v4.boldsystems.org/index.php/API_Tax/TaxonData?taxId=88899&dataTypes=basic&includeTree=false
     body:
       encoding: ''
       string: ''
     headers:
-      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      User-Agent: libcurl/7.64.1 r-curl/4.3.3 crul/1.3
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
   response:
@@ -15,18 +15,332 @@ http_interactions:
       message: OK
       explanation: Request fulfilled, document follows
     headers:
-      status: 'HTTP/2 200 '
+      status: HTTP/1.1 200 OK
       server: nginx
-      date: Mon, 20 Apr 2020 15:48:29 GMT
+      date: Mon, 20 Feb 2023 16:52:37 GMT
+      content-type: text/html; charset=utf-8
+      content-length: '120'
+      connection: keep-alive
+      x-powered-by: PHP/5.3.15
+      set-cookie: https=on;Path=/;Max-Age=3600;httponly;SameSite=Lax
+    body:
+      encoding: UTF-8
+      file: no
+      string: '{"taxid":88899,"taxon":"Momotus","tax_rank":"genus","tax_division":"Animalia","parentid":88898,"parentname":"Momotidae"}'
+  recorded_at: 2023-02-20 16:52:41 GMT
+  recorded_with: vcr/1.0.2, webmockr/0.8.0
+- request:
+    method: get
+    uri: https://v4.boldsystems.org/index.php/API_Tax/TaxonData?taxId=88899&dataTypes=basic&includeTree=false
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3.3 crul/1.3
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx
+      date: Mon, 20 Feb 2023 16:52:37 GMT
+      content-type: text/html; charset=utf-8
+      content-length: '120'
+      connection: keep-alive
+      x-powered-by: PHP/5.3.15
+      set-cookie: https=on;Path=/;Max-Age=3600;httponly;SameSite=Lax
+    body:
+      encoding: UTF-8
+      file: no
+      string: '{"taxid":88899,"taxon":"Momotus","tax_rank":"genus","tax_division":"Animalia","parentid":88898,"parentname":"Momotidae"}'
+  recorded_at: 2023-02-20 16:52:41 GMT
+  recorded_with: vcr/1.0.2, webmockr/0.8.0
+- request:
+    method: get
+    uri: https://v4.boldsystems.org/index.php/API_Tax/TaxonData?taxId=125295&dataTypes=basic&includeTree=false
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3.3 crul/1.3
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx
+      date: Mon, 20 Feb 2023 16:52:37 GMT
       content-type: text/html; charset=utf-8
       content-length: '150'
+      connection: keep-alive
       x-powered-by: PHP/5.3.15
-      x-frame-options: SAMEORIGIN
-      x-content-type-options: nosniff
-      x-xss-protection: 1; mode=block
+      set-cookie: https=on;Path=/;Max-Age=3600;httponly;SameSite=Lax
     body:
       encoding: UTF-8
       file: no
       string: '{"taxid":125295,"taxon":"Helianthus","tax_rank":"genus","tax_division":"Plantae","parentid":151101,"parentname":"Asteroideae","taxonrep":"Helianthus"}'
-  recorded_at: 2020-04-20 15:48:29 GMT
-  recorded_with: vcr/0.5.4, webmockr/0.6.2
+  recorded_at: 2023-02-20 16:52:41 GMT
+  recorded_with: vcr/1.0.2, webmockr/0.8.0
+- request:
+    method: get
+    uri: https://v4.boldsystems.org/index.php/API_Tax/TaxonData?taxId=88899&dataTypes=basic&includeTree=true
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3.3 crul/1.3
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx
+      date: Mon, 20 Feb 2023 16:52:38 GMT
+      content-type: text/html; charset=utf-8
+      content-length: '639'
+      connection: keep-alive
+      x-powered-by: PHP/5.3.15
+      set-cookie: https=on;Path=/;Max-Age=3600;httponly;SameSite=Lax
+    body:
+      encoding: UTF-8
+      file: no
+      string: '{"88899":{"taxid":88899,"taxon":"Momotus","tax_rank":"genus","tax_division":"Animalia","parentid":88898,"parentname":"Momotidae"},"88898":{"taxid":88898,"taxon":"Momotidae","tax_rank":"family","tax_division":"Animalia","parentid":339,"parentname":"Coraciiformes"},"339":{"taxid":339,"taxon":"Coraciiformes","tax_rank":"order","tax_division":"Animalia","parentid":51,"parentname":"Aves"},"51":{"taxid":51,"taxon":"Aves","tax_rank":"class","tax_division":"Animalia","parentid":18,"parentname":"Chordata","taxonrep":"Aves"},"18":{"taxid":18,"taxon":"Chordata","tax_rank":"phylum","tax_division":"Animalia","parentid":1,"taxonrep":"Chordata"}}'
+  recorded_at: 2023-02-20 16:52:41 GMT
+  recorded_with: vcr/1.0.2, webmockr/0.8.0
+- request:
+    method: get
+    uri: https://v4.boldsystems.org/index.php/API_Tax/TaxonData?taxId=88899&dataTypes=stats&includeTree=false
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3.3 crul/1.3
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx
+      date: Mon, 20 Feb 2023 16:52:38 GMT
+      content-type: text/html; charset=utf-8
+      content-length: '220'
+      connection: keep-alive
+      x-powered-by: PHP/5.3.15
+      set-cookie: https=on;Path=/;Max-Age=3600;httponly;SameSite=Lax
+    body:
+      encoding: UTF-8
+      file: no
+      string: '{"stats":{"publicmarkersequences":{"COI-5P":41},"publicrecords":41,"publicspecies":2,"publicsubspecies":0,"publicbins":8,"specimenrecords":84,"sequencedspecimens":67,"barcodespecimens":61,"species":3,"barcodespecies":3}}'
+  recorded_at: 2023-02-20 16:52:41 GMT
+  recorded_with: vcr/1.0.2, webmockr/0.8.0
+- request:
+    method: get
+    uri: https://v4.boldsystems.org/index.php/API_Tax/TaxonData?taxId=88899&dataTypes=geo&includeTree=false
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3.3 crul/1.3
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx
+      date: Mon, 20 Feb 2023 16:52:38 GMT
+      content-type: text/html; charset=utf-8
+      content-length: '205'
+      connection: keep-alive
+      x-powered-by: PHP/5.3.15
+      set-cookie: https=on;Path=/;Max-Age=3600;httponly;SameSite=Lax
+    body:
+      encoding: UTF-8
+      file: no
+      string: '{"country":{"Panama":10,"Peru":17,"Ecuador":2,"Bolivia":6,"Guatemala":1,"Mexico":2,"Brazil":4,"Colombia":4},"sitemap":"http:\/\/www.boldsystems.org\/index.php\/TaxBrowser_Maps_CollectionSites?taxid=88899"}'
+  recorded_at: 2023-02-20 16:52:41 GMT
+  recorded_with: vcr/1.0.2, webmockr/0.8.0
+- request:
+    method: get
+    uri: https://v4.boldsystems.org/index.php/API_Tax/TaxonData?taxId=88899&dataTypes=sequencinglabs&includeTree=false
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3.3 crul/1.3
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx
+      date: Mon, 20 Feb 2023 16:52:38 GMT
+      content-type: text/html; charset=utf-8
+      content-length: '381'
+      connection: keep-alive
+      x-powered-by: PHP/5.3.15
+      set-cookie: https=on;Path=/;Max-Age=3600;httponly;SameSite=Lax
+    body:
+      encoding: UTF-8
+      file: no
+      string: '{"sequencinglabs":{"Biodiversity Institute of Ontario":18,"Genoscope,
+        Centre National de Sequencage":5,"Smithsonian Tropical Research Institute":7,"Royal
+        Ontario Museum":2,"Universidade Federal do Rio de Janeiro":2,"Macrogen, Korea":2,"Mined
+        from GenBank, NCBI":26,"Universidade Federal de Minas Gerais":1,"Centre for
+        Biodiversity Genomics":1,"Universidad Nacional de Colombia":2}}'
+  recorded_at: 2023-02-20 16:52:41 GMT
+  recorded_with: vcr/1.0.2, webmockr/0.8.0
+- request:
+    method: get
+    uri: https://v4.boldsystems.org/index.php/API_Tax/TaxonData?taxId=88899&dataTypes=basic%2Cgeo&includeTree=true
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3.3 crul/1.3
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx
+      date: Mon, 20 Feb 2023 16:52:39 GMT
+      content-type: text/html; charset=utf-8
+      content-length: '6288'
+      connection: keep-alive
+      x-powered-by: PHP/5.3.15
+      set-cookie: https=on;Path=/;Max-Age=3600;httponly;SameSite=Lax
+    body:
+      encoding: UTF-8
+      file: no
+      string: '{"88899":{"taxid":88899,"taxon":"Momotus","tax_rank":"genus","tax_division":"Animalia","parentid":88898,"parentname":"Momotidae","country":{"Panama":10,"Peru":17,"Ecuador":2,"Bolivia":6,"Guatemala":1,"Mexico":2,"Brazil":4,"Colombia":4},"sitemap":"http:\/\/www.boldsystems.org\/index.php\/TaxBrowser_Maps_CollectionSites?taxid=88899"},"88898":{"taxid":88898,"taxon":"Momotidae","tax_rank":"family","tax_division":"Animalia","parentid":339,"parentname":"Coraciiformes","country":{"Brazil":5,"Argentina":9,"Panama":28,"Peru":29,"Colombia":5,"Ecuador":2,"Bolivia":6,"Guatemala":4,"Mexico":3,"El
+        Salvador":8},"sitemap":"http:\/\/www.boldsystems.org\/index.php\/TaxBrowser_Maps_CollectionSites?taxid=88898"},"339":{"taxid":339,"taxon":"Coraciiformes","tax_rank":"order","tax_division":"Animalia","parentid":51,"parentname":"Aves","country":{"Pakistan":7,"Panama":47,"Brazil":20,"Peru":61,"Ecuador":5,"Guyana":1,"Costa
+        Rica":1,"Nicaragua":5,"Argentina":33,"El Salvador":14,"Mexico":9,"Uruguay":1,"Bolivia":9,"Colombia":6,"Guatemala":6,"Austria":7,"Germany":20,"Japan":45,"Philippines":32,"Russia":14,"Kazakhstan":3,"Mongolia":1,"Sweden":3,"South
+        Korea":3,"Norway":1,"Afghanistan":47,"Netherlands":6,"Malaysia":4,"Indonesia":26,"Gabon":31,"Myanmar":6,"Australia":37,"New
+        Zealand":7,"French Polynesia":1,"India":2,"Papua New Guinea":69,"Cape Verde":1,"South
+        Africa":30,"Sao Tome and Principe":9,"Cameroon":2,"Canada":12,"United States":1,"Kuwait":20,"Nigeria":1},"sitemap":"http:\/\/www.boldsystems.org\/index.php\/TaxBrowser_Maps_CollectionSites?taxid=339"},"51":{"taxid":51,"taxon":"Aves","tax_rank":"class","tax_division":"Animalia","parentid":18,"parentname":"Chordata","taxonrep":"Aves","country":{"United
+        States":2192,"Argentina":4228,"Brazil":2829,"Canada":7284,"Japan":1952,"New
+        Zealand":644,"Austria":523,"Germany":1119,"Australia":548,"South Africa":842,"Peru":5518,"Sweden":450,"Uruguay":369,"Guyana":274,"Madagascar":14,"Sao
+        Tome and Principe":166,"Panama":3477,"Afghanistan":792,"South Korea":305,"Indonesia":1043,"El
+        Salvador":213,"Kuwait":219,"Russia":1882,"Mexico":1801,"India":189,"Pakistan":193,"Suriname":25,"Netherlands":449,"Nigeria":31,"Portugal":224,"Norway":751,"Kenya":165,"Costa
+        Rica":159,"Ecuador":625,"Bolivia":721,"Colombia":1258,"Slovakia":38,"Italy":48,"Morocco":65,"Spain":535,"China":442,"Gabon":295,"Myanmar":1046,"Malaysia":397,"Philippines":455,"Greece":41,"Cameroon":145,"Tanzania":4,"Kazakhstan":97,"Mongolia":237,"Malta":1,"Iceland":39,"Antigua
+        and Barbuda":24,"Democratic Republic of the Congo":6,"Namibia":5,"French Guiana":4,"Belgium":11,"France":27,"Chile":48,"North
+        Pacific Ocean":26,"Saint Helena Ascension and Tristan da Cunha":2,"United
+        Kingdom":7,"Ethiopia":1,"Finland":12,"Honduras":3,"Vietnam":26,"Denmark":20,"Papua
+        New Guinea":689,"Nicaragua":21,"Guatemala":85,"Saint Vincent and the Grenadines":20,"Cape
+        Verde":22,"Qatar":2,"Paraguay":2,"Iran":6,"Puerto Rico":4,"Saint Lucia":1,"Dominican
+        Republic":3,"Cayman Islands":4,"Venezuela":10,"Kyrgyzstan":2,"Taiwan":6,"Malawi":3,"Solomon
+        Islands":4,"Turkey":15,"Equatorial Guinea":6,"Ghana":1,"Laos":4,"Armenia":19,"Thailand":4,"Cuba":2,"Haiti":1,"Cyprus":4,"French
+        Polynesia":5,"Zambia":1,"United Arab Emirates":1},"sitemap":"http:\/\/www.boldsystems.org\/index.php\/TaxBrowser_Maps_CollectionSites?taxid=51"},"18":{"taxid":18,"taxon":"Chordata","tax_rank":"phylum","tax_division":"Animalia","parentid":1,"taxonrep":"Chordata","country":{"Canada":38030,"United
+        States":37242,"Mexico":21854,"Australia":18061,"Panama":10278,"Argentina":15246,"Brazil":41428,"Japan":2596,"New
+        Zealand":941,"Austria":1823,"Germany":2391,"South Africa":9432,"Peru":14185,"Sweden":475,"Uruguay":497,"Guyana":7975,"Madagascar":4811,"Sao
+        Tome and Principe":176,"Afghanistan":814,"South Korea":1035,"Indonesia":21073,"El
+        Salvador":548,"Kuwait":224,"Russia":5780,"India":12614,"Pakistan":1654,"Suriname":4456,"Netherlands":1074,"Nigeria":616,"Portugal":1574,"Norway":1250,"Kenya":2785,"Costa
+        Rica":3781,"Ecuador":4552,"Bolivia":2427,"Colombia":7486,"Slovakia":306,"Italy":448,"Morocco":95,"Spain":1253,"China":13617,"Gabon":922,"Myanmar":3811,"Malaysia":5947,"Philippines":7162,"Greece":213,"Cameroon":147,"Tanzania":521,"Kazakhstan":473,"Mongolia":1195,"Malta":1,"Iceland":39,"Antigua
+        and Barbuda":30,"Democratic Republic of the Congo":667,"Namibia":234,"French
+        Guiana":1198,"Belgium":52,"France":3895,"Chile":200,"North Pacific Ocean":26,"Saint
+        Helena Ascension and Tristan da Cunha":146,"United Kingdom":630,"Ethiopia":323,"Finland":39,"Honduras":1480,"Vietnam":5478,"Denmark":32,"Papua
+        New Guinea":1663,"Nicaragua":563,"Guatemala":1339,"Saint Vincent and the Grenadines":23,"Cape
+        Verde":23,"Qatar":11,"Paraguay":253,"Iran":1142,"Puerto Rico":703,"Saint Lucia":10,"Dominican
+        Republic":40,"Cayman Islands":10,"Venezuela":1457,"Kyrgyzstan":31,"Taiwan":1986,"Malawi":5,"Solomon
+        Islands":170,"Turkey":1699,"Equatorial Guinea":6,"Ghana":86,"Laos":967,"Armenia":29,"Thailand":2025,"Cuba":394,"Haiti":7,"Cyprus":8,"French
+        Polynesia":3073,"Zambia":214,"United Arab Emirates":40,"Mozambique":217,"Georgia":512,"Israel":309,"Ireland":118,"Egypt":98,"Angola":273,"Saudi
+        Arabia":307,"Switzerland":433,"Bulgaria":172,"Uzbekistan":802,"Turkmenistan":31,"Ukraine":159,"Cambodia":1395,"Sierra
+        Leone":214,"Romania":9,"Senegal":13,"South Sudan":24,"Republic of the Congo":393,"Moldova":5,"Azerbaijan":13,"Tajikistan":28,"Zimbabwe":6,"Sri
+        Lanka":240,"Liberia":3,"Nepal":21,"Belarus":33,"Bangladesh":459,"Trinidad
+        and Tobago":10,"Cote d''Ivoire":125,"Tunisia":6,"Jordan":26,"North Korea":1,"Syria":14,"Libya":4,"Algeria":16,"Hungary":9,"Palau":123,"Croatia":173,"Bosnia
+        and Herzegovina":6,"Comoros":67,"Cook Islands":29,"British Virgin Islands":32,"Iraq":4,"Guinea-Bissau":135,"Oman":11,"Belize":293,"Guadeloupe":1,"Saint
+        Kitts and Nevis":4,"Burkina Faso":2,"Bahamas":15,"Vanuatu":538,"Antarctica":64,"Southern
+        Ocean":183,"New Caledonia":1038,"Fiji":70,"Indian Ocean":122,"Yemen":89,"Seychelles":620,"Mauritius":25,"United
+        States Virgin Islands":531,"Tonga":137,"Micronesia":191,"Northern Mariana
+        Islands":59,"Botswana":91,"Guinea":157,"Pacific Ocean":172,"Bermuda":2,"Brunei":2,"Central
+        African Republic":9,"Lithuania":1,"Estonia":2,"Swaziland":2},"sitemap":"http:\/\/www.boldsystems.org\/index.php\/TaxBrowser_Maps_CollectionSites?taxid=18"}}'
+  recorded_at: 2023-02-20 16:52:41 GMT
+  recorded_with: vcr/1.0.2, webmockr/0.8.0
+- request:
+    method: get
+    uri: https://v4.boldsystems.org/index.php/API_Tax/TaxonData?taxId=660837&dataTypes=stats&includeTree=false
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3.3 crul/1.3
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx
+      date: Mon, 20 Feb 2023 16:52:39 GMT
+      content-type: text/html; charset=utf-8
+      content-length: '157'
+      connection: keep-alive
+      x-powered-by: PHP/5.3.15
+      set-cookie: https=on;Path=/;Max-Age=3600;httponly;SameSite=Lax
+    body:
+      encoding: UTF-8
+      file: no
+      string: '{"stats":{"publicrecords":1,"publicbins":0,"publicspecies":1,"specimenrecords":3,"sequencedspecimens":4,"barcodespecimens":0,"species":1,"barcodespecies":1}}'
+  recorded_at: 2023-02-20 16:52:41 GMT
+  recorded_with: vcr/1.0.2, webmockr/0.8.0
+- request:
+    method: get
+    uri: https://v4.boldsystems.org/index.php/API_Tax/TaxonData?taxId=660837&dataTypes=basic%2Cstats&includeTree=false
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3.3 crul/1.3
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx
+      date: Mon, 20 Feb 2023 16:52:39 GMT
+      content-type: text/html; charset=utf-8
+      content-length: '290'
+      connection: keep-alive
+      x-powered-by: PHP/5.3.15
+      set-cookie: https=on;Path=/;Max-Age=3600;httponly;SameSite=Lax
+    body:
+      encoding: UTF-8
+      file: no
+      string: '{"taxid":660837,"taxon":"Dalbergia lemurica","tax_rank":"species","tax_division":"Plantae","parentid":194754,"parentname":"Dalbergia","stats":{"publicrecords":1,"publicbins":0,"publicspecies":1,"specimenrecords":3,"sequencedspecimens":4,"barcodespecimens":0,"species":1,"barcodespecies":1}}'
+  recorded_at: 2023-02-20 16:52:41 GMT
+  recorded_with: vcr/1.0.2, webmockr/0.8.0

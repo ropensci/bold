@@ -9,7 +9,7 @@ pipe_params <- function(..., paramnames = ...names(), params = list(...)) {
          toStr(paramnames, join_word = "or", quote = TRUE), call. = FALSE)
   wt <- !vapply(params, is.character, logical(1))
   if (any(wt))
-    stop(paste(names(wt)[wt], collapse = ", "), " must be of class character.", call. = FALSE)
+    stop(toStr(names(wt)[wt], quote = TRUE), " must be of class character.", call. = FALSE)
   vapply(params, paste, collapse = "|", character(1))
 }
 b_GET <- function(url, args, ...) {
@@ -84,39 +84,14 @@ assert <- function(x,
                    checkLength = FALSE) {
   msgLen <- NULL
   msgClass <- NULL
-  if (!is.list(x)) {
-    if (missing(name))
-      name <- deparse(substitute(x))
-    if (checkLength &&
-        !length(x))
-      msgLen <- paste0("\n ", name, " must have length > 0")
-    else {
-      msgClass <- check_class(x, what, name)
-      if (!all(nzchar(msgClass))) msgClass <- NULL
-    }
-  } else {
-    if (is.null(name)) {
-      name <- names(x)
-      noNm <- which(!nzchar(name))
-      if (length(noNm))
-        name[noNm] <- as.character(substitute(x)[noNm + 1])
-    }
-    if (checkLength) {
-      noLen <- which(lengths(x) == 0)
-      msgLen <-
-        paste0("\n  ", toStr(name[noLen]), " must have length > 0")
-      x <- x[-noLen]
-      name <- name[-noLen]
-      what <- what[-noLen]
-    }
-    msgClass <- t(mapply(check_class, x, what, name))
-    if (length(msgClass)) {
-      if (nrow(msgClass) > 1) {
-        msgClass <- data.table::as.data.table(msgClass)
-        msgClass <- msgClass[which(rowSums(msgClass == "") == 0),
-                             toStr(name), by = "what"]
-      }
-    }
+  if (missing(name))
+    name <- deparse(substitute(x))
+  if (checkLength && !length(x)) {
+    msgLen <- paste0("\n ", name, " must have length > 0")
+  }
+  else {
+    msgClass <- check_class(x, what, name)
+    if (all(!nzchar(msgClass))) msgClass <- NULL
   }
   if (length(msgClass)) {
     msgClass <- paste0("'", msgClass[["name"]], "' must be of class ",
@@ -126,15 +101,4 @@ assert <- function(x,
   if (length(msg)) {
     stop(msg, call. = FALSE)
   }
-}
-assert_multi <- function(..., what = "character", params = list(...)) {
-  if (is.null(names(params))) {
-    names(params) <- paste0("param", seq_along(params))
-  } else if (any(names(params) == "")) {
-    names(params)[names(params) == ""] <-  paste0("param", seq_along(params)[names(params) == ""])
-  }
-  params <- bc(params)
-  wt <- !vapply(params, inherits, logical(1), what = what)
-  if (any(wt))
-    stop(toStr(names(wt)[wt], quote = TRUE), " must be of class character.")
 }

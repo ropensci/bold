@@ -58,7 +58,7 @@ bold_tax_id <- function(id, dataTypes = 'basic', includeTree = FALSE,
   assert(includeTree, "logical")
   assert(id, c("character", "numeric", "integer"))
   # corrects for the json typo in case the option is taken from a previous query
-  if (grep("depositories", dataTypes)) dataTypes <- gsub("depositories", "depository", dataTypes)
+  if (grepl("depositories", dataTypes)) dataTypes <- gsub("depositories", "depository", dataTypes)
   #-- prep query params
   params <- list(
     dataTypes = paste(dataTypes, collapse = ","),
@@ -98,10 +98,10 @@ bold_tax_id <- function(id, dataTypes = 'basic', includeTree = FALSE,
     if (!is.null(names(out))) {
       df <- data.frame(out, stringsAsFactors = FALSE)
     } else {
-      df <- do.call(rbind.fill, lapply(out, data.frame, stringsAsFactors = FALSE))
+      df <- setrbind(lapply(out, data.frame, stringsAsFactors = FALSE))
     }
     row.names(df) <- NULL
-    if ("parentid" %in% names(df)) df <- sort_df(df, "parentid")
+    if ("parentid" %in% names(df)) df <- df[order(df[,"parentid"]),]
     row.names(df) <- NULL
     data.frame(input = y, df, stringsAsFactors = FALSE)
   }

@@ -1,6 +1,5 @@
 #' Add taxonomic parent names to a data.frame
 #'
-#' @export
 #' @param x (data.frame/list) list of data.frames - the output from a call to
 #' [bold_identify()]. or a single data.frame from the output from same.
 #' required.
@@ -88,6 +87,7 @@ NULL
 #' @section \code{bold_identify_parents}:
 #' For \code{bold_identify_parents}, use \code{\link{bold_identify_taxonomy}}.
 #'
+#' @export
 bold_identify_parents <- function(x, wide = FALSE, taxid = NULL,
                                   taxon = NULL, tax_rank = NULL, tax_division = NULL, parentid = NULL,
                                   parentname = NULL, taxonrep = NULL, specimenrecords = NULL, ...) {
@@ -117,18 +117,18 @@ bold_identify_parents.list <- function(x, wide = FALSE, taxid = NULL,
   # since this function takes time. That way they can cancel if needed.
   warning("\n'bold_identify_parents' is deprecated.",
           "\nUse 'bold_identify_taxonomy' instead.",
-          "It's more accurate as it uses the ID stored into 'x' to find the record's taxonomy.",
+          " It's more accurate as it uses the ID stored into 'x' to find the record's taxonomy.",
           "\nSee help(\"Deprecated\")", call. = FALSE, immediate. = TRUE)
 
   assert(wide, "logical")
-  assert_multi(taxid = taxid,
-               taxon = taxon,
-               tax_rank = tax_rank,
-               tax_division = tax_division,
-               parentid = parentid,
-               parentname = parentname,
-               taxonrep = taxonrep,
-               specimenrecords = specimenrecords)
+  if (!is.null(taxid)) assert(taxid, "character")
+  if (!is.null(taxon)) assert(taxon, "character")
+  if (!is.null(tax_rank)) assert(tax_rank, "character")
+  if (!is.null(tax_division)) assert(tax_division, "character")
+  if (!is.null(parentid)) assert(parentid, "character")
+  if (!is.null(parentname)) assert(parentname, "character")
+  if (!is.null(taxonrep)) assert(taxonrep, "character")
+  if (!is.null(specimenrecords)) assert(specimenrecords, "character")
   # get unique set of names
   uniqnms <-
     unique(c(lapply(x, function(z) z$taxonomicidentification), recursive = TRUE, use.names = FALSE))

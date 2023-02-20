@@ -1,12 +1,12 @@
 http_interactions:
 - request:
     method: get
-    uri: https://v4.boldsystems.org/index.php/API_Public/stats?taxon=Osmia&dataType=drill_down&format=json
+    uri: https://v4.boldsystems.org/index.php/API_Public/stats?taxon=Coelioxys&dataType=drill_down&format=json
     body:
       encoding: ''
       string: ''
     headers:
-      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      User-Agent: libcurl/7.64.1 r-curl/4.3.3 crul/1.3
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
   response:
@@ -15,19 +15,77 @@ http_interactions:
       message: OK
       explanation: Request fulfilled, document follows
     headers:
-      status: 'HTTP/2 200 '
+      status: HTTP/1.1 200 OK
       server: nginx
-      date: Mon, 20 Apr 2020 16:00:34 GMT
+      date: Mon, 20 Feb 2023 16:49:46 GMT
       content-type: application/x-download
-      content-length: '802'
+      content-length: '2476'
+      connection: keep-alive
       x-powered-by: PHP/5.3.15
       content-disposition: attachment; filename=bold_data.json
-      x-frame-options: SAMEORIGIN
-      x-content-type-options: nosniff
-      x-xss-protection: 1; mode=block
+      set-cookie: https=on;Path=/;Max-Age=3600;httponly;SameSite=Lax
     body:
       encoding: UTF-8
       file: no
-      string: '{"total_records":1404,"records_with_species_name":1362,"bins":{"count":156,"drill_down":{"entity":[{"name":null,"records":null},{"name":null,"records":null}]}},"countries":{"count":22,"drill_down":{"entity":[{"name":null,"records":null},{"name":null,"records":null}]}},"depositories":{"count":22,"drill_down":{"entity":[{"name":null,"records":null},{"name":null,"records":null}]}},"order":{"count":1,"drill_down":{"entity":[{"name":null,"records":null},{"name":null,"records":null}]}},"family":{"count":1,"drill_down":{"entity":[{"name":null,"records":null},{"name":null,"records":null}]}},"genus":{"count":1,"drill_down":{"entity":[{"name":null,"records":null},{"name":null,"records":null}]}},"species":{"count":157,"drill_down":{"entity":[{"name":null,"records":null},{"name":null,"records":null}]}}}'
-  recorded_at: 2020-04-20 16:00:34 GMT
-  recorded_with: vcr/0.5.4, webmockr/0.6.2
+      string: '{"total_records":421,"records_with_species_name":392,"bins":{"count":76,"drill_down":{"entity":[{"name":"BOLD:AAJ0601","records":25},{"name":"BOLD:AAC1241","records":23},{"name":"BOLD:AAJ6969","records":20},{"name":"BOLD:AAV8048","records":19},{"name":"BOLD:AAF4653","records":18},{"name":"BOLD:AAZ1454","records":18},{"name":"BOLD:AAB8471","records":15},{"name":"BOLD:AAY8053","records":13},{"name":"BOLD:AAD1401","records":12},{"name":"BOLD:AAS0189","records":12},{"name":"Others","records":158}]}},"countries":{"count":29,"drill_down":{"entity":[{"name":"Germany","records":110},{"name":"Canada","records":68},{"name":"Nigeria","records":48},{"name":"United
+        States","records":44},{"name":"Austria","records":20},{"name":"Costa Rica","records":20},{"name":"Unspecified*","records":20},{"name":"Australia","records":17},{"name":"Finland","records":14},{"name":"South
+        Africa","records":7},{"name":"Others","records":53}]}},"depositories":{"count":30,"drill_down":{"entity":[{"name":"SNSB,
+        Zoologische Staatssammlung Muenchen","records":125},{"name":"Mined from GenBank,
+        NCBI","records":77},{"name":"York University, Packer Collection","records":69},{"name":"Centre
+        for Biodiversity Genomics","records":65},{"name":"Finnish Museum of Natural
+        History, Zoological Museum","records":14},{"name":"University of Guelph","records":9},{"name":"South
+        Australian Museum","records":9},{"name":"Naturhistorisches Museum Wien","records":9},{"name":"Chinese
+        Academy of Sciences, Kunming Institute of Zoology","records":7},{"name":"Museo
+        Argentino de Ciencias Naturales, Bernardino Rivadavia","records":4},{"name":"Others","records":33}]}},"order":{"count":1,"drill_down":{"entity":[{"name":"Hymenoptera","records":421},{"name":"Others","records":0}]}},"family":{"count":1,"drill_down":{"entity":[{"name":"Megachilidae","records":421},{"name":"Others","records":0}]}},"genus":{"count":1,"drill_down":{"entity":[{"name":"Coelioxys","records":421},{"name":"Others","records":0}]}},"species":{"count":61,"drill_down":{"entity":[{"name":"Coelioxys
+        sp. HMG-2011","records":48},{"name":"Unspecified*","records":29},{"name":"Coelioxys
+        afra","records":24},{"name":"Coelioxys conica","records":23},{"name":"Coelioxys
+        rufitarsis","records":23},{"name":"Coelioxys conoidea","records":22},{"name":"Coelioxys
+        mandibularis","records":21},{"name":"Coelioxys aurolimbata","records":20},{"name":"Coelioxys
+        zapoteca","records":18},{"name":"Coelioxys elongata","records":17},{"name":"Others","records":176}]}}}'
+  recorded_at: 2023-02-20 16:49:48 GMT
+  recorded_with: vcr/1.0.2, webmockr/0.8.0
+- request:
+    method: get
+    uri: https://v4.boldsystems.org/index.php/API_Public/stats?taxon=Coelioxys%7COsmia&dataType=drill_down&format=json
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3.3 crul/1.3
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx
+      date: Mon, 20 Feb 2023 16:49:47 GMT
+      content-type: application/x-download
+      content-length: '2497'
+      connection: keep-alive
+      x-powered-by: PHP/5.3.15
+      content-disposition: attachment; filename=bold_data.json
+      set-cookie: https=on;Path=/;Max-Age=3600;httponly;SameSite=Lax
+    body:
+      encoding: UTF-8
+      file: no
+      string: '{"total_records":2208,"records_with_species_name":2055,"bins":{"count":253,"drill_down":{"entity":[{"name":"BOLD:AAE5495","records":272},{"name":"BOLD:AAA4494","records":97},{"name":"BOLD:AAD6282","records":86},{"name":"BOLD:AAA7671","records":50},{"name":"BOLD:AAB1785","records":45},{"name":"BOLD:AAC0883","records":41},{"name":"BOLD:AAD0302","records":36},{"name":"BOLD:ADW6486","records":35},{"name":"BOLD:AAD0313","records":30},{"name":"BOLD:AAB7164","records":30},{"name":"Others","records":1219}]}},"countries":{"count":39,"drill_down":{"entity":[{"name":"United
+        States","records":519},{"name":"Canada","records":489},{"name":"Unspecified*","records":424},{"name":"Germany","records":286},{"name":"South
+        Korea","records":89},{"name":"Austria","records":57},{"name":"Italy","records":54},{"name":"Nigeria","records":48},{"name":"France","records":42},{"name":"Finland","records":37},{"name":"Others","records":163}]}},"depositories":{"count":45,"drill_down":{"entity":[{"name":"Mined
+        from GenBank, NCBI","records":689},{"name":"Centre for Biodiversity Genomics","records":411},{"name":"SNSB,
+        Zoologische Staatssammlung Muenchen","records":359},{"name":"York University,
+        Packer Collection","records":348},{"name":"Utah State University, Logan Bee
+        Lab","records":67},{"name":"University of Guelph","records":46},{"name":"Finnish
+        Museum of Natural History, Zoological Museum","records":38},{"name":"University
+        of Manitoba, Wallis Roughley Museum of Entomology","records":28},{"name":"Naturhistorisches
+        Museum Wien","records":26},{"name":"University of Arizona, Insect Collection","records":14},{"name":"Others","records":182}]}},"order":{"count":1,"drill_down":{"entity":[{"name":"Hymenoptera","records":2208},{"name":"Others","records":0}]}},"family":{"count":1,"drill_down":{"entity":[{"name":"Megachilidae","records":2208},{"name":"Others","records":0}]}},"genus":{"count":2,"drill_down":{"entity":[{"name":"Osmia","records":1787},{"name":"Coelioxys","records":421},{"name":"Others","records":0}]}},"species":{"count":230,"drill_down":{"entity":[{"name":"Osmia
+        lignaria","records":310},{"name":"Unspecified*","records":153},{"name":"Osmia
+        cornifrons","records":99},{"name":"Osmia bicornis","records":67},{"name":"Osmia
+        californica","records":52},{"name":"Coelioxys sp. HMG-2011","records":48},{"name":"Osmia
+        simillima","records":45},{"name":"Osmia conjuncta","records":43},{"name":"Osmia
+        caerulescens","records":37},{"name":"Osmia trevoris","records":34},{"name":"Others","records":1320}]}}}'
+  recorded_at: 2023-02-20 16:49:48 GMT
+  recorded_with: vcr/1.0.2, webmockr/0.8.0
