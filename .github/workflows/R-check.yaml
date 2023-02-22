@@ -16,7 +16,7 @@ jobs:
         # - { os: windows-latest, r: 'devel'} # comment out for now, R 4.2 problems on GH Actions
         - { os: macOS-latest, r: 'release'}
         # - { os: macOS-latest, r: 'devel'} # comment out for now, R 4.2 problems on GH Actions
-        - { os: ubuntu-16.04, r: 'release', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest"}
+        - { os: ubuntu-16.04, r: 'release', rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
 
     env:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
