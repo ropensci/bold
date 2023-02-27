@@ -12,12 +12,13 @@
 #' @param format (character) One of xml or tsv (default). tsv format gives
 #' back a data.frame object. xml gives back parsed xml as a list.
 #' @param sepfasta (logical) If `TRUE`, the fasta data is separated into
-#' a list with names matching the processid's from the data frame.
+#' a list with names matching the processid's from the data frame. Note: This
+#' means multiple sequences can have the same name.
 #' Default: `FALSE`
 #'
 #' @return Either a data.frame, parsed xml, a http response object, or a list
-#' with length two (a data.frame w/o nucleotide data, and a list with
-#' nucleotide data)
+#' with length two (data: a data.frame w/o nucleotide column, and fasta: a list
+#' of nucleotides with the processid as name)
 #'
 #' @examples \dontrun{
 #' bold_seqspec(taxon='Osmia')
