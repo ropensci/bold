@@ -1,8 +1,7 @@
 #' Add taxonomic parent names to a data.frame
 #'
-#' @export
 #' @param x (data.frame/list) list of data.frames - the output from a call to
-#' [bold_identify()]. or a single data.frame from the output from same.
+#' \code{\link{bold_identify}}. or a single data.frame from the output from same.
 #' required.
 #' @param wide (logical) output in long or wide format. See Details.
 #' Default: `FALSE`
@@ -20,12 +19,23 @@
 #' below.
 #' @param specimenrecords (character) A specimenrecords name. Optional.
 #' See `Filtering` below.
-#' @param ... Further args passed on to [crul::verb-GET], main
+#' @param ... Further args passed on to \code{\link[crul]{verb-GET}}, main
 #' purpose being curl debugging
 #'
-#' @details This function gets unique set of taxonomic names from the input
-#' data.frame, then queries [bold_tax_name()] to get the
-#' taxonomic ID, passing it to [bold_tax_id()] to get the parent
+#'
+#' @name bold_identify_parents-deprecated
+#' @seealso \code{\link{bold-deprecated}}
+#' @keywords internal
+NULL
+#' @rdname bold-deprecated
+#' @section \code{bold_identify_parents}:
+#' For \code{bold_identify_parents}, use \code{\link{bold_identify_taxonomy}}.
+#'
+#' @details DEPRECATED. See \code{\link{bold_identify_taxonomy}}. It's faster and gets the accurate  taxonomy directly from the record of the sequence.
+#'
+#' This function gets unique set of taxonomic names from the input
+#' data.frame, then queries \code{\link{bold_tax_name}} to get the
+#' taxonomic ID, passing it to \code{\link{bold_tax_id}} to get the parent
 #' names, then attaches those to the input data.
 #'
 #' Records in the input data that do not have matches for parent names
@@ -36,16 +46,16 @@
 #' `parentid`, `parentname`,`taxonrep`, and `specimenrecords` are not used
 #' in the search sent to BOLD, but are used in filtering the data down
 #' to a subset that is closer to the target you want. For all these
-#' parameters, you can use regex strings since we use [grep()] internally
-#' to match. Filtering narrows down to the set that matches your query,
-#' and removes the rest. The data.frame that we filter on with these
-#' parameters internally is the result of a call to the [bold_tax_name()]
-#' function.
+#' parameters, you can use regex strings since we use \code{\link[base]{grep}}
+#' internally to match. Filtering narrows down to the set that matches your
+#' query, and removes the rest. The data.frame that we filter on with these
+#' parameters internally is the result of a call to the
+#' \code{\link{bold_tax_name}} function.
 #'
 #' @section wide vs long format:
 #' When `wide = FALSE` you get many rows for each record. Essentially,
 #' we `cbind` the taxonomic classification onto the one row from the
-#' result of [bold_identify()], giving as many rows as there are
+#' result of \code{\link{bold_identify}}, giving as many rows as there are
 #' taxa in the taxonomic classification.
 #'
 #' When `wide = TRUE` you get one row for each record - thus the
@@ -78,43 +88,57 @@
 #' out <- bold_identify(vapply(x, "[[", "", "sequence")[1:20])
 #' res <- bold_identify_parents(out)
 #' }
+#' @export
 bold_identify_parents <- function(x, wide = FALSE, taxid = NULL,
-  taxon = NULL, tax_rank = NULL, tax_division = NULL, parentid = NULL,
-  parentname = NULL, taxonrep = NULL, specimenrecords = NULL, ...) {
+                                  taxon = NULL, tax_rank = NULL, tax_division = NULL, parentid = NULL,
+                                  parentname = NULL, taxonrep = NULL, specimenrecords = NULL, ...) {
   UseMethod("bold_identify_parents")
 }
 
 #' @export
 bold_identify_parents.default <- function(x, wide = FALSE, taxid = NULL,
-  taxon = NULL, tax_rank = NULL, tax_division = NULL, parentid = NULL,
-  parentname = NULL, taxonrep = NULL, specimenrecords = NULL, ...) {
+                                          taxon = NULL, tax_rank = NULL, tax_division = NULL, parentid = NULL,
+                                          parentname = NULL, taxonrep = NULL, specimenrecords = NULL, ...) {
   stop("no 'bold_identify_parents' method for ", class(x)[1L], call. = FALSE)
 }
 
 #' @export
 bold_identify_parents.data.frame <- function(x, wide = FALSE, taxid = NULL,
-  taxon = NULL, tax_rank = NULL, tax_division = NULL, parentid = NULL,
-  parentname = NULL, taxonrep = NULL, specimenrecords = NULL, ...) {
+                                             taxon = NULL, tax_rank = NULL, tax_division = NULL, parentid = NULL,
+                                             parentname = NULL, taxonrep = NULL, specimenrecords = NULL, ...) {
   bold_identify_parents(list(x), wide, taxid, taxon, tax_rank,
-    tax_division, parentid, parentname, taxonrep, specimenrecords)
+                        tax_division, parentid, parentname, taxonrep, specimenrecords)
 }
 
 #' @export
 bold_identify_parents.list <- function(x, wide = FALSE, taxid = NULL,
-  taxon = NULL, tax_rank = NULL, tax_division = NULL, parentid = NULL,
-  parentname = NULL, taxonrep = NULL, specimenrecords = NULL, ...) {
+                                       taxon = NULL, tax_rank = NULL, tax_division = NULL, parentid = NULL,
+                                       parentname = NULL, taxonrep = NULL, specimenrecords = NULL, ...) {
+  # not using deprecated() because I want users to see this *before* it goes on,
+  # since this function takes time. That way they can cancel if needed.
+  warning("\n'bold_identify_parents' is deprecated.",
+          "\nUse 'bold_identify_taxonomy' instead.",
+          " It's more accurate as it uses the ID stored into 'x' to find the record's taxonomy.",
+          "\nSee help(\"Deprecated\")", call. = FALSE, immediate. = TRUE)
 
   assert(wide, "logical")
-
+  if (!is.null(taxid)) assert(taxid, "character")
+  if (!is.null(taxon)) assert(taxon, "character")
+  if (!is.null(tax_rank)) assert(tax_rank, "character")
+  if (!is.null(tax_division)) assert(tax_division, "character")
+  if (!is.null(parentid)) assert(parentid, "character")
+  if (!is.null(parentname)) assert(parentname, "character")
+  if (!is.null(taxonrep)) assert(taxonrep, "character")
+  if (!is.null(specimenrecords)) assert(specimenrecords, "character")
   # get unique set of names
   uniqnms <-
-    unique(unname(unlist(lapply(x, function(z) z$taxonomicidentification))))
+    unique(c(lapply(x, function(z) z$taxonomicidentification), recursive = TRUE, use.names = FALSE))
   if (is.null(uniqnms)) {
     stop("no fields 'taxonomicidentification' found in input", call. = FALSE)
   }
 
   # get parent names via bold_tax_name and bold_tax_id
-  out <- stats::setNames(lapply(uniqnms, function(w) {
+  out <- lapply(`names<-`(uniqnms, uniqnms), function(w) {
     tmp <- bold_tax_name(w, ...)
     # if length(tmp) > 1, user decides which one
     if (NROW(tmp) > 1) {
@@ -134,7 +158,7 @@ bold_identify_parents.list <- function(x, wide = FALSE, taxid = NULL,
     } else {
       NULL
     }
-  }), uniqnms)
+  })
   # remove length zero elements
   out <- bc(out)
 
@@ -153,27 +177,28 @@ bold_identify_parents.list <- function(x, wide = FALSE, taxid = NULL,
     }
     zsplit <- split(z, z$ID)
     setrbind(
-      bc(lapply(zsplit, function(w) {
+      lapply(zsplit, function(w) {
         tmp <- out[names(out) %in% w$taxonomicidentification]
-        if (!length(tmp)) return(w)
-        suppressWarnings(cbind(w, tmp[[1]]))
-      }))
+        if (length(tmp)) {
+          suppressWarnings(cbind(w, tmp[[1]]))
+        } else {
+          w
+        }
+      })
     )
   })
 }
 
 # function to help filter get_*() functions for a rank name or rank itself ---
 filt <- function(df, col, z) {
-  assert_param(z, deparse(substitute(z)), "character")
-  if (NROW(df) == 0) {
+  if (NROW(df) == 0 || is.null(z)) {
     df
   } else {
-    if (is.null(z)) return(df)
-    mtch <- grep(sprintf("%s", tolower(z)), tolower(df[, col]))
-    if (length(mtch) != 0) {
+    mtch <- grep(tolower(z), tolower(df[, col]))
+    if (length(mtch)) {
       df[mtch, ]
     } else {
-      data.frame(NULL)
+      NULL
     }
   }
 }

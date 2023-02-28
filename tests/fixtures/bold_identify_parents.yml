@@ -1,12 +1,12 @@
 http_interactions:
 - request:
     method: get
-    uri: https://v4.boldsystems.org/index.php/API_Tax/TaxonSearch?taxName=Bombus%20amurensis
+    uri: https://v4.boldsystems.org/index.php/API_Tax/TaxonSearch?taxName=Bombus%20amurensis&fuzzy=false
     body:
       encoding: ''
       string: ''
     headers:
-      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      User-Agent: libcurl/7.64.1 r-curl/4.3.3 crul/1.3
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
   response:
@@ -15,22 +15,21 @@ http_interactions:
       message: OK
       explanation: Request fulfilled, document follows
     headers:
-      status: 'HTTP/2 200 '
+      status: HTTP/1.1 200 OK
       server: nginx
-      date: Mon, 20 Apr 2020 15:49:09 GMT
+      date: Mon, 20 Feb 2023 17:37:38 GMT
       content-type: text/html; charset=utf-8
       content-length: '229'
+      connection: keep-alive
       x-powered-by: PHP/5.3.15
-      x-frame-options: SAMEORIGIN
-      x-content-type-options: nosniff
-      x-xss-protection: 1; mode=block
+      set-cookie: https=on;Path=/;Max-Age=3600;httponly;SameSite=Lax
     body:
       encoding: UTF-8
       file: no
       string: '{"top_matched_names":[{"taxid":160018,"taxon":"Bombus amurensis","tax_rank":"species","tax_division":"Animalia","parentid":2087,"parentname":"Bombus","taxonrep":"Bombus
         amurensis","specimenrecords":"13"}],"total_matched_names":1}'
-  recorded_at: 2020-04-20 15:49:17 GMT
-  recorded_with: vcr/0.5.4, webmockr/0.6.2
+  recorded_at: 2023-02-20 17:37:44 GMT
+  recorded_with: vcr/1.0.2, webmockr/0.8.0
 - request:
     method: get
     uri: https://v4.boldsystems.org/index.php/API_Tax/TaxonData?taxId=160018&dataTypes=basic&includeTree=true
@@ -38,7 +37,7 @@ http_interactions:
       encoding: ''
       string: ''
     headers:
-      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      User-Agent: libcurl/7.64.1 r-curl/4.3.3 crul/1.3
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
   response:
@@ -47,30 +46,29 @@ http_interactions:
       message: OK
       explanation: Request fulfilled, document follows
     headers:
-      status: 'HTTP/2 200 '
+      status: HTTP/1.1 200 OK
       server: nginx
-      date: Mon, 20 Apr 2020 15:49:10 GMT
+      date: Mon, 20 Feb 2023 17:37:39 GMT
       content-type: text/html; charset=utf-8
       content-length: '1144'
+      connection: keep-alive
       x-powered-by: PHP/5.3.15
-      x-frame-options: SAMEORIGIN
-      x-content-type-options: nosniff
-      x-xss-protection: 1; mode=block
+      set-cookie: https=on;Path=/;Max-Age=3600;httponly;SameSite=Lax
     body:
       encoding: UTF-8
       file: no
       string: '{"160018":{"taxid":160018,"taxon":"Bombus amurensis","tax_rank":"species","tax_division":"Animalia","parentid":2087,"parentname":"Bombus","taxonrep":"Bombus
         amurensis"},"2087":{"taxid":2087,"taxon":"Bombus","tax_rank":"genus","tax_division":"Animalia","parentid":857167,"parentname":"Bombini","taxonrep":"Bombus"},"857167":{"taxid":857167,"taxon":"Bombini","tax_rank":"tribe","tax_division":"Animalia","parentid":2183,"parentname":"Apinae"},"2183":{"taxid":2183,"taxon":"Apinae","tax_rank":"subfamily","tax_division":"Animalia","parentid":621,"parentname":"Apidae","taxonrep":"Apinae"},"621":{"taxid":621,"taxon":"Apidae","tax_rank":"family","tax_division":"Animalia","parentid":125,"parentname":"Hymenoptera","taxonrep":"Apidae"},"125":{"taxid":125,"taxon":"Hymenoptera","tax_rank":"order","tax_division":"Animalia","parentid":82,"parentname":"Insecta","taxonrep":"Hymenoptera"},"82":{"taxid":82,"taxon":"Insecta","tax_rank":"class","tax_division":"Animalia","parentid":20,"parentname":"Arthropoda","taxonrep":"Insecta"},"20":{"taxid":20,"taxon":"Arthropoda","tax_rank":"phylum","tax_division":"Animalia","parentid":1,"taxonrep":"Arthropoda"}}'
-  recorded_at: 2020-04-20 15:49:17 GMT
-  recorded_with: vcr/0.5.4, webmockr/0.6.2
+  recorded_at: 2023-02-20 17:37:44 GMT
+  recorded_with: vcr/1.0.2, webmockr/0.8.0
 - request:
     method: get
-    uri: https://v4.boldsystems.org/index.php/API_Tax/TaxonSearch?taxName=Bombus%20mongolensis
+    uri: https://v4.boldsystems.org/index.php/API_Tax/TaxonSearch?taxName=Bombus%20mongolensis&fuzzy=false
     body:
       encoding: ''
       string: ''
     headers:
-      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      User-Agent: libcurl/7.64.1 r-curl/4.3.3 crul/1.3
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
   response:
@@ -79,22 +77,21 @@ http_interactions:
       message: OK
       explanation: Request fulfilled, document follows
     headers:
-      status: 'HTTP/2 200 '
+      status: HTTP/1.1 200 OK
       server: nginx
-      date: Mon, 20 Apr 2020 15:49:10 GMT
+      date: Mon, 20 Feb 2023 17:37:39 GMT
       content-type: text/html; charset=utf-8
       content-length: '233'
+      connection: keep-alive
       x-powered-by: PHP/5.3.15
-      x-frame-options: SAMEORIGIN
-      x-content-type-options: nosniff
-      x-xss-protection: 1; mode=block
+      set-cookie: https=on;Path=/;Max-Age=3600;httponly;SameSite=Lax
     body:
       encoding: UTF-8
       file: no
       string: '{"top_matched_names":[{"taxid":365182,"taxon":"Bombus mongolensis","tax_rank":"species","tax_division":"Animalia","parentid":2087,"parentname":"Bombus","taxonrep":"Bombus
         mongolensis","specimenrecords":"18"}],"total_matched_names":1}'
-  recorded_at: 2020-04-20 15:49:17 GMT
-  recorded_with: vcr/0.5.4, webmockr/0.6.2
+  recorded_at: 2023-02-20 17:37:44 GMT
+  recorded_with: vcr/1.0.2, webmockr/0.8.0
 - request:
     method: get
     uri: https://v4.boldsystems.org/index.php/API_Tax/TaxonData?taxId=365182&dataTypes=basic&includeTree=true
@@ -102,7 +99,7 @@ http_interactions:
       encoding: ''
       string: ''
     headers:
-      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      User-Agent: libcurl/7.64.1 r-curl/4.3.3 crul/1.3
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
   response:
@@ -111,30 +108,29 @@ http_interactions:
       message: OK
       explanation: Request fulfilled, document follows
     headers:
-      status: 'HTTP/2 200 '
+      status: HTTP/1.1 200 OK
       server: nginx
-      date: Mon, 20 Apr 2020 15:49:11 GMT
+      date: Mon, 20 Feb 2023 17:37:39 GMT
       content-type: text/html; charset=utf-8
       content-length: '1148'
+      connection: keep-alive
       x-powered-by: PHP/5.3.15
-      x-frame-options: SAMEORIGIN
-      x-content-type-options: nosniff
-      x-xss-protection: 1; mode=block
+      set-cookie: https=on;Path=/;Max-Age=3600;httponly;SameSite=Lax
     body:
       encoding: UTF-8
       file: no
       string: '{"365182":{"taxid":365182,"taxon":"Bombus mongolensis","tax_rank":"species","tax_division":"Animalia","parentid":2087,"parentname":"Bombus","taxonrep":"Bombus
         mongolensis"},"2087":{"taxid":2087,"taxon":"Bombus","tax_rank":"genus","tax_division":"Animalia","parentid":857167,"parentname":"Bombini","taxonrep":"Bombus"},"857167":{"taxid":857167,"taxon":"Bombini","tax_rank":"tribe","tax_division":"Animalia","parentid":2183,"parentname":"Apinae"},"2183":{"taxid":2183,"taxon":"Apinae","tax_rank":"subfamily","tax_division":"Animalia","parentid":621,"parentname":"Apidae","taxonrep":"Apinae"},"621":{"taxid":621,"taxon":"Apidae","tax_rank":"family","tax_division":"Animalia","parentid":125,"parentname":"Hymenoptera","taxonrep":"Apidae"},"125":{"taxid":125,"taxon":"Hymenoptera","tax_rank":"order","tax_division":"Animalia","parentid":82,"parentname":"Insecta","taxonrep":"Hymenoptera"},"82":{"taxid":82,"taxon":"Insecta","tax_rank":"class","tax_division":"Animalia","parentid":20,"parentname":"Arthropoda","taxonrep":"Insecta"},"20":{"taxid":20,"taxon":"Arthropoda","tax_rank":"phylum","tax_division":"Animalia","parentid":1,"taxonrep":"Arthropoda"}}'
-  recorded_at: 2020-04-20 15:49:17 GMT
-  recorded_with: vcr/0.5.4, webmockr/0.6.2
+  recorded_at: 2023-02-20 17:37:44 GMT
+  recorded_with: vcr/1.0.2, webmockr/0.8.0
 - request:
     method: get
-    uri: https://v4.boldsystems.org/index.php/API_Tax/TaxonSearch?taxName=Bombus%20difficillimus
+    uri: https://v4.boldsystems.org/index.php/API_Tax/TaxonSearch?taxName=Bombus%20difficillimus&fuzzy=false
     body:
       encoding: ''
       string: ''
     headers:
-      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      User-Agent: libcurl/7.64.1 r-curl/4.3.3 crul/1.3
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
   response:
@@ -143,22 +139,21 @@ http_interactions:
       message: OK
       explanation: Request fulfilled, document follows
     headers:
-      status: 'HTTP/2 200 '
+      status: HTTP/1.1 200 OK
       server: nginx
-      date: Mon, 20 Apr 2020 15:49:12 GMT
+      date: Mon, 20 Feb 2023 17:37:39 GMT
       content-type: text/html; charset=utf-8
-      content-length: '237'
+      content-length: '331'
+      connection: keep-alive
       x-powered-by: PHP/5.3.15
-      x-frame-options: SAMEORIGIN
-      x-content-type-options: nosniff
-      x-xss-protection: 1; mode=block
+      set-cookie: https=on;Path=/;Max-Age=3600;httponly;SameSite=Lax
     body:
       encoding: UTF-8
       file: no
       string: '{"top_matched_names":[{"taxid":193205,"taxon":"Bombus difficillimus","tax_rank":"species","tax_division":"Animalia","parentid":2087,"parentname":"Bombus","taxonrep":"Bombus
-        difficillimus","specimenrecords":"13"}],"total_matched_names":1}'
-  recorded_at: 2020-04-20 15:49:17 GMT
-  recorded_with: vcr/0.5.4, webmockr/0.6.2
+        difficillimus","representitive_image":{"image":"QHBB\/20QHBb-222_Lateral+1611428780.JPG","apectratio":1.499},"specimenrecords":"26"}],"total_matched_names":1}'
+  recorded_at: 2023-02-20 17:37:44 GMT
+  recorded_with: vcr/1.0.2, webmockr/0.8.0
 - request:
     method: get
     uri: https://v4.boldsystems.org/index.php/API_Tax/TaxonData?taxId=193205&dataTypes=basic&includeTree=true
@@ -166,7 +161,7 @@ http_interactions:
       encoding: ''
       string: ''
     headers:
-      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      User-Agent: libcurl/7.64.1 r-curl/4.3.3 crul/1.3
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
   response:
@@ -175,30 +170,29 @@ http_interactions:
       message: OK
       explanation: Request fulfilled, document follows
     headers:
-      status: 'HTTP/2 200 '
+      status: HTTP/1.1 200 OK
       server: nginx
-      date: Mon, 20 Apr 2020 15:49:12 GMT
+      date: Mon, 20 Feb 2023 17:37:40 GMT
       content-type: text/html; charset=utf-8
       content-length: '1152'
+      connection: keep-alive
       x-powered-by: PHP/5.3.15
-      x-frame-options: SAMEORIGIN
-      x-content-type-options: nosniff
-      x-xss-protection: 1; mode=block
+      set-cookie: https=on;Path=/;Max-Age=3600;httponly;SameSite=Lax
     body:
       encoding: UTF-8
       file: no
       string: '{"193205":{"taxid":193205,"taxon":"Bombus difficillimus","tax_rank":"species","tax_division":"Animalia","parentid":2087,"parentname":"Bombus","taxonrep":"Bombus
         difficillimus"},"2087":{"taxid":2087,"taxon":"Bombus","tax_rank":"genus","tax_division":"Animalia","parentid":857167,"parentname":"Bombini","taxonrep":"Bombus"},"857167":{"taxid":857167,"taxon":"Bombini","tax_rank":"tribe","tax_division":"Animalia","parentid":2183,"parentname":"Apinae"},"2183":{"taxid":2183,"taxon":"Apinae","tax_rank":"subfamily","tax_division":"Animalia","parentid":621,"parentname":"Apidae","taxonrep":"Apinae"},"621":{"taxid":621,"taxon":"Apidae","tax_rank":"family","tax_division":"Animalia","parentid":125,"parentname":"Hymenoptera","taxonrep":"Apidae"},"125":{"taxid":125,"taxon":"Hymenoptera","tax_rank":"order","tax_division":"Animalia","parentid":82,"parentname":"Insecta","taxonrep":"Hymenoptera"},"82":{"taxid":82,"taxon":"Insecta","tax_rank":"class","tax_division":"Animalia","parentid":20,"parentname":"Arthropoda","taxonrep":"Insecta"},"20":{"taxid":20,"taxon":"Arthropoda","tax_rank":"phylum","tax_division":"Animalia","parentid":1,"taxonrep":"Arthropoda"}}'
-  recorded_at: 2020-04-20 15:49:17 GMT
-  recorded_with: vcr/0.5.4, webmockr/0.6.2
+  recorded_at: 2023-02-20 17:37:44 GMT
+  recorded_with: vcr/1.0.2, webmockr/0.8.0
 - request:
     method: get
-    uri: https://v4.boldsystems.org/index.php/API_Tax/TaxonSearch?taxName=Bombus%20melanurus
+    uri: https://v4.boldsystems.org/index.php/API_Tax/TaxonSearch?taxName=Bombus%20melanurus&fuzzy=false
     body:
       encoding: ''
       string: ''
     headers:
-      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      User-Agent: libcurl/7.64.1 r-curl/4.3.3 crul/1.3
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
   response:
@@ -207,22 +201,21 @@ http_interactions:
       message: OK
       explanation: Request fulfilled, document follows
     headers:
-      status: 'HTTP/2 200 '
+      status: HTTP/1.1 200 OK
       server: nginx
-      date: Mon, 20 Apr 2020 15:49:13 GMT
+      date: Mon, 20 Feb 2023 17:37:40 GMT
       content-type: text/html; charset=utf-8
-      content-length: '310'
+      content-length: '229'
+      connection: keep-alive
       x-powered-by: PHP/5.3.15
-      x-frame-options: SAMEORIGIN
-      x-content-type-options: nosniff
-      x-xss-protection: 1; mode=block
+      set-cookie: https=on;Path=/;Max-Age=3600;httponly;SameSite=Lax
     body:
       encoding: UTF-8
       file: no
       string: '{"top_matched_names":[{"taxid":32123,"taxon":"Bombus melanurus","tax_rank":"species","tax_division":"Animalia","parentid":2087,"parentname":"Bombus","taxonrep":"Bombus
-        melanurus","representitive_image":{"image":"BCA\/3764f01+1264803642.jpg","apectratio":0.676},"specimenrecords":"94"}],"total_matched_names":1}'
-  recorded_at: 2020-04-20 15:49:17 GMT
-  recorded_with: vcr/0.5.4, webmockr/0.6.2
+        melanurus","specimenrecords":"109"}],"total_matched_names":1}'
+  recorded_at: 2023-02-20 17:37:44 GMT
+  recorded_with: vcr/1.0.2, webmockr/0.8.0
 - request:
     method: get
     uri: https://v4.boldsystems.org/index.php/API_Tax/TaxonData?taxId=32123&dataTypes=basic&includeTree=true
@@ -230,7 +223,7 @@ http_interactions:
       encoding: ''
       string: ''
     headers:
-      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      User-Agent: libcurl/7.64.1 r-curl/4.3.3 crul/1.3
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
   response:
@@ -239,30 +232,29 @@ http_interactions:
       message: OK
       explanation: Request fulfilled, document follows
     headers:
-      status: 'HTTP/2 200 '
+      status: HTTP/1.1 200 OK
       server: nginx
-      date: Mon, 20 Apr 2020 15:49:13 GMT
+      date: Mon, 20 Feb 2023 17:37:41 GMT
       content-type: text/html; charset=utf-8
       content-length: '1142'
+      connection: keep-alive
       x-powered-by: PHP/5.3.15
-      x-frame-options: SAMEORIGIN
-      x-content-type-options: nosniff
-      x-xss-protection: 1; mode=block
+      set-cookie: https=on;Path=/;Max-Age=3600;httponly;SameSite=Lax
     body:
       encoding: UTF-8
       file: no
       string: '{"32123":{"taxid":32123,"taxon":"Bombus melanurus","tax_rank":"species","tax_division":"Animalia","parentid":2087,"parentname":"Bombus","taxonrep":"Bombus
         melanurus"},"2087":{"taxid":2087,"taxon":"Bombus","tax_rank":"genus","tax_division":"Animalia","parentid":857167,"parentname":"Bombini","taxonrep":"Bombus"},"857167":{"taxid":857167,"taxon":"Bombini","tax_rank":"tribe","tax_division":"Animalia","parentid":2183,"parentname":"Apinae"},"2183":{"taxid":2183,"taxon":"Apinae","tax_rank":"subfamily","tax_division":"Animalia","parentid":621,"parentname":"Apidae","taxonrep":"Apinae"},"621":{"taxid":621,"taxon":"Apidae","tax_rank":"family","tax_division":"Animalia","parentid":125,"parentname":"Hymenoptera","taxonrep":"Apidae"},"125":{"taxid":125,"taxon":"Hymenoptera","tax_rank":"order","tax_division":"Animalia","parentid":82,"parentname":"Insecta","taxonrep":"Hymenoptera"},"82":{"taxid":82,"taxon":"Insecta","tax_rank":"class","tax_division":"Animalia","parentid":20,"parentname":"Arthropoda","taxonrep":"Insecta"},"20":{"taxid":20,"taxon":"Arthropoda","tax_rank":"phylum","tax_division":"Animalia","parentid":1,"taxonrep":"Arthropoda"}}'
-  recorded_at: 2020-04-20 15:49:17 GMT
-  recorded_with: vcr/0.5.4, webmockr/0.6.2
+  recorded_at: 2023-02-20 17:37:44 GMT
+  recorded_with: vcr/1.0.2, webmockr/0.8.0
 - request:
     method: get
-    uri: https://v4.boldsystems.org/index.php/API_Tax/TaxonSearch?taxName=Bombus%20appositus
+    uri: https://v4.boldsystems.org/index.php/API_Tax/TaxonSearch?taxName=Bombus%20appositus&fuzzy=false
     body:
       encoding: ''
       string: ''
     headers:
-      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      User-Agent: libcurl/7.64.1 r-curl/4.3.3 crul/1.3
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
   response:
@@ -271,22 +263,21 @@ http_interactions:
       message: OK
       explanation: Request fulfilled, document follows
     headers:
-      status: 'HTTP/2 200 '
+      status: HTTP/1.1 200 OK
       server: nginx
-      date: Mon, 20 Apr 2020 15:49:13 GMT
+      date: Mon, 20 Feb 2023 17:37:41 GMT
       content-type: text/html; charset=utf-8
-      content-length: '318'
+      content-length: '313'
+      connection: keep-alive
       x-powered-by: PHP/5.3.15
-      x-frame-options: SAMEORIGIN
-      x-content-type-options: nosniff
-      x-xss-protection: 1; mode=block
+      set-cookie: https=on;Path=/;Max-Age=3600;httponly;SameSite=Lax
     body:
       encoding: UTF-8
       file: no
       string: '{"top_matched_names":[{"taxid":96607,"taxon":"Bombus appositus","tax_rank":"species","tax_division":"Animalia","parentid":2087,"parentname":"Bombus","taxonrep":"Bombus
-        appositus","representitive_image":{"image":"BUSA\/CCDB-15255-C02+1334592986.jpg","apectratio":0.917},"specimenrecords":"83"}],"total_matched_names":1}'
-  recorded_at: 2020-04-20 15:49:17 GMT
-  recorded_with: vcr/0.5.4, webmockr/0.6.2
+        appositus","representitive_image":{"image":"BBHYL\/IMG_8699+1295993036.jpg","apectratio":1.499},"specimenrecords":"85"}],"total_matched_names":1}'
+  recorded_at: 2023-02-20 17:37:44 GMT
+  recorded_with: vcr/1.0.2, webmockr/0.8.0
 - request:
     method: get
     uri: https://v4.boldsystems.org/index.php/API_Tax/TaxonData?taxId=96607&dataTypes=basic&includeTree=true
@@ -294,7 +285,7 @@ http_interactions:
       encoding: ''
       string: ''
     headers:
-      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      User-Agent: libcurl/7.64.1 r-curl/4.3.3 crul/1.3
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
   response:
@@ -303,30 +294,29 @@ http_interactions:
       message: OK
       explanation: Request fulfilled, document follows
     headers:
-      status: 'HTTP/2 200 '
+      status: HTTP/1.1 200 OK
       server: nginx
-      date: Mon, 20 Apr 2020 15:49:14 GMT
+      date: Mon, 20 Feb 2023 17:37:41 GMT
       content-type: text/html; charset=utf-8
       content-length: '1142'
+      connection: keep-alive
       x-powered-by: PHP/5.3.15
-      x-frame-options: SAMEORIGIN
-      x-content-type-options: nosniff
-      x-xss-protection: 1; mode=block
+      set-cookie: https=on;Path=/;Max-Age=3600;httponly;SameSite=Lax
     body:
       encoding: UTF-8
       file: no
       string: '{"96607":{"taxid":96607,"taxon":"Bombus appositus","tax_rank":"species","tax_division":"Animalia","parentid":2087,"parentname":"Bombus","taxonrep":"Bombus
         appositus"},"2087":{"taxid":2087,"taxon":"Bombus","tax_rank":"genus","tax_division":"Animalia","parentid":857167,"parentname":"Bombini","taxonrep":"Bombus"},"857167":{"taxid":857167,"taxon":"Bombini","tax_rank":"tribe","tax_division":"Animalia","parentid":2183,"parentname":"Apinae"},"2183":{"taxid":2183,"taxon":"Apinae","tax_rank":"subfamily","tax_division":"Animalia","parentid":621,"parentname":"Apidae","taxonrep":"Apinae"},"621":{"taxid":621,"taxon":"Apidae","tax_rank":"family","tax_division":"Animalia","parentid":125,"parentname":"Hymenoptera","taxonrep":"Apidae"},"125":{"taxid":125,"taxon":"Hymenoptera","tax_rank":"order","tax_division":"Animalia","parentid":82,"parentname":"Insecta","taxonrep":"Hymenoptera"},"82":{"taxid":82,"taxon":"Insecta","tax_rank":"class","tax_division":"Animalia","parentid":20,"parentname":"Arthropoda","taxonrep":"Insecta"},"20":{"taxid":20,"taxon":"Arthropoda","tax_rank":"phylum","tax_division":"Animalia","parentid":1,"taxonrep":"Arthropoda"}}'
-  recorded_at: 2020-04-20 15:49:17 GMT
-  recorded_with: vcr/0.5.4, webmockr/0.6.2
+  recorded_at: 2023-02-20 17:37:44 GMT
+  recorded_with: vcr/1.0.2, webmockr/0.8.0
 - request:
     method: get
-    uri: https://v4.boldsystems.org/index.php/API_Tax/TaxonSearch?taxName=Hymenoptera
+    uri: https://v4.boldsystems.org/index.php/API_Tax/TaxonSearch?taxName=Hymenoptera&fuzzy=false
     body:
       encoding: ''
       string: ''
     headers:
-      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      User-Agent: libcurl/7.64.1 r-curl/4.3.3 crul/1.3
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
   response:
@@ -335,21 +325,20 @@ http_interactions:
       message: OK
       explanation: Request fulfilled, document follows
     headers:
-      status: 'HTTP/2 200 '
+      status: HTTP/1.1 200 OK
       server: nginx
-      date: Mon, 20 Apr 2020 15:49:15 GMT
+      date: Mon, 20 Feb 2023 17:37:42 GMT
       content-type: text/html; charset=utf-8
       content-length: '311'
+      connection: keep-alive
       x-powered-by: PHP/5.3.15
-      x-frame-options: SAMEORIGIN
-      x-content-type-options: nosniff
-      x-xss-protection: 1; mode=block
+      set-cookie: https=on;Path=/;Max-Age=3600;httponly;SameSite=Lax
     body:
       encoding: UTF-8
       file: no
-      string: '{"top_matched_names":[{"taxid":125,"taxon":"Hymenoptera","tax_rank":"order","tax_division":"Animalia","parentid":82,"parentname":"Insecta","taxonrep":"Hymenoptera","representitive_image":{"image":"BCHYM\/BC_ZSM_HYM_22603+1421074896.jpg","apectratio":1.333},"specimenrecords":"1345420"}],"total_matched_names":1}'
-  recorded_at: 2020-04-20 15:49:17 GMT
-  recorded_with: vcr/0.5.4, webmockr/0.6.2
+      string: '{"top_matched_names":[{"taxid":125,"taxon":"Hymenoptera","tax_rank":"order","tax_division":"Animalia","parentid":82,"parentname":"Insecta","taxonrep":"Hymenoptera","representitive_image":{"image":"BCHYM\/BC_ZSM_HYM_22603+1421074896.jpg","apectratio":1.333},"specimenrecords":"1954961"}],"total_matched_names":1}'
+  recorded_at: 2023-02-20 17:37:44 GMT
+  recorded_with: vcr/1.0.2, webmockr/0.8.0
 - request:
     method: get
     uri: https://v4.boldsystems.org/index.php/API_Tax/TaxonData?taxId=125&dataTypes=basic&includeTree=true
@@ -357,7 +346,7 @@ http_interactions:
       encoding: ''
       string: ''
     headers:
-      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      User-Agent: libcurl/7.64.1 r-curl/4.3.3 crul/1.3
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
   response:
@@ -366,29 +355,28 @@ http_interactions:
       message: OK
       explanation: Request fulfilled, document follows
     headers:
-      status: 'HTTP/2 200 '
+      status: HTTP/1.1 200 OK
       server: nginx
-      date: Mon, 20 Apr 2020 15:49:16 GMT
+      date: Mon, 20 Feb 2023 17:37:42 GMT
       content-type: text/html; charset=utf-8
       content-length: '414'
+      connection: keep-alive
       x-powered-by: PHP/5.3.15
-      x-frame-options: SAMEORIGIN
-      x-content-type-options: nosniff
-      x-xss-protection: 1; mode=block
+      set-cookie: https=on;Path=/;Max-Age=3600;httponly;SameSite=Lax
     body:
       encoding: UTF-8
       file: no
       string: '{"125":{"taxid":125,"taxon":"Hymenoptera","tax_rank":"order","tax_division":"Animalia","parentid":82,"parentname":"Insecta","taxonrep":"Hymenoptera"},"82":{"taxid":82,"taxon":"Insecta","tax_rank":"class","tax_division":"Animalia","parentid":20,"parentname":"Arthropoda","taxonrep":"Insecta"},"20":{"taxid":20,"taxon":"Arthropoda","tax_rank":"phylum","tax_division":"Animalia","parentid":1,"taxonrep":"Arthropoda"}}'
-  recorded_at: 2020-04-20 15:49:17 GMT
-  recorded_with: vcr/0.5.4, webmockr/0.6.2
+  recorded_at: 2023-02-20 17:37:44 GMT
+  recorded_with: vcr/1.0.2, webmockr/0.8.0
 - request:
     method: get
-    uri: https://v4.boldsystems.org/index.php/API_Tax/TaxonSearch?taxName=Bombus%20fragrans
+    uri: https://v4.boldsystems.org/index.php/API_Tax/TaxonSearch?taxName=Bombus%20fragrans&fuzzy=false
     body:
       encoding: ''
       string: ''
     headers:
-      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      User-Agent: libcurl/7.64.1 r-curl/4.3.3 crul/1.3
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
   response:
@@ -397,22 +385,21 @@ http_interactions:
       message: OK
       explanation: Request fulfilled, document follows
     headers:
-      status: 'HTTP/2 200 '
+      status: HTTP/1.1 200 OK
       server: nginx
-      date: Mon, 20 Apr 2020 15:49:16 GMT
+      date: Mon, 20 Feb 2023 17:37:42 GMT
       content-type: text/html; charset=utf-8
       content-length: '227'
+      connection: keep-alive
       x-powered-by: PHP/5.3.15
-      x-frame-options: SAMEORIGIN
-      x-content-type-options: nosniff
-      x-xss-protection: 1; mode=block
+      set-cookie: https=on;Path=/;Max-Age=3600;httponly;SameSite=Lax
     body:
       encoding: UTF-8
       file: no
       string: '{"top_matched_names":[{"taxid":158414,"taxon":"Bombus fragrans","tax_rank":"species","tax_division":"Animalia","parentid":2087,"parentname":"Bombus","taxonrep":"Bombus
         fragrans","specimenrecords":"23"}],"total_matched_names":1}'
-  recorded_at: 2020-04-20 15:49:17 GMT
-  recorded_with: vcr/0.5.4, webmockr/0.6.2
+  recorded_at: 2023-02-20 17:37:44 GMT
+  recorded_with: vcr/1.0.2, webmockr/0.8.0
 - request:
     method: get
     uri: https://v4.boldsystems.org/index.php/API_Tax/TaxonData?taxId=158414&dataTypes=basic&includeTree=true
@@ -420,7 +407,7 @@ http_interactions:
       encoding: ''
       string: ''
     headers:
-      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      User-Agent: libcurl/7.64.1 r-curl/4.3.3 crul/1.3
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
   response:
@@ -429,19 +416,18 @@ http_interactions:
       message: OK
       explanation: Request fulfilled, document follows
     headers:
-      status: 'HTTP/2 200 '
+      status: HTTP/1.1 200 OK
       server: nginx
-      date: Mon, 20 Apr 2020 15:49:17 GMT
+      date: Mon, 20 Feb 2023 17:37:43 GMT
       content-type: text/html; charset=utf-8
       content-length: '1142'
+      connection: keep-alive
       x-powered-by: PHP/5.3.15
-      x-frame-options: SAMEORIGIN
-      x-content-type-options: nosniff
-      x-xss-protection: 1; mode=block
+      set-cookie: https=on;Path=/;Max-Age=3600;httponly;SameSite=Lax
     body:
       encoding: UTF-8
       file: no
       string: '{"158414":{"taxid":158414,"taxon":"Bombus fragrans","tax_rank":"species","tax_division":"Animalia","parentid":2087,"parentname":"Bombus","taxonrep":"Bombus
         fragrans"},"2087":{"taxid":2087,"taxon":"Bombus","tax_rank":"genus","tax_division":"Animalia","parentid":857167,"parentname":"Bombini","taxonrep":"Bombus"},"857167":{"taxid":857167,"taxon":"Bombini","tax_rank":"tribe","tax_division":"Animalia","parentid":2183,"parentname":"Apinae"},"2183":{"taxid":2183,"taxon":"Apinae","tax_rank":"subfamily","tax_division":"Animalia","parentid":621,"parentname":"Apidae","taxonrep":"Apinae"},"621":{"taxid":621,"taxon":"Apidae","tax_rank":"family","tax_division":"Animalia","parentid":125,"parentname":"Hymenoptera","taxonrep":"Apidae"},"125":{"taxid":125,"taxon":"Hymenoptera","tax_rank":"order","tax_division":"Animalia","parentid":82,"parentname":"Insecta","taxonrep":"Hymenoptera"},"82":{"taxid":82,"taxon":"Insecta","tax_rank":"class","tax_division":"Animalia","parentid":20,"parentname":"Arthropoda","taxonrep":"Insecta"},"20":{"taxid":20,"taxon":"Arthropoda","tax_rank":"phylum","tax_division":"Animalia","parentid":1,"taxonrep":"Arthropoda"}}'
-  recorded_at: 2020-04-20 15:49:17 GMT
-  recorded_with: vcr/0.5.4, webmockr/0.6.2
+  recorded_at: 2023-02-20 17:37:44 GMT
+  recorded_with: vcr/1.0.2, webmockr/0.8.0

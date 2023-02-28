@@ -4,64 +4,73 @@
 \alias{bold_identify}
 \title{Search for matches to sequences against the BOLD COI database.}
 \usage{
-bold_identify(sequences, db = "COX1", response = FALSE, ...)
+bold_identify(sequences, db = "COX1", response = FALSE, keepSeq = TRUE, ...)
 }
 \arguments{
-\item{sequences}{(character) Returns all records containing matching marker
-codes. Required. One or more. See Details.}
+\item{sequences}{(character) A vector or list of sequences to identify.
+Required. See Details.}
 
-\item{db}{(character) The database to match against, one of COX1,
-COX1_SPECIES, COX1_SPECIES_PUBLIC, OR COX1_L604bp. See Details for
+\item{db}{(character) The database to match against, one of COX1 (default),
+COX1_SPECIES, COX1_SPECIES_PUBLIC, OR COX1_L640bp. See Details for
 more information.}
 
 \item{response}{(logical) Note that response is the object that returns
 from the Curl call, useful for debugging, and getting detailed info on
 the API call.}
 
-\item{...}{Further args passed on to \link[crul:verb-GET]{crul::verb-GET}, main
-purpose being curl debugging
+\item{keepSeq}{(logical) If TRUE (default), returns each data.frame
+with an attribute 'sequence' containing sequence used to get those results.}
 
-BOLD only allows one sequence per query. We internally \code{lapply}
-over the input values given to the sequences` parameter to search
-with one sequence per query. Remember this if you have a lot of sequences -
-you are doing a separate query for each one, so it can take a long time -
-if you run into errors let us know.}
+\item{...}{Further args passed on to \code{\link[crul]{verb-GET}}, main
+purpose being curl debugging}
 }
 \value{
-A data.frame with details for each specimen matched. if a
-failed request, returns \code{NULL}
+A data.frame or  list of (one per sequences) with the top specimen
+matches (up to 100) and their details. If the query fails, returns \code{NULL}.
+Each data.frame has the attributes \code{sequence} with the provided
+sequence to match (unless keepSeq is set to FALSE) and \code{errors} with the
+error message given from a failed request.
 }
 \description{
 Search for matches to sequences against the BOLD COI database.
 }
+\details{
+BOLD only allows one sequences per query. We internally
+\code{\link[base]{lapply}} over the input values given to the sequences`
+parameter to search with one sequences per query. Remember this if you have a
+lot of sequences - you are doing a separate query for each one, so it can
+take a long time - if you run into errors let us know.
+}
 \section{db parmeter options}{
 
 \itemize{
-\item COX1 Every COI barcode record on BOLD with a minimum sequence
+\item COX1 Every COI barcode record on BOLD with a minimum sequences
 length of 500bp (warning: unvalidated library and includes records without
 species level identification). This includes many species represented by
 only one or two specimens as well as all species with interim taxonomy. This
 search only returns a list of the nearest matches and does not provide a
 probability of placement to a taxon.
 \item COX1_SPECIES Every COI barcode record with a species level
-identification and a minimum sequence length of 500bp. This includes
+identification and a minimum sequences length of 500bp. This includes
 many species represented by only one or two specimens as well as  all
 species with interim taxonomy.
+Note : Sometimes it does return matches that don't have a species level
+identification. Will be checking with BOLD.
 \item COX1_SPECIES_PUBLIC All published COI records from BOLD and GenBank
-with a minimum sequence length of 500bp. This library is a collection of
+with a minimum sequences length of 500bp. This library is a collection of
 records from the published projects section of BOLD.
-\item OR COX1_L604bp Subset of the Species library with a minimum sequence
+\item OR COX1_L640bp Subset of the Species library with a minimum sequences
 length of 640bp and containing both public and private records. This library
-is intended for short sequence identification as it provides maximum overlap
+is intended for short sequences identification as it provides maximum overlap
 with short reads from the barcode region of COI.
 }
 }
 
 \section{Named outputs}{
 
-To maintain names on the output list of data make sure to pass in a
-named list to the \code{sequences} parameter. You can for example,
-take a list of sequences, and use \code{\link[stats:setNames]{stats::setNames()}} to set names.
+For a named output list, make sure to pass in a named list or vector to the
+\code{sequences} parameter. You can use \code{\link[base]{names<-}} or
+\code{\link[stats]{setNames}} to set names on a list or vector of sequences.
 }
 
 \examples{
@@ -71,10 +80,11 @@ res <- bold_identify(sequences=seq)
 head(res[[1]])
 head(bold_identify(sequences=seq, db='COX1_SPECIES')[[1]])
 }
+
 }
 \references{
 http://v4.boldsystems.org/index.php/resources/api?type=idengine
 }
 \seealso{
-\code{\link[=bold_identify_parents]{bold_identify_parents()}}
+\code{\link{bold_identify_parents}}
 }

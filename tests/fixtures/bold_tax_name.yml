@@ -1,12 +1,12 @@
 http_interactions:
 - request:
     method: get
-    uri: https://v4.boldsystems.org/index.php/API_Tax/TaxonSearch?taxName=Diplura
+    uri: https://v4.boldsystems.org/index.php/API_Tax/TaxonSearch?taxName=Diplura&fuzzy=false
     body:
       encoding: ''
       string: ''
     headers:
-      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      User-Agent: libcurl/7.64.1 r-curl/4.3.3 crul/1.3
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
   response:
@@ -15,29 +15,28 @@ http_interactions:
       message: OK
       explanation: Request fulfilled, document follows
     headers:
-      status: 'HTTP/2 200 '
+      status: HTTP/1.1 200 OK
       server: nginx
-      date: Fri, 01 May 2020 20:38:06 GMT
+      date: Mon, 20 Feb 2023 17:27:36 GMT
       content-type: text/html; charset=utf-8
-      content-length: '449'
+      content-length: '454'
+      connection: keep-alive
       x-powered-by: PHP/5.3.15
-      x-frame-options: SAMEORIGIN
-      x-content-type-options: nosniff
-      x-xss-protection: 1; mode=block
+      set-cookie: https=on;Path=/;Max-Age=3600;httponly;SameSite=Lax
     body:
       encoding: UTF-8
       file: no
-      string: '{"top_matched_names":[{"taxid":603673,"taxon":"Diplura","tax_rank":"genus","tax_division":"Protista","parentid":53974,"parentname":"Scytosiphonaceae","specimenrecords":"6"},{"taxid":734358,"taxon":"Diplura","tax_rank":"class","tax_division":"Animalia","parentid":20,"parentname":"Arthropoda","taxonrep":"Diplura","representitive_image":{"image":"BSOIL\/GBOL20120+1540220834.jpg","apectratio":0.841},"specimenrecords":"308"}],"total_matched_names":2}'
-  recorded_at: 2020-05-01 20:38:07 GMT
-  recorded_with: vcr/0.5.4, webmockr/0.6.2
+      string: '{"top_matched_names":[{"taxid":603673,"taxon":"Diplura","tax_rank":"genus","tax_division":"Protista","parentid":53974,"parentname":"Scytosiphonaceae","specimenrecords":"7"},{"taxid":734358,"taxon":"Diplura","tax_rank":"class","tax_division":"Animalia","parentid":20,"parentname":"Arthropoda","taxonrep":"Diplura","representitive_image":{"image":"SSDWA\/BIOUG22935-F02+1449072522.jpg","apectratio":1.333},"specimenrecords":"364"}],"total_matched_names":2}'
+  recorded_at: 2023-02-28 00:40:06 GMT
+  recorded_with: vcr/1.0.2, webmockr/0.8.0
 - request:
     method: get
-    uri: https://v4.boldsystems.org/index.php/API_Tax/TaxonSearch?taxName=Diplura
+    uri: https://v4.boldsystems.org/index.php/API_Tax/TaxonSearch?taxName=Apis&fuzzy=false
     body:
       encoding: ''
       string: ''
     headers:
-      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      User-Agent: libcurl/7.64.1 r-curl/4.3.3 crul/1.3
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
   response:
@@ -46,29 +45,28 @@ http_interactions:
       message: OK
       explanation: Request fulfilled, document follows
     headers:
-      status: 'HTTP/2 200 '
+      status: HTTP/1.1 200 OK
       server: nginx
-      date: Fri, 01 May 2020 20:38:06 GMT
+      date: Mon, 20 Feb 2023 17:27:36 GMT
       content-type: text/html; charset=utf-8
-      content-length: '449'
+      content-length: '290'
+      connection: keep-alive
       x-powered-by: PHP/5.3.15
-      x-frame-options: SAMEORIGIN
-      x-content-type-options: nosniff
-      x-xss-protection: 1; mode=block
+      set-cookie: https=on;Path=/;Max-Age=3600;httponly;SameSite=Lax
     body:
       encoding: UTF-8
       file: no
-      string: '{"top_matched_names":[{"taxid":603673,"taxon":"Diplura","tax_rank":"genus","tax_division":"Protista","parentid":53974,"parentname":"Scytosiphonaceae","specimenrecords":"6"},{"taxid":734358,"taxon":"Diplura","tax_rank":"class","tax_division":"Animalia","parentid":20,"parentname":"Arthropoda","taxonrep":"Diplura","representitive_image":{"image":"BSOIL\/GBOL20120+1540220834.jpg","apectratio":0.841},"specimenrecords":"308"}],"total_matched_names":2}'
-  recorded_at: 2020-05-01 20:38:07 GMT
-  recorded_with: vcr/0.5.4, webmockr/0.6.2
+      string: '{"top_matched_names":[{"taxid":1937,"taxon":"Apis","tax_rank":"genus","tax_division":"Animalia","parentid":878935,"parentname":"Apini","taxonrep":"Apis","representitive_image":{"image":"BOFTH\/B3260-B09+1247093258.jpg","apectratio":1.362},"specimenrecords":"5058"}],"total_matched_names":1}'
+  recorded_at: 2023-02-28 00:40:06 GMT
+  recorded_with: vcr/1.0.2, webmockr/0.8.0
 - request:
     method: get
-    uri: https://v4.boldsystems.org/index.php/API_Tax/TaxonSearch?taxName=Osmia
+    uri: https://v4.boldsystems.org/index.php/API_Tax/TaxonSearch?taxName=Puma%20concolor&fuzzy=false
     body:
       encoding: ''
       string: ''
     headers:
-      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      User-Agent: libcurl/7.64.1 r-curl/4.3.3 crul/1.3
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
   response:
@@ -77,92 +75,29 @@ http_interactions:
       message: OK
       explanation: Request fulfilled, document follows
     headers:
-      status: 'HTTP/2 200 '
+      status: HTTP/1.1 200 OK
       server: nginx
-      date: Fri, 01 May 2020 20:38:07 GMT
-      content-type: text/html; charset=utf-8
-      content-length: '284'
-      x-powered-by: PHP/5.3.15
-      x-frame-options: SAMEORIGIN
-      x-content-type-options: nosniff
-      x-xss-protection: 1; mode=block
-    body:
-      encoding: UTF-8
-      file: no
-      string: '{"top_matched_names":[{"taxid":4940,"taxon":"Osmia","tax_rank":"genus","tax_division":"Animalia","parentid":4962,"parentname":"Megachilinae","taxonrep":"Osmia","representitive_image":{"image":"BUSA\/IMG_3061.jpg","apectratio":1.486},"specimenrecords":"3011"}],"total_matched_names":1}'
-  recorded_at: 2020-05-01 20:38:07 GMT
-  recorded_with: vcr/0.5.4, webmockr/0.6.2
-- request:
-    method: get
-    uri: https://v4.boldsystems.org/index.php/API_Tax/TaxonSearch?taxName=Apis
-    body:
-      encoding: ''
-      string: ''
-    headers:
-      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
-      Accept-Encoding: gzip, deflate
-      Accept: application/json, text/xml, application/xml, */*
-  response:
-    status:
-      status_code: '200'
-      message: OK
-      explanation: Request fulfilled, document follows
-    headers:
-      status: 'HTTP/2 200 '
-      server: nginx
-      date: Fri, 01 May 2020 20:38:07 GMT
-      content-type: text/html; charset=utf-8
-      content-length: '289'
-      x-powered-by: PHP/5.3.15
-      x-frame-options: SAMEORIGIN
-      x-content-type-options: nosniff
-      x-xss-protection: 1; mode=block
-    body:
-      encoding: UTF-8
-      file: no
-      string: '{"top_matched_names":[{"taxid":1937,"taxon":"Apis","tax_rank":"genus","tax_division":"Animalia","parentid":2183,"parentname":"Apinae","taxonrep":"Apis","representitive_image":{"image":"BOFTH\/B3260-B09+1247093258.jpg","apectratio":1.362},"specimenrecords":"3687"}],"total_matched_names":1}'
-  recorded_at: 2020-05-01 20:38:07 GMT
-  recorded_with: vcr/0.5.4, webmockr/0.6.2
-- request:
-    method: get
-    uri: https://v4.boldsystems.org/index.php/API_Tax/TaxonSearch?taxName=Puma%20concolor
-    body:
-      encoding: ''
-      string: ''
-    headers:
-      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
-      Accept-Encoding: gzip, deflate
-      Accept: application/json, text/xml, application/xml, */*
-  response:
-    status:
-      status_code: '200'
-      message: OK
-      explanation: Request fulfilled, document follows
-    headers:
-      status: 'HTTP/2 200 '
-      server: nginx
-      date: Fri, 01 May 2020 20:38:07 GMT
+      date: Mon, 20 Feb 2023 17:27:36 GMT
       content-type: text/html; charset=utf-8
       content-length: '314'
+      connection: keep-alive
       x-powered-by: PHP/5.3.15
-      x-frame-options: SAMEORIGIN
-      x-content-type-options: nosniff
-      x-xss-protection: 1; mode=block
+      set-cookie: https=on;Path=/;Max-Age=3600;httponly;SameSite=Lax
     body:
       encoding: UTF-8
       file: no
       string: '{"top_matched_names":[{"taxid":12521,"taxon":"Puma concolor","tax_rank":"species","tax_division":"Animalia","parentid":4372,"parentname":"Puma","taxonrep":"Puma
         concolor","representitive_image":{"image":"FCMUN\/IBUNAM_CNMA_1314+1276871340.JPG","apectratio":1.493},"specimenrecords":"358"}],"total_matched_names":1}'
-  recorded_at: 2020-05-01 20:38:07 GMT
-  recorded_with: vcr/0.5.4, webmockr/0.6.2
+  recorded_at: 2023-02-28 00:40:06 GMT
+  recorded_with: vcr/1.0.2, webmockr/0.8.0
 - request:
     method: get
-    uri: https://v4.boldsystems.org/index.php/API_Tax/TaxonSearch?taxName=Pinus%20concolor
+    uri: https://v4.boldsystems.org/index.php/API_Tax/TaxonSearch?taxName=Pinus%20concolor&fuzzy=false
     body:
       encoding: ''
       string: ''
     headers:
-      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      User-Agent: libcurl/7.64.1 r-curl/4.3.3 crul/1.3
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
   response:
@@ -171,18 +106,175 @@ http_interactions:
       message: OK
       explanation: Request fulfilled, document follows
     headers:
-      status: 'HTTP/2 200 '
+      status: HTTP/1.1 200 OK
       server: nginx
-      date: Fri, 01 May 2020 20:38:07 GMT
+      date: Mon, 20 Feb 2023 17:27:36 GMT
       content-type: text/html; charset=utf-8
       content-length: '48'
+      connection: keep-alive
       x-powered-by: PHP/5.3.15
-      x-frame-options: SAMEORIGIN
-      x-content-type-options: nosniff
-      x-xss-protection: 1; mode=block
+      set-cookie: https=on;Path=/;Max-Age=3600;httponly;SameSite=Lax
     body:
       encoding: UTF-8
       file: no
       string: '{"top_matched_names":[],"total_matched_names":0}'
-  recorded_at: 2020-05-01 20:38:07 GMT
-  recorded_with: vcr/0.5.4, webmockr/0.6.2
+  recorded_at: 2023-02-28 00:40:06 GMT
+  recorded_with: vcr/1.0.2, webmockr/0.8.0
+- request:
+    method: get
+    uri: https://v4.boldsystems.org/index.php/API_Tax/TaxonSearch?taxName=Diplur&fuzzy=true
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3.3 crul/1.3
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx
+      date: Mon, 20 Feb 2023 17:27:37 GMT
+      content-type: text/html; charset=utf-8
+      content-length: '7303'
+      connection: keep-alive
+      x-powered-by: PHP/5.3.15
+      set-cookie: https=on;Path=/;Max-Age=3600;httponly;SameSite=Lax
+    body:
+      encoding: UTF-8
+      file: no
+      string: '{"top_matched_names":[{"taxid":603673,"taxon":"Diplura","tax_rank":"genus","tax_division":"Protista","parentid":53974,"parentname":"Scytosiphonaceae","specimenrecords":"7"},{"taxid":734358,"taxon":"Diplura","tax_rank":"class","tax_division":"Animalia","parentid":20,"parentname":"Arthropoda","taxonrep":"Diplura","representitive_image":{"image":"SSDWA\/BIOUG22935-F02+1449072522.jpg","apectratio":1.333},"specimenrecords":"364"},{"taxid":819980,"taxon":"Diplura
+        paraguayensis","tax_rank":"species","tax_division":"Animalia","parentid":819969,"parentname":"Diplura_genus","taxonrep":"Diplura
+        paraguayensis","specimenrecords":"1"},{"taxid":603674,"taxon":"Diplura simplex","tax_rank":"species","tax_division":"Protista","parentid":603673,"parentname":"Diplura","specimenrecords":"1"},{"taxid":603675,"taxon":"Diplura
+        sp","tax_rank":"species","tax_division":"Protista","parentid":603673,"parentname":"Diplura","specimenrecords":"5"},{"taxid":1156672,"taxon":"Diplura
+        sp. 4MP","tax_rank":"species","tax_division":"Protista","parentid":603673,"parentname":"Diplura","taxonrep":"Diplura
+        sp. 4MP","specimenrecords":"1"},{"taxid":819969,"taxon":"Diplura_genus","tax_rank":"genus","tax_division":"Animalia","parentid":211734,"parentname":"Dipluridae","specimenrecords":"1"},{"taxid":734360,"taxon":"Diplura_order","tax_rank":"order","tax_division":"Animalia","parentid":734358,"parentname":"Diplura","representitive_image":{"image":"COLLH\/bc25340G03+1467842642.jpg","apectratio":1.35},"specimenrecords":"27"},{"taxid":211734,"taxon":"Dipluridae","tax_rank":"family","tax_division":"Animalia","parentid":251,"parentname":"Araneae","taxonrep":"Dipluridae","representitive_image":{"image":"ARBCM\/BIOUG25736-F01+1449238310.JPG","apectratio":1.333},"specimenrecords":"163"},{"taxid":92159,"taxon":"Diplurodes","tax_rank":"genus","tax_division":"Animalia","parentid":5509,"parentname":"Ennominae","taxonrep":"Diplurodes","representitive_image":{"image":"LEPMY\/BIOUG31791-A06+1525198144.JPG","apectratio":1.499},"specimenrecords":"59"},{"taxid":369192,"taxon":"Diplurodes
+        MS01","tax_rank":"species","tax_division":"Animalia","parentid":92159,"parentname":"Diplurodes","taxonrep":"Diplurodes
+        MS01","specimenrecords":"1"},{"taxid":456655,"taxon":"Diplurodes cristatus","tax_rank":"species","tax_division":"Animalia","parentid":92159,"parentname":"Diplurodes","taxonrep":"Diplurodes
+        cristatus","specimenrecords":"1"},{"taxid":466258,"taxon":"Diplurodes decursaria","tax_rank":"species","tax_division":"Animalia","parentid":92159,"parentname":"Diplurodes","taxonrep":"Diplurodes
+        decursaria","representitive_image":{"image":"GWOTE\/BC_ZSM_Lep_add_57873+1332406656.JPG","apectratio":1.333},"specimenrecords":"2"},{"taxid":391258,"taxon":"Diplurodes
+        diehli","tax_rank":"species","tax_division":"Animalia","parentid":92159,"parentname":"Diplurodes","taxonrep":"Diplurodes
+        diehli","specimenrecords":"1"},{"taxid":762851,"taxon":"Diplurodes fimbripedata","tax_rank":"species","tax_division":"Animalia","parentid":92159,"parentname":"Diplurodes","taxonrep":"Diplurodes
+        fimbripedata","representitive_image":{"image":"LEPMY\/BIOUG31791-A06+1525198144.JPG","apectratio":1.499},"specimenrecords":"3"},{"taxid":466259,"taxon":"Diplurodes
+        indentata","tax_rank":"species","tax_division":"Animalia","parentid":92159,"parentname":"Diplurodes","taxonrep":"Diplurodes
+        indentata","representitive_image":{"image":"GWOTE\/BC_ZSM_Lep_add_57874+1332406662.JPG","apectratio":1.333},"specimenrecords":"2"},{"taxid":466257,"taxon":"Diplurodes
+        inundata","tax_rank":"species","tax_division":"Animalia","parentid":92159,"parentname":"Diplurodes","taxonrep":"Diplurodes
+        inundata","representitive_image":{"image":"GWOTE\/BC_ZSM_Lep_add_57872+1332406658.JPG","apectratio":1.333},"specimenrecords":"4"},{"taxid":92160,"taxon":"Diplurodes
+        kerangatis","tax_rank":"species","tax_division":"Animalia","parentid":92159,"parentname":"Diplurodes","taxonrep":"Diplurodes
+        kerangatis","representitive_image":{"image":"GWOTE\/BC_ZSM_Lep_add_57875+1332406666.JPG","apectratio":1.333},"specimenrecords":"3"},{"taxid":456634,"taxon":"Diplurodes
+        luzonensis","tax_rank":"species","tax_division":"Animalia","parentid":92159,"parentname":"Diplurodes","taxonrep":"Diplurodes
+        luzonensis","specimenrecords":"1"},{"taxid":205514,"taxon":"Diplurodes seinoi","tax_rank":"species","tax_division":"Animalia","parentid":92159,"parentname":"Diplurodes","taxonrep":"Diplurodes
+        seinoi","specimenrecords":"1"},{"taxid":224607,"taxon":"Diplurodes semicircularis","tax_rank":"species","tax_division":"Animalia","parentid":92159,"parentname":"Diplurodes","taxonrep":"Diplurodes
+        semicircularis","specimenrecords":"3"},{"taxid":511921,"taxon":"Diplurodes
+        sinecoremata","tax_rank":"species","tax_division":"Animalia","parentid":92159,"parentname":"Diplurodes","taxonrep":"Diplurodes
+        sinecoremata","specimenrecords":"1"},{"taxid":312980,"taxon":"Diplurodes sp","tax_rank":"species","tax_division":"Animalia","parentid":92159,"parentname":"Diplurodes","taxonrep":"Diplurodes
+        sp","representitive_image":{"image":"KHCGE\/KHC6291D+1278357490.JPG","apectratio":1.109},"specimenrecords":"2"},{"taxid":755669,"taxon":"Diplurodes
+        sp. 11MKC","tax_rank":"species","tax_division":"Animalia","parentid":92159,"parentname":"Diplurodes","specimenrecords":"1"},{"taxid":453417,"taxon":"Diplurodes
+        sp. 1MKC","tax_rank":"species","tax_division":"Animalia","parentid":92159,"parentname":"Diplurodes","taxonrep":"Diplurodes
+        sp. 1MKC","specimenrecords":"2"},{"taxid":453416,"taxon":"Diplurodes sp. 2MKC","tax_rank":"species","tax_division":"Animalia","parentid":92159,"parentname":"Diplurodes","taxonrep":"Diplurodes
+        sp. 2MKC","representitive_image":{"image":"GWOSZ\/BC_ZSM_Lep_54064+1324067412.JPG","apectratio":1.333},"specimenrecords":"8"},{"taxid":453420,"taxon":"Diplurodes
+        sp. 3MKC","tax_rank":"species","tax_division":"Animalia","parentid":92159,"parentname":"Diplurodes","taxonrep":"Diplurodes
+        sp. 3MKC","specimenrecords":"4"},{"taxid":453419,"taxon":"Diplurodes sp. 5MKC","tax_rank":"species","tax_division":"Animalia","parentid":92159,"parentname":"Diplurodes","taxonrep":"Diplurodes
+        sp. 5MKC","specimenrecords":"1"},{"taxid":453415,"taxon":"Diplurodes sp. 6MKC","tax_rank":"species","tax_division":"Animalia","parentid":92159,"parentname":"Diplurodes","taxonrep":"Diplurodes
+        sp. 6MKC","specimenrecords":"2"},{"taxid":476451,"taxon":"Diplurodes sp. 7MKC","tax_rank":"species","tax_division":"Animalia","parentid":92159,"parentname":"Diplurodes","taxonrep":"Diplurodes
+        sp. 7MKC","specimenrecords":"1"},{"taxid":456638,"taxon":"Diplurodes spinivava","tax_rank":"species","tax_division":"Animalia","parentid":92159,"parentname":"Diplurodes","taxonrep":"Diplurodes
+        spinivava","specimenrecords":"1"},{"taxid":224606,"taxon":"Diplurodes submontana","tax_rank":"species","tax_division":"Animalia","parentid":92159,"parentname":"Diplurodes","taxonrep":"Diplurodes
+        submontana","representitive_image":{"image":"GWOTE\/BC_ZSM_Lep_add_57871+1332406652.JPG","apectratio":1.333},"specimenrecords":"5"},{"taxid":535185,"taxon":"Diplurodes
+        sugillata","tax_rank":"species","tax_division":"Animalia","parentid":92159,"parentname":"Diplurodes","taxonrep":"Diplurodes
+        sugillata","representitive_image":{"image":"GWORK\/BC_ZSM_Lep_74362+1424362924.JPG","apectratio":1.333},"specimenrecords":"2"}],"total_matched_names":33}'
+  recorded_at: 2023-02-28 00:40:06 GMT
+  recorded_with: vcr/1.0.2, webmockr/0.8.0
+- request:
+    method: get
+    uri: https://v4.boldsystems.org/index.php/API_Tax/TaxonSearch?taxName=Diplur&fuzzy=false
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3.3 crul/1.3
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx
+      date: Mon, 20 Feb 2023 17:27:38 GMT
+      content-type: text/html; charset=utf-8
+      content-length: '48'
+      connection: keep-alive
+      x-powered-by: PHP/5.3.15
+      set-cookie: https=on;Path=/;Max-Age=3600;httponly;SameSite=Lax
+    body:
+      encoding: UTF-8
+      file: no
+      string: '{"top_matched_names":[],"total_matched_names":0}'
+  recorded_at: 2023-02-28 00:40:06 GMT
+  recorded_with: vcr/1.0.2, webmockr/0.8.0
+- request:
+    method: get
+    uri: https://v4.boldsystems.org/index.php/API_Tax/TaxonSearch?taxName=Actinocephalus&fuzzy=false
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3.3 crul/1.3
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx
+      date: Tue, 28 Feb 2023 00:37:07 GMT
+      content-type: text/html; charset=utf-8
+      content-length: '362'
+      connection: keep-alive
+      x-powered-by: PHP/5.3.15
+      set-cookie: https=on;Path=/;Max-Age=3600;httponly;SameSite=Lax
+    body:
+      encoding: UTF-8
+      file: no
+      string: '{"top_matched_names":[{"taxid":349795,"taxon":"Actinocephalus","tax_rank":"genus","tax_division":"Protista","parentid":349793,"parentname":"Actinocephalinae","specimenrecords":"22"},{"taxid":970655,"taxon":"Actinocephalus","tax_rank":"genus","tax_division":"Plantae","parentid":156409,"parentname":"Eriocaulaceae","specimenrecords":"5"}],"total_matched_names":2}'
+  recorded_at: 2023-02-28 00:40:06 GMT
+  recorded_with: vcr/1.0.2, webmockr/0.8.0
+- request:
+    method: get
+    uri: https://v4.boldsystems.org/index.php/API_Tax/TaxonSearch?taxName=Actino&fuzzy=false
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3.3 crul/1.3
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx
+      date: Tue, 28 Feb 2023 00:40:06 GMT
+      content-type: text/html; charset=utf-8
+      content-length: '48'
+      connection: keep-alive
+      x-powered-by: PHP/5.3.15
+      set-cookie: https=on;Path=/;Max-Age=3600;httponly;SameSite=Lax
+    body:
+      encoding: UTF-8
+      file: no
+      string: '{"top_matched_names":[],"total_matched_names":0}'
+  recorded_at: 2023-02-28 00:40:06 GMT
+  recorded_with: vcr/1.0.2, webmockr/0.8.0

@@ -1,46 +1,48 @@
 # tests for bold_seq fxn in bold
 context("bold_seq")
 
-vcr::use_cassette("bold_seq_works_taxon", {
-  test_that("bold_seq returns the correct dimensions/classes", {
-    skip_on_cran()
-  
-    a <- bold_seq(taxon='Coelioxys')
-    expect_is(a, "data.frame")
-    expect_is(a$processid, "character")
-    expect_is(a$identification, "character")
-    expect_is(a$marker, "character")
-    expect_is(a$accession, "character")
-    expect_is(a$sequence, "character")
-  })
-})
 
-vcr::use_cassette("bold_seq_works_bin", {
-  test_that("bold_seq returns the correct dimensions/classes", {
-    b <- bold_seq(bin='BOLD:AAA5125')
-    expect_is(b, "data.frame")
-    expect_is(b$processid, "character")
-    expect_is(b$identification, "character")
-    expect_is(b$marker, "character")
-    expect_is(b$accession, "character")
-    expect_is(b$sequence, "character")
-  })
-})
-
-vcr::use_cassette("bold_seq_works_taxon_response", {
-  test_that("bold_seq returns the correct dimensions/classes", {
-    c <- bold_seq(taxon='Coelioxys', response=TRUE)
-    expect_equal(c$status_code, 200)
-    expect_equal(c$response_headers$`content-type`, "application/x-download")
-    expect_is(c, "HttpResponse")
-    expect_is(c$response_headers, "list")
-  })
-})
-
-
-test_that("bold_seq returns correct error when parameters empty or not given", {
+test_that("bold_seq returns the correct object", {
   skip_on_cran()
-  
-  expect_error(bold_seq(taxon = ''), "must provide a non-empty value")
-  expect_error(bold_seq(), "must provide a non-empty value")
+  vcr::use_cassette("bold_seq", {
+    test <- bold_seq(taxon = 'Coelioxys')
+  })
+  expect_is(test, "data.frame")
+  expect_is(test$processid, "character")
+  expect_is(test$identification, "character")
+  expect_is(test$marker, "character")
+  expect_is(test$accession, "character")
+  expect_is(test$sequence, "character")
+})
+
+test_that("bold_seq returns the correct object (using bin)", {
+  skip_on_cran()
+  vcr::use_cassette("bold_seq", {
+    test <- bold_seq(bin = 'BOLD:AAA5125')
+  })
+  expect_is(test, "data.frame")
+  expect_is(test$processid, "character")
+  expect_is(test$identification, "character")
+  expect_is(test$marker, "character")
+  expect_is(test$accession, "character")
+  expect_is(test$sequence, "character")
+})
+test_that("bold_seq returns the correct object (response)", {
+  vcr::use_cassette("bold_seq", {
+    test <- bold_seq(taxon = 'Coelioxys', response = TRUE)
+  })
+  expect_equal(test$status_code, 200)
+  expect_is(test, "HttpResponse")
+  expect_equal(test$response_headers$`content-type`, "application/x-download")
+  expect_is(test$response_headers, "list")
+})
+
+
+test_that("bold_seq fails well", {
+  skip_on_cran()
+
+  expect_error(bold_seq(), "You must provide a non-empty value to at least one of")
+  expect_error(bold_seq(taxon = ''), "You must provide a non-empty value to at least one of")
+  expect_error(bold_seq(taxon = 5, geo = 1), "'taxon' and 'geo' must be of class character.")
+  expect_error(bold_seq(taxon = 'Coelioxys', response = "true"), "'response' must be of class logical.")
 })

@@ -18,42 +18,39 @@ bold_seq(
 )
 }
 \arguments{
-\item{taxon}{(character) Returns all records containing matching taxa. Taxa
-includes the ranks of  phylum, class, order, family, subfamily, genus,
-and species.}
+\item{taxon}{(character) One or more taxonomic name. Optional.}
 
-\item{ids}{(character) Returns all records containing matching IDs. IDs
+\item{ids}{(character|integer|numeric) One or more IDs. Optional. IDs
 include Sample IDs, Process IDs, Museum IDs and Field IDs.}
 
-\item{bin}{(character) Returns all records contained in matching BINs. A
-BIN is defined by a Barcode Index Number URI.}
+\item{bin}{(character) One or more Barcode Index Number URI. Optional.}
 
-\item{container}{(character) Returns all records contained in matching
-projects or datasets. Containers include project codes and dataset codes}
+\item{container}{(character) One or more project codes or dataset codes.
+Optional.}
 
-\item{institutions}{(character) Returns all records stored in matching
-institutions. Institutions are the Specimen Storing Site.}
+\item{institutions}{(character) One or more institution's name. Optional.
+Institutions are the Specimen Storing Site.}
 
-\item{researchers}{(character) Returns all records containing matching
-researcher names. Researchers include collectors and specimen identifiers.}
+\item{researchers}{(character) One or more researcher names. Optional.
+Include collectors and specimen identifiers.}
 
-\item{geo}{(character) Returns all records collected in matching geographic
-sites. Geographic sites includes countries and province/states.}
+\item{geo}{(character) One or more geographic sites.
+Includes countries and province/states.}
 
 \item{marker}{(character) Returns all records containing matching
 marker codes.}
 
-\item{response}{(logical) Note that response is the object that returns
-from the Curl call, useful for debugging, and getting detailed info on
-the API call.}
+\item{response}{(logical) Default : FALSE. If TRUE, returns the object from
+the Curl call. Useful for debugging and getting more detailed info on the
+API call.}
 
 \item{...}{Further args passed on to
 \code{\link[crul:verb-GET]{crul::verb-GET}}, main purpose being curl
 debugging}
 }
 \value{
-A list with each element of length 4 with slots for id, name,
-gene, and sequence.
+A data frame with each element as row and 5 columns for processid, identification,
+marker, accession, and sequence.
 }
 \description{
 Get sequences for a taxonomic name, id, bin, container, institution,
@@ -101,7 +98,7 @@ just be sure to filter those out as needed.
 
 \examples{
 \dontrun{
-res <- bold_seq(taxon='Coelioxys')
+bold_seq(taxon='Coelioxys')
 bold_seq(taxon='Aglae')
 bold_seq(taxon=c('Coelioxys','Osmia'))
 bold_seq(ids='ACRJP618-11')
@@ -119,11 +116,12 @@ res$status_code
 res$response_headers
 
 ## curl debugging
-### You can do many things, including get verbose output on the curl 
+### You can do many things, including get verbose output on the curl
 ### call, and set a timeout
 bold_seq(taxon='Coelioxys', verbose = TRUE)[1:2]
 # bold_seqspec(taxon='Coelioxys', timeout_ms = 10)
 }
+
 }
 \references{
 http://v4.boldsystems.org/index.php/resources/api?type=webservices
