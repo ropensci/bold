@@ -4,14 +4,11 @@ inst/vign
 Makefile
 .travis.yml
 cran-comments.md
-^appveyor\.yml$
 ^.*\.Rproj$
 ^\.Rproj\.user$
 README.Rmd
-^.*\.tar
 ^CODE_OF_CONDUCT\.md$
 ^cran-comments\.md$
-revdep
 .github
 ^codemeta\.json$
 notes.R
