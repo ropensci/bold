@@ -25,7 +25,8 @@ Imports:
     crul (>= 0.3.8),
     stringi,
     jsonlite,
-    data.table
+    data.table,
+    methods
 Suggests:
     sangerseqR,
     testthat,

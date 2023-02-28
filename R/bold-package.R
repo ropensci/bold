@@ -31,6 +31,7 @@
 #' @importFrom jsonlite fromJSON
 #' @importFrom data.table data.table setDF rbindlist
 #' @importFrom stringi stri_split_lines stri_replace_all_fixed stri_split_fixed stri_extract_all_regex
+#' @importFrom methods setGeneric setMethod
 #' @docType package
 #' @name bold-package
 #' @aliases bold

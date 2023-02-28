@@ -2,27 +2,38 @@
 % Please edit documentation in R/bold_identify_taxonomy.R
 \name{bold_identify_taxonomy}
 \alias{bold_identify_taxonomy}
-\title{Add taxonomic parent names to a data.frame}
+\alias{bold_identify_taxonomy,list-method}
+\alias{bold_identify_taxonomy,matrix-method}
+\alias{bold_identify_taxonomy,data.frame-method}
+\alias{bold_identify_taxonomy,missing-method}
+\title{Add taxonomic parent names to a data set containing the process IDs of identified sequences.}
 \usage{
 bold_identify_taxonomy(x, taxOnly = TRUE)
+
+\S4method{bold_identify_taxonomy}{list}(x, taxOnly = TRUE)
+
+\S4method{bold_identify_taxonomy}{matrix}(x, taxOnly = TRUE)
+
+\S4method{bold_identify_taxonomy}{data.frame}(x, taxOnly = TRUE)
+
+\S4method{bold_identify_taxonomy}{missing}(x, taxOnly = TRUE)
 }
 \arguments{
-\item{x}{(data.frame|list) A single data.frame or a list of - the output from
-a call to \code{\link{bold_identify}}. Required.}
+\item{x}{A single data.frame or matrix, or a list of. Usually the output from a call to \code{\link{bold_identify}}. Required.}
 
-\item{taxOnly}{(logical) If TRUE, only the taxonomic names and ids are added (equivalent format to the results of \code{\link{bold_identify_parents}} when \code{wide}is set to TRUE. If FALSE, also joins the rest of the data returned by \code{\link{bold_specimens}}.}
+\item{taxOnly}{(logical) If TRUE (Default), only the taxonomic names and ids are added (equivalent format to the results of \code{\link{bold_identify_parents}} when \code{wide}is set to TRUE. If FALSE, also joins the rest of the data returned by \code{\link{bold_specimens}}.}
 }
 \value{
 a data.frame or a list of data.frames with added taxonomic
 classification.
 }
 \description{
-Add taxonomic parent names to a data.frame
+Add taxonomic parent names to a data set containing the process IDs of identified sequences.
 }
 \details{
 This function gets the process ids from the
 input data.frame(s) (ID column), then queries \code{\link{bold_specimens}}
-to get the sample information and cbinds it to the input data.frame(s).
+to get the sample information and adds it to the input data.frame(s).
 
 Records in the input data that do not have matches for parent names
 simply get NA values in the added columns.
