@@ -4,10 +4,13 @@
 \name{sequences}
 \alias{sequences}
 \title{List of 3 nucleotide sequences to use in examples for the
-\code{\link[=bold_identify]{bold_identify()}} function}
+\code{\link{bold_identify}} function}
+\format{
+list of length 3
+}
 \description{
 List of 3 nucleotide sequences to use in examples for the
-\code{\link[=bold_identify]{bold_identify()}} function
+\code{\link{bold_identify}} function
 }
 \details{
 Each sequence is a character string, of lengths 410, 600, and 696.

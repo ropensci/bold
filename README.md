@@ -123,7 +123,7 @@ res$response_headers
 
 ### Search for specimen data only
 
-By default you download `tsv` format data, which is given back to you as a `data.frame`
+By default you download `tsv` format data, which is given back to you as a `data.frame`.
 
 
 ```r
@@ -147,7 +147,8 @@ head(res[,1:8])
 
 ### Search for specimen plus sequence data
 
-By default you download `tsv` format data, which is given back to you as a `data.frame`
+By default you download `tsv` format data, which is given back to you as a `data.frame`.
+You can get the sequences in a separated list with `sepfasta=TRUE`.
 
 
 ```r
@@ -218,7 +219,6 @@ nms <- x$Arthropoda$childtaxa_name
 
 Optionally, check that the name exists in BOLD's data. Any that are not in 
 BOLD will give back a row of NAs
-
 
 ```r
 checks <- bold_tax_name(nms)

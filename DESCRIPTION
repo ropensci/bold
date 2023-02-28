@@ -7,7 +7,10 @@ Description: A programmatic interface to the Web Service methods provided by
     for specimens, and downloading trace files.
 Version: 1.2.0
 License: MIT + file LICENSE
-Authors@R: c(person("Scott", "Chamberlain",
+Authors@R: c(person("Dubois", "Salix",
+    role = c("aut"),
+    email = "salixdubois+bold@gmail.com"),
+    person("Scott", "Chamberlain",
     role = c("aut", "cre"),
     email = "myrmecocystus@gmail.com",
     comment = c(ORCID="0000-0003-1444-9135")))
@@ -20,17 +23,18 @@ Roxygen: list(markdown = TRUE)
 Imports:
     xml2,
     crul (>= 0.3.8),
-    stringr,
+    stringi,
     jsonlite,
-    reshape,
-    plyr,
     data.table,
-    tibble
+    methods
 Suggests:
     sangerseqR,
     testthat,
-    vcr (>= 0.5.4)
-RoxygenNote: 7.1.1
+    vcr (>= 0.5.4),
+    tibble
+RoxygenNote: 7.2.1
 X-schema.org-applicationCategory: Data Access
 X-schema.org-keywords: biodiversity, barcode, DNA, sequences, fasta
 X-schema.org-isPartOf: https://ropensci.org
+Depends: 
+    R (>= 2.10)

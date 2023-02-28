@@ -4,16 +4,27 @@
 \alias{bold_tax_name}
 \title{Search BOLD for taxonomy data by taxonomic name}
 \usage{
-bold_tax_name(name, fuzzy = FALSE, response = FALSE, ...)
+bold_tax_name(
+  name,
+  fuzzy = FALSE,
+  response = FALSE,
+  tax_division = NULL,
+  tax_rank = NULL,
+  ...
+)
 }
 \arguments{
 \item{name}{(character) One or more scientific names. required.}
 
 \item{fuzzy}{(logical) Whether to use fuzzy search or not (default: \code{FALSE})}
 
-\item{response}{(logical) Note that response is the object that returns
-from the Curl call, useful for debugging, and getting detailed info on
-the API call.}
+\item{response}{(logical) Default : FALSE. If TRUE, returns the object from
+the Curl call. Useful for debugging and getting more detailed info on the
+API call.}
+
+\item{tax_division}{(character) Taxonomic division to filter the results.}
+
+\item{tax_rank}{(character) Taxonomic rank to filter the results.}
 
 \item{...}{Further args passed on to
 \code{\link[crul:verb-GET]{crul::verb-GET}}, main purpose being curl
@@ -53,5 +64,5 @@ bold_tax_name(name='Diplura', verbose = TRUE)
 http://v4.boldsystems.org/index.php/resources/api?type=taxonomy
 }
 \seealso{
-\code{\link[=bold_tax_id]{bold_tax_id()}}
+\code{\link{bold_tax_id}}
 }

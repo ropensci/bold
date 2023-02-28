@@ -14,45 +14,48 @@ bold_stats(
   geo = NULL,
   dataType = "drill_down",
   response = FALSE,
+  simplify = FALSE,
   ...
 )
 }
 \arguments{
-\item{taxon}{(character) Returns all records containing matching taxa. Taxa
-includes the ranks of  phylum, class, order, family, subfamily, genus,
-and species.}
+\item{taxon}{(character) One or more taxonomic name. Optional.}
 
-\item{ids}{(character) Returns all records containing matching IDs. IDs
+\item{ids}{(character|integer|numeric) One or more IDs. Optional. IDs
 include Sample IDs, Process IDs, Museum IDs and Field IDs.}
 
-\item{bin}{(character) Returns all records contained in matching BINs. A
-BIN is defined by a Barcode Index Number URI.}
+\item{bin}{(character) One or more Barcode Index Number URI. Optional.}
 
-\item{container}{(character) Returns all records contained in matching
-projects or datasets. Containers include project codes and dataset codes}
+\item{container}{(character) One or more project codes or dataset codes.
+Optional.}
 
-\item{institutions}{(character) Returns all records stored in matching
-institutions. Institutions are the Specimen Storing Site.}
+\item{institutions}{(character) One or more institution's name. Optional.
+Institutions are the Specimen Storing Site.}
 
-\item{researchers}{(character) Returns all records containing matching
-researcher names. Researchers include collectors and specimen identifiers.}
+\item{researchers}{(character) One or more researcher names. Optional.
+Include collectors and specimen identifiers.}
 
-\item{geo}{(character) Returns all records collected in matching geographic
-sites. Geographic sites includes countries and province/states.}
+\item{geo}{(character) One or more geographic sites.
+Includes countries and province/states.}
 
-\item{dataType}{(character) one of "overview" or "drill_down" (default).
-"drill_down": a detailed summary of information which provides record
-counts by (BINs, Country, Storing Institution, Species). "overview":
-the total counts of (BINs, Countries, Storing Institutions, Orders,
-Families, Genus, Species)}
+\item{dataType}{(character) one of "drill_down"(default) or "overview".
+"drill_down": a detailed summary of information which provides record counts
+by BINs, Countries, Storing Institutions, Orders, Families, Genus, Species.
+"overview": the total record counts of BINs, Countries, Storing Institutions,
+Orders, Families, Genus, Species. *Note that the number of records include both private and public ones.}
 
-\item{response}{(logical) Note that response is the object that returns
-from the Curl call, useful for debugging, and getting detailed info on
-the API call.}
+\item{response}{(logical) Default : FALSE. If TRUE, returns the object from
+the Curl call. Useful for debugging and getting more detailed info on the
+API call.}
+
+\item{simplify}{(logical) whether the returned list should be simplified to a data.frame. See Details.}
 
 \item{...}{Further args passed on to
 \code{\link[crul:verb-GET]{crul::verb-GET}}, main purpose being curl
 debugging}
+}
+\value{
+By default, returns a nested list with the number of total records, the number of records with a species name, then for each of bins, countries, depositories, order, family, genus and species, the total count and the drill down of the records by up to 10 entities of that category. If \code{simplify} is set to TRUE, returns a list of length 2 : the overview data (number of total records, the number of records with a species name, and the total counts) simplified as a data.frame of 1 row and 9 columns and the drill_down data simplified to a one level list of data.frame. When \code{dataType} is set to "overview", returns a nested list with the number of total records, the number of records with a species name, and the total count for each of bins, countries, depositories, order, family, genus and species. If \code{simplify} is set to TRUE, returns a data.frame of 1 row and 9 columns.
 }
 \description{
 Get BOLD stats
@@ -71,7 +74,13 @@ x$genus
 x$species
 
 # just get all counts
-lapply(Filter(is.list, x), "[[", "count")
+lapply(Filter(is.list, x), `[[`, "count")
+
+bold_stats(taxon='Osmia', dataType = "overview", simplified = TRUE)
+
+x <- bold_stats(taxon='Osmia', simplified = TRUE)
+x$overview
+x$drill_down
 
 res <- bold_stats(taxon='Osmia', response=TRUE)
 res$url
@@ -87,6 +96,7 @@ bold_stats(taxon=c('Coelioxys','Osmia'))
 bold_stats(taxon='Osmia', verbose = TRUE)
 # bold_stats(geo='Costa Rica', timeout_ms = 6)
 }
+
 }
 \references{
 http://v4.boldsystems.org/index.php/resources/api?type=webservices

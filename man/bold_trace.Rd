@@ -3,6 +3,7 @@
 \name{bold_trace}
 \alias{bold_trace}
 \alias{read_trace}
+\alias{bold_read_trace}
 \title{Get BOLD trace files}
 \usage{
 bold_trace(
@@ -21,29 +22,28 @@ bold_trace(
 )
 
 read_trace(x)
+
+bold_read_trace(x)
 }
 \arguments{
-\item{taxon}{(character) Returns all records containing matching taxa. Taxa
-includes the ranks of  phylum, class, order, family, subfamily, genus,
-and species.}
+\item{taxon}{(character) One or more taxonomic name. Optional.}
 
-\item{ids}{(character) Returns all records containing matching IDs. IDs
+\item{ids}{(character|integer|numeric) One or more IDs. Optional. IDs
 include Sample IDs, Process IDs, Museum IDs and Field IDs.}
 
-\item{bin}{(character) Returns all records contained in matching BINs. A
-BIN is defined by a Barcode Index Number URI.}
+\item{bin}{(character) One or more Barcode Index Number URI. Optional.}
 
-\item{container}{(character) Returns all records contained in matching
-projects or datasets. Containers include project codes and dataset codes}
+\item{container}{(character) One or more project codes or dataset codes.
+Optional.}
 
-\item{institutions}{(character) Returns all records stored in matching
-institutions. Institutions are the Specimen Storing Site.}
+\item{institutions}{(character) One or more institution's name. Optional.
+Institutions are the Specimen Storing Site.}
 
-\item{researchers}{(character) Returns all records containing matching
-researcher names. Researchers include collectors and specimen identifiers.}
+\item{researchers}{(character) One or more researcher names. Optional.
+Include collectors and specimen identifiers.}
 
-\item{geo}{(character) Returns all records collected in matching geographic
-sites. Geographic sites includes countries and province/states.}
+\item{geo}{(character) One or more geographic sites.
+Includes countries and province/states.}
 
 \item{marker}{(character) Returns all records containing matching
 marker codes.}
@@ -55,9 +55,10 @@ marker codes.}
 \item{progress}{(logical) Print progress or not. NOT AVAILABLE FOR NOW.
 HOPEFULLY WILL RETURN SOON.}
 
-\item{...}{Further args passed on to \link[crul:verb-GET]{crul::verb-GET}}
+\item{...}{Further args passed on to \code{\link[crul]{verb-GET}}}
 
-\item{x}{Object to print or read.}
+\item{x}{(list or character) Either the boldtrace object returned from
+\code{\link[bold]{bold_trace}} or a path to a bold trace file.}
 }
 \description{
 Get BOLD trace files
@@ -65,7 +66,7 @@ Get BOLD trace files
 \examples{
 \dontrun{
 # Use a specific destination directory
-bold_trace(taxon='Bombus', geo='Alaska', dest="~/mytarfiles")
+bold_trace(taxon = "Bombus ignitus", geo = "Japan", dest = "~/mytarfiles")
 
 # Another example
 # bold_trace(ids='ACRJP618-11', dest="~/mytarfiles")
@@ -74,6 +75,8 @@ bold_trace(taxon='Bombus', geo='Alaska', dest="~/mytarfiles")
 # read file in
 x <- bold_trace(ids=c('ACRJP618-11','ACRJP619-11'), dest="~/mytarfiles")
 (res <- read_trace(x$ab1[2]))
+# read all files in
+(res <- read_trace(x))
 
 # The progress dialog is pretty verbose, so quiet=TRUE is a nice touch,
 # but not by default
