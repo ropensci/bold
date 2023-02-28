@@ -1,3 +1,5 @@
+# uncomment to set all cassettes at once
+# vcr::vcr_configure(dir = "./tests/fixtures/")
 # vcr::use_cassette("bold_specimens", {
 #   bold_specimens(taxon = 'Coelioxys')
 #   bold_specimens(taxon = 'Coelioxys', format = 'xml')
@@ -24,6 +26,7 @@
 #   bold_tax_id2(id = 88899)
 #   bold_tax_id2(id = c(88899, 125295))
 #   bold_tax_id2(id = 88899, includeTree = TRUE)
+#   bold_tax_id2(id = 88899, dataTypes = "all")
 #   bold_tax_id2(id = 88899, dataTypes = "stats")
 #   bold_tax_id2(id = 88899, dataTypes = "geo")
 #   bold_tax_id2(id = 88899, dataTypes = "sequencinglabs")

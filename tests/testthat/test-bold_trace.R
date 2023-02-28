@@ -36,3 +36,38 @@ test_that("bold_trace fails well", {
   expect_error(bold_trace(taxon = 'Coelioxys', overwrite = "true"), "'overwrite' must be of class logical.")
   expect_error(bold_trace(taxon = 'Coelioxys', dest = TRUE), "'dest' must be of class character.")
 })
+
+test_that("print.bold_trace prints properly", {
+  skip_on_cran()
+  dest.dir <- vcr::vcr_configuration()$write_disk_path
+  vcr::use_cassette("bold_trace", {
+    test <- bold_trace(taxon = "Bombus ignitus", geo = "Japan", dest = file.path(dest.dir, "taxon"))
+  })
+  test <- capture.output(test)
+  expect_is(test, "character")
+  expect_length(test, 9L)
+  expect_true(sum(!nzchar(test)) == 2)
+  expect_true(sum(grepl(".ab1$", test)) == 6)
+})
+
+test_that("bold_read_trace works properly", {
+  skip_on_cran()
+  dest.dir <- vcr::vcr_configuration()$write_disk_path
+  vcr::use_cassette("bold_trace", {
+    test <- bold_trace(taxon = "Bombus ignitus", geo = "Japan", dest = file.path(dest.dir, "taxon"))
+  })
+  test_trace <- bold_read_trace(test)
+  expect_is(test_trace, "list")
+  expect_length(test_trace, 6)
+  expect_is(test_trace[[1]], "sangerseq")
+  test_trace <- bold_read_trace(test$ab1[1:2])
+  expect_is(test_trace, "list")
+  expect_length(test_trace, 2)
+  expect_is(test_trace[[1]], "sangerseq")
+  # error in path file
+  expect_warning(bold_read_trace(gsub("_F","", test$ab1[1])), "Couldn't find the trace file:")
+  test_trace <- bold_read_trace(gsub("_F","", test$ab1[1]))
+  expect_is(test_trace, "list")
+  expect_length(test_trace, 1)
+  expect_length(test_trace[[1]], 0)
+})

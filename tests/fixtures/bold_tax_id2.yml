@@ -17,7 +17,7 @@ http_interactions:
     headers:
       status: HTTP/1.1 200 OK
       server: nginx
-      date: Mon, 20 Feb 2023 16:52:37 GMT
+      date: Tue, 28 Feb 2023 20:31:18 GMT
       content-type: text/html; charset=utf-8
       content-length: '120'
       connection: keep-alive
@@ -27,7 +27,7 @@ http_interactions:
       encoding: UTF-8
       file: no
       string: '{"taxid":88899,"taxon":"Momotus","tax_rank":"genus","tax_division":"Animalia","parentid":88898,"parentname":"Momotidae"}'
-  recorded_at: 2023-02-20 16:52:41 GMT
+  recorded_at: 2023-02-28 20:31:22 GMT
   recorded_with: vcr/1.0.2, webmockr/0.8.0
 - request:
     method: get
@@ -47,7 +47,7 @@ http_interactions:
     headers:
       status: HTTP/1.1 200 OK
       server: nginx
-      date: Mon, 20 Feb 2023 16:52:37 GMT
+      date: Tue, 28 Feb 2023 20:31:19 GMT
       content-type: text/html; charset=utf-8
       content-length: '120'
       connection: keep-alive
@@ -57,7 +57,7 @@ http_interactions:
       encoding: UTF-8
       file: no
       string: '{"taxid":88899,"taxon":"Momotus","tax_rank":"genus","tax_division":"Animalia","parentid":88898,"parentname":"Momotidae"}'
-  recorded_at: 2023-02-20 16:52:41 GMT
+  recorded_at: 2023-02-28 20:31:22 GMT
   recorded_with: vcr/1.0.2, webmockr/0.8.0
 - request:
     method: get
@@ -77,7 +77,7 @@ http_interactions:
     headers:
       status: HTTP/1.1 200 OK
       server: nginx
-      date: Mon, 20 Feb 2023 16:52:37 GMT
+      date: Tue, 28 Feb 2023 20:31:19 GMT
       content-type: text/html; charset=utf-8
       content-length: '150'
       connection: keep-alive
@@ -87,7 +87,7 @@ http_interactions:
       encoding: UTF-8
       file: no
       string: '{"taxid":125295,"taxon":"Helianthus","tax_rank":"genus","tax_division":"Plantae","parentid":151101,"parentname":"Asteroideae","taxonrep":"Helianthus"}'
-  recorded_at: 2023-02-20 16:52:41 GMT
+  recorded_at: 2023-02-28 20:31:22 GMT
   recorded_with: vcr/1.0.2, webmockr/0.8.0
 - request:
     method: get
@@ -107,7 +107,7 @@ http_interactions:
     headers:
       status: HTTP/1.1 200 OK
       server: nginx
-      date: Mon, 20 Feb 2023 16:52:38 GMT
+      date: Tue, 28 Feb 2023 20:31:19 GMT
       content-type: text/html; charset=utf-8
       content-length: '639'
       connection: keep-alive
@@ -117,7 +117,61 @@ http_interactions:
       encoding: UTF-8
       file: no
       string: '{"88899":{"taxid":88899,"taxon":"Momotus","tax_rank":"genus","tax_division":"Animalia","parentid":88898,"parentname":"Momotidae"},"88898":{"taxid":88898,"taxon":"Momotidae","tax_rank":"family","tax_division":"Animalia","parentid":339,"parentname":"Coraciiformes"},"339":{"taxid":339,"taxon":"Coraciiformes","tax_rank":"order","tax_division":"Animalia","parentid":51,"parentname":"Aves"},"51":{"taxid":51,"taxon":"Aves","tax_rank":"class","tax_division":"Animalia","parentid":18,"parentname":"Chordata","taxonrep":"Aves"},"18":{"taxid":18,"taxon":"Chordata","tax_rank":"phylum","tax_division":"Animalia","parentid":1,"taxonrep":"Chordata"}}'
-  recorded_at: 2023-02-20 16:52:41 GMT
+  recorded_at: 2023-02-28 20:31:22 GMT
+  recorded_with: vcr/1.0.2, webmockr/0.8.0
+- request:
+    method: get
+    uri: https://v4.boldsystems.org/index.php/API_Tax/TaxonData?taxId=88899&dataTypes=all&includeTree=false
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3.3 crul/1.3
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx
+      date: Tue, 28 Feb 2023 20:31:20 GMT
+      content-type: text/html; charset=utf-8
+      content-length: '2477'
+      connection: keep-alive
+      x-powered-by: PHP/5.3.15
+      set-cookie: https=on;Path=/;Max-Age=3600;httponly;SameSite=Lax
+    body:
+      encoding: UTF-8
+      file: no
+      string: '{"taxid":88899,"taxon":"Momotus","tax_rank":"genus","tax_division":"Animalia","parentid":88898,"parentname":"Momotidae","stats":{"publicmarkersequences":{"COI-5P":41},"publicrecords":41,"publicspecies":2,"publicsubspecies":0,"publicbins":8,"specimenrecords":84,"sequencedspecimens":67,"barcodespecimens":61,"species":3,"barcodespecies":3},"country":{"Panama":10,"Peru":17,"Ecuador":2,"Bolivia":6,"Guatemala":1,"Mexico":2,"Brazil":4,"Colombia":4},"sitemap":"http:\/\/www.boldsystems.org\/index.php\/TaxBrowser_Maps_CollectionSites?taxid=88899","sequencinglabs":{"Biodiversity
+        Institute of Ontario":18,"Genoscope, Centre National de Sequencage":5,"Smithsonian
+        Tropical Research Institute":7,"Royal Ontario Museum":2,"Universidade Federal
+        do Rio de Janeiro":2,"Macrogen, Korea":2,"Mined from GenBank, NCBI":26,"Universidade
+        Federal de Minas Gerais":1,"Centre for Biodiversity Genomics":1,"Universidad
+        Nacional de Colombia":2},"depository":{"Mined from GenBank, NCBI":26,"Smithsonian
+        Tropical Research Institute":10,"Royal Ontario Museum":1,"Centro de Ornitologia
+        y Biodiversidad":9,"Museo Nacional de Ciencias Naturales":3,"Coleccion Boliviana
+        de Fauna":3,"Universidad de San Carlos de Guatemala, Escuela de Biologia":1,"Universidad
+        Nacional Mayor de San Marcos, Museo de Historia Natural":8,"Museo Argentino
+        de Ciencias Naturales, Bernardino Rivadavia":3,"Universidad Nacional Autonoma
+        de Mexico, Instituto de Biologia":2,"Universidade Federal de Minas Gerais":1,"Instituto
+        Nacional de Pesquisas da Amazonia":1,"Museum National d''Histoire Naturelle,
+        Paris":5,"Museo Nacional de Brasil":2,"Universidad EAFIT":2,"Instituto de
+        Investigacion de Recursos Biologicos Alexander von Humboldt":2},"wikipedia_summary":"\"Momotus
+        is a small genus of the motmots, a family of near passerine birds found in
+        forest and woodland of the Neotropics. They have a colourful plumage, which
+        is green on the back becoming blue on the flight feathers and the long tails.
+        The barbs near the ends of the two longest central tail feathers fall off,
+        leaving a length of bare shaft so that tails appear racket-shaped.\\nMomotus
+        species, like other motmots, eat small prey such as insects and lizards, and
+        will also take fruit. They nest in tunnels in banks, laying about four white
+        eggs.\\nThe genus Momotus was introduced by the French zoologist Mathurin
+        Jacques Brisson in 1760 with the Amazonian motmot (Momotus momota) as the
+        type species.\"","wikipedia_link":"http:\/\/en.wikipedia.org\/wiki\/Momotus"}'
+  recorded_at: 2023-02-28 20:31:22 GMT
   recorded_with: vcr/1.0.2, webmockr/0.8.0
 - request:
     method: get
@@ -137,7 +191,7 @@ http_interactions:
     headers:
       status: HTTP/1.1 200 OK
       server: nginx
-      date: Mon, 20 Feb 2023 16:52:38 GMT
+      date: Tue, 28 Feb 2023 20:31:20 GMT
       content-type: text/html; charset=utf-8
       content-length: '220'
       connection: keep-alive
@@ -147,7 +201,7 @@ http_interactions:
       encoding: UTF-8
       file: no
       string: '{"stats":{"publicmarkersequences":{"COI-5P":41},"publicrecords":41,"publicspecies":2,"publicsubspecies":0,"publicbins":8,"specimenrecords":84,"sequencedspecimens":67,"barcodespecimens":61,"species":3,"barcodespecies":3}}'
-  recorded_at: 2023-02-20 16:52:41 GMT
+  recorded_at: 2023-02-28 20:31:22 GMT
   recorded_with: vcr/1.0.2, webmockr/0.8.0
 - request:
     method: get
@@ -167,7 +221,7 @@ http_interactions:
     headers:
       status: HTTP/1.1 200 OK
       server: nginx
-      date: Mon, 20 Feb 2023 16:52:38 GMT
+      date: Tue, 28 Feb 2023 20:31:20 GMT
       content-type: text/html; charset=utf-8
       content-length: '205'
       connection: keep-alive
@@ -177,7 +231,7 @@ http_interactions:
       encoding: UTF-8
       file: no
       string: '{"country":{"Panama":10,"Peru":17,"Ecuador":2,"Bolivia":6,"Guatemala":1,"Mexico":2,"Brazil":4,"Colombia":4},"sitemap":"http:\/\/www.boldsystems.org\/index.php\/TaxBrowser_Maps_CollectionSites?taxid=88899"}'
-  recorded_at: 2023-02-20 16:52:41 GMT
+  recorded_at: 2023-02-28 20:31:22 GMT
   recorded_with: vcr/1.0.2, webmockr/0.8.0
 - request:
     method: get
@@ -197,7 +251,7 @@ http_interactions:
     headers:
       status: HTTP/1.1 200 OK
       server: nginx
-      date: Mon, 20 Feb 2023 16:52:38 GMT
+      date: Tue, 28 Feb 2023 20:31:21 GMT
       content-type: text/html; charset=utf-8
       content-length: '381'
       connection: keep-alive
@@ -211,7 +265,7 @@ http_interactions:
         Ontario Museum":2,"Universidade Federal do Rio de Janeiro":2,"Macrogen, Korea":2,"Mined
         from GenBank, NCBI":26,"Universidade Federal de Minas Gerais":1,"Centre for
         Biodiversity Genomics":1,"Universidad Nacional de Colombia":2}}'
-  recorded_at: 2023-02-20 16:52:41 GMT
+  recorded_at: 2023-02-28 20:31:22 GMT
   recorded_with: vcr/1.0.2, webmockr/0.8.0
 - request:
     method: get
@@ -231,7 +285,7 @@ http_interactions:
     headers:
       status: HTTP/1.1 200 OK
       server: nginx
-      date: Mon, 20 Feb 2023 16:52:39 GMT
+      date: Tue, 28 Feb 2023 20:31:21 GMT
       content-type: text/html; charset=utf-8
       content-length: '6288'
       connection: keep-alive
@@ -258,18 +312,18 @@ http_interactions:
         Verde":22,"Qatar":2,"Paraguay":2,"Iran":6,"Puerto Rico":4,"Saint Lucia":1,"Dominican
         Republic":3,"Cayman Islands":4,"Venezuela":10,"Kyrgyzstan":2,"Taiwan":6,"Malawi":3,"Solomon
         Islands":4,"Turkey":15,"Equatorial Guinea":6,"Ghana":1,"Laos":4,"Armenia":19,"Thailand":4,"Cuba":2,"Haiti":1,"Cyprus":4,"French
-        Polynesia":5,"Zambia":1,"United Arab Emirates":1},"sitemap":"http:\/\/www.boldsystems.org\/index.php\/TaxBrowser_Maps_CollectionSites?taxid=51"},"18":{"taxid":18,"taxon":"Chordata","tax_rank":"phylum","tax_division":"Animalia","parentid":1,"taxonrep":"Chordata","country":{"Canada":38030,"United
-        States":37242,"Mexico":21854,"Australia":18061,"Panama":10278,"Argentina":15246,"Brazil":41428,"Japan":2596,"New
-        Zealand":941,"Austria":1823,"Germany":2391,"South Africa":9432,"Peru":14185,"Sweden":475,"Uruguay":497,"Guyana":7975,"Madagascar":4811,"Sao
-        Tome and Principe":176,"Afghanistan":814,"South Korea":1035,"Indonesia":21073,"El
-        Salvador":548,"Kuwait":224,"Russia":5780,"India":12614,"Pakistan":1654,"Suriname":4456,"Netherlands":1074,"Nigeria":616,"Portugal":1574,"Norway":1250,"Kenya":2785,"Costa
+        Polynesia":5,"Zambia":1,"United Arab Emirates":1},"sitemap":"http:\/\/www.boldsystems.org\/index.php\/TaxBrowser_Maps_CollectionSites?taxid=51"},"18":{"taxid":18,"taxon":"Chordata","tax_rank":"phylum","tax_division":"Animalia","parentid":1,"taxonrep":"Chordata","country":{"Canada":38119,"United
+        States":37241,"Mexico":21853,"Australia":18061,"Panama":10278,"Argentina":15245,"Brazil":41426,"Japan":2596,"New
+        Zealand":941,"Austria":1823,"Germany":2391,"South Africa":9432,"Peru":14185,"Sweden":475,"Uruguay":497,"Guyana":7975,"Madagascar":4848,"Sao
+        Tome and Principe":176,"Afghanistan":814,"South Korea":1035,"Indonesia":21072,"El
+        Salvador":548,"Kuwait":224,"Russia":5780,"India":12610,"Pakistan":1654,"Suriname":4456,"Netherlands":1074,"Nigeria":616,"Portugal":1574,"Norway":1250,"Kenya":2785,"Costa
         Rica":3781,"Ecuador":4552,"Bolivia":2427,"Colombia":7486,"Slovakia":306,"Italy":448,"Morocco":95,"Spain":1253,"China":13617,"Gabon":922,"Myanmar":3811,"Malaysia":5947,"Philippines":7162,"Greece":213,"Cameroon":147,"Tanzania":521,"Kazakhstan":473,"Mongolia":1195,"Malta":1,"Iceland":39,"Antigua
         and Barbuda":30,"Democratic Republic of the Congo":667,"Namibia":234,"French
         Guiana":1198,"Belgium":52,"France":3895,"Chile":200,"North Pacific Ocean":26,"Saint
         Helena Ascension and Tristan da Cunha":146,"United Kingdom":630,"Ethiopia":323,"Finland":39,"Honduras":1480,"Vietnam":5478,"Denmark":32,"Papua
         New Guinea":1663,"Nicaragua":563,"Guatemala":1339,"Saint Vincent and the Grenadines":23,"Cape
         Verde":23,"Qatar":11,"Paraguay":253,"Iran":1142,"Puerto Rico":703,"Saint Lucia":10,"Dominican
-        Republic":40,"Cayman Islands":10,"Venezuela":1457,"Kyrgyzstan":31,"Taiwan":1986,"Malawi":5,"Solomon
+        Republic":40,"Cayman Islands":10,"Venezuela":1457,"Kyrgyzstan":31,"Taiwan":1985,"Malawi":5,"Solomon
         Islands":170,"Turkey":1699,"Equatorial Guinea":6,"Ghana":86,"Laos":967,"Armenia":29,"Thailand":2025,"Cuba":394,"Haiti":7,"Cyprus":8,"French
         Polynesia":3073,"Zambia":214,"United Arab Emirates":40,"Mozambique":217,"Georgia":512,"Israel":309,"Ireland":118,"Egypt":98,"Angola":273,"Saudi
         Arabia":307,"Switzerland":433,"Bulgaria":172,"Uzbekistan":802,"Turkmenistan":31,"Ukraine":159,"Cambodia":1395,"Sierra
@@ -282,7 +336,7 @@ http_interactions:
         States Virgin Islands":531,"Tonga":137,"Micronesia":191,"Northern Mariana
         Islands":59,"Botswana":91,"Guinea":157,"Pacific Ocean":172,"Bermuda":2,"Brunei":2,"Central
         African Republic":9,"Lithuania":1,"Estonia":2,"Swaziland":2},"sitemap":"http:\/\/www.boldsystems.org\/index.php\/TaxBrowser_Maps_CollectionSites?taxid=18"}}'
-  recorded_at: 2023-02-20 16:52:41 GMT
+  recorded_at: 2023-02-28 20:31:22 GMT
   recorded_with: vcr/1.0.2, webmockr/0.8.0
 - request:
     method: get
@@ -302,7 +356,7 @@ http_interactions:
     headers:
       status: HTTP/1.1 200 OK
       server: nginx
-      date: Mon, 20 Feb 2023 16:52:39 GMT
+      date: Tue, 28 Feb 2023 20:31:22 GMT
       content-type: text/html; charset=utf-8
       content-length: '157'
       connection: keep-alive
@@ -312,7 +366,7 @@ http_interactions:
       encoding: UTF-8
       file: no
       string: '{"stats":{"publicrecords":1,"publicbins":0,"publicspecies":1,"specimenrecords":3,"sequencedspecimens":4,"barcodespecimens":0,"species":1,"barcodespecies":1}}'
-  recorded_at: 2023-02-20 16:52:41 GMT
+  recorded_at: 2023-02-28 20:31:22 GMT
   recorded_with: vcr/1.0.2, webmockr/0.8.0
 - request:
     method: get
@@ -332,7 +386,7 @@ http_interactions:
     headers:
       status: HTTP/1.1 200 OK
       server: nginx
-      date: Mon, 20 Feb 2023 16:52:39 GMT
+      date: Tue, 28 Feb 2023 20:31:22 GMT
       content-type: text/html; charset=utf-8
       content-length: '290'
       connection: keep-alive
@@ -342,5 +396,5 @@ http_interactions:
       encoding: UTF-8
       file: no
       string: '{"taxid":660837,"taxon":"Dalbergia lemurica","tax_rank":"species","tax_division":"Plantae","parentid":194754,"parentname":"Dalbergia","stats":{"publicrecords":1,"publicbins":0,"publicspecies":1,"specimenrecords":3,"sequencedspecimens":4,"barcodespecimens":0,"species":1,"barcodespecies":1}}'
-  recorded_at: 2023-02-20 16:52:41 GMT
+  recorded_at: 2023-02-28 20:31:22 GMT
   recorded_with: vcr/1.0.2, webmockr/0.8.0

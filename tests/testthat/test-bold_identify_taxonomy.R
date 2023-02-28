@@ -50,10 +50,17 @@ test_that("bold_identify_taxonomy fails well", {
 
   # x required
   expect_error(bold_identify_taxonomy(), "argument 'x' is missing")
+  expect_error(bold_identify_taxonomy(list()), "argument `x` is empty")
+  expect_error(bold_identify_taxonomy(data.frame()), "argument `x` is empty")
+  expect_error(bold_identify_taxonomy(matrix(logical(0L))), "argument `x` is empty")
   # only supported types
   expect_error(bold_identify_taxonomy(numeric()), "unable to find an inherited method for function")
   expect_error(bold_identify_taxonomy(x = bold_identify_list, taxOnly = "true"), "'taxOnly' must be of class logical.")
   # required column ID
+  expect_error(bold_identify_taxonomy(list(mtcars, mtcars)),
+               "no column 'ID' found in x")
   expect_warning(bold_identify_taxonomy(mtcars),
+               "No column 'ID' found, skipped")
+  expect_warning(bold_identify_taxonomy(as.matrix(mtcars)),
                "No column 'ID' found, skipped")
 })
