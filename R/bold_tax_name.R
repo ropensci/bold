@@ -47,7 +47,7 @@ bold_tax_name <- function(name, fuzzy = FALSE, response = FALSE,
   if(length(tax_rank)){
     assert(tax_rank, "character")
     tax_rank <- tolower(tax_rank)
-    if(!tax_rank %in% c(rank_ref[["rank"]], rank_ref[["ranks"]]))
+    if(any(!tax_rank %in% c(rank_ref[["rank"]], rank_ref[["ranks"]])))
       stop("Invalid tax_rank name.")
   }
 
@@ -76,10 +76,10 @@ process_tax_name <- function(x, tax_division, tax_rank) {
       if(length(tax_division) && length(out$tax_division)) out <- out[out$tax_division %in% tax_division,]
       if(length(tax_rank) && length(out$tax_rank)) out <- out[out$tax_rank %in% tax_rank,]
     } else {
-      out <- data.frame(taxid = NA)
+      out <- data.frame(taxid = NA_integer_)
     }
   } else {
-    out <- data.frame(taxid = NA)
+    out <- data.frame(taxid = NA_integer_)
   }
   out
 }

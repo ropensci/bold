@@ -3,7 +3,7 @@ context("bold_identify")
 test_that("bold_identify returns the correct object", {
   skip_on_cran()
   vcr::use_cassette("bold_identify", {
-    test <- bold_identify(sequences$seq1)
+    test <- bold_identify(sequences = sequences$seq1)
   })
   expect_is(test, 'list')
   expect_is(test[[1]], 'data.frame')
@@ -14,7 +14,7 @@ test_that("bold_identify returns the correct object (db)", {
   skip_on_cran()
 
   vcr::use_cassette("bold_identify", {
-    test <- bold_identify(sequences$seq1, db = 'COX1_SPECIES')
+    test <- bold_identify(sequences = sequences$seq1, db = 'COX1_SPECIES')
   })
   expect_is(test, 'list')
   expect_is(test[[1]], 'data.frame')
@@ -24,7 +24,7 @@ test_that("bold_identify returns the correct object (db)", {
 test_that("bold_identify returns the correct object (response)", {
   skip_on_cran()
   vcr::use_cassette("bold_identify", {
-    test <- bold_identify(sequences$seq1, response = TRUE)
+    test <- bold_identify(sequences = sequences$seq1, response = TRUE)
   })
   expect_is(test, "list")
   test <- test[[1]]
@@ -33,6 +33,16 @@ test_that("bold_identify returns the correct object (response)", {
   expect_equal(test$response$response_headers$`content-type`, "text/xml")
   expect_is(test$warning, "character")
   expect_equal(test$warning, "")
+})
+
+test_that("bold_identify skips the identification when the sequences has invalid characters or when the sequence is too short", {
+  skip_on_cran()
+  test <- bold_identify(sequences = c(substr(sequences$seq1, 1, 50), gsub("N", "0", sequences$seq3)))
+  expect_is(test, 'list')
+  expect_true(all(is.na(test)))
+  expect_length(attributes(test[[1]]), 2L)
+  expect_equal(attr(test[[1]], "error"), "Sequence  must be at least 80 bp.")
+  expect_equal(attr(test[[2]], "error"), "Sequence contains invalid characters.")
 })
 
 test_that("bold_identify fails well", {

@@ -13,18 +13,54 @@ test_that("bold_tax_name returns the correct object", {
 
 test_that("bold_tax_name returns the correct object (multiple names)", {
   skip_on_cran()
+  vcr::use_cassette("bold_tax_name", {
     test <- bold_tax_name(name = c("Apis", "Puma concolor", "Pinus concolor"))
-    expect_is(test, "data.frame")
-    expect_is(test$input, "character")
-    expect_is(test$taxid, "integer")
+  })
+  expect_is(test, "data.frame")
+  expect_is(test$input, "character")
+  expect_is(test$taxid, "integer")
+})
+test_that("bold_tax_name returns the correct object (using filters)", {
+  skip_on_cran()
+
+  vcr::use_cassette("bold_tax_name", {
+    test <- bold_tax_name(name = "Actinocephalus", tax_rank = "genus")
+  })
+  expect_is(test, "data.frame")
+  expect_is(test$input, "character")
+  expect_is(test$taxid, "integer")
+  expect_equal(NROW(test), 2)
+  expect_equal(unique(test$tax_rank), "genus")
+
+  vcr::use_cassette("bold_tax_name", {
+    test <- bold_tax_name(name = "Actinocephalus", tax_division = "Protista")
+  })
+  expect_is(test, "data.frame")
+  expect_is(test$input, "character")
+  expect_is(test$taxid, "integer")
+  expect_equal(NROW(test), 1)
+  expect_equal(test$tax_division, "Protista")
+})
+
+test_that("bold_tax_name returns the correct object (when taxon not found)", {
+  skip_on_cran()
+  vcr::use_cassette("bold_tax_name", {
+    test <- bold_tax_name(name = "Actino")
+  })
+  expect_is(test, "data.frame")
+  expect_is(test$input, "character")
+  expect_is(test$taxid, "integer")
+  expect_true(is.na(test$taxid))
 })
 
 test_that("bold_tax_name returns the correct object (response)", {
   skip_on_cran()
+
   vcr::use_cassette("bold_tax_name", {
     test <- bold_tax_name(name = "Diplura", response = TRUE)
   })
   expect_is(test, "list")
+
   test <- test[["Diplura"]]
   expect_length(test, 2)
   expect_is(test$response, "HttpResponse")
@@ -57,6 +93,11 @@ test_that("bold_tax_name fails well", {
                "'fuzzy' must be of class logical.")
   expect_error(bold_tax_name(name = "Diplur", tax_division = 5),
                "'tax_division' must be of class character.")
+  expect_error(bold_tax_name(name = "Diplur", tax_division = "Mushrooms"),
+               "'tax_division' must be one or more of Animalia, Protista, Fungi and Plantae")
   expect_error(bold_tax_name(name = "Diplur", tax_rank = 5),
                "'tax_rank' must be of class character.")
+  expect_error(bold_tax_name(name = "Diplur",
+                             tax_rank = c("genus", "notArank")),
+               "Invalid tax_rank name.")
 })

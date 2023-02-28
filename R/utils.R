@@ -88,8 +88,7 @@ assert <- function(x,
     name <- deparse(substitute(x))
   if (checkLength && !length(x)) {
     msgLen <- paste0("\n ", name, " must have length > 0")
-  }
-  else {
+  } else {
     msgClass <- check_class(x, what, name)
     if (all(!nzchar(msgClass))) msgClass <- NULL
   }

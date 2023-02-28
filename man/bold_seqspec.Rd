@@ -50,7 +50,8 @@ API call.}
 back a data.frame object. xml gives back parsed xml as a list.}
 
 \item{sepfasta}{(logical) If \code{TRUE}, the fasta data is separated into
-a list with names matching the processid's from the data frame.
+a list with names matching the processid's from the data frame. Note: This
+means multiple sequences can have the same name.
 Default: \code{FALSE}}
 
 \item{...}{Further args passed on to
@@ -59,8 +60,8 @@ debugging}
 }
 \value{
 Either a data.frame, parsed xml, a http response object, or a list
-with length two (a data.frame w/o nucleotide data, and a list with
-nucleotide data)
+with length two (data: a data.frame w/o nucleotide column, and fasta: a list
+of nucleotides with the processid as name)
 }
 \description{
 Get BOLD specimen + sequence data.

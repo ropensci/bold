@@ -65,13 +65,10 @@
 #' @export
 bold_identify <- function(sequences, db = 'COX1', response = FALSE, keepSeq = TRUE, ...) {
   # make sure sequences are character before the queries
-  if (is.list(sequences)) {
-    if (!all(vapply(sequences, inherits, NA, "character"))) {
-      stop("'sequences' should be of class character.")
-    }
-  } else {
-    assert(sequences, "character")
+  if (is.list(sequences) && all(lengths(sequences) == 1)) {
+    sequences <- c(sequences, recursive = TRUE)
   }
+  assert(sequences, "character")
   if (!missing(db)) {
     assert(db, "character", checkLength = TRUE)
     if (!db %in% c("COX1", "COX1_SPECIES", "COX1_SPECIES_PUBLIC", "COX1_L640bp")) {
@@ -82,25 +79,27 @@ bold_identify <- function(sequences, db = 'COX1', response = FALSE, keepSeq = TR
   assert(keepSeq, "logical")
   # loop over sequences since the API only accepts one at a time
   lapply(sequences, function(seq){
-    if (nzchar(seq)) {
+    if (nchar(seq) < 80) {
+      res <- list(response = NULL, warning = "Sequence  must be at least 80 bp.")
+    } else if (!grepl("^[A-z|*|-|+|.]*$", seq)) {
+      res <- list(response = NULL, warning = "Sequence contains invalid characters.")
+    } else {
       res <- get_response(
         args = bc(list(sequence = seq, db = db)),
         url = b_url('Ids_xml'),
         contentType = 'text/xml'
       )
-      if (response) {
-        res
-      } else {
-        out <- .parse_identify_xml(res)
-        # add input sequence as attribute to prevent mix up if 'sequences' wasn't named
-        if (keepSeq) {
-          attr(out, "sequence") <- seq
-        }
-        attr(out, "errors") <- res$warning
-        out
-      }
+    }
+    if (response) {
+      res
     } else {
-      NULL
+      out <- if (length(res$response)) .parse_identify_xml(res) else NA
+      # add input sequence as attribute to prevent mix up if 'sequences' wasn't named
+      if (keepSeq) {
+        attr(out, "sequence") <- seq
+      }
+      attr(out, "errors") <- res$warning
+      out
     }
   })
 }

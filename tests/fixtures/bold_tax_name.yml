@@ -27,7 +27,7 @@ http_interactions:
       encoding: UTF-8
       file: no
       string: '{"top_matched_names":[{"taxid":603673,"taxon":"Diplura","tax_rank":"genus","tax_division":"Protista","parentid":53974,"parentname":"Scytosiphonaceae","specimenrecords":"7"},{"taxid":734358,"taxon":"Diplura","tax_rank":"class","tax_division":"Animalia","parentid":20,"parentname":"Arthropoda","taxonrep":"Diplura","representitive_image":{"image":"SSDWA\/BIOUG22935-F02+1449072522.jpg","apectratio":1.333},"specimenrecords":"364"}],"total_matched_names":2}'
-  recorded_at: 2023-02-20 17:27:40 GMT
+  recorded_at: 2023-02-28 00:40:06 GMT
   recorded_with: vcr/1.0.2, webmockr/0.8.0
 - request:
     method: get
@@ -57,7 +57,7 @@ http_interactions:
       encoding: UTF-8
       file: no
       string: '{"top_matched_names":[{"taxid":1937,"taxon":"Apis","tax_rank":"genus","tax_division":"Animalia","parentid":878935,"parentname":"Apini","taxonrep":"Apis","representitive_image":{"image":"BOFTH\/B3260-B09+1247093258.jpg","apectratio":1.362},"specimenrecords":"5058"}],"total_matched_names":1}'
-  recorded_at: 2023-02-20 17:27:40 GMT
+  recorded_at: 2023-02-28 00:40:06 GMT
   recorded_with: vcr/1.0.2, webmockr/0.8.0
 - request:
     method: get
@@ -88,7 +88,7 @@ http_interactions:
       file: no
       string: '{"top_matched_names":[{"taxid":12521,"taxon":"Puma concolor","tax_rank":"species","tax_division":"Animalia","parentid":4372,"parentname":"Puma","taxonrep":"Puma
         concolor","representitive_image":{"image":"FCMUN\/IBUNAM_CNMA_1314+1276871340.JPG","apectratio":1.493},"specimenrecords":"358"}],"total_matched_names":1}'
-  recorded_at: 2023-02-20 17:27:40 GMT
+  recorded_at: 2023-02-28 00:40:06 GMT
   recorded_with: vcr/1.0.2, webmockr/0.8.0
 - request:
     method: get
@@ -118,7 +118,7 @@ http_interactions:
       encoding: UTF-8
       file: no
       string: '{"top_matched_names":[],"total_matched_names":0}'
-  recorded_at: 2023-02-20 17:27:40 GMT
+  recorded_at: 2023-02-28 00:40:06 GMT
   recorded_with: vcr/1.0.2, webmockr/0.8.0
 - request:
     method: get
@@ -186,7 +186,7 @@ http_interactions:
         submontana","representitive_image":{"image":"GWOTE\/BC_ZSM_Lep_add_57871+1332406652.JPG","apectratio":1.333},"specimenrecords":"5"},{"taxid":535185,"taxon":"Diplurodes
         sugillata","tax_rank":"species","tax_division":"Animalia","parentid":92159,"parentname":"Diplurodes","taxonrep":"Diplurodes
         sugillata","representitive_image":{"image":"GWORK\/BC_ZSM_Lep_74362+1424362924.JPG","apectratio":1.333},"specimenrecords":"2"}],"total_matched_names":33}'
-  recorded_at: 2023-02-20 17:27:40 GMT
+  recorded_at: 2023-02-28 00:40:06 GMT
   recorded_with: vcr/1.0.2, webmockr/0.8.0
 - request:
     method: get
@@ -216,5 +216,65 @@ http_interactions:
       encoding: UTF-8
       file: no
       string: '{"top_matched_names":[],"total_matched_names":0}'
-  recorded_at: 2023-02-20 17:27:40 GMT
+  recorded_at: 2023-02-28 00:40:06 GMT
+  recorded_with: vcr/1.0.2, webmockr/0.8.0
+- request:
+    method: get
+    uri: https://v4.boldsystems.org/index.php/API_Tax/TaxonSearch?taxName=Actinocephalus&fuzzy=false
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3.3 crul/1.3
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx
+      date: Tue, 28 Feb 2023 00:37:07 GMT
+      content-type: text/html; charset=utf-8
+      content-length: '362'
+      connection: keep-alive
+      x-powered-by: PHP/5.3.15
+      set-cookie: https=on;Path=/;Max-Age=3600;httponly;SameSite=Lax
+    body:
+      encoding: UTF-8
+      file: no
+      string: '{"top_matched_names":[{"taxid":349795,"taxon":"Actinocephalus","tax_rank":"genus","tax_division":"Protista","parentid":349793,"parentname":"Actinocephalinae","specimenrecords":"22"},{"taxid":970655,"taxon":"Actinocephalus","tax_rank":"genus","tax_division":"Plantae","parentid":156409,"parentname":"Eriocaulaceae","specimenrecords":"5"}],"total_matched_names":2}'
+  recorded_at: 2023-02-28 00:40:06 GMT
+  recorded_with: vcr/1.0.2, webmockr/0.8.0
+- request:
+    method: get
+    uri: https://v4.boldsystems.org/index.php/API_Tax/TaxonSearch?taxName=Actino&fuzzy=false
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3.3 crul/1.3
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx
+      date: Tue, 28 Feb 2023 00:40:06 GMT
+      content-type: text/html; charset=utf-8
+      content-length: '48'
+      connection: keep-alive
+      x-powered-by: PHP/5.3.15
+      set-cookie: https=on;Path=/;Max-Age=3600;httponly;SameSite=Lax
+    body:
+      encoding: UTF-8
+      file: no
+      string: '{"top_matched_names":[],"total_matched_names":0}'
+  recorded_at: 2023-02-28 00:40:06 GMT
   recorded_with: vcr/1.0.2, webmockr/0.8.0

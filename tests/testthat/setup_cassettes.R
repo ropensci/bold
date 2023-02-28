@@ -11,7 +11,14 @@
 # })
 # vcr::use_cassette("bold_stats", {
 #   bold_stats(taxon = "Coelioxys")
+#   bold_stats(taxon = "Coelioxys", simplify = TRUE)
+#   bold_stats(taxon = "Coelioxys", simplify = TRUE, dataType = "overview")
 #   bold_stats(taxon = c("Coelioxys", "Osmia"))
+# })
+# vcr::use_cassette("bold_trace", {
+#   dest.dir <- vcr::vcr_configuration()$write_disk_path
+#   bold_trace(taxon = "Bombus ignitus", geo = "Japan", dest = file.path(dest.dir, "taxon"))
+#   bold_trace(ids = c('ACRJP618-11','ACRJP619-11'), dest = file.path(dest.dir, "ids"))
 # })
 # vcr::use_cassette("bold_tax_id2", {
 #   bold_tax_id2(id = 88899)
@@ -39,8 +46,7 @@
 #   bold_identify_taxonomy(x = bold_identify_list)
 # })
 # vcr::use_cassette("bold_identify", {
-#   bold_identify(sequences$seq1)
+  # bold_identify(sequences$seq1)
 #   bold_identify(sequences$seq1, db = 'COX1_SPECIES')
-#   bold_identify("AACCCTATACTTTTTATTTGGAATTTGAGCGGGTATAGTAGGTACTAGCTTAAGTATATTAATTCGTCTAGAGCTAGGACAACCCGGTGTATTTTTAGAAGATGACCAAACCTATAACGTTATTGTAACAGCCCACGCTTTTATTATAATTTTCTTCATAATTATACCAATC
-#     ATAATTGGA")
+  # bold_identify("AACCCTATACTTTTTATTTGGAATTTGAGCGGGTATAGTAGGTACTAGCTTAAGTATATTAATTCGTCTAGAGCTAGGACAACCCGGTGTATTTTTAGAAGATGACCAAACCTATAACGTTATTGTAACAGCCCACGCTTTTATTATAATTTTCTTCATAATTATACCAATCATAATTGGA")
 # })

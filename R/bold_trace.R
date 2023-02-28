@@ -16,7 +16,7 @@
 #'
 #' @examples \dontrun{
 #' # Use a specific destination directory
-#' bold_trace(taxon='Bombus', geo='Alaska', dest="~/mytarfiles")
+#' bold_trace(taxon = "Bombus ignitus", geo = "Japan", dest = "~/mytarfiles")
 #'
 #' # Another example
 #' # bold_trace(ids='ACRJP618-11', dest="~/mytarfiles")
@@ -25,6 +25,8 @@
 #' # read file in
 #' x <- bold_trace(ids=c('ACRJP618-11','ACRJP619-11'), dest="~/mytarfiles")
 #' (res <- read_trace(x$ab1[2]))
+#' # read all files in
+#' (res <- read_trace(x))
 #'
 #' # The progress dialog is pretty verbose, so quiet=TRUE is a nice touch,
 #' # but not by default
@@ -46,7 +48,9 @@ bold_trace <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
   if (!requireNamespace("sangerseqR", quietly = TRUE)) {
     stop("Please install sangerseqR", call. = FALSE)
   }
-
+  assert(overwrite, "logical")
+  assert(progress, "logical")
+  if (!is.null(dest)) assert(dest, "character")
   params <- c(
     pipe_params(
       taxon = taxon,
@@ -58,7 +62,6 @@ bold_trace <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
       researchers = researchers,
       marker = marker
     ))
-  url <- crul::url_build(b_url('API_Public/trace'), query = params)
   if (is.null(dest)) {
     destfile <- paste0(getwd(), "/bold_trace_files.tar")
     destdir <- paste0(getwd(), "/bold_trace_files")
@@ -70,13 +73,18 @@ bold_trace <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
     dir.create(destdir, showWarnings = FALSE, recursive = TRUE)
   }
   if (!file.exists(destfile)) file.create(destfile, showWarnings = FALSE)
-  cli <- crul::HttpClient$new(url = url)
-  res <- cli$get(disk = destfile, ...)
+  res <-
+    b_GET(
+      url = b_url('API_Public/trace'),
+      args  = params,
+      disk = destfile,
+      ...
+    )
   utils::untar(destfile, exdir = destdir)
   files <- list.files(destdir, full.names = TRUE)
   ab1 <- list.files(destdir, pattern = ".ab1", full.names = TRUE)
   structure(list(destfile = destfile, destdir = destdir, ab1 = ab1,
-                 args = args), class = "boldtrace")
+                 args = params), class = "boldtrace")
 }
 
 #' @export
@@ -90,11 +98,33 @@ print.boldtrace <- function(x, ...){
 #' @export
 #' @rdname bold_trace
 read_trace <- function(x){
+  # Depricated
   if (inherits(x, "boldtrace")) {
     if (length(x$ab1) > 1) stop("Number of paths > 1, just pass one in",
                                 call. = FALSE)
-    sangerseqR::readsangerseq(x$ab1)
+    # sangerseqR::readsangerseq(x$ab1) if it's stop it won't get read
   } else {
     sangerseqR::readsangerseq(x)
   }
+}
+
+
+#' @param x (list or character) Either the boldtrace object returned from
+#' \code{\link[bold]{bold_trace}} or a path to a bold trace file.
+#'
+#' @export
+#' @rdname bold_trace
+bold_read_trace <- function(x){
+  assert(x, c("character", "boldtrace"))
+  trace_paths <- if (is.list(x)) `names<-`(x$ab1, basename(x$ab1)) else `names<-`(x, basename(x))
+  lapply(trace_paths, \(trace_path) {
+    if (file.exists(trace_path)) {
+      sangerseqR::readsangerseq(trace_path)
+    } else {
+      warning("Couldn't find the trace file: \"",
+              trace_path,"\".\nSkipping.",
+              call. = FALSE)
+      NULL
+    }
+  })
 }

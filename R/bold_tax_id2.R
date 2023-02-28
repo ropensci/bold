@@ -62,11 +62,15 @@ bold_tax_id2 <-
     #-- arguments check
     # no need to do the call if id is NA
     if (length(id) == 1 && is.na(id))
-      return(data.frame(input = NA, noresults = NA))
+      return(data.frame(input = NA, taxid = NA))
     assert(dataTypes, "character")
     assert(includeTree, "logical")
     # assert(oneRow, "logical")
     assert(id, c("character", "numeric", "integer"))
+    # for compatibility with bold_tax_id
+    if (length(dataTypes) == 1 && grepl(",", dataTypes)) {
+      dataTypes <- stringi::stri_split_fixed(dataTypes, ",", simplify = TRUE)
+    }
     # corrects for the json typo in case the option is taken from a previous query
     dataTypes[dataTypes == "depo"] <- "depository"
     dataTypes[dataTypes == "depositories"] <- "depository"
@@ -82,14 +86,14 @@ bold_tax_id2 <-
       "all"
     )
     if (any(wrongType)) {
-      msg <- ' is not one of the possible dataTypes.
+      msg <- ' not one of the possible dataTypes.
       \n\tOptions are:
       \n\t\t"basic", "stats", "geo", "images", "sequencinglabs (or labs)",
       "depository (or depo)","thirdparty" and "all"'
       if (sum(wrongType) > 1)
-        stop(toStr(dataTypes[wrongType]), msg)
+        stop(toStr(dataTypes[wrongType], quote = TRUE), " are", msg)
       else
-        stop(dataTypes[wrongType], msg)
+        stop('"', dataTypes[wrongType], '"', " is", msg)
     }
     #-- prep query params
     params <- list(
@@ -99,8 +103,13 @@ bold_tax_id2 <-
     #-- make URL
     URL <- b_url("API_Tax/TaxonData")
     #-- fetch data from the api
-    res <- lapply(`names<-`(id, id), function(x)
-      get_response(args = c(taxId = x, params), url = URL, ...))
+    res <- lapply(`names<-`(id, id), function(x) {
+      if (is.na(x) || grepl("^NA$", x)) {
+        list(response = NULL, warning = "id was NA")
+      } else {
+        get_response(args = c(taxId = x, params), url = URL, ...)
+      }
+    })
     if (response) {
       res
     } else {

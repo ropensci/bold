@@ -28,47 +28,77 @@
 #'
 
 #' @export
-bold_identify_taxonomy <- function(x, taxOnly = TRUE) {
-  UseMethod("bold_identify_taxonomy")
-}
+methods::setGeneric(name = "bold_identify_taxonomy",
+                    def = function(x, taxOnly = TRUE){
+                      standardGeneric("bold_identify_taxonomy")
+                    },
+                    signature = "x"
+)
+
 #' @export
-bold_identify_taxonomy.default <- function(x, taxOnly = TRUE) {
-  stop("no 'bold_identify_taxonomy' method for ", class(x)[1L], call. = FALSE)
-}
-#' @export
-bold_identify_taxonomy.matrix <- function(x, taxOnly = TRUE) {
-  assert(taxOnly, "logical")
-  if (missing(x)) stop("argument 'x' is missing, with no default.")
-  if (!"ID" %in% colnames(x)) stop("no column 'ID' found in input.")
-  .bold_identify_taxonomy(x, taxOnly = taxOnly)
-}
-#' @export
-bold_identify_taxonomy.data.frame <- function(x, taxOnly = TRUE) {
-  assert(taxOnly, "logical")
-  if (missing(x)) stop("argument 'x' is missing, with no default.")
-  if (!"ID" %in% colnames(x)) stop("no column 'ID' found in input.")
-  .bold_identify_taxonomy(x, taxOnly = taxOnly)
-}
-#' @export
-bold_identify_taxonomy.list <- function(x, taxOnly = TRUE) {
-  assert(taxOnly, "logical")
-  if (missing(x)) stop("argument 'x' is missing, with no default.")
-  if (any(vapply(x, \(x) !"ID" %in% colnames(x), NA))) stop("no column 'ID' found in input.")
-  lapply(x, .bold_identify_taxonomy, taxOnly = taxOnly)
-}
-.bold_identify_taxonomy <- function(x, taxOnly){
-  # get the process ids
-  IDs <- x[,"ID", drop = TRUE]
-  # get the taxonomic data
-  tax <- bold_specimens(ids = unique(IDs))
-  if (taxOnly) {
-    # only returns the taxonomic data
-    tax <- tax[, c("processid", grep("_taxID|_name", names(tax), value = TRUE))]
+methods::setMethod(
+  f = "bold_identify_taxonomy",
+  signature = signature("list"),
+  definition = function(x, taxOnly = TRUE) {
+    if (!length(x)) stop("argument `x` is empty")
+    assert(taxOnly, "logical")
+    hasID <- vapply(x, \(x) "ID" %in% colnames(x), NA)
+    if (all(!hasID)) {
+      stop("no column 'ID' found in x")
+    } else {
+      lapply(x, .bold_identify_taxonomy, taxOnly = taxOnly)
+    }
   }
-  tax[tax == ""] <- NA
-  # remove empty columns
-  tax <- tax[,colSums(is.na(tax)) != nrow(tax)]
-  # sort output by input IDs
-  rownames(tax) <- tax[,"processid"]
-  data.frame(x, tax[IDs, -1], row.names =  NULL)
+)
+
+#' @export
+methods::setMethod(
+  f = "bold_identify_taxonomy",
+  signature = signature("matrix"),
+  definition = function(x, taxOnly = TRUE) {
+    if (!length(x)) stop("argument `x` is empty")
+    assert(taxOnly, "logical")
+    .bold_identify_taxonomy(x, taxOnly = taxOnly)
+  }
+)
+
+#' @export
+methods::setMethod(
+  f = "bold_identify_taxonomy",
+  signature = signature("data.frame"),
+  definition = function(x, taxOnly = TRUE) {
+    if (!length(x)) stop("argument `x` is empty")
+    assert(taxOnly, "logical")
+    .bold_identify_taxonomy(x, taxOnly = taxOnly)
+  }
+)
+#' @export
+methods::setMethod(
+  f = "bold_identify_taxonomy",
+  signature = signature("missing"),
+  definition = function(x, taxOnly = TRUE) {
+      stop("argument 'x' is missing, with no default")
+  }
+)
+
+.bold_identify_taxonomy <- function(x, taxOnly){
+  if (!any(colnames(x) == "ID")) {
+    warning("No column 'ID' found, skipped", call. = FALSE, immediate. = TRUE)
+    data.frame(x)
+  } else {
+    # get the process ids
+    IDs <- x[,"ID", drop = TRUE]
+    # get the taxonomic data
+    tax <- bold_specimens(ids = unique(IDs))
+    if (taxOnly) {
+      # only returns the taxonomic data
+      tax <- tax[, c("processid", grep("_taxID|_name", names(tax), value = TRUE))]
+    }
+    tax[tax == ""] <- NA
+    # remove empty columns
+    tax <- tax[,colSums(is.na(tax)) != nrow(tax)]
+    # sort output by input IDs
+    rownames(tax) <- tax[,"processid"]
+    data.frame(x, tax[IDs, -1], row.names =  NULL)
+  }
 }

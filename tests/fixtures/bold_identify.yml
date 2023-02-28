@@ -206,7 +206,7 @@ http_interactions:
         Public Records</database><citation>BOLD Systems, 2023</citation><taxonomicidentification>Cyanocitta
         stelleri</taxonomicidentification><similarity>0.8978</similarity><specimen><url>http://www.boldsystems.org/index.php/Public_RecordView?processid=CDMVZ007-05</url><collectionlocation><country>United
         States</country><coord><lat>43.537</lat><lon>-110.874</lon></coord></collectionlocation></specimen></match></matches>'
-  recorded_at: 2023-02-20 19:40:22 GMT
+  recorded_at: 2023-02-28 02:51:39 GMT
   recorded_with: vcr/1.0.2, webmockr/0.8.0
 - request:
     method: get
@@ -415,11 +415,11 @@ http_interactions:
         Public Records</database><citation>BOLD Systems, 2023</citation><taxonomicidentification>Cyanocitta
         stelleri</taxonomicidentification><similarity>0.8978</similarity><specimen><url>http://www.boldsystems.org/index.php/Public_RecordView?processid=CDMVZ007-05</url><collectionlocation><country>United
         States</country><coord><lat>43.537</lat><lon>-110.874</lon></coord></collectionlocation></specimen></match></matches>'
-  recorded_at: 2023-02-20 19:40:22 GMT
+  recorded_at: 2023-02-28 02:51:39 GMT
   recorded_with: vcr/1.0.2, webmockr/0.8.0
 - request:
     method: get
-    uri: https://v4.boldsystems.org/index.php/Ids_xml?sequence=AACCCTATACTTTTTATTTGGAATTTGAGCGGGTATAGTAGGTACTAGCTTAAGTATATTAATTCGTCTAGAGCTAGGACAACCCGGTGTATTTTTAGAAGATGACCAAACCTATAACGTTATTGTAACAGCCCACGCTTTTATTATAATTTTCTTCATAATTATACCAATC%0A%20%20%20%20ATAATTGGA&db=COX1
+    uri: https://v4.boldsystems.org/index.php/Ids_xml?sequence=AACCCTATACTTTTTATTTGGAATTTGAGCGGGTATAGTAGGTACTAGCTTAAGTATATTAATTCGTCTAGAGCTAGGACAACCCGGTGTATTTTTAGAAGATGACCAAACCTATAACGTTATTGTAACAGCCCACGCTTTTATTATAATTTTCTTCATAATTATACCAATCATAATTGGA&db=COX1
     body:
       encoding: ''
       string: ''
@@ -435,10 +435,10 @@ http_interactions:
     headers:
       connection: keep-alive
       content-type: text/xml
-      date: Mon, 20 Feb 2023 19:40:20 GMT
+      date: Tue, 28 Feb 2023 02:51:38 GMT
       server: nginx
       set-cookie:
-      - session=l2e11fllpdl3p733vuljfodag7; path=/
+      - session=oguv6vd36e31hbq336ih14d9t1; path=/
       - https=on;Path=/;Max-Age=3600;httponly;SameSite=Lax
       status: HTTP/1.1 200 OK
       transfer-encoding: chunked
@@ -653,5 +653,5 @@ http_interactions:
         States</country><coord><lat>32.8263</lat><lon>-117.134</lon></coord></collectionlocation></specimen></match><match><ID>GMPRD070-16</ID><sequencedescription>COI-5P</sequencedescription><database>BOLD:
         Public Records</database><citation>BOLD Systems, 2023</citation><taxonomicidentification>Epipsocidae</taxonomicidentification><similarity>0.9167</similarity><specimen><url>http://www.boldsystems.org/index.php/Public_RecordView?processid=GMPRD070-16</url><collectionlocation><country>Puerto
         Rico</country><coord><lat>18.2131</lat><lon>-67.1376</lon></coord></collectionlocation></specimen></match></matches>'
-  recorded_at: 2023-02-20 19:40:22 GMT
+  recorded_at: 2023-02-28 02:51:39 GMT
   recorded_with: vcr/1.0.2, webmockr/0.8.0

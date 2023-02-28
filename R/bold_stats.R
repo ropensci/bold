@@ -56,7 +56,7 @@ bold_stats <- function(taxon = NULL, ids = NULL, bin = NULL,
   assert(response, "logical")
   assert(dataType, "character")
   if(!tolower(dataType) %in% c("overview", "drill_down"))
-    stop("'dataType' must be one of 'overview', 'drill_down'")
+    stop("'dataType' must be one of 'overview' or 'drill_down'.")
   params <- c(pipe_params(taxon = taxon, geo = geo,
                           ids = ids, bin = bin,
                           container = container,
@@ -69,18 +69,18 @@ bold_stats <- function(taxon = NULL, ids = NULL, bin = NULL,
   } else {
     out <- jsonlite::fromJSON(rawToChar(res$content))
     if (simplify) {
-      .simplify_stats(out)
+      .simplify_stats(out, dataType = tolower(dataType))
     } else {
       out
     }
   }
 }
 
-.simplify_stats <- function(x, drill_down = FALSE) {
-  if (drill_down) {
+.simplify_stats <- function(x, dataType) {
+  if (dataType == "drill_down") {
     n <- which(vapply(x, inherits, NA, "integer"))
     ov <- vapply(x[-n], `[[`, 0L, "count")
-    ov <- data.frame(x[n], ov)
+    ov <- as.data.frame(c(x[n],ov))
     dd <- lapply(x[-n], \(x) {
       y <- x$drill_down
       i <- 0
@@ -94,6 +94,6 @@ bold_stats <- function(taxon = NULL, ids = NULL, bin = NULL,
          drill_down = dd)
 
   } else {
-    structure(vapply(x, `class<-`, 0, "integer"), class = "data.frame", row.names = 1L)
+    structure(as.list(vapply(x, as.integer, 0L)), class = "data.frame", row.names = 1L)
   }
 }
