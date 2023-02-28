@@ -3,7 +3,7 @@ context("bold_identify_taxonomy")
 # bold_identify_list <- bold_identify(sequences = sequences$seq2)
 # save(bold_identify_list, file = "tests/testthat/bold_identify_list.rda")
 # load("tests/testthat/bold_identify_list.rda")
-# load("bold_identify_list.rda")
+load("bold_identify_list.rda")
 
 test_that("bold_identify_taxonomy works as expected", {
   vcr::use_cassette("bold_identify_taxonomy", {
@@ -49,11 +49,11 @@ test_that("bold_identify_taxonomy fails well", {
   skip_on_cran()
 
   # x required
-  expect_error(bold_identify_taxonomy(), "argument \"x\" is missing")
+  expect_error(bold_identify_taxonomy(), "argument 'x' is missing")
   # only supported types
-  expect_error(bold_identify_taxonomy(numeric()), "method for numeric")
-  expect_error(bold_identify_taxonomy(x = bold_identify_list, taxOnly = "true"), "method for numeric")
+  expect_error(bold_identify_taxonomy(numeric()), "unable to find an inherited method for function")
+  expect_error(bold_identify_taxonomy(x = bold_identify_list, taxOnly = "true"), "'taxOnly' must be of class logical.")
   # required column ID
-  expect_error(bold_identify_taxonomy(mtcars),
-               "no column 'ID' found in input")
+  expect_warning(bold_identify_taxonomy(mtcars),
+               "No column 'ID' found, skipped")
 })
