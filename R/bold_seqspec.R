@@ -2,11 +2,6 @@
 #'
 #' @template args
 #' @template otherargs
-#' @template large-requests
-#' @template marker
-#' @references
-#' http://v4.boldsystems.org/index.php/resources/api?type=webservices
-#'
 #' @param marker (character) Returns all records containing matching marker
 #' codes. See Details.
 #' @param format (character) One of xml or tsv (default). tsv format gives
@@ -15,9 +10,16 @@
 #' a list with names matching the processid's from the data frame. Note: This
 #' means multiple sequences can have the same name.
 #' Default: `FALSE`
+#' @param cleanData (logical) If `TRUE`, the cell values containing only duplicated values (ex : "COI-5P|COI-5P|COI-5P") will be reduce to one value ("COI-5P") and empty string will be change to NA. Default: `FALSE`
+#'
+#' @template large-requests
+#' @template marker
+#' @template missing-taxon
+#' @references
+#' http://v4.boldsystems.org/index.php/resources/api?type=webservices
 #'
 #' @return Either a data.frame, parsed xml, a http response object, or a list
-#' with length two (data: a data.frame w/o nucleotide column, and fasta: a list
+#' of length two (data: a data.frame w/o nucleotide column, and fasta: a list
 #' of nucleotides with the processid as name)
 #'
 #' @examples \dontrun{
@@ -44,12 +46,11 @@
 #'
 #' @export
 bold_seqspec <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
-  institutions = NULL, researchers = NULL, geo = NULL, marker = NULL,
-  response=FALSE, format = 'tsv', sepfasta = FALSE, ...) {
+                         institutions = NULL, researchers = NULL, geo = NULL, marker = NULL,
+                         response=FALSE, format = 'tsv', sepfasta = FALSE, cleanData = FALSE, ...) {
 
   if (!format %in% c('xml', 'tsv')) stop("'format' should be onf of 'xml' or 'tsv'")
   assert(response, "logical")
-
   params <- c(
     pipe_params(
       taxon = taxon,
@@ -73,13 +74,18 @@ bold_seqspec <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
     res <- enc2utf8(res)
     if (grepl("Fatal error", res)) {
       stop("BOLD servers returned an error - we're not sure what happened\n ",
-        "try a smaller query - or open an issue and we'll try to help")
+           "try a smaller query - or open an issue and we'll try to help")
     }
-    out <- switch(
-      format,
-      xml = xml2::read_xml(res),
-      tsv = setread(res)
-    )
+    out <- switch(format,
+                  xml = xml2::read_xml(res),
+                  tsv = {
+                    out <- setread(res)
+                    if (format == "tsv" && cleanData) {
+                      cleanData(out)
+                    } else {
+                      out
+                    }
+                  })
     if (!sepfasta) {
       out
     } else {

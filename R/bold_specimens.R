@@ -2,14 +2,16 @@
 #'
 #' @template args
 #' @template otherargs
-#' @references
-#' http://v4.boldsystems.org/index.php/resources/api?type=webservices
-#'
 #' @param format (character) One of xml, json, tsv (default). tsv format gives
 #' back a data.frame object. xml gives back parsed XML as `xml_document`
 #' object. 'json' (JavaScript Object Notation) and 'dwc' (Darwin Core Archive)
 #' are supported in theory, but the JSON can be malformed, so we don't support
 #' that here, and the DWC option actually returns TSV.
+#' @param cleanData (logical) If `TRUE`, the cell values containing only duplicated values (ex : "COI-5P|COI-5P|COI-5P") will be reduce to one value ("COI-5P") and empty string will be change to NA. Default: `FALSE`
+#'
+#' @template missing-taxon
+#' @references
+#' http://v4.boldsystems.org/index.php/resources/api?type=webservices
 #'
 #' @examples \dontrun{
 #' bold_specimens(taxon='Osmia')
@@ -32,8 +34,8 @@
 #'
 #' @export
 bold_specimens <- function(taxon = NULL, ids = NULL, bin = NULL,
-  container = NULL, institutions = NULL, researchers = NULL, geo = NULL,
-  response=FALSE, format = 'tsv', ...) {
+                           container = NULL, institutions = NULL, researchers = NULL, geo = NULL,
+                           response = FALSE, format = 'tsv', cleanData = FALSE, ...) {
 
   assert(response, "logical")
   if (!format %in% c('xml', 'tsv')) stop("'format' should be of of 'xml' or 'tsv'.")
@@ -55,9 +57,20 @@ bold_specimens <- function(taxon = NULL, ids = NULL, bin = NULL,
   } else {
     res$raise_for_status()
     res <- rawToChar(res$content)
-    switch(format,
-           xml = xml2::read_xml(res),
-           tsv = setread(res)
-    )
+    if (res == "") {
+      NA
+    } else {
+      switch(format,
+             xml = xml2::read_xml(res),
+             tsv = {
+               out <- setread(res)
+               if (format == "tsv" && cleanData) {
+                 cleanData(out)
+               } else {
+                 out
+               }
+             }
+      )
+    }
   }
 }
