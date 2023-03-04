@@ -12,6 +12,8 @@ bold 1.3.0
 
 * `bold_specimens()` and `bold_seqspec()` have a new parameter `cleanData` which, when set to `TRUE`, replaces empty strings ("") by NAs and strings containing only duplicated values by their unique value (ex : "COI-5P|COI-5P|COI-5P" becomes "COI-5P").
 
+* New function `bold_read_trace()` to replace `read_trace()`. Can read one or multiple trace files from a `boldtrace` object or provided file path(s).
+
 ### MINOR IMPROVEMENTS
 
 * made tests for the new functions
