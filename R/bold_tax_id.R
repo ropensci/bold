@@ -75,7 +75,7 @@ bold_tax_id <- function(id, dataTypes = "basic", includeTree = FALSE,
           .get_response_dep(args = c(taxId = x, params), url = URL, ...)
       })
       if (response) {
-        res
+        out <- res
       } else {
         out <- setrbind(mapply(FUN = .process_response_dep, x = res, y = id,
                                MoreArgs = list(z = includeTree, w = dataTypes),
