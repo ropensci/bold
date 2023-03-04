@@ -41,7 +41,6 @@ test_that("print.bold_trace prints properly", {
 
 test_that("bold_read_trace works properly", {
   skip_on_cran()
-  skip_on_os("mac")
   dest.dir <- vcr::vcr_configuration()$write_disk_path
   vcr::use_cassette(
     "bold_trace",
