@@ -5,8 +5,11 @@
 #' @param tax_division (character) Taxonomic division to filter the results.
 #' @param tax_rank (character) Taxonomic rank to filter the results.
 #' @template otherargs
+#' @note The column 'specimenrecords' in the returned object represents the number of species records in BOLD's *Taxonomy Browser*, not the number of records in the *Public Data Portal*. To know the amount of public records available, use \code{\link{bold_stats}}.
 #' @references
-#' http://v4.boldsystems.org/index.php/resources/api?type=taxonomy
+#' Taxonomy API: http://v4.boldsystems.org/index.php/resources/api?type=taxonomy
+#' Taxonomy Browser: https://www.boldsystems.org/index.php/TaxBrowser_Home
+#' Public Data Portal: https://www.boldsystems.org/index.php/Public_BINSearch?searchtype=records
 #' @details The `dataTypes` parameter is not supported in this function.
 #' If you want to use that parameter, get an ID from this function and pass
 #' it into `bold_tax_id`, and then use the `dataTypes` parameter.
@@ -36,18 +39,20 @@
 bold_tax_name <- function(name, fuzzy = FALSE, response = FALSE,
                           tax_division = NULL, tax_rank = NULL, ...) {
   assert(name, "character")
-  if(!missing(response)) assert(response, "logical")
-  if(!missing(fuzzy)) assert(fuzzy, "logical")
-  if(length(tax_division)){
+  # fix for #84:
+  # name <- stringi::stri_replace_all_regex(name, "(?<=[^\\\\])(['\\(])", "\\\\$1")
+  if (!missing(response)) assert(response, "logical")
+  if (!missing(fuzzy)) assert(fuzzy, "logical")
+  if (length(tax_division)) {
     assert(tax_division, "character")
     if(!all(tax_division %in% c("Animalia", "Protista", "Fungi", "Plantae")))
       stop("'tax_division' must be one or more of ",
            toStr(c("Animalia", "Protista", "Fungi", "Plantae")))
   }
-  if(length(tax_rank)){
+  if (length(tax_rank)) {
     assert(tax_rank, "character")
     tax_rank <- tolower(tax_rank)
-    if(any(!tax_rank %in% c(rank_ref[["rank"]], rank_ref[["ranks"]])))
+    if(any(!tax_rank %in% c(bold::rank_ref[["rank"]], bold::rank_ref[["ranks"]])))
       stop("Invalid tax_rank name.")
   }
 
@@ -75,6 +80,11 @@ process_tax_name <- function(x, tax_division, tax_rank) {
       out <- data.frame(out$top_matched_names, stringsAsFactors = FALSE)
       if(length(tax_division) && length(out$tax_division)) out <- out[out$tax_division %in% tax_division,]
       if(length(tax_rank) && length(out$tax_rank)) out <- out[out$tax_rank %in% tax_rank,]
+      out$taxon <- fix_taxonName(out$taxon)
+      if (any(colnames(out) == "parentname"))
+        out$parentname <- fix_taxonName(out$parentname)
+      if (any(colnames(out) == "taxonrep"))
+        out$taxonrep <- fix_taxonName(out$taxonrep)
     } else {
       out <- data.frame(taxid = NA_integer_)
     }
