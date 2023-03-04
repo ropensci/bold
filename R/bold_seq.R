@@ -9,6 +9,7 @@
 #' marker codes.
 #' @template large-requests
 #' @template marker
+#' @template missing-taxon
 #' @references
 #' http://v4.boldsystems.org/index.php/resources/api?type=webservices
 #'
