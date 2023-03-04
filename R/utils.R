@@ -124,7 +124,7 @@ cleanData <- function(x, emptyValue = NA, rmEmptyCol = FALSE){
   }, NA)
   col2clean <- which(col2clean, useNames = FALSE)
   for (.col in col2clean) {
-    x[[.col]] <- stringi::stri_replace_all_regex(x[[.col]], "^([^\\|]+)(\\|\\1)+$|^\\|$", "$1")
+    x[[.col]] <- stringi::stri_replace_all_regex(x[[.col]], "^([^\\|]+)(\\|\\1)+$|^\\|+$", "$1")
   }
   x[x == ""] <- emptyValue
   if (rmEmptyCol) x[,colSums(is.na(x)) == nrow(x)] <- NULL

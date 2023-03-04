@@ -59,7 +59,7 @@ bold_tax_id <- function(id, dataTypes = "basic", includeTree = FALSE,
   if (!inherits(id, c("character", "numeric", "integer")))
     warning("'id' should be of class character, numeric or integer.")
   #-- make sure user have correct data types
-  dataTypes <- .check_dataTypes(dataTypes)
+  dataTypes <- .check_dataTypes_dep(dataTypes)
   if (!nzchar(dataTypes)) {
     out <- data.frame(input = id, noresults = NA)
   } else {
@@ -120,7 +120,7 @@ bold_tax_id <- function(id, dataTypes = "basic", includeTree = FALSE,
   stopifnot(out$headers$`content-type` == 'text/html; charset=utf-8')
   return(out)
 }
-.check_dataTypes <- function(x){
+.check_dataTypes_dep <- function(x){
   x <- stringi::stri_split_fixed(x, ",", simplify = TRUE)
   # corrects for the json typo in case the option is taken from a previous query
   if (any(x == "depositories")) {
