@@ -4,9 +4,9 @@ bold
 
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![cran version](https://www.r-pkg.org/badges/version/bold)](https://cran.r-project.org/package=bold)
-[![cran checks](https://cranchecks.info/badges/worst/bold)](https://cranchecks.info/pkgs/bold)
+[![cran checks](https://badges.cranchecks.info/worst/bold.svg)](https://badges.cranchecks.info)
 [![R-check](https://github.com/ropensci/bold/workflows/R-check/badge.svg)](https://github.com/ropensci/bold/actions/)
-[![codecov.io](https://codecov.io/github/ropensci/bold/coverage.svg?branch=master)](https://codecov.io/github/ropensci/bold?branch=master)
+[![codecov.io](https://codecov.io/github/ropensci/bold/coverage.svg?branch=master)](https://codecov.io/gh/ropensci/bold?branch=master)
 [![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/bold)](https://github.com/r-hub/cranlogs.app)
 
 `bold` accesses BOLD barcode data.
