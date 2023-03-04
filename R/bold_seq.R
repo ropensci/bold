@@ -43,18 +43,18 @@
 #'
 #' @export
 bold_seq <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
-  institutions = NULL, researchers = NULL, geo = NULL, marker = NULL,
-  response=FALSE, ...) {
+                     institutions = NULL, researchers = NULL, geo = NULL, marker = NULL,
+                     response=FALSE, ...) {
 
   assert(response, "logical")
   params <- pipe_params(taxon = taxon,
-                  ids = ids,
-                  bin = bin,
-                  container = container,
-                  institutions = institutions,
-                  researchers = researchers,
-                  geo = geo,
-                  marker = marker)
+                        ids = ids,
+                        bin = bin,
+                        container = container,
+                        institutions = institutions,
+                        researchers = researchers,
+                        geo = geo,
+                        marker = marker)
   res <- b_GET(b_url('API_Public/sequence'), params, ...)
   if (response) {
     res
@@ -63,7 +63,7 @@ bold_seq <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
     res <- rawToChar(res$content)
     if (grepl("error", res)) {
       warning("the request timed out, see 'If a request times out'\n",
-        "returning partial output")
+              "returning partial output")
       res <- strdrop(str = res, pattern = "Fatal+")[[1]]
     }
     split_fasta(res)

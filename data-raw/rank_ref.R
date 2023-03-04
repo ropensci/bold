@@ -1,5 +1,4 @@
 ## code to prepare `rank_ref` dataset :
-
 rank_ref <- (function() {
   out <- taxize::rank_ref
   out$rank <- strsplit(out$ranks, ",")
