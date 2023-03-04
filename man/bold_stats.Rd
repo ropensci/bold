@@ -42,7 +42,7 @@ Includes countries and province/states.}
 "drill_down": a detailed summary of information which provides record counts
 by BINs, Countries, Storing Institutions, Orders, Families, Genus, Species.
 "overview": the total record counts of BINs, Countries, Storing Institutions,
-Orders, Families, Genus, Species. *Note that the number of records include both private and public ones.}
+Orders, Families, Genus, Species. The record counts include all gene markers, not only COI. To see the drill down of markers use \code{\link{bold_tax_id2}} with "stats" as \code{dataTypes}.}
 
 \item{response}{(logical) Default : FALSE. If TRUE, returns the object from
 the Curl call. Useful for debugging and getting more detailed info on the
