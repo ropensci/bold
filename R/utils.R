@@ -10,6 +10,11 @@ pipe_params <- function(..., paramnames = ...names(), params = list(...)) {
   wt <- !vapply(params, is.character, logical(1))
   if (any(wt))
     stop(toStr(names(wt)[wt], quote = TRUE), " must be of class character.", call. = FALSE)
+
+  if (length(params$taxon)) {
+    # in case it comes from `bold_tax_name()` (#84)
+    params$taxon <- fix_taxonName(params$taxon)
+  }
   vapply(params, paste, collapse = "|", character(1))
 }
 b_GET <- function(url, args, ...) {
@@ -43,13 +48,14 @@ setrbind <- function(x, fill = TRUE, use.names = TRUE, idcol = NULL) {
   )
 }
 # more efficient than utils::read.delim
-setread <- function(x, header = TRUE, sep = "\t", stringsAsFactors = FALSE) {
+setread <- function(x, header = TRUE, sep = "\t", stringsAsFactors = FALSE, ...) {
   (x <- data.table::setDF(
     data.table::fread(
       text = x,
       header = header,
       sep = sep,
-      stringsAsFactors = stringsAsFactors
+      stringsAsFactors = stringsAsFactors,
+      ...
     )
   ))
 }
@@ -81,13 +87,16 @@ check_class <- function(x, what, name) {
 assert <- function(x,
                    what,
                    name = NULL,
-                   checkLength = FALSE) {
+                   check.length.gt0 = FALSE,
+                   check.length.is1 = FALSE) {
   msgLen <- NULL
   msgClass <- NULL
   if (missing(name))
     name <- deparse(substitute(x))
-  if (checkLength && !length(x)) {
-    msgLen <- paste0("\n ", name, " must have length > 0")
+  if (check.length.gt0 && !length(x)) {
+    msgLen <- paste0("'", name, "' can't be empty.")
+  } else if (check.length.is1 && length(x) != 1) {
+    msgLen <- paste0("'", name, "' must be length 1.")
   } else {
     msgClass <- check_class(x, what, name)
     if (all(!nzchar(msgClass))) msgClass <- NULL
@@ -100,4 +109,24 @@ assert <- function(x,
   if (length(msg)) {
     stop(msg, call. = FALSE)
   }
+}
+fix_taxonName <- function(x){
+  # (#84)
+  stringi::stri_replace_all_regex(
+    x,
+    c("( )('[^']*)$", "( )(\\([^\\(]*)$", " sp$"),
+    c("$1\\\\$2\\\\'", "$1\\\\$2\\\\)", " sp."),
+    vectorize_all = FALSE)
+}
+cleanData <- function(x, emptyValue = NA, rmEmptyCol = FALSE){
+  col2clean <- vapply(x, \(x) {
+    any(stringi::stri_detect_fixed(x, "|", max_count = 1), na.rm = TRUE)
+  }, NA)
+  col2clean <- which(col2clean, useNames = FALSE)
+  for (.col in col2clean) {
+    x[[.col]] <- stringi::stri_replace_all_regex(x[[.col]], "^([^\\|]+)(\\|\\1)+$|^\\|$", "$1")
+  }
+  x[x == ""] <- emptyValue
+  if (rmEmptyCol) x[,colSums(is.na(x)) == nrow(x)] <- NULL
+  x
 }
