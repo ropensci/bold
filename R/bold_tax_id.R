@@ -54,37 +54,37 @@ bold_tax_id <- function(id, dataTypes = "basic", includeTree = FALSE,
   .Deprecated("bold_tax_id2")
   #-- arguments check
   # no need to do the call if id is NA
-    if (!grepl("true|false", includeTree, ignore.case = TRUE))
-      warning("'includeTree' should be either TRUE or FALSE.")
-    if (!inherits(id, c("character", "numeric", "integer")))
-      warning("'id' should be of class character, numeric or integer.")
-    #-- make sure user have correct data types
-    dataTypes <- .check_dataTypes(dataTypes)
-    if (!nzchar(dataTypes)) {
-      out <- data.frame(input = id, noresults = NA)
+  if (!grepl("true|false", includeTree, ignore.case = TRUE))
+    warning("'includeTree' should be either TRUE or FALSE.")
+  if (!inherits(id, c("character", "numeric", "integer")))
+    warning("'id' should be of class character, numeric or integer.")
+  #-- make sure user have correct data types
+  dataTypes <- .check_dataTypes(dataTypes)
+  if (!nzchar(dataTypes)) {
+    out <- data.frame(input = id, noresults = NA)
+  } else {
+    #-- prep query parameters
+    params <- list(dataTypes = dataTypes, includeTree = tolower(includeTree))
+    #-- make URL
+    URL <- b_url("API_Tax/TaxonData")
+    #-- fetch data from the api
+    res <- lapply(`names<-`(id, id), function(x) {
+      if (is.na(x))
+        data.frame(input = NA, noresults = NA)
+      else
+        .get_response_dep(args = c(taxId = x, params), url = URL, ...)
+    })
+    if (response) {
+      out <- res
     } else {
-      #-- prep query parameters
-      params <- list(dataTypes = dataTypes, includeTree = tolower(includeTree))
-      #-- make URL
-      URL <- b_url("API_Tax/TaxonData")
-      #-- fetch data from the api
-      res <- lapply(`names<-`(id, id), function(x) {
-        if (is.na(x))
-          data.frame(input = NA, noresults = NA)
-        else
-          .get_response_dep(args = c(taxId = x, params), url = URL, ...)
-      })
-      if (response) {
-        out <- res
-      } else {
-        out <- setrbind(mapply(FUN = .process_response_dep, x = res, y = id,
-                               MoreArgs = list(z = includeTree, w = dataTypes),
-                               SIMPLIFY = FALSE))
-        if (NCOL(out) == 1) {
-          out$noresults <- NA
-        }
+      out <- setrbind(mapply(FUN = .process_response_dep, x = res, y = id,
+                             MoreArgs = list(z = includeTree, w = dataTypes),
+                             SIMPLIFY = FALSE))
+      if (NCOL(out) == 1) {
+        out$noresults <- NA
       }
     }
+  }
   out
 }
 .process_response_dep <- function(x, y, z, w){
