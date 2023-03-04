@@ -21,6 +21,17 @@ test_that("bold_seqspec returns the correct object (response)", {
   expect_is(test$response_headers, "list")
 })
 
+test_that("bold_seqspec returns the correct object (cleanData)", {
+  skip_on_cran()
+  vcr::use_cassette("bold_seqspec", {
+    test <- bold_seqspec(taxon = 'Coelioxys', cleanData = TRUE)
+  })
+  expect_is(test, "data.frame")
+  expect_is(test$recordID, "integer")
+  expect_is(test$directions, "character")
+  expect_false(any(test == "", na.rm = TRUE))
+})
+
 test_that("bold_seqspec returns the correct object (sepFasta)", {
   skip_on_cran()
   vcr::use_cassette("bold_seqspec", {

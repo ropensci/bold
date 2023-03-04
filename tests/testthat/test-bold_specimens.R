@@ -10,6 +10,17 @@ test_that("bold_specimens returns the correct object", {
   expect_is(test$recordID, "integer")
   expect_is(test$processid, "character")
 })
+test_that("bold_specimens returns the correct object (cleanData)", {
+  skip_on_cran()
+  vcr::use_cassette("bold_specimens", {
+    test <- bold_specimens(taxon = 'Coelioxys', cleanData = TRUE)
+  })
+  test <- bold_specimens(taxon = 'Coelioxys')
+  expect_is(test, "data.frame")
+  expect_is(test$recordID, "integer")
+  expect_is(test$processid, "character")
+  expect_false(any(test == "", na.rm = TRUE))
+})
 
 test_that("bold_specimens returns the correct object (response)", {
   skip_on_cran()
