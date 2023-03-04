@@ -2,6 +2,7 @@
 
 * local Windows install (x86_64, mingw32), R-release (4.2.2)
 * win-builder (devel and release)
+* mac-builder (release)
 * GitHub Actions (linux, macos, windows)
 
 ## R CMD check results
