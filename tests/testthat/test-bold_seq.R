@@ -1,4 +1,3 @@
-# tests for bold_seq fxn in bold
 context("bold_seq")
 
 
@@ -28,6 +27,7 @@ test_that("bold_seq returns the correct object (using bin)", {
   expect_is(test$sequence, "character")
 })
 test_that("bold_seq returns the correct object (response)", {
+  skip_on_cran()
   vcr::use_cassette("bold_seq", {
     test <- bold_seq(taxon = 'Coelioxys', response = TRUE)
   })
@@ -39,8 +39,6 @@ test_that("bold_seq returns the correct object (response)", {
 
 
 test_that("bold_seq fails well", {
-  skip_on_cran()
-
   expect_error(bold_seq(), "You must provide a non-empty value to at least one of")
   expect_error(bold_seq(taxon = ''), "You must provide a non-empty value to at least one of")
   expect_error(bold_seq(taxon = 5, geo = 1), "'taxon' and 'geo' must be of class character.")

@@ -1,6 +1,4 @@
-# tests for bold_seqspec fxn in bold
 context("bold_seqspec")
-
 
 test_that("bold_seqspec returns the correct object", {
   skip_on_cran()
@@ -13,6 +11,7 @@ test_that("bold_seqspec returns the correct object", {
 })
 
 test_that("bold_seqspec returns the correct object (response)", {
+  skip_on_cran()
   vcr::use_cassette("bold_seqspec", {
     test <- bold_seqspec(taxon = 'Coelioxys', response = TRUE)
   })
@@ -23,6 +22,7 @@ test_that("bold_seqspec returns the correct object (response)", {
 })
 
 test_that("bold_seqspec returns the correct object (sepFasta)", {
+  skip_on_cran()
   vcr::use_cassette("bold_seqspec", {
     test <- bold_seqspec(taxon = 'Coelioxys', sepfasta = TRUE)
   })
@@ -33,8 +33,6 @@ test_that("bold_seqspec returns the correct object (sepFasta)", {
 })
 
 test_that("bold_seq fails well", {
-  skip_on_cran()
-
   expect_error(bold_seqspec(taxon = ''), "You must provide a non-empty value to at least one of")
   expect_error(bold_seqspec(), "You must provide a non-empty value to at least one of")
 })

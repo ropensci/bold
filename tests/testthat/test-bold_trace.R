@@ -28,8 +28,6 @@ test_that("bold_trace returns the correct object (with ids)", {
 
 
 test_that("bold_trace fails well", {
-  skip_on_cran()
-
   expect_error(bold_trace(), "You must provide a non-empty value to at least one of")
   expect_error(bold_trace(taxon = ''), "You must provide a non-empty value to at least one of")
   expect_error(bold_trace(taxon = 5, geo = 1), "'taxon' and 'geo' must be of class character.")

@@ -1,6 +1,7 @@
 context("bold_stats")
 
 test_that("bold_stats returns the correct object", {
+  skip_on_cran()
   vcr::use_cassette("bold_stats", {
     test <- bold_stats(taxon = "Coelioxys")
   })
@@ -12,6 +13,7 @@ test_that("bold_stats returns the correct object", {
   expect_is(test$order, "list")
 })
 test_that("bold_stats returns the correct object (simplify & drill_down)", {
+  skip_on_cran()
   vcr::use_cassette("bold_stats", {
     test <- bold_stats(taxon = "Coelioxys", simplify = TRUE)
   })
@@ -25,6 +27,7 @@ test_that("bold_stats returns the correct object (simplify & drill_down)", {
   expect_is(test$drill_down$order, "data.frame")
 })
 test_that("bold_stats returns the correct object (simplify & overview)", {
+  skip_on_cran()
   vcr::use_cassette("bold_stats", {
     test <- bold_stats(taxon = "Coelioxys", simplify = TRUE, dataType = "overview")
   })
@@ -35,6 +38,7 @@ test_that("bold_stats returns the correct object (simplify & overview)", {
 })
 
 test_that("bold_stats return response", {
+  skip_on_cran()
   vcr::use_cassette("bold_stats", {
     test <-  bold_stats(taxon = "Coelioxys", response = TRUE)
   })
@@ -45,6 +49,7 @@ test_that("bold_stats return response", {
 })
 
 test_that("bold_stats many taxa passed to taxon param", {
+  skip_on_cran()
   vcr::use_cassette("bold_stats", {
     test <- bold_stats(taxon = c("Coelioxys", "Osmia"))
   })
@@ -52,8 +57,6 @@ test_that("bold_stats many taxa passed to taxon param", {
 })
 
 test_that("bold_stats fails well", {
-  skip_on_cran()
-
   expect_error(bold_stats(),
     "You must provide a non-empty value to at least one of")
   expect_error(bold_stats(taxon = 5), "'taxon' must be of class character.")

@@ -2,7 +2,6 @@ context("bold_tax_id2")
 
 test_that("bold_tax_id2 returns the correct object (one ID)", {
   skip_on_cran()
-
   vcr::use_cassette("bold_tax_id2", {
     test <- bold_tax_id2(id = 88899)
   })
@@ -34,7 +33,6 @@ test_that("bold_tax_id2 returns the correct object (multiple IDs, but one NA)", 
 })
 
 test_that("bold_tax_id2 returns the correct object (one ID, but NA)", {
-  skip_on_cran()
   test <- bold_tax_id2(id = NA)
   expect_is(test, "data.frame")
   expect_equal(NROW(test), 1)
@@ -138,7 +136,6 @@ test_that("bold_tax_id2 'dataTypes' param works as expected (basic & stats; as w
 
 test_that("bold_tax_id2 'includeTree' param works as expected", {
   skip_on_cran()
-
   vcr::use_cassette("bold_tax_id2", {
     test <- bold_tax_id2(id = 88899, includeTree = TRUE)
   })
@@ -159,7 +156,6 @@ test_that("bold_tax_id2 'includeTree' param works as expected (with 2 dataTypes)
 })
 
 test_that("bold_tax_id2 fails well", {
-  skip_on_cran()
   expect_error(bold_tax_id2(), "argument \"id\" is missing, with no default")
   expect_error(bold_tax_id2(id = 88899, dataTypes = 5), "'dataTypes' must be of class character.")
   expect_error(bold_tax_id2(id = 88899, dataTypes = "basics"), "\"basics\" is not one of the possible dataTypes.")

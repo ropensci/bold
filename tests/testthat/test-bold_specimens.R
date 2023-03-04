@@ -1,8 +1,7 @@
-# tests for bold_specimens fxn in bold
 context("bold_specimens")
 
-
 test_that("bold_specimens returns the correct object", {
+  skip_on_cran()
   vcr::use_cassette("bold_specimens", {
     test <- bold_specimens(taxon = 'Coelioxys')
   })
@@ -24,6 +23,7 @@ test_that("bold_specimens returns the correct object (response)", {
 })
 
 test_that("bold_specimens returns the correct object (xml)", {
+  skip_on_cran()
   vcr::use_cassette("bold_specimens", {
     test <- bold_specimens(taxon = 'Coelioxys', format = 'xml')
   })
@@ -31,12 +31,10 @@ test_that("bold_specimens returns the correct object (xml)", {
 })
 
 test_that("bold_seq fails well", {
-  skip_on_cran()
-
   expect_error(bold_specimens(), "You must provide a non-empty value to at least one of")
   expect_error(bold_specimens(taxon = ''), "You must provide a non-empty value to at least one of")
   expect_error(bold_specimens(geo = 'Costa Rica', timeout_ms = 2), "Timeout was reached")
 })
 
-# FIXME: The test wasn't doing that. The function doesn't throw warning afaik.
+# FIXME: The test wasn't doing that, removed it. Afaik, this function doesn't throw a warning for this.
 # test_that("Throws warning on call that takes forever including timeout in callopts", {})
