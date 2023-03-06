@@ -14,6 +14,7 @@ bold_specimens(
   geo = NULL,
   response = FALSE,
   format = "tsv",
+  cleanData = FALSE,
   ...
 )
 }
@@ -47,12 +48,17 @@ object. 'json' (JavaScript Object Notation) and 'dwc' (Darwin Core Archive)
 are supported in theory, but the JSON can be malformed, so we don't support
 that here, and the DWC option actually returns TSV.}
 
+\item{cleanData}{(logical) If \code{TRUE}, the cell values containing only duplicated values (ex : "COI-5P|COI-5P|COI-5P") will be reduce to one value ("COI-5P") and empty string will be change to NA. Default: \code{FALSE}}
+
 \item{...}{Further args passed on to
 \code{\link[crul:verb-GET]{crul::verb-GET}}, main purpose being curl
 debugging}
 }
 \description{
 Search BOLD for specimens.
+}
+\note{
+If using the \code{taxon} parameter with another parameter, if the \code{taxon} isn't found in the public database, it will act as if no \code{taxon} was specified and try to return all the data for the other specified parameter. You can make sure that the \code{taxon} you're looking up has public records with \code{\link{bold_stats}}.
 }
 \examples{
 \dontrun{

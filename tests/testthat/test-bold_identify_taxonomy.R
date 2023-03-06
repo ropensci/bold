@@ -46,8 +46,6 @@ test_that("bold_identify_taxonomy works as expected (taxOnly FALSE)", {
 })
 
 test_that("bold_identify_taxonomy fails well", {
-  skip_on_cran()
-
   # x required
   expect_error(bold_identify_taxonomy(), "argument 'x' is missing")
   expect_error(bold_identify_taxonomy(list()), "argument `x` is empty")

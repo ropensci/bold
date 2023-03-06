@@ -65,36 +65,12 @@ bold_tax_id2 <-
       return(data.frame(input = NA, taxid = NA))
     assert(dataTypes, "character")
     assert(includeTree, "logical")
-    # assert(oneRow, "logical")
     assert(id, c("character", "numeric", "integer"))
     # for compatibility with bold_tax_id
     if (length(dataTypes) == 1 && grepl(",", dataTypes)) {
       dataTypes <- stringi::stri_split_fixed(dataTypes, ",", simplify = TRUE)
     }
-    # corrects for the json typo in case the option is taken from a previous query
-    dataTypes[dataTypes == "depo"] <- "depository"
-    dataTypes[dataTypes == "depositories"] <- "depository"
-    dataTypes[dataTypes == "labs"] <- "sequencinglabs"
-    wrongType <- !dataTypes %in% c(
-      "basic",
-      "stats",
-      "geo",
-      "images",
-      "sequencinglabs",
-      "depository",
-      "thirdparty",
-      "all"
-    )
-    if (any(wrongType)) {
-      msg <- ' not one of the possible dataTypes.
-      \n\tOptions are:
-      \n\t\t"basic", "stats", "geo", "images", "sequencinglabs (or labs)",
-      "depository (or depo)","thirdparty" and "all"'
-      if (sum(wrongType) > 1)
-        stop(toStr(dataTypes[wrongType], quote = TRUE), " are", msg)
-      else
-        stop('"', dataTypes[wrongType], '"', " is", msg)
-    }
+    dataTypes <- .check_dataTypes(dataTypes)
     #-- prep query params
     params <- list(
       dataTypes = paste(dataTypes, collapse = ","),
@@ -115,7 +91,7 @@ bold_tax_id2 <-
     } else {
       #-- make data.frame with the response(s)
       #-- fixing dataTypes to match bold response
-      if (any(dataTypes == "all")) {
+      if (length(dataTypes) == 1 && dataTypes == "all") {
         dataTypes <- c(
           "basic",
           "stats",
@@ -141,12 +117,40 @@ bold_tax_id2 <-
       w <- vapply(res, `[[`, "", "warning")
       attr(out, "errors") <- bc(w)
       attr(out, "params") <- c(params)
-      #-- this happens when the API return an empty array ([])
-      # if (any(lengths(out) == 0)) {
-      # attr(out, "empty") <- id[lengths(out)]
       out
     }
   }
+.check_dataTypes <- function(x){
+  # corrects for the json typo in case the option is taken from a previous query
+  x[x == "depositories"] <- "depository"
+  # corrects for short versions
+  x[x == "depo"] <- "depository"
+  x[x == "labs"] <- "sequencinglabs"
+  if (any(x == "all")) {
+    x <- "all"
+  } else {
+    wrongType <- !x %in% c(
+      "basic",
+      "stats",
+      "geo",
+      "images",
+      "sequencinglabs",
+      "depository",
+      "thirdparty",
+      "all"
+    )
+    if (any(wrongType)) {
+      wt <- toStr(x[wrongType], quote = TRUE)
+      stop(wt,
+              if (sum(wrongType) > 1) " are not valid data types."
+              else " is not a valid data type.",
+              "\nThe possible data types are:",
+              "\n  - basic\n  - stats\n  - geo\n  - images",
+              "\n  - sequencinglabs\n  - depository\n  - thirdparty\n  - all")
+    }
+  }
+  x
+}
 .process_tax_id <- function(x, ids, types, tree) {
   out <-
     if (nzchar(x$warning) || x$response$status_code > 202)

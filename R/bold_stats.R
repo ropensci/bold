@@ -5,7 +5,7 @@
 #' "drill_down": a detailed summary of information which provides record counts
 #' by BINs, Countries, Storing Institutions, Orders, Families, Genus, Species.
 #' "overview": the total record counts of BINs, Countries, Storing Institutions,
-#' Orders, Families, Genus, Species. *Note that the number of records include both private and public ones.
+#' Orders, Families, Genus, Species. The record counts include all gene markers, not only COI. To see the drill down of markers use \code{\link{bold_tax_id2}} with "stats" as `dataTypes`.
 #' @param simplify (logical) whether the returned list should be simplified to a data.frame. See Details.
 #'
 #' @return By default, returns a nested list with the number of total records, the number of records with a species name, then for each of bins, countries, depositories, order, family, genus and species, the total count and the drill down of the records by up to 10 entities of that category. If `simplify` is set to TRUE, returns a list of length 2 : the overview data (number of total records, the number of records with a species name, and the total counts) simplified as a data.frame of 1 row and 9 columns and the drill_down data simplified to a one level list of data.frame. When `dataType` is set to "overview", returns a nested list with the number of total records, the number of records with a species name, and the total count for each of bins, countries, depositories, order, family, genus and species. If `simplify` is set to TRUE, returns a data.frame of 1 row and 9 columns.

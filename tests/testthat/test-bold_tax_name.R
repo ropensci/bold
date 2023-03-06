@@ -1,6 +1,5 @@
 context("bold_tax_name")
 
-
 test_that("bold_tax_name returns the correct object", {
   skip_on_cran()
   vcr::use_cassette("bold_tax_name", {
@@ -22,7 +21,6 @@ test_that("bold_tax_name returns the correct object (multiple names)", {
 })
 test_that("bold_tax_name returns the correct object (using filters)", {
   skip_on_cran()
-
   vcr::use_cassette("bold_tax_name", {
     test <- bold_tax_name(name = "Actinocephalus", tax_rank = "genus")
   })
@@ -55,12 +53,10 @@ test_that("bold_tax_name returns the correct object (when taxon not found)", {
 
 test_that("bold_tax_name returns the correct object (response)", {
   skip_on_cran()
-
   vcr::use_cassette("bold_tax_name", {
     test <- bold_tax_name(name = "Diplura", response = TRUE)
   })
   expect_is(test, "list")
-
   test <- test[["Diplura"]]
   expect_length(test, 2)
   expect_is(test$response, "HttpResponse")
@@ -82,8 +78,18 @@ test_that("bold_tax_name 'fuzzy' param works", {
   expect_gt(NROW(test), NROW(test_not))
 })
 
-test_that("bold_tax_name fails well", {
+test_that("bold_tax_name works when  'name' containts single quotes", {
   skip_on_cran()
+  vcr::use_cassette("bold_tax_name", {
+    test <- bold_tax_name(name = "Diplur", fuzzy = TRUE)
+    test_not <- bold_tax_name(name = "Diplur", fuzzy = FALSE)
+  })
+  expect_is(test, "data.frame")
+  expect_is(test$input, "character")
+  expect_gt(NROW(test), NROW(test_not))
+})
+
+test_that("bold_tax_name fails well", {
   # name required
   expect_error(bold_tax_name(), "argument \"name\" is missing, with no default")
   # catch wrong type param inputs

@@ -70,7 +70,7 @@ bold_identify <- function(sequences, db = 'COX1', response = FALSE, keepSeq = TR
   }
   assert(sequences, "character")
   if (!missing(db)) {
-    assert(db, "character", checkLength = TRUE)
+    assert(db, "character", check.length.is1 = TRUE)
     if (!db %in% c("COX1", "COX1_SPECIES", "COX1_SPECIES_PUBLIC", "COX1_L640bp")) {
       stop("'db' must be one of 'COX1', 'COX1_SPECIES', 'COX1_SPECIES_PUBLIC' or 'COX1_L640bp'")
     }

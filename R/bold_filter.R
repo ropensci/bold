@@ -23,7 +23,7 @@
 #'
 #' @return a data.frame
 #' @examples \dontrun{
-#' res <- bold_seqspec(taxon='Osmia')
+#' res <- bold_seqspec(taxon = 'Osmia')
 #' maxx <- bold_filter(res, by = "species_name")
 #' minn <- bold_filter(res, by = "species_name", how = "min")
 #'
@@ -32,14 +32,19 @@
 #' }
 #' @export
 bold_filter <- function(x, by, how = "max", returnTibble = TRUE){
-  if (!inherits(x, c("data.frame", "matrix"))) stop("'x' must be a data.frame or matrix")
+  assert(x, c("data.frame", "matrix"))
+  assert(by, "character", check.length.is1 = TRUE)
   if (!by %in% colnames(x)) stop(sprintf("'%s' is not a valid column in 'x'", by))
-  if (!how %in% c("min", "max")) stop("'how' must be one of 'min' or 'max'")
-  .fun <- list(min = which.min, max = which.max)
+  assert(how, "character", check.length.is1 = TRUE)
+  how <- switch(how,
+                min = which.min,
+                max = which.max,
+                stop("'how' must be one of 'min' or 'max'"))
+  assert(returnTibble, "logical", check.length.is1 = TRUE)
   xdt <- data.table::as.data.table(x)
   .rows <- xdt[,{
-    lgts <- stringi::stri_count_regex(nucleotides,"[^-]")
-    .I[.fun[[how]](lgts)]
+    lgts <- stringi::stri_count_regex(nucleotides,"[^-N]")
+    .I[how(lgts)]
   }, by = by]$V1
   out <- x[.rows,]
   # so the output is ordered in the same way as before

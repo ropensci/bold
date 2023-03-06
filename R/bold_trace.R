@@ -46,8 +46,10 @@ bold_trace <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
   overwrite = TRUE, progress = TRUE, ...) {
 
   if (!requireNamespace("sangerseqR", quietly = TRUE)) {
-    stop("Please install sangerseqR", call. = FALSE)
+    warning("You will need to install sangerseqR to be able to read in the trace files.",
+            call. = FALSE)
   }
+
   assert(overwrite, "logical")
   assert(progress, "logical")
   if (!is.null(dest)) assert(dest, "character")
@@ -98,7 +100,10 @@ print.boldtrace <- function(x, ...){
 #' @export
 #' @rdname bold_trace
 read_trace <- function(x){
-  # Depricated
+  .Deprecated("bold_read_trace")
+  if (!requireNamespace("sangerseqR", quietly = TRUE)) {
+    stop("Please install sangerseqR", call. = FALSE)
+  }
   if (inherits(x, "boldtrace")) {
     if (length(x$ab1) > 1) stop("Number of paths > 1, just pass one in",
                                 call. = FALSE)
@@ -115,8 +120,16 @@ read_trace <- function(x){
 #' @export
 #' @rdname bold_trace
 bold_read_trace <- function(x){
+  if (!requireNamespace("sangerseqR", quietly = TRUE)) {
+    stop("Please install sangerseqR", call. = FALSE)
+  }
   assert(x, c("character", "boldtrace"))
-  trace_paths <- if (is.list(x)) `names<-`(x$ab1, basename(x$ab1)) else `names<-`(x, basename(x))
+  trace_paths <- {
+    if (is.list(x))
+      `names<-`(x$ab1, basename(x$ab1))
+    else
+      `names<-`(x, basename(x))
+  }
   lapply(trace_paths, \(trace_path) {
     if (file.exists(trace_path)) {
       sangerseqR::readsangerseq(trace_path)
