@@ -1,5 +1,5 @@
 # uncomment to set all cassettes at once
-# vcr::vcr_configure(dir = "./tests/fixtures/")
+# vcr::vcr_configure(dir = normalizePath("./tests/fixtures/"))
 # vcr::use_cassette("bold_specimens", {
 #   bold_specimens(taxon = 'Coelioxys')
 #   bold_specimens(taxon = 'Coelioxys', format = 'xml')

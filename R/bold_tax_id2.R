@@ -91,7 +91,7 @@ bold_tax_id2 <-
     } else {
       #-- make data.frame with the response(s)
       #-- fixing dataTypes to match bold response
-      if (dataTypes == "all") {
+      if (length(dataTypes) == 1 && dataTypes == "all") {
         dataTypes <- c(
           "basic",
           "stats",
@@ -142,14 +142,11 @@ bold_tax_id2 <-
     if (any(wrongType)) {
       wt <- toStr(x[wrongType], quote = TRUE)
       stop(wt,
-              if (sum(wrongType) > 1) " are not valid data types"
-              else " is not a valid data type",
-              if (!all(wrongType)) " and will be skipped." else ".",
+              if (sum(wrongType) > 1) " are not valid data types."
+              else " is not a valid data type.",
               "\nThe possible data types are:",
               "\n  - basic\n  - stats\n  - geo\n  - images",
               "\n  - sequencinglabs\n  - depository\n  - thirdparty\n  - all")
-    } else {
-      x <- paste(x, collapse = ",")
     }
   }
   x

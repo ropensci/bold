@@ -15,7 +15,6 @@ test_that("bold_specimens returns the correct object (cleanData)", {
   vcr::use_cassette("bold_specimens", {
     test <- bold_specimens(taxon = 'Coelioxys', cleanData = TRUE)
   })
-  test <- bold_specimens(taxon = 'Coelioxys')
   expect_is(test, "data.frame")
   expect_is(test$recordID, "integer")
   expect_is(test$processid, "character")
