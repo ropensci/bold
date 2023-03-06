@@ -115,7 +115,7 @@ fix_taxonName <- function(x){
   stringi::stri_replace_all_regex(
     x,
     c("( )('[^']*)$", "( )(\\([^\\(]*)$", " sp$"),
-    c("$1\\\\$2\\\\'", "$1\\\\$2\\\\)", " sp."),
+    c("$1\\\\$2\\\\'", "$1$2)", " sp."),
     vectorize_all = FALSE)
 }
 cleanData <- function(x, emptyValue = NA, rmEmptyCol = FALSE){

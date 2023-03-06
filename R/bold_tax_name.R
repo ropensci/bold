@@ -40,7 +40,7 @@ bold_tax_name <- function(name, fuzzy = FALSE, response = FALSE,
                           tax_division = NULL, tax_rank = NULL, ...) {
   assert(name, "character")
   # fix for #84:
-  # name <- stringi::stri_replace_all_regex(name, "(?<=[^\\\\])(['\\(])", "\\\\$1")
+  name <- stringi::stri_replace_all_regex(name, "(?<=[^\\\\])'", "\\\\'")
   if (!missing(response)) assert(response, "logical")
   if (!missing(fuzzy)) assert(fuzzy, "logical")
   if (length(tax_division)) {
