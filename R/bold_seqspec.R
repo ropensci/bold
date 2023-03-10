@@ -40,19 +40,20 @@
 #' ### You can do many things, including get verbose output on the curl call,
 #' ### and set a timeout
 #' head(bold_seqspec(taxon='Osmia', verbose = TRUE))
-#' ## timeout
-#' # head(bold_seqspec(taxon='Osmia', timeout_ms = 1))
+#' head(bold_seqspec(taxon='Osmia', timeout_ms = 1))
 #' }
 #'
 #' @export
 bold_seqspec <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
-                         institutions = NULL, researchers = NULL, geo = NULL, marker = NULL,
-                         response=FALSE, format = 'tsv', sepfasta = FALSE, cleanData = FALSE, ...) {
-
-  if (!format %in% c('xml', 'tsv')) stop("'format' should be onf of 'xml' or 'tsv'")
-  assert(response, "logical")
+                         institutions = NULL, researchers = NULL, geo = NULL,
+                         marker = NULL, response = FALSE, format = 'tsv',
+                         sepfasta = FALSE, cleanData = FALSE, ...) {
+  format <- b_assert_format(format)
+  response <- b_assert_logical(response)
+  sepfasta <- b_assert_logical(sepfasta)
+  cleanData <- b_assert_logical(cleanData)
   params <- c(
-    pipe_params(
+    b_pipe_params(
       taxon = taxon,
       geo = geo,
       ids = ids,
@@ -68,36 +69,66 @@ bold_seqspec <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
   if (response) {
     res
   } else {
-    res$raise_for_status()
-    res <- paste0(rawToChar(res$content, multiple = TRUE), collapse = "")
-    if (res == "") return(NA)
-    res <- enc2utf8(res)
-    if (grepl("Fatal error", res)) {
-      stop("BOLD servers returned an error - we're not sure what happened\n ",
-           "try a smaller query - or open an issue and we'll try to help")
-    }
-    out <- switch(format,
-                  xml = xml2::read_xml(res),
-                  tsv = {
-                    out <- setread(res)
-                    if (format == "tsv" && cleanData) {
-                      cleanData(out)
-                    } else {
-                      out
-                    }
-                  })
-    if (!sepfasta) {
-      out
-    } else {
-      if (format == "tsv") {
-        fasta <- as.list(out$nucleotides)
-        names(fasta) <- out$processid
-        df <- out[ , !names(out) %in% "nucleotides" ]
-        list(data = df, fasta = fasta)
-      } else {
-        out
+    b_seqspec_process(res, format, sepfasta, cleanData)
+  }
+}
+b_seqspec_process <- function(res, format, sepfasta, cleanData){
+  res$raise_for_status()
+  res <- paste0(rawToChar(res$content, multiple = TRUE), collapse = "")
+  res <- enc2utf8(res)
+  if (res == "") {
+    NA
+  } else {
+    if (b_detect(res, "Fatal error")) {
+      # if returning partial output for bold_seq, might as well do that here too
+      warning("the request timed out, see 'If a request times out'\n",
+              "returning partial output")
+      res <- b_drop(str = res, pattern = "Fatal error")
+      # if missing, adding closing tag so it can be read properly
+      if (format == "xml" && !b_detect(res, "</bold_records")) {
+        res <- paste0(res, "</bold_records>")
       }
     }
+    switch(
+      format,
+      xml = b_seqspec_process_xml(x = res, sepfasta = sepfasta),
+      tsv = b_seqspec_process_tsv(
+        x = res,
+        sepfasta = sepfasta,
+        cleanData = cleanData
+      )
+    )
+  }
+}
+b_seqspec_process_tsv <- function(x, sepfasta, cleanData){
+  out <- b_read(x)
+  if (format == "tsv" && cleanData) {
+    out <- cleanData(out)
+  }
+  if (!sepfasta) {
+    out
+  } else {
+    list(data = out[, !names(out) %in% "nucleotides"],
+         fasta = `names<-`(as.list(out$nucleotides),
+                           out$processid))
+  }
+}
+b_seqspec_process_xml <- function(x, sepfasta){
+  # don't remove 'options' !
+  # prevents failing on large request :)
+  out <- xml2::read_xml(x, options = c("NOBLANKS", "HUGE"))
+  if (!sepfasta) {
+    out
+  } else {
+    rec <- xml2::xml_find_all(out, "//record")
+    fasta <- lapply(rec, \(x) {
+      seq <-  xml2::xml_text(xml2::xml_find_all(x, ".//nucleotides"))
+      id <- xml2::xml_text(xml2::xml_find_all(x, ".//processid"))
+      `names<-`(as.list(seq), rep(id, length(seq)))
+    })
+    fasta <- unlist(fasta, recursive = FALSE)
+    # not removing nucleotides since xml2::xml_remove advise against it
+    list(data = out, fasta = fasta)
   }
 }
 

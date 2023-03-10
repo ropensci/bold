@@ -63,37 +63,55 @@
 #' }
 #'
 #' @export
-bold_identify <- function(sequences, db = 'COX1', response = FALSE, keepSeq = TRUE, ...) {
+bold_identify <- function(
+    sequences,
+    db = c("COX1", "COX1_SPECIES", "COX1_SPECIES_PUBLIC", "COX1_L640bp"),
+    response = FALSE, keepSeq = TRUE, ...){
+  if (missing(sequences)) stop("argument 'sequences' is missing, with no default")
   # make sure sequences are character before the queries
   if (is.list(sequences) && all(lengths(sequences) == 1)) {
     sequences <- c(sequences, recursive = TRUE)
   }
-  assert(sequences, "character")
+  b_assert(sequences, "character", check.length = 0L)
   if (!missing(db)) {
-    assert(db, "character", check.length.is1 = TRUE)
-    if (!db %in% c("COX1", "COX1_SPECIES", "COX1_SPECIES_PUBLIC", "COX1_L640bp")) {
+    b_assert_length(db, 1L, "db")
+    db <- switch(
+      tolower(db),
+      cox1 = "COX1",
+      cox1_species = "COX1_SPECIES",
+      cox1_spe = "COX1_SPECIES",
+      species = "COX1_SPECIES",
+      spe = "COX1_SPECIES",
+      cox1_species_public = "COX1_SPECIES_PUBLIC",
+      public = "COX1_SPECIES_PUBLIC",
+      pub = "COX1_SPECIES_PUBLIC",
+      cox1_l640bp = "COX1_L640bp",
+      l640bp = "COX1_L640bp",
+      bp = "COX1_L640bp",
       stop("'db' must be one of 'COX1', 'COX1_SPECIES', 'COX1_SPECIES_PUBLIC' or 'COX1_L640bp'")
-    }
+    )
+  } else {
+    db <- "COX1"
   }
-  assert(response, "logical")
-  assert(keepSeq, "logical")
+  response <- b_assert_logical(response)
+  keepSeq <- b_assert_logical(keepSeq)
   # loop over sequences since the API only accepts one at a time
   lapply(sequences, function(seq){
     if (nchar(seq) < 80) {
-      res <- list(response = NULL, warning = "Sequence  must be at least 80 bp.")
+      # API return NA but on website you would get that error
+      res <- list(response = NULL, warning = "Sequence must be at least 80 bp.")
     } else if (!grepl("^[A-z|*|-|+|.]*$", seq)) {
+      # API return NA but on website you would get that error
       res <- list(response = NULL, warning = "Sequence contains invalid characters.")
     } else {
-      res <- get_response(
-        args = bc(list(sequence = seq, db = db)),
-        url = b_url('Ids_xml'),
-        contentType = 'text/xml'
-      )
+      res <- b_GET(args = b_rm_empty(list(sequence = seq, db = db)),
+                   url = b_url('Ids_xml'))
+      res <- b_check_res(res, contentType = 'text/xml')
     }
     if (response) {
       res
     } else {
-      out <- if (length(res$response)) .parse_identify_xml(res) else NA
+      out <- if (length(res$response)) b_parse_identify_xml(res) else NA
       # add input sequence as attribute to prevent mix up if 'sequences' wasn't named
       if (keepSeq) {
         attr(out, "sequence") <- seq
@@ -104,7 +122,7 @@ bold_identify <- function(sequences, db = 'COX1', response = FALSE, keepSeq = TR
   })
 }
 
-.parse_identify_xml <- function(res){
+b_parse_identify_xml <- function(res){
   cNames <- c('ID','sequencedescription','database','citation',
               'taxonomicidentification','similarity','specimen_url',
               'specimen_country', 'specimen_lat','specimen_lon')

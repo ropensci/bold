@@ -32,18 +32,20 @@
 #' }
 #' @export
 bold_filter <- function(x, by, how = "max", returnTibble = TRUE){
-  assert(x, c("data.frame", "matrix"))
-  assert(by, "character", check.length.is1 = TRUE)
-  if (!by %in% colnames(x)) stop(sprintf("'%s' is not a valid column in 'x'", by))
-  assert(how, "character", check.length.is1 = TRUE)
+  if (missing(x)) stop("argument 'x' is missing, with no default")
+  if (missing(by)) stop("argument 'by' is missing, with no default")
+  b_assert(x, c("data.frame", "matrix"))
+  b_assert(by, "character", check.length = 1L)
+  if (!by %in% colnames(x)) stop("'", by, "' is not a valid column in 'x'")
+  b_assert(how, "character", check.length = 1L)
+  b_assert(returnTibble, "logical", check.length = 1L)
   how <- switch(how,
                 min = which.min,
                 max = which.max,
                 stop("'how' must be one of 'min' or 'max'"))
-  assert(returnTibble, "logical", check.length.is1 = TRUE)
   xdt <- data.table::as.data.table(x)
   .rows <- xdt[,{
-    lgts <- stringi::stri_count_regex(nucleotides,"[^-N]")
+    lgts <- b_count(nucleotides,"[^-N]")
     .I[how(lgts)]
   }, by = by]$V1
   out <- x[.rows,]

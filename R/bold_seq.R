@@ -38,43 +38,74 @@
 #' ### You can do many things, including get verbose output on the curl
 #' ### call, and set a timeout
 #' bold_seq(taxon='Coelioxys', verbose = TRUE)[1:2]
-#' # bold_seqspec(taxon='Coelioxys', timeout_ms = 10)
 #' }
 #'
 #' @export
 bold_seq <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
-                     institutions = NULL, researchers = NULL, geo = NULL, marker = NULL,
-                     response=FALSE, ...) {
-
-  assert(response, "logical")
-  params <- pipe_params(taxon = taxon,
-                        ids = ids,
-                        bin = bin,
-                        container = container,
-                        institutions = institutions,
-                        researchers = researchers,
-                        geo = geo,
-                        marker = marker)
+                     institutions = NULL, researchers = NULL, geo = NULL,
+                     marker = NULL, response = FALSE, ...) {
+  response <- b_assert_logical(response)
+  params <- b_pipe_params(
+    taxon = taxon,
+    ids = ids,
+    bin = bin,
+    container = container,
+    institutions = institutions,
+    researchers = researchers,
+    geo = geo,
+    marker = marker
+  )
   res <- b_GET(b_url('API_Public/sequence'), params, ...)
   if (response) {
     res
   } else {
     res$raise_for_status()
     res <- rawToChar(res$content)
-    if (grepl("error", res)) {
+    if (grepl("Fatal error", res)) {
       warning("the request timed out, see 'If a request times out'\n",
               "returning partial output")
-      res <- strdrop(str = res, pattern = "Fatal+")[[1]]
+      # faster than extract/replace
+      res <- b_drop(str = res, pattern = "Fatal error")
     }
-    split_fasta(res)
+    b_split_fasta(res)
   }
 }
-
-split_fasta <- function(x){
-  x <- stringi::stri_split_lines(str = x, omit_empty = TRUE)[[1]]
-  x <- stringi::stri_replace_all_fixed(str = x, pattern = ">", replacement = "")
-  tmp <- matrix(x, ncol = 2, byrow = TRUE)
-  out <- stringi::stri_split_fixed(str = tmp[,1], pattern = "|",  simplify = NA, n = 4)
-  colnames(out) <- c("processid", "identification", "marker", "accession")
-  data.frame(out, sequence = tmp[,2])
+b_split_fasta <- function(x){
+  x <- b_lines(str = x)
+  if (length(x) %% 2 && # if length(x) %% 2 not 0, it's TRUE
+      b_detect(x[length(x)], "^\\s*$")) {
+      x <- x[-length(x)]
+  }
+  id_line <- b_detect(x,"^>")
+  n <- which(id_line)
+  id <- b_split(str = x[id_line], pattern = ">|\\|", omit_empty = TRUE, simplify = NA, n = 4)
+  id <- `names<-`(as.data.frame(id), c("processid", "identification", "marker", "accession"))
+  if (all(diff(c(n, length(x) + 1L)) == 2)) {
+    sequence <- x[n + 1L]
+    data.frame(id, sequence)
+  } else if (sum(id_line) == sum(!id_line)) {
+    # shouldn't happen but who knows
+    warning("The file had an even number of ids and sequences, but they weren't in the proper order.",
+            "\n  This shouldn't happen. Output may contain errors.",
+            "\n  Please open an issue so we can see when this happens.")
+    sequence <- x[!id_line]
+    data.frame(id, sequence)
+  } else {
+    warning("The file had an uneven number of ids and sequenceuences.",
+            "\n  This shouldn't happen. Returning data as a list of lines.",
+            "\n  Please open an issue so we can see when this happens.")
+    # out <- mapply(
+    #   \(i, j) {
+    #     if (i == 1)
+    #       data.frame(id[j,], sequence = x[(j + 1L)], row.names = NULL)
+    #     else if (i > 1)
+    #       data.frame(id[j,], sequence = x[(j + 1L):(j + i)], row.names = NULL)
+    #     else
+    #       data.frame(id[j,], sequence = NA_character_, row.names = NULL)
+    #   },
+    #   diff(c(n - 1L, length(x))),
+    #   id_line, SIMPLIFY = FALSE)
+    # b_rbind(out)
+    x
+  }
 }

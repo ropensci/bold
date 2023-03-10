@@ -63,9 +63,9 @@ bold_tax_id2 <-
     # no need to do the call if id is NA
     if (length(id) == 1 && is.na(id))
       return(data.frame(input = NA, taxid = NA))
-    assert(dataTypes, "character")
-    assert(includeTree, "logical")
-    assert(id, c("character", "numeric", "integer"))
+    b_assert(dataTypes, "character")
+    b_assert(includeTree, "logical")
+    b_assert(id, c("character", "numeric", "integer"))
     # for compatibility with bold_tax_id
     if (length(dataTypes) == 1 && grepl(",", dataTypes)) {
       dataTypes <- stringi::stri_split_fixed(dataTypes, ",", simplify = TRUE)
@@ -83,7 +83,8 @@ bold_tax_id2 <-
       if (is.na(x) || grepl("^NA$", x)) {
         list(response = NULL, warning = "id was NA")
       } else {
-        get_response(args = c(taxId = x, params), url = URL, ...)
+        r <- b_GET(args = c(taxId = x, params), url = URL, ...)
+        b_check_res(r)
       }
     })
     if (response) {
@@ -115,7 +116,7 @@ bold_tax_id2 <-
       out <- .format_tax_id_output(out, types = dataTypes, tree = includeTree)
       # -- add attributes to output
       w <- vapply(res, `[[`, "", "warning")
-      attr(out, "errors") <- bc(w)
+      attr(out, "errors") <- b_rm_empty(w)
       attr(out, "params") <- c(params)
       out
     }
@@ -140,7 +141,7 @@ bold_tax_id2 <-
       "all"
     )
     if (any(wrongType)) {
-      wt <- toStr(x[wrongType], quote = TRUE)
+      wt <- b_ennum(x[wrongType], quote = TRUE)
       stop(wt,
               if (sum(wrongType) > 1) " are not valid data types."
               else " is not a valid data type.",
@@ -177,7 +178,7 @@ bold_tax_id2 <-
 .grp_dataTypes <- function(x, nms, idcol = FALSE, tree = FALSE) {
   if (!tree) {
     lapply(`names<-`(nms, nms), function(nm) {
-      o <- setrbind(lapply(x, `[[`, nm), idcol = idcol)
+      o <- b_rbind(lapply(x, `[[`, nm), idcol = idcol)
       if (idcol == "input") {
         o[["input"]] <- as.integer(o[["input"]])
       }
@@ -188,7 +189,7 @@ bold_tax_id2 <-
     })
   } else {
     lapply(`names<-`(nms, nms), function(nm) {
-      o <- setrbind(lapply(x, `[[`, nm), idcol = "taxid", fill = TRUE)
+      o <- b_rbind(lapply(x, `[[`, nm), idcol = "taxid", fill = TRUE)
       if (names(o)[1] == "taxid" && names(o)[2] == "taxid") {
         o <- o[, -2]
       }

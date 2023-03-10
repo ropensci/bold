@@ -38,37 +38,43 @@
 #' @export
 bold_tax_name <- function(name, fuzzy = FALSE, response = FALSE,
                           tax_division = NULL, tax_rank = NULL, ...) {
-  assert(name, "character")
+  b_assert(name, "character")
   # fix for #84:
+<<<<<<< Updated upstream
   # name <- stringi::stri_replace_all_regex(name, "(?<=[^\\\\])(['\\(])", "\\\\$1")
   if (!missing(response)) assert(response, "logical")
   if (!missing(fuzzy)) assert(fuzzy, "logical")
+=======
+  name <- stringi::stri_replace_all_regex(name, "(?<=[^\\\\])'", "\\\\'")
+  if (!missing(response)) b_assert(response, "logical")
+  if (!missing(fuzzy)) b_assert(fuzzy, "logical")
+>>>>>>> Stashed changes
   if (length(tax_division)) {
-    assert(tax_division, "character")
-    if(!all(tax_division %in% c("Animalia", "Protista", "Fungi", "Plantae")))
+    b_assert(tax_division, "character")
+    if (!all(tax_division %in% c("Animalia", "Protista", "Fungi", "Plantae")))
       stop("'tax_division' must be one or more of ",
-           toStr(c("Animalia", "Protista", "Fungi", "Plantae")))
+           b_ennum(c("Animalia", "Protista", "Fungi", "Plantae")))
   }
   if (length(tax_rank)) {
-    assert(tax_rank, "character")
+    b_assert(tax_rank, "character")
     tax_rank <- tolower(tax_rank)
-    if(any(!tax_rank %in% c(bold::rank_ref[["rank"]], bold::rank_ref[["ranks"]])))
+    if (any(!tax_rank %in% rank_ref))
       stop("Invalid tax_rank name.")
   }
 
   res <- lapply(`names<-`(name, name), function(x)
-    get_response(args = c(taxName = x, fuzzy = tolower(fuzzy)),
-                 url = b_url("API_Tax/TaxonSearch"), ...)
+    b_check_res(b_GET(args = c(taxName = x, fuzzy = tolower(fuzzy)),
+                      url = b_url("API_Tax/TaxonSearch"), ...))
   )
   if (response) {
     res
   } else {
-    out <- setrbind(lapply(res, process_tax_name,
-                           tax_division = tax_division,
-                           tax_rank = tax_rank),
-                    idcol = "input")
+    out <- b_rbind(lapply(res, process_tax_name,
+                          tax_division = tax_division,
+                          tax_rank = tax_rank),
+                   idcol = "input")
     w <- vapply(res, `[[`, "", "warning")
-    attr(out, "errors") <- bc(w)
+    attr(out, "errors") <- b_rm_empty(w)
     out
   }
 }
@@ -80,11 +86,11 @@ process_tax_name <- function(x, tax_division, tax_rank) {
       out <- data.frame(out$top_matched_names, stringsAsFactors = FALSE)
       if(length(tax_division) && length(out$tax_division)) out <- out[out$tax_division %in% tax_division,]
       if(length(tax_rank) && length(out$tax_rank)) out <- out[out$tax_rank %in% tax_rank,]
-      out$taxon <- fix_taxonName(out$taxon)
+      out$taxon <- b_fix_taxonName(out$taxon)
       if (any(colnames(out) == "parentname"))
-        out$parentname <- fix_taxonName(out$parentname)
+        out$parentname <- b_fix_taxonName(out$parentname)
       if (any(colnames(out) == "taxonrep"))
-        out$taxonrep <- fix_taxonName(out$taxonrep)
+        out$taxonrep <- b_fix_taxonName(out$taxonrep)
     } else {
       out <- data.frame(taxid = NA_integer_)
     }
