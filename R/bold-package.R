@@ -29,9 +29,9 @@
 #' @importFrom crul HttpClient url_build
 #' @importFrom xml2 read_xml xml_find_all xml_text xml_name
 #' @importFrom jsonlite fromJSON
-#' @importFrom data.table data.table setDF rbindlist
-#' @importFrom stringi stri_split_lines stri_replace_all_fixed stri_split_fixed stri_extract_all_regex
 #' @importFrom methods setGeneric setMethod
+#' @import data.table
+#' @import stringi
 #' @docType package
 #' @name bold-package
 #' @aliases bold
@@ -47,24 +47,14 @@ NULL
 #' @keywords data
 NULL
 
-#' Lookup-table for IDs of taxonomic ranks
+#' Vector of bold taxonomic ranks
 #'
 #' @details
-#' Used in the \code{\link{bold_tax_name}} function.
-#' Taken from the data set of the same name in the package \pkg{taxize}.
-#'
-#' This data.frame is used to do data sorting/filtering based on the ordering
-#' of ranks. The format was changed so each rank name would have its own row and
-#' added a column for the plural form of the names, since some function need to
-#' convert them to singular.
+#' This character vector is used to do data sorting/filtering based on the ordering
+#' of ranks and to convert a rank's plural form to singular.
 #'
 #' @name rank_ref
-#' @format data.frame of 64 rows, with 3 columns:
-#' \itemize{
-#'   \item{rankid}{: a numeric vector of rank ids, consecutive}
-#'   \item{ranks}{: a character vector of rank names}
-#'   \item{order}{: a numeric vector of the ranks order (from domain to unspecified)}
-#' }
+#' @format named character vector of 10 rank names, named with their plural form
 #' @docType data
 #' @keywords data
 NULL

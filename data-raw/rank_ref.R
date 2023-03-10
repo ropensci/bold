@@ -1,17 +1,28 @@
 ## code to prepare `rank_ref` dataset :
-rank_ref <- (function() {
-  out <- taxize::rank_ref
-  out$rank <- strsplit(out$ranks, ",")
-  out <- data.frame(rankid = rep(out$rankid, lengths(out$rank)), rank = unlist(out$rank))
-  out$ranks <- gsub("ss$", "sses",
-                           gsub("genus$", "genera",
-                                gsub("y$", "ies",
-                                     gsub("(.*[^ysd])$", "\\1s",
-                                          out$rank)
-                                )
-                           )
+rank_ref <- `names<-`(
+  c(
+    'kingdom',
+    'phylum',
+    'class',
+    'order',
+    'family',
+    'subfamily',
+    'tribe',
+    'genus',
+    'species',
+    'subspecies'
+  ),
+  c(
+    'kingdoms',
+    'phylums',
+    'classes',
+    'orders',
+    'families',
+    'subfamilies',
+    'tribes',
+    'genera',
+    'species',
+    'subspecies'
   )
-  out
-})()
-
+)
 usethis::use_data(rank_ref, overwrite = TRUE)
