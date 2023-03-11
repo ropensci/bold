@@ -60,11 +60,12 @@ bold_tax_id2 <-
            response = FALSE,
            ...) {
     #-- arguments check
+    if (missing(id)) stop("argument 'id' is missing, with no default")
     # no need to do the call if id is NA
     if (length(id) == 1 && is.na(id))
       return(data.frame(input = NA, taxid = NA))
+    b_assert_logical(includeTree)
     b_assert(dataTypes, "character")
-    b_assert(includeTree, "logical")
     b_assert(id, c("character", "numeric", "integer"))
     # for compatibility with bold_tax_id
     if (length(dataTypes) == 1 && grepl(",", dataTypes)) {
@@ -273,7 +274,7 @@ bold_tax_id2 <-
   }
   if (tree && length(types) == 1 &&
         !types %in% c("basic", "thirdparty", "images", "stats")) {
-      x <- setrbind(unlist(x, recursive = FALSE, use.names = T), idcol = "input")
+      x <- b_rbind(unlist(x, recursive = FALSE, use.names = T), idcol = "input")
       x[["input"]] <- stringi::stri_extract_all_regex(x[,"input"], "^[0-9]+(?=\\.)")
       x[["input"]] <- as.integer(x[["input"]])
   }  else {

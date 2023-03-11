@@ -53,7 +53,7 @@ bold_tax_id <- function(id, dataTypes = "basic", includeTree = FALSE,
                         response = FALSE, ...) {
   .Deprecated("bold_tax_id2")
   #-- arguments check
-  # no need to do the call if id is NA
+  if (missing(id)) stop("argument 'id' is missing, with no default")
   if (!grepl("true|false", includeTree, ignore.case = TRUE))
     warning("'includeTree' should be either TRUE or FALSE.")
   if (!inherits(id, c("character", "numeric", "integer")))
@@ -69,6 +69,7 @@ bold_tax_id <- function(id, dataTypes = "basic", includeTree = FALSE,
     URL <- b_url("API_Tax/TaxonData")
     #-- fetch data from the api
     res <- lapply(`names<-`(id, id), function(x) {
+      # no need to do the call if id is NA
       if (is.na(x))
         data.frame(input = NA, noresults = NA)
       else
@@ -77,7 +78,7 @@ bold_tax_id <- function(id, dataTypes = "basic", includeTree = FALSE,
     if (response) {
       out <- res
     } else {
-      out <- setrbind(mapply(FUN = .process_response_dep, x = res, y = id,
+      out <- b_rbind(mapply(FUN = .process_response_dep, x = res, y = id,
                              MoreArgs = list(z = includeTree, w = dataTypes),
                              SIMPLIFY = FALSE))
       if (NCOL(out) == 1) {
@@ -105,7 +106,7 @@ bold_tax_id <- function(id, dataTypes = "basic", includeTree = FALSE,
     if (!is.null(names(out))) {
       df <- data.frame(out, stringsAsFactors = FALSE)
     } else {
-      df <- setrbind(lapply(out, data.frame, stringsAsFactors = FALSE))
+      df <- b_rbind(lapply(out, data.frame, stringsAsFactors = FALSE))
     }
     row.names(df) <- NULL
     if ("parentid" %in% names(df)) df <- df[order(df[,"parentid"]),]
@@ -140,7 +141,7 @@ bold_tax_id <- function(id, dataTypes = "basic", includeTree = FALSE,
       "all"
     )
     if (any(wrongType)) {
-      wt <- toStr(x[wrongType], quote = TRUE)
+      wt <- b_ennum(x[wrongType], quote = TRUE)
       warning(wt,
               if (sum(wrongType) > 1) " are not valid data types"
               else " is not a valid data type",

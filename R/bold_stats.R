@@ -53,11 +53,11 @@
 bold_stats <- function(taxon = NULL, ids = NULL, bin = NULL,
   container = NULL, institutions = NULL, researchers = NULL, geo = NULL,
   dataType = "drill_down", response=FALSE, simplify = FALSE, ...) {
-  assert(response, "logical")
-  assert(dataType, "character")
-  if(!tolower(dataType) %in% c("overview", "drill_down"))
+  b_assert(dataType, "character")
+  b_assert_logical(response)
+  if (!tolower(dataType) %in% c("overview", "drill_down"))
     stop("'dataType' must be one of 'overview' or 'drill_down'.")
-  params <- c(pipe_params(taxon = taxon, geo = geo,
+  params <- c(b_pipe_params(taxon = taxon, geo = geo,
                           ids = ids, bin = bin,
                           container = container,
                           institutions = institutions,
@@ -69,14 +69,14 @@ bold_stats <- function(taxon = NULL, ids = NULL, bin = NULL,
   } else {
     out <- jsonlite::fromJSON(rawToChar(res$content))
     if (simplify) {
-      .simplify_stats(out, dataType = tolower(dataType))
+      b_simplify_stats(out, dataType = tolower(dataType))
     } else {
       out
     }
   }
 }
 
-.simplify_stats <- function(x, dataType) {
+b_simplify_stats <- function(x, dataType) {
   if (dataType == "drill_down") {
     n <- which(vapply(x, inherits, NA, "integer"))
     ov <- vapply(x[-n], `[[`, 0L, "count")

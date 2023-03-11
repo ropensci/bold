@@ -38,17 +38,12 @@
 #' @export
 bold_tax_name <- function(name, fuzzy = FALSE, response = FALSE,
                           tax_division = NULL, tax_rank = NULL, ...) {
-  b_assert(name, "character")
+  if (missing(name)) stop("argument 'name' is missing, with no default")
+  b_assert(name, "character", check.length = 0L)
   # fix for #84:
-<<<<<<< Updated upstream
-  # name <- stringi::stri_replace_all_regex(name, "(?<=[^\\\\])(['\\(])", "\\\\$1")
-  if (!missing(response)) assert(response, "logical")
-  if (!missing(fuzzy)) assert(fuzzy, "logical")
-=======
   name <- stringi::stri_replace_all_regex(name, "(?<=[^\\\\])'", "\\\\'")
-  if (!missing(response)) b_assert(response, "logical")
-  if (!missing(fuzzy)) b_assert(fuzzy, "logical")
->>>>>>> Stashed changes
+  if (!missing(response)) b_assert_logical(response)
+  if (!missing(fuzzy)) b_assert_logical(fuzzy)
   if (length(tax_division)) {
     b_assert(tax_division, "character")
     if (!all(tax_division %in% c("Animalia", "Protista", "Fungi", "Plantae")))
@@ -58,8 +53,10 @@ bold_tax_name <- function(name, fuzzy = FALSE, response = FALSE,
   if (length(tax_rank)) {
     b_assert(tax_rank, "character")
     tax_rank <- tolower(tax_rank)
-    if (any(!tax_rank %in% rank_ref))
-      stop("Invalid tax_rank name.")
+    badRank <- !tax_rank %in% rank_ref
+    if (any(badRank))
+      stop(b_ennum(tax_rank[badRank], quote = TRUE), if (sum(badRank) == 1)  " is" else " are"," not a valid rank name.",
+           "\nChoices are ", b_ennum(rank_ref,join_word = "or", quote = TRUE))
   }
 
   res <- lapply(`names<-`(name, name), function(x)
@@ -69,7 +66,7 @@ bold_tax_name <- function(name, fuzzy = FALSE, response = FALSE,
   if (response) {
     res
   } else {
-    out <- b_rbind(lapply(res, process_tax_name,
+    out <- b_rbind(lapply(res, b_process_tax_name,
                           tax_division = tax_division,
                           tax_rank = tax_rank),
                    idcol = "input")
@@ -79,13 +76,13 @@ bold_tax_name <- function(name, fuzzy = FALSE, response = FALSE,
   }
 }
 
-process_tax_name <- function(x, tax_division, tax_rank) {
-  if(!nzchar(x$warning)){
+b_process_tax_name <- function(x, tax_division, tax_rank) {
+  if (!nzchar(x$warning)) {
     out <- jsonlite::fromJSON(x$response$parse("UTF-8"), flatten = TRUE)
-    if (length(out) && length(out$top_matched_names)){
+    if (length(out) && length(out$top_matched_names)) {
       out <- data.frame(out$top_matched_names, stringsAsFactors = FALSE)
-      if(length(tax_division) && length(out$tax_division)) out <- out[out$tax_division %in% tax_division,]
-      if(length(tax_rank) && length(out$tax_rank)) out <- out[out$tax_rank %in% tax_rank,]
+      if (length(tax_division) && length(out$tax_division)) out <- out[out$tax_division %in% tax_division,]
+      if (length(tax_rank) && length(out$tax_rank)) out <- out[out$tax_rank %in% tax_rank,]
       out$taxon <- b_fix_taxonName(out$taxon)
       if (any(colnames(out) == "parentname"))
         out$parentname <- b_fix_taxonName(out$parentname)

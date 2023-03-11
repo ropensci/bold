@@ -91,19 +91,19 @@ test_that("bold_tax_name works when  'name' containts single quotes", {
 
 test_that("bold_tax_name fails well", {
   # name required
-  expect_error(bold_tax_name(), "argument \"name\" is missing, with no default")
+  expect_error(bold_tax_name(), "argument 'name' is missing, with no default")
   # catch wrong type param inputs
   expect_error(bold_tax_name(name = "Diplur", response = 5),
-               "'response' must be of class logical.")
+               "'response' should be one of TRUE or FALSE")
   expect_error(bold_tax_name(name = "Diplur", fuzzy = 5),
-               "'fuzzy' must be of class logical.")
+               "'fuzzy' should be one of TRUE or FALSE")
   expect_error(bold_tax_name(name = "Diplur", tax_division = 5),
-               "'tax_division' must be of class character.")
+               "'tax_division' must be of class character")
   expect_error(bold_tax_name(name = "Diplur", tax_division = "Mushrooms"),
                "'tax_division' must be one or more of Animalia, Protista, Fungi and Plantae")
   expect_error(bold_tax_name(name = "Diplur", tax_rank = 5),
-               "'tax_rank' must be of class character.")
+               "'tax_rank' must be of class character")
   expect_error(bold_tax_name(name = "Diplur",
                              tax_rank = c("genus", "notArank")),
-               "Invalid tax_rank name.")
+               "'notarank' is not a valid rank name")
 })

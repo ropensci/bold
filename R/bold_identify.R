@@ -99,10 +99,10 @@ bold_identify <- function(
   lapply(sequences, function(seq){
     if (nchar(seq) < 80) {
       # API return NA but on website you would get that error
-      res <- list(response = NULL, warning = "Sequence must be at least 80 bp.")
+      res <- list(response = NULL, warning = "Sequence must be at least 80 bp")
     } else if (!grepl("^[A-z|*|-|+|.]*$", seq)) {
       # API return NA but on website you would get that error
-      res <- list(response = NULL, warning = "Sequence contains invalid characters.")
+      res <- list(response = NULL, warning = "Sequence contains invalid characters")
     } else {
       res <- b_GET(args = b_rm_empty(list(sequence = seq, db = db)),
                    url = b_url('Ids_xml'))

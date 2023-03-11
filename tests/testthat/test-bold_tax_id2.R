@@ -156,9 +156,9 @@ test_that("bold_tax_id2 'includeTree' param works as expected (with 2 dataTypes)
 })
 
 test_that("bold_tax_id2 fails well", {
-  expect_error(bold_tax_id2(), "argument \"id\" is missing, with no default")
-  expect_error(bold_tax_id2(id = 88899, dataTypes = 5), "'dataTypes' must be of class character.")
+  expect_error(bold_tax_id2(), "argument 'id' is missing, with no default")
+  expect_error(bold_tax_id2(id = 88899, dataTypes = 5), "'dataTypes' must be of class character")
   expect_error(bold_tax_id2(id = 88899, dataTypes = "basics"), "'basics' is not a valid data type")
   expect_error(bold_tax_id2(id = 88899, dataTypes = c("basics", "stat")), "'basics' and 'stat' are not valid data type")
-  expect_error(bold_tax_id2(id = 88899, includeTree = 5), "'includeTree' must be of class logical.")
+  expect_error(bold_tax_id2(id = 88899, includeTree = 5), "'includeTree' should be one of TRUE or FALSE")
 })

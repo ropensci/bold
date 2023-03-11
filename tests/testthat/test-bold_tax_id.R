@@ -130,9 +130,9 @@ test_that("bold_tax_id 'includeTree' param works as expected (with 2 dataTypes)"
 })
 
 test_that("bold_tax_id fails well", {
-  expect_error(bold_tax_id(), "argument \"id\" is missing, with no default")
+  expect_error(bold_tax_id(), "argument 'id' is missing, with no default")
   expect_warning(bold_tax_id(id = 88899, dataTypes = 5), "'5' is not a valid data type")
   expect_warning(bold_tax_id(id = 88899, dataTypes = "basics"), "'basics' is not a valid data type")
   expect_warning(bold_tax_id(id = 88899, includeTree = 5), "'includeTree' should be either TRUE or FALSE")
-  expect_warning(bold_tax_id(id = ""), "'bold_tax_id' is deprecated.")
+  expect_warning(bold_tax_id(id = ""), "'bold_tax_id' is deprecated")
 })

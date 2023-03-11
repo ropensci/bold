@@ -51,17 +51,17 @@ test_that("bold_identify skips the identification when the sequences has invalid
   expect_is(test, 'list')
   expect_true(all(is.na(test)))
   expect_length(attributes(test[[1]]), 2L)
-  expect_equal(attr(test[[1]], "error"), "Sequence  must be at least 80 bp.")
-  expect_equal(attr(test[[2]], "error"), "Sequence contains invalid characters.")
+  expect_equal(attr(test[[1]], "error"), "Sequence must be at least 80 bp")
+  expect_equal(attr(test[[2]], "error"), "Sequence contains invalid characters")
 })
 
 test_that("bold_identify fails well", {
   expect_error(bold_identify(),
-    "argument \"sequences\" is missing, with no default")
+    "argument 'sequences' is missing, with no default")
   expect_error(bold_identify(sequences = 1),
-    "'sequences' must be of class character.")
+    "'sequences' must be of class character")
   expect_error(bold_identify(sequences = "", db = "test"),
     "'db' must be one of 'COX1', 'COX1_SPECIES', 'COX1_SPECIES_PUBLIC' or 'COX1_L640bp'")
   expect_error(bold_identify(sequences = "", db = c("COX1", "COX1_SPECIES")),
-    "'db' must be length 1.")
+    "'db' must be length 1")
 })

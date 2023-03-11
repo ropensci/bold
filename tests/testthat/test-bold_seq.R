@@ -41,6 +41,6 @@ test_that("bold_seq returns the correct object (response)", {
 test_that("bold_seq fails well", {
   expect_error(bold_seq(), "You must provide a non-empty value to at least one of")
   expect_error(bold_seq(taxon = ''), "You must provide a non-empty value to at least one of")
-  expect_error(bold_seq(taxon = 5, geo = 1), "'taxon' and 'geo' must be of class character.")
-  expect_error(bold_seq(taxon = 'Coelioxys', response = "true"), "'response' must be of class logical.")
+  expect_error(bold_seq(taxon = 5, geo = 1), "'taxon' and 'geo' must be of class character")
+  expect_error(bold_seq(taxon = 'Coelioxys', response = 5), "'response' should be one of TRUE or FALSE")
 })

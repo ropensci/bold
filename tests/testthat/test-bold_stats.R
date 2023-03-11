@@ -59,8 +59,8 @@ test_that("bold_stats many taxa passed to taxon param", {
 test_that("bold_stats fails well", {
   expect_error(bold_stats(),
     "You must provide a non-empty value to at least one of")
-  expect_error(bold_stats(taxon = 5), "'taxon' must be of class character.")
-  expect_error(bold_stats(taxon = 5, bin = 1), "'taxon' and 'bin' must be of class character.")
-  expect_error(bold_stats(taxon = 5, bin = 1, dataType = "all"), "'dataType' must be one of 'overview' or 'drill_down'.")
-  expect_error(bold_stats(taxon = "Osmia", response = 5), "'response' must be of class logical.")
+  expect_error(bold_stats(taxon = 5), "'taxon' must be of class character")
+  expect_error(bold_stats(taxon = 5, bin = 1), "'taxon' and 'bin' must be of class character")
+  expect_error(bold_stats(taxon = 5, bin = 1, dataType = "all"), "'dataType' must be one of 'overview' or 'drill_down'")
+  expect_error(bold_stats(taxon = "Osmia", response = 5), "'response' should be one of TRUE or FALSE")
 })

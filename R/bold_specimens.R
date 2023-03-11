@@ -68,7 +68,7 @@ bold_specimens <- function(taxon = NULL, ids = NULL, bin = NULL,
              tsv = {
                out <- b_read(res)
                if (format == "tsv" && cleanData) {
-                 cleanData(out)
+                 b_cleanData(out)
                } else {
                  out
                }

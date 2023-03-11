@@ -9,7 +9,7 @@ b_pipe_params <- function(..., paramnames = ...names(), params = list(...)) {
          b_ennum(paramnames, join_word = "or", quote = TRUE), call. = FALSE)
   wt <- !vapply(params, is.character, logical(1))
   if (any(wt))
-    stop(b_ennum(names(wt)[wt], quote = TRUE), " must be of class character.", call. = FALSE)
+    stop(b_ennum(names(wt)[wt], quote = TRUE), " must be of class character", call. = FALSE)
 
   if (length(params$taxon)) {
     # in case it comes from `bold_tax_name()` (#84)
@@ -33,7 +33,7 @@ b_check_res <- function(res, contentType = 'text/html; charset=utf-8',
       res$headers$`content-type`,
       "'. Should've been type '",
       contentType,
-      "'."
+      "'"
     )
   }
   if (w != "") warning(w)
@@ -152,6 +152,7 @@ b_assert_logical <- function(x, name = deparse(substitute(x))) {
          "1" = TRUE,
          false = FALSE,
          "0" = FALSE,
+         na = FALSE,
          stop("'", name, "' should be one of TRUE or FALSE"))
 }
 b_assert_class <- function(x, what, name, is2nd = FALSE, stopOnFail = TRUE) {
@@ -199,10 +200,6 @@ b_fix_taxonName <- function(x){
   # (#84)
   stringi::stri_replace_all_regex(
     x,
-<<<<<<< Updated upstream
-    c("( )('[^']*)$", "( )(\\([^\\(]*)$", " sp$"),
-    c("$1\\\\$2\\\\'", "$1\\\\$2\\\\)", " sp."),
-=======
     # check if supposed to:
     c(
       # be quoted; keep quoted text
@@ -219,9 +216,8 @@ b_fix_taxonName <- function(x){
       # closing parenthesis
       "$1$2)",
       # end dot
-      "$1."
+      "$1"
     ),
->>>>>>> Stashed changes
     vectorize_all = FALSE)
 }
 b_cleanData <- function(x, emptyValue = NA){

@@ -50,11 +50,11 @@ bold_trace <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
             call. = FALSE)
   }
 
-  assert(overwrite, "logical")
-  assert(progress, "logical")
-  if (!is.null(dest)) assert(dest, "character")
+  if (!missing(overwrite)) b_assert_logical(overwrite)
+  if (!missing(progress)) b_assert_logical(progress)
+  if (!is.null(dest)) b_assert(dest, "character", check.length = 1L)
   params <- c(
-    pipe_params(
+    b_pipe_params(
       taxon = taxon,
       geo = geo,
       ids = ids,
@@ -123,7 +123,7 @@ bold_read_trace <- function(x){
   if (!requireNamespace("sangerseqR", quietly = TRUE)) {
     stop("Please install sangerseqR", call. = FALSE)
   }
-  assert(x, c("character", "boldtrace"))
+  b_assert(x, c("character", "boldtrace"))
   trace_paths <- {
     if (is.list(x))
       `names<-`(x$ab1, basename(x$ab1))

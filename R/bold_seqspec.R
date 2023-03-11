@@ -102,8 +102,8 @@ b_seqspec_process <- function(res, format, sepfasta, cleanData){
 }
 b_seqspec_process_tsv <- function(x, sepfasta, cleanData){
   out <- b_read(x)
-  if (format == "tsv" && cleanData) {
-    out <- cleanData(out)
+  if (cleanData) {
+    out <- b_cleanData(out)
   }
   if (!sepfasta) {
     out

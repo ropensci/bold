@@ -68,7 +68,7 @@ test_that("bold_read_trace works properly", {
 test_that("bold_trace fails well", {
   expect_error(bold_trace(), "You must provide a non-empty value to at least one of")
   expect_error(bold_trace(taxon = ''), "You must provide a non-empty value to at least one of")
-  expect_error(bold_trace(taxon = 5, geo = 1), "'taxon' and 'geo' must be of class character.")
-  expect_error(bold_trace(taxon = 'Coelioxys', overwrite = "true"), "'overwrite' must be of class logical.")
-  expect_error(bold_trace(taxon = 'Coelioxys', dest = TRUE), "'dest' must be of class character.")
+  expect_error(bold_trace(taxon = 5, geo = 1), "'taxon' and 'geo' must be of class character")
+  expect_error(bold_trace(taxon = 'Coelioxys', overwrite = 5), "'overwrite' should be one of TRUE or FALSE")
+  expect_error(bold_trace(taxon = 'Coelioxys', dest = TRUE), "'dest' must be of class character")
 })
