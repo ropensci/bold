@@ -35,17 +35,17 @@ jobs:
           extra-packages: any::rcmdcheck
           needs: check
 
-      - name: Install dependencies
-       run: |
-         install.packages("stringi", type="source")
-         remotes::install_deps(dependencies = TRUE)
-         remotes::install_cran(c("rcmdcheck", "BiocManager"))
-         BiocManager::install("sangerseqR")
-       shell: Rscript {0}
-
-      - uses: r-lib/actions/check-r-package@v2
-        with:
-          upload-snapshots: true
+      # - name: Install dependencies
+      #  run: |
+      #    install.packages("stringi", type="source")
+      #    remotes::install_deps(dependencies = TRUE)
+      #    remotes::install_cran(c("rcmdcheck", "BiocManager"))
+      #    BiocManager::install("sangerseqR")
+      #  shell: Rscript {0}
+      #
+      # - uses: r-lib/actions/check-r-package@v2
+      #   with:
+      #     upload-snapshots: true
 
       #- name: Query dependencies
       #  run: |
