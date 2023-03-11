@@ -3,25 +3,15 @@
 \docType{data}
 \name{rank_ref}
 \alias{rank_ref}
-\title{Lookup-table for IDs of taxonomic ranks}
+\title{Vector of bold taxonomic ranks}
 \format{
-data.frame of 64 rows, with 3 columns:
-\itemize{
-\item{rankid}{: a numeric vector of rank ids, consecutive}
-\item{ranks}{: a character vector of rank names}
-\item{order}{: a numeric vector of the ranks order (from domain to unspecified)}
-}
+named character vector of 10 rank names, named with their plural form
 }
 \description{
-Lookup-table for IDs of taxonomic ranks
+Vector of bold taxonomic ranks
 }
 \details{
-Used in the \code{\link{bold_tax_name}} function.
-Taken from the data set of the same name in the package \pkg{taxize}.
-
-This data.frame is used to do data sorting/filtering based on the ordering
-of ranks. The format was changed so each rank name would have its own row and
-added a column for the plural form of the names, since some function need to
-convert them to singular.
+This character vector is used to do data sorting/filtering based on the ordering
+of ranks and to convert a rank's plural form to singular.
 }
 \keyword{data}

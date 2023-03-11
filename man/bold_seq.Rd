@@ -122,7 +122,6 @@ res$response_headers
 ### You can do many things, including get verbose output on the curl
 ### call, and set a timeout
 bold_seq(taxon='Coelioxys', verbose = TRUE)[1:2]
-# bold_seqspec(taxon='Coelioxys', timeout_ms = 10)
 }
 
 }

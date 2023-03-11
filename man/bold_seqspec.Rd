@@ -131,8 +131,7 @@ res <- bold_seqspec(taxon="Melanogrammus aeglefinus", geo="Canada")
 ### You can do many things, including get verbose output on the curl call,
 ### and set a timeout
 head(bold_seqspec(taxon='Osmia', verbose = TRUE))
-## timeout
-# head(bold_seqspec(taxon='Osmia', timeout_ms = 1))
+head(bold_seqspec(taxon='Osmia', timeout_ms = 1))
 }
 
 }
