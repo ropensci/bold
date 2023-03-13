@@ -1,5 +1,5 @@
 vignettes/cache
-.Rproj
+*.Rproj
 .Rproj.user
 .Rhistory
 revdep/checks.noindex
