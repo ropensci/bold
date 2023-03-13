@@ -56,4 +56,4 @@ jobs:
       - name: Test coverage
         if: matrix.config.os == 'windows-latest' && matrix.config.r == 'release'
         run: |
-          Rscript -e 'install.packages("covr")' -e 'covr::codecov(token = "${{secrets.CODECOV_TOKEN}}")'
+          Rscript -e 'install.packages(\"covr\")' -e 'covr::codecov(token = "${{secrets.CODECOV_TOKEN}}")'
