@@ -69,5 +69,5 @@ Taxonomy Browser: https://www.boldsystems.org/index.php/TaxBrowser_Home
 Public Data Portal: https://www.boldsystems.org/index.php/Public_BINSearch?searchtype=records
 }
 \seealso{
-\code{\link{bold_tax_id}}
+\code{\link{bold_tax_id}}, \code{\link{bold_get_attr}}, \code{\link{bold_get_errors}}, \code{\link{bold_get_params}}
 }

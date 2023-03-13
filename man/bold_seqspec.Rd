@@ -51,8 +51,8 @@ API call.}
 back a data.frame object. xml gives back parsed xml as a list.}
 
 \item{sepfasta}{(logical) If \code{TRUE}, the fasta data is separated into
-a list with names matching the processid's from the data frame. Note: This
-means multiple sequences can have the same name.
+a list with names matching the processid's for each records. Works with both 'tsv' and 'xml' format.
+Note: This means multiple sequences can have the same name if a process id has multiple sequences.
 Default: \code{FALSE}}
 
 \item{cleanData}{(logical) If \code{TRUE}, the cell values containing only duplicated values (ex : "COI-5P|COI-5P|COI-5P") will be reduce to one value ("COI-5P") and empty string will be change to NA. Default: \code{FALSE}}
