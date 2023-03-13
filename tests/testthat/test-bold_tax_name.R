@@ -74,15 +74,22 @@ test_that("bold_tax_name 'fuzzy' param works", {
   expect_is(test$input, "character")
   expect_gt(NROW(test), NROW(test_not))
 })
+
 test_that("bold_tax_name works when  'name' containts single quotes", {
   skip_on_cran()
+  # see issue 84
   vcr::use_cassette("bold_tax_name", {
-    test <- bold_tax_name(name = "Diplur", fuzzy = TRUE)
-    test_not <- bold_tax_name(name = "Diplur", fuzzy = FALSE)
+    test <-
+      bold_tax_name(name = c(
+        "Diplurodes sp.",
+        "Chlamydomonas sp. 18 (FA)",
+        "Chlamydomonas sp. 'Chile J'"
+      ))
   })
   expect_is(test, "data.frame")
   expect_is(test$input, "character")
-  expect_gt(NROW(test), NROW(test_not))
+  expect_equal(test$input, test$taxon)
+  expect_true(all(test$input == test$taxonrep, na.rm = TRUE))
 })
 test_that("bold_tax_name fails well", {
   # name required
