@@ -46,15 +46,3 @@ NULL
 #' @docType data
 #' @keywords data
 NULL
-
-#' Vector of bold taxonomic ranks
-#'
-#' @details
-#' This character vector is used to do data sorting/filtering based on the ordering
-#' of ranks and to convert a rank's plural form to singular.
-#'
-#' @name rank_ref
-#' @format named character vector of 10 rank names, named with their plural form
-#' @docType data
-#' @keywords data
-NULL
