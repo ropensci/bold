@@ -42,8 +42,7 @@ bold_specimens <- function(taxon = NULL, ids = NULL, bin = NULL,
   response <- b_assert_logical(response)
   cleanData <- b_assert_logical(cleanData)
   if (!format %in% c('xml', 'tsv')) stop("'format' should be of of 'xml' or 'tsv'.")
-  params <- c(
-    b_pipe_params(
+  params <- b_pipe_params(
       taxon = taxon,
       geo = geo,
       ids = ids,
@@ -51,29 +50,12 @@ bold_specimens <- function(taxon = NULL, ids = NULL, bin = NULL,
       container = container,
       institutions = institutions,
       researchers = researchers
-    ),
-    format = format
-  )
-  res <- b_GET(b_url('API_Public/specimen'), params, ...)
+    )
+  res <- b_GET(query = c(params, format = format),
+               api = 'API_Public/specimen', ...)
   if (response) {
     res
   } else {
-    res$raise_for_status()
-    res <- rawToChar(res$content)
-    if (res == "") {
-      NA
-    } else {
-      switch(format,
-             xml = xml2::read_xml(res),
-             tsv = {
-               out <- b_read(res)
-               if (format == "tsv" && cleanData) {
-                 b_cleanData(out)
-               } else {
-                 out
-               }
-             }
-      )
-    }
+    b_parse(res, format, cleanData, raise = TRUE)
   }
 }

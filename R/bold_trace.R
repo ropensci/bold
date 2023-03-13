@@ -75,21 +75,20 @@ bold_trace <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
     dir.create(destdir, showWarnings = FALSE, recursive = TRUE)
   }
   if (!file.exists(destfile)) file.create(destfile, showWarnings = FALSE)
-  res <-
-    b_GET(
-      url = b_url('API_Public/trace'),
-      args  = params,
-      disk = destfile,
-      ...
-    )
+  res <- b_GET(
+    query = params,
+    api = 'API_Public/trace',
+    disk = destfile,
+    ...
+  )
   utils::untar(destfile, exdir = destdir)
-  files <- list.files(destdir, full.names = TRUE)
   ab1 <- list.files(destdir, pattern = ".ab1", full.names = TRUE)
   structure(list(destfile = destfile, destdir = destdir, ab1 = ab1,
                  args = params), class = "boldtrace")
 }
 
 #' @export
+#' @rdname bold_trace
 print.boldtrace <- function(x, ...){
   cat("\n<bold trace files>", "\n\n")
   ff <- x$ab1[1:min(10, length(x$ab1))]
@@ -115,15 +114,16 @@ read_trace <- function(x){
 
 
 #' @param x (list or character) Either the boldtrace object returned from
-#' \code{\link[bold]{bold_trace}} or a path to a bold trace file.
+#' \code{\link[bold]{bold_trace}} or the path(s) of bold trace file(s).
 #'
 #' @export
 #' @rdname bold_trace
 bold_read_trace <- function(x){
+  if (missing(x)) stop("argument 'x' is missing, with no default")
   if (!requireNamespace("sangerseqR", quietly = TRUE)) {
     stop("Please install sangerseqR", call. = FALSE)
   }
-  b_assert(x, c("character", "boldtrace"))
+  b_assert(x, c("character", "boldtrace"), check.length = 0L)
   trace_paths <- {
     if (is.list(x))
       `names<-`(x$ab1, basename(x$ab1))

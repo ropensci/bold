@@ -44,7 +44,7 @@
 bold_seq <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
                      institutions = NULL, researchers = NULL, geo = NULL,
                      marker = NULL, response = FALSE, ...) {
-  response <- b_assert_logical(response)
+  response <- b_assert_logical(response, name = "response")
   params <- b_pipe_params(
     taxon = taxon,
     ids = ids,
@@ -55,22 +55,15 @@ bold_seq <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
     geo = geo,
     marker = marker
   )
-  res <- b_GET(b_url('API_Public/sequence'), params, ...)
+  res <- b_GET(query = params,
+               api = 'API_Public/sequence', ...)
   if (response) {
     res
   } else {
-    res$raise_for_status()
-    res <- rawToChar(res$content)
-    if (grepl("Fatal error", res)) {
-      warning("the request timed out, see 'If a request times out'\n",
-              "returning partial output")
-      # faster than extract/replace
-      res <- b_drop(str = res, pattern = "Fatal error")
-    }
-    b_split_fasta(res)
+    b_parse(res, format = "fasta", raise = TRUE)
   }
 }
-b_split_fasta <- function(x){
+b_read_fasta <- function(x){
   x <- b_lines(str = x)
   if (length(x) %% 2 && # if length(x) %% 2 not 0, it's TRUE
       b_detect(x[length(x)], "^\\s*$")) {
@@ -94,18 +87,6 @@ b_split_fasta <- function(x){
     warning("The file had an uneven number of ids and sequenceuences.",
             "\n  This shouldn't happen. Returning data as a list of lines.",
             "\n  Please open an issue so we can see when this happens.")
-    # out <- mapply(
-    #   \(i, j) {
-    #     if (i == 1)
-    #       data.frame(id[j,], sequence = x[(j + 1L)], row.names = NULL)
-    #     else if (i > 1)
-    #       data.frame(id[j,], sequence = x[(j + 1L):(j + i)], row.names = NULL)
-    #     else
-    #       data.frame(id[j,], sequence = NA_character_, row.names = NULL)
-    #   },
-    #   diff(c(n - 1L, length(x))),
-    #   id_line, SIMPLIFY = FALSE)
-    # b_rbind(out)
     x
   }
 }

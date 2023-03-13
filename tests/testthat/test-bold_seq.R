@@ -44,3 +44,4 @@ test_that("bold_seq fails well", {
   expect_error(bold_seq(taxon = 5, geo = 1), "'taxon' and 'geo' must be of class character")
   expect_error(bold_seq(taxon = 'Coelioxys', response = 5), "'response' should be one of TRUE or FALSE")
 })
+

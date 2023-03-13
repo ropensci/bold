@@ -20,7 +20,6 @@ test_that("bold_specimens returns the correct object (cleanData)", {
   expect_is(test$processid, "character")
   expect_false(any(test == "", na.rm = TRUE))
 })
-
 test_that("bold_specimens returns the correct object (response)", {
   skip_on_cran()
   vcr::use_cassette("bold_specimens", {
@@ -31,7 +30,6 @@ test_that("bold_specimens returns the correct object (response)", {
   expect_equal(test$response_headers$`content-type`, "application/x-download")
   expect_is(test$response_headers, "list")
 })
-
 test_that("bold_specimens returns the correct object (xml)", {
   skip_on_cran()
   vcr::use_cassette("bold_specimens", {
@@ -39,7 +37,6 @@ test_that("bold_specimens returns the correct object (xml)", {
   })
   expect_is(test, "xml_document")
 })
-
 test_that("bold_seq fails well", {
   expect_error(bold_specimens(), "You must provide a non-empty value to at least one of")
   expect_error(bold_specimens(taxon = ''), "You must provide a non-empty value to at least one of")

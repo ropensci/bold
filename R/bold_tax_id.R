@@ -122,33 +122,20 @@ bold_tax_id <- function(id, dataTypes = "basic", includeTree = FALSE,
   return(out)
 }
 .check_dataTypes_dep <- function(x){
-  x <- stringi::stri_split_fixed(x, ",", simplify = TRUE)
+  x <- b_split(x, ",", fixed = TRUE, simplify = TRUE)
   # corrects for the json typo in case the option is taken from a previous query
-  if (any(x == "depositories")) {
-    x[x == "depositories"] <- "depository"
-  }
+  x[x == "depositories"] <- "depository"
   if (length(x) > 1 && any(x == "all")) {
     x <- "all"
   } else {
-    wrongType <- !x %in% c(
-      "basic",
-      "stats",
-      "geo",
-      "images",
-      "sequencinglabs",
-      "depository",
-      "thirdparty",
-      "all"
-    )
+    wrongType <- !x %in% b_dataTypes
     if (any(wrongType)) {
-      wt <- b_ennum(x[wrongType], quote = TRUE)
-      warning(wt,
+      warning(b_ennum(x[wrongType], quote = TRUE),
               if (sum(wrongType) > 1) " are not valid data types"
               else " is not a valid data type",
               if (!all(wrongType)) " and will be skipped." else ".",
-              "\nThe possible data types are:",
-              "\n  - basic\n  - stats\n  - geo\n  - images",
-              "\n  - sequencinglabs\n  - depository\n  - thirdparty\n  - all")
+              "\nChoices are:",
+              b_ennum(b_dataTypes, "or", TRUE))
       x <- x[!wrongType]
     }
     x <- paste(x, collapse = ",")

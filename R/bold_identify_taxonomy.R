@@ -39,7 +39,7 @@ methods::setMethod(
   signature = signature("list"),
   definition = function(x, taxOnly = TRUE) {
     b_assert_length(x, len = 0L, name = "x")
-    taxOnly <- b_assert_logical(taxOnly)
+    taxOnly <- b_assert_logical(taxOnly, name = "taxOnly")
     hasID <- vapply(x, \(x) "ID" %in% colnames(x), NA)
     if (all(!hasID)) {
       stop("no column 'ID' found in x")
@@ -54,7 +54,7 @@ methods::setMethod(
   signature = signature("matrix"),
   definition = function(x, taxOnly = TRUE) {
     b_assert_length(x, len = 0L, name = "x")
-    b_identify_taxonomy(x, taxOnly = b_assert_logical(taxOnly))
+    b_identify_taxonomy(x, taxOnly = b_assert_logical(taxOnly, name = "taxOnly"))
   }
 )
 #' @rdname bold_identify_taxonomy
@@ -63,7 +63,7 @@ methods::setMethod(
   signature = signature("data.frame"),
   definition = function(x, taxOnly = TRUE) {
     b_assert_length(x, len = 0L, name = "x")
-    b_identify_taxonomy(x, taxOnly = b_assert_logical(taxOnly))
+    b_identify_taxonomy(x, taxOnly = b_assert_logical(taxOnly, name = "taxOnly"))
   }
 )
 #' @rdname bold_identify_taxonomy
@@ -85,7 +85,7 @@ b_identify_taxonomy <- function(x, taxOnly){
     tax <- bold_specimens(ids = unique(IDs))
     if (taxOnly) {
       # only returns the taxonomic data
-      tax <- tax[, c("processid", grep("_taxID|_name", names(tax), value = TRUE))]
+      tax <- tax[, c("processid", names(tax)[b_detect(names(tax), "_taxID|_name")])]
     }
     tax[tax == ""] <- NA
     # remove empty columns

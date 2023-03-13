@@ -74,22 +74,7 @@ bold_identify <- function(
   }
   b_assert(sequences, "character", check.length = 0L)
   if (!missing(db)) {
-    b_assert_length(db, 1L, "db")
-    db <- switch(
-      tolower(db),
-      cox1 = "COX1",
-      cox1_species = "COX1_SPECIES",
-      cox1_spe = "COX1_SPECIES",
-      species = "COX1_SPECIES",
-      spe = "COX1_SPECIES",
-      cox1_species_public = "COX1_SPECIES_PUBLIC",
-      public = "COX1_SPECIES_PUBLIC",
-      pub = "COX1_SPECIES_PUBLIC",
-      cox1_l640bp = "COX1_L640bp",
-      l640bp = "COX1_L640bp",
-      bp = "COX1_L640bp",
-      stop("'db' must be one of 'COX1', 'COX1_SPECIES', 'COX1_SPECIES_PUBLIC' or 'COX1_L640bp'")
-    )
+    db <- b_assert_db(db)
   } else {
     db <- "COX1"
   }
@@ -104,14 +89,13 @@ bold_identify <- function(
       # API return NA but on website you would get that error
       res <- list(response = NULL, warning = "Sequence contains invalid characters")
     } else {
-      res <- b_GET(args = b_rm_empty(list(sequence = seq, db = db)),
-                   url = b_url('Ids_xml'))
-      res <- b_check_res(res, contentType = 'text/xml')
+      res <- b_GET(query = b_rm_empty(list(sequence = seq, db = db)),
+                   api = 'Ids_xml', check = TRUE, contentType = 'text/xml')
     }
     if (response) {
       res
     } else {
-      out <- if (length(res$response)) b_parse_identify_xml(res) else NA
+      out <- if (length(res$response)) b_parse_identify(res) else NA
       # add input sequence as attribute to prevent mix up if 'sequences' wasn't named
       if (keepSeq) {
         attr(out, "sequence") <- seq
@@ -122,7 +106,7 @@ bold_identify <- function(
   })
 }
 
-b_parse_identify_xml <- function(res){
+b_parse_identify <- function(res){
   cNames <- c('ID','sequencedescription','database','citation',
               'taxonomicidentification','similarity','specimen_url',
               'specimen_country', 'specimen_lat','specimen_lon')

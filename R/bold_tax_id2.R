@@ -1,12 +1,9 @@
 #' Search BOLD for taxonomy data by BOLD ID.
 #'
 #' @param id (integer|numeric|character) One or more BOLD taxonomic identifiers. required.
-#' @param dataTypes (character) One or more BOLD data type. Specifies the
-#' information that will be returned. See details for options.
-#' @param includeTree (logical) If `TRUE` (default: `FALSE`), returns the
-#' information for parent taxa as well as the specified taxon.
-#' @param response (logical) If `TRUE` (default: `FALSE`), returns the curl
-#' response object.
+#' @param dataTypes (character) One or more BOLD data types: 'basic', 'stats', 'geo', 'images'/'img', 'sequencinglabs'/'labs', 'depository'/'depo', 'thirdparty'/'wiki' or 'all' (default: 'basic'). Specifies the information that will be returned, see details.
+#' @param includeTree (logical) If `TRUE` (default: `FALSE`), returns the information for parent taxa as well as the specified taxon, see details.
+#' @param response (logical) If `TRUE` (default: `FALSE`), returns the curl response object.
 #' @section dataTypes:
 #' "basic" returns basic taxonomy info: includes taxid, taxon name, tax rank, tax division, parent taxid, parent taxon name.
 #' "stats" returns specimen and sequence statistics: includes public species count, public BIN count, public marker counts, public record count, specimen count, sequenced specimen count, barcode specimen count, species count, barcode species count.
@@ -17,48 +14,44 @@
 #' "thirdparty" returns information from third parties: includes wikipedia_summary summary, wikipedia_summary URL.
 #' "all" returns all information: identical to specifying all data types at once.
 #' @section includeTree:
-#' When `includeTree` is set to true, for the `dataTypes` other than "basic" the information of the parent taxa are identified by their taxonomic id only. To get their ranks and names too, make sure "basic" is in `dataTypes`.
+#' When `includeTree` is set to true, for the `dataTypes` other than 'basic' the information of the parent taxa are identified by their taxonomic id only. To get their ranks and names too, make sure 'basic' is in `dataTypes`.
 #' @template otherargs
 #' @references
 #' http://v4.boldsystems.org/index.php/resources/api?type=taxonomy
-#' @seealso \code{\link{bold_tax_name}}
+#' @seealso \code{\link{bold_tax_name}}, \code{\link{bold_get_attr}}, \code{\link{bold_get_errors}}, \code{\link{bold_get_params}}
 #' @examples \dontrun{
-#' bold_tax_id(id = 88899)
-#' bold_tax_id(id = 88899, includeTree = TRUE)
-#' bold_tax_id(id = 88899, includeTree = TRUE, dataTypes = "stats")
-#' bold_tax_id(id = c(88899, 125295))
+#' bold_tax_id2(id = 88899)
+#' bold_tax_id2(id = 88899, includeTree = TRUE)
+#' bold_tax_id2(id = 88899, includeTree = TRUE, dataTypes = "stats")
+#' bold_tax_id2(id = c(88899, 125295))
 #'
 #' ## dataTypes parameter
-#' bold_tax_id(id = 88899, dataTypes = "basic")
-#' bold_tax_id(id = 88899, dataTypes = "stats")
-#' bold_tax_id(id = 88899, dataTypes = "images")
-#' bold_tax_id(id = 88899, dataTypes = "geo")
-#' bold_tax_id(id = 88899, dataTypes = "sequencinglabs")
-#' bold_tax_id(id = 88899, dataTypes = "depository")
-#' bold_tax_id(id = 88899, dataTypes = "thirdparty")
-#' bold_tax_id(id = 88899, dataTypes = "all")
-#' bold_tax_id(id = c(88899, 125295), dataTypes = c("basic", "geo"))
-#' bold_tax_id(id = c(88899, 125295), dataTypes = c("basic", "stats", "images"))
+#' bold_tax_id2(id = 88899, dataTypes = "basic")
+#' bold_tax_id2(id = 88899, dataTypes = "stats")
+#' bold_tax_id2(id = 88899, dataTypes = "images")
+#' bold_tax_id2(id = 88899, dataTypes = "geo")
+#' bold_tax_id2(id = 88899, dataTypes = "sequencinglabs")
+#' bold_tax_id2(id = 88899, dataTypes = "depository")
+#' bold_tax_id2(id = 88899, dataTypes = "thirdparty")
+#' bold_tax_id2(id = 88899, dataTypes = "all")
+#' bold_tax_id2(id = c(88899, 125295), dataTypes = c("basic", "geo"))
+#' bold_tax_id2(id = c(88899, 125295), dataTypes = c("basic", "stats", "images"))
 #'
 #' ## Passing in NA
-#' bold_tax_id(id = NA)
-#' bold_tax_id(id = c(88899, 125295, NA))
+#' bold_tax_id2(id = NA)
+#' bold_tax_id2(id = c(88899, 125295, NA))
 #'
 #' ## get http response object only
-#' bold_tax_id(id = 88899, response = TRUE)
-#' bold_tax_id(id = c(88899, 125295), response = TRUE)
+#' bold_tax_id2(id = 88899, response = TRUE)
+#' bold_tax_id2(id = c(88899, 125295), response = TRUE)
 #'
 #' ## curl debugging
-#' bold_tax_id(id = 88899, verbose = TRUE)
+#' bold_tax_id2(id = 88899, verbose = TRUE)
 #' }
 #'
 #' @export
-bold_tax_id2 <-
-  function(id,
-           dataTypes = 'basic',
-           includeTree = FALSE,
-           response = FALSE,
-           ...) {
+bold_tax_id2 <- function(id, dataTypes = 'basic', includeTree = FALSE,
+                         response = FALSE, ...) {
     #-- arguments check
     if (missing(id)) stop("argument 'id' is missing, with no default")
     # no need to do the call if id is NA
@@ -66,26 +59,39 @@ bold_tax_id2 <-
       return(data.frame(input = NA, taxid = NA))
     b_assert_logical(includeTree)
     b_assert(dataTypes, "character")
-    b_assert(id, c("character", "numeric", "integer"))
+    if (is.list(id)) {
+      lapply(id, b_assert, what = c("character", "numeric", "integer"), name = "id")
+    } else {
+      b_assert(id, c("character", "numeric", "integer"))
+    }
     # for compatibility with bold_tax_id
     if (length(dataTypes) == 1 && grepl(",", dataTypes)) {
-      dataTypes <- stringi::stri_split_fixed(dataTypes, ",", simplify = TRUE)
+      dataTypes <- c(b_split(dataTypes, ",", fixed = TRUE, simplify = TRUE))
     }
-    dataTypes <- .check_dataTypes(dataTypes)
+    dataTypes <- b_assert_dataTypes(dataTypes)
     #-- prep query params
     params <- list(
       dataTypes = paste(dataTypes, collapse = ","),
       includeTree = tolower(includeTree)
     )
-    #-- make URL
-    URL <- b_url("API_Tax/TaxonData")
     #-- fetch data from the api
-    res <- lapply(`names<-`(id, id), function(x) {
-      if (is.na(x) || grepl("^NA$", x)) {
+    res <- lapply(b_nameself(id), function(x) {
+      if (!length(x) || !nzchar(x)) {
+        list(response = NULL, warning = "id was empty")
+      } else if (is.na(x) || grepl("^NA?$", x)) {
         list(response = NULL, warning = "id was NA")
       } else {
-        r <- b_GET(args = c(taxId = x, params), url = URL, ...)
-        b_check_res(r)
+        r <- b_GET(query = c(taxId = x, params), api = "API_Tax/TaxonData",
+                   check = TRUE, ...)
+        if (nzchar(r$warning) || r$response$status_code > 202) {
+          w <- xml2::read_html(r$response$content)
+          w <- b_lines(xml2::xml_text(w))
+          w <- w[b_detect(w, "Fatal")]
+          if (b_detect(w, "non-object")) w <- c(w, "Request returned no match.")
+          r$warning <- c(r$warning, w)
+          r$response <- NULL
+        }
+        r
       }
     })
     if (response) {
@@ -94,145 +100,50 @@ bold_tax_id2 <-
       #-- make data.frame with the response(s)
       #-- fixing dataTypes to match bold response
       if (length(dataTypes) == 1 && dataTypes == "all") {
-        dataTypes <- c(
-          "basic",
-          "stats",
-          "country",
-          "images",
-          "sequencinglabs",
-          "depository",
-          "thirdparty"
-        )
-      } else if (any(dataTypes == "geo")) {
-        dataTypes[dataTypes == "geo"] <- "country"
+        dataTypes <- b_dataTypes[1:7]
       }
+      dataTypes[dataTypes == "geo"] <- "country"
       #-- parsing bold response by id
       out <- mapply(
-        .process_tax_id,
+        b_process_tax_id,
         res,
         ids = id,
         MoreArgs = list(types = dataTypes, tree = includeTree),
         SIMPLIFY = FALSE
       )
-      out <- .format_tax_id_output(out, types = dataTypes, tree = includeTree)
+      out <- b_format_tax_id_output(out, types = dataTypes, tree = includeTree)
       # -- add attributes to output
-      w <- vapply(res, `[[`, "", "warning")
+      w <- lapply(res, `[[`, "warning")
       attr(out, "errors") <- b_rm_empty(w)
-      attr(out, "params") <- c(params)
+      attr(out, "params") <- list(dataTypes = dataTypes,
+                                  includeTree = includeTree)
       out
     }
   }
-.check_dataTypes <- function(x){
-  # corrects for the json typo in case the option is taken from a previous query
-  x[x == "depositories"] <- "depository"
-  # corrects for short versions
-  x[x == "depo"] <- "depository"
-  x[x == "labs"] <- "sequencinglabs"
-  if (any(x == "all")) {
-    x <- "all"
-  } else {
-    wrongType <- !x %in% c(
-      "basic",
-      "stats",
-      "geo",
-      "images",
-      "sequencinglabs",
-      "depository",
-      "thirdparty",
-      "all"
-    )
-    if (any(wrongType)) {
-      wt <- b_ennum(x[wrongType], quote = TRUE)
-      stop(wt,
-              if (sum(wrongType) > 1) " are not valid data types."
-              else " is not a valid data type.",
-              "\nThe possible data types are:",
-              "\n  - basic\n  - stats\n  - geo\n  - images",
-              "\n  - sequencinglabs\n  - depository\n  - thirdparty\n  - all")
-    }
-  }
-  x
-}
-.process_tax_id <- function(x, ids, types, tree) {
-  out <-
-    if (nzchar(x$warning) || x$response$status_code > 202)
-      NULL
-  else
-    jsonlite::fromJSON(rawToChar(x$response$content))
-  if (!length(out) || identical(out[[1]], list())) {
-    data.frame(taxid  = NA, stringsAsFactors = FALSE)
-  } else {
-    if (!tree) {
-      out <- .format_tax_id(out, ids = ids)
+b_process_tax_id <- function(x, ids, types, tree) {
+  if (length(x$response)) {
+    out <- b_parse(x$response, format = "json", raise = FALSE)
+    if (!length(out) || identical(out[[1]], list())) {
+      data.frame(taxid = NA)
     } else {
-      tmp <- lapply(`names<-`(names(out), names(out)), \(id) .format_tax_id(out[[id]], id))
-      out <- .grp_dataTypes(tmp, nms = types, tree = tree)
-      if ("basic" %in% names(out) &&
-          "parentid" %in% names(out[["basic"]])) {
-        out[["basic"]] <-
-          out[["basic"]][order(out[["basic"]][["parentid"]]), ]
+      if (!tree) {
+        out <- b_format_tax_id(out, ids = ids)
+      } else {
+        tmp <-
+          lapply(b_nameself(names(out)), \(id) b_format_tax_id(out[[id]], id))
+        out <-
+          lapply(b_nameself(types), b_grp_dataTypes_tree, x = tmp)
+        if ("basic" %in% names(out) &&
+            "parentid" %in% names(out[["basic"]])) {
+          out[["basic"]] <-
+            out[["basic"]][order(out[["basic"]][["parentid"]]), ]
+        }
       }
+      out
     }
   }
-  out
 }
-.grp_dataTypes <- function(x, nms, idcol = FALSE, tree = FALSE) {
-  if (!tree) {
-    lapply(`names<-`(nms, nms), function(nm) {
-      o <- b_rbind(lapply(x, `[[`, nm), idcol = idcol)
-      if (idcol == "input") {
-        o[["input"]] <- as.integer(o[["input"]])
-      }
-      if (any(names(o) == "col2rm")) {
-        o[["col2rm"]] <- NULL
-      }
-      o
-    })
-  } else {
-    lapply(`names<-`(nms, nms), function(nm) {
-      o <- b_rbind(lapply(x, `[[`, nm), idcol = "taxid", fill = TRUE)
-      if (names(o)[1] == "taxid" && names(o)[2] == "taxid") {
-        o <- o[, -2]
-      }
-      if (any(names(o) == "col2rm")) {
-        o[["col2rm"]] <- NULL
-      }
-      o
-    })
-  }
-}
-.checkIfIs <- function(x, what = NULL, ids = NULL) {
-    .is <- switch(
-      what,
-      basic = names(x) %in% c("taxid", "taxon", "tax_rank", "tax_division",
-                              "parentid", "parentname", "taxonrep"),
-      thirdparty = names(x) %in% c("wikipedia_summary", "wikipedia_link"),
-      stats = names(x) == "stats",
-      list = vapply(x, class, character(1L)) == "list"
-    )
-
-    if (any(.is)) {
-      x <- switch(what,
-                  stats = {
-                    x[["stats"]] <- .format_tax_id_stats(x[["stats"]])
-                    x
-                  },
-                  list = {
-                    x[.is] <- .format_tax_id_list(x[.is], ids = ids)
-                    x
-                  },
-                  {
-                    x[[what]] <- data.frame(x[.is])
-                    if (sum(.is) > 1)
-                      x[c(.is, F)] <- NULL
-                    else
-                      x[[1]] <- NULL
-                    x
-                  })
-    }
-  x
-}
-.format_tax_id <- function(x, ids) {
+b_format_tax_id <- function(x, ids) {
   # 'geo' isn't group like the others for some reason
   # it's split between country and site map, default
   # was to return only 'country' (although I'm not sure why),
@@ -240,14 +151,27 @@ bold_tax_id2 <-
   x$sitemap <- NULL
   # some dataTypes returns data.frames or long lists
   # simplifying all of those would make the data frame very large.
-  # so adjusting for the diffrent types :
-  x <- .checkIfIs(x = x, what = "basic", ids = ids)
-  x <- .checkIfIs(x = x, what =  "thirdparty", ids = ids)
-  x <- .checkIfIs(x = x, what =  "stats", ids = ids)
-  x <- .checkIfIs(x = x,  what = "list", ids = ids)
+  # so adjusting for the different types :
+  basic.nms <- which(names(x) %in% c("taxid", "taxon", "tax_rank", "tax_division",
+                                     "parentid", "parentname", "taxonrep"))
+  wiki.nms <- which(names(x) %in% c("wikipedia_summary", "wikipedia_link"))
+  if (length(x$stats)) {
+    x$stats <- b_format_tax_id_stats(x$stats)
+  }
+  if (!all(is.na(basic.nms))) {
+    x$basic <- data.frame(x[basic.nms])
+    x <- x[-basic.nms]
+  }
+  if (!all(is.na(wiki.nms))) {
+    x$thirdparty <- data.frame(x[wiki.nms])
+    x <- x[-wiki.nms]
+  }
+  for (i in which(vapply(x[!names(x) %in% c("stats", "basic", "thirdparty")], class, character(1L)) == "list")) {
+    x[i] <- b_format_tax_id_list(x[i], ids = ids)
+  }
   x
 }
-.format_tax_id_stats <- function(x) {
+b_format_tax_id_stats <- function(x) {
   if ("publicmarkersequences" %in% names(x)) {
     markers <- which(names(x) == "publicmarkersequences")
     data.frame(as.list(c(x[-markers], x[markers], recursive = TRUE)))
@@ -255,33 +179,52 @@ bold_tax_id2 <-
     data.frame(as.list(c(x, recursive = TRUE)))
   }
 }
-.format_tax_id_list <- function(x, ids) {
-  lapply(`names<-`(names(x), names(x)), function(nm) {
-    z <- c(x[[nm]], recursive = TRUE, use.names = TRUE)
-    `names<-`(data.frame(ids, names(z), z, row.names = NULL),
-              c("taxid", nm, "count"))
-  })
-}
-.format_tax_id_output <- function(x, types, tree) {
-  #-- to match previous behavior of passing NAs
-  len0 <- lengths(x) == 0
-  if (any(len0)) { #&& all(is.na(names(x)[lengths(x) == 0]))) {
-    if (sum(len0) == 1) {
-      x[[which(len0)]] <- lapply(`names<-`(types, types), \(x) data.frame(col2rm = NA_character_))
-    } else {
-      x[which(len0)] <- lapply(`names<-`(types, types), \(x) data.frame(col2rm = NA_character_))
+b_format_tax_id_list <- function(x, ids) {
+  lapply(
+    b_nameself(names(x)),
+    function(nm) {
+      out <- c(x[[nm]], recursive = TRUE, use.names = TRUE)
+      out <- data.table::data.table(taxid = ids, names(out), count = out)
+      data.table::setnames(out, 2, nm)
+      out
     }
+  )
+}
+b_fill_empty <- function(x, types){
+  len0 <- lengths(x) == 0
+  if (any(len0)) {
+    filler <- list(data.frame(col2rm = NA_character_))
+    filler <- list(`names<-`(rep(filler, length(types)), types))
+    x[which(len0)] <- filler
   }
+  x
+}
+b_format_tax_id_output <- function(x, types, tree) {
+  types <- b_nameself(types)
+  #-- to match previous behavior of passing NAs
+  x <- b_fill_empty(x, types)
   if (tree && length(types) == 1 &&
         !types %in% c("basic", "thirdparty", "images", "stats")) {
       x <- b_rbind(unlist(x, recursive = FALSE, use.names = T), idcol = "input")
-      x[["input"]] <- stringi::stri_extract_all_regex(x[,"input"], "^[0-9]+(?=\\.)")
-      x[["input"]] <- as.integer(x[["input"]])
+      x$input <- as.integer(b_extract(x$input, "^[0-9]+(?=\\.)"))
   }  else {
-    x <- .grp_dataTypes(x, nms = types, idcol = "input")
+    x <- lapply(types, b_grp_dataTypes, x = x, idcol = "input")
   }
   if (length(x) == 1) {
-    x <- x[[1]]
+    x[[1]]
+  } else {
+    x
   }
-  x
+}
+b_grp_dataTypes_tree <- function(nm, x) {
+  idcol <- if (nm == "stats" || nm == "thirdparty" || nm == "images") "taxid" else NULL
+  out <- b_rbind(lapply(x, `[[`, nm), idcol = idcol)
+  out$taxid <- as.integer(out$taxid)
+  out
+}
+b_grp_dataTypes <- function(nm, x, idcol = FALSE) {
+  out <- b_rbind(lapply(x, `[[`, nm), idcol = idcol)
+  out[["input"]] <- as.integer(out[["input"]])
+  out[names(out) == "col2rm"] <- NULL
+  out
 }

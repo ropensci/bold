@@ -170,8 +170,7 @@ bold_identify_parents.list <- function(x, wide = FALSE, taxid = NULL,
   })
   # remove length zero elements
   out <- b_rm_empty(out)
-
-  # appply parent names to input data
+  # add parent names to input data
   lapply(x, function(z) {
     if (is.null(z)) return(NULL)
     if (wide) {

@@ -61,7 +61,7 @@ test_that("bold_identify fails well", {
   expect_error(bold_identify(sequences = 1),
     "'sequences' must be of class character")
   expect_error(bold_identify(sequences = "", db = "test"),
-    "'db' must be one of 'COX1', 'COX1_SPECIES', 'COX1_SPECIES_PUBLIC' or 'COX1_L640bp'")
+               "'test' is not a valid db")
   expect_error(bold_identify(sequences = "", db = c("COX1", "COX1_SPECIES")),
     "'db' must be length 1")
 })

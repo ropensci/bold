@@ -7,8 +7,8 @@
 #' @param format (character) One of xml or tsv (default). tsv format gives
 #' back a data.frame object. xml gives back parsed xml as a list.
 #' @param sepfasta (logical) If `TRUE`, the fasta data is separated into
-#' a list with names matching the processid's from the data frame. Note: This
-#' means multiple sequences can have the same name.
+#' a list with names matching the processid's for each records. Works with both 'tsv' and 'xml' format.
+#' Note: This means multiple sequences can have the same name if a process id has multiple sequences.
 #' Default: `FALSE`
 #' @param cleanData (logical) If `TRUE`, the cell values containing only duplicated values (ex : "COI-5P|COI-5P|COI-5P") will be reduce to one value ("COI-5P") and empty string will be change to NA. Default: `FALSE`
 #'
@@ -52,8 +52,7 @@ bold_seqspec <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
   response <- b_assert_logical(response)
   sepfasta <- b_assert_logical(sepfasta)
   cleanData <- b_assert_logical(cleanData)
-  params <- c(
-    b_pipe_params(
+  params <- b_pipe_params(
       taxon = taxon,
       geo = geo,
       ids = ids,
@@ -62,73 +61,58 @@ bold_seqspec <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
       institutions = institutions,
       researchers = researchers,
       marker = marker
-    ),
-    format = format
-  )
-  res <- b_GET(b_url('API_Public/combined'), params, ...)
+    )
+  res <- b_GET(query = c(params, format = format),
+               api = 'API_Public/combined', ...)
   if (response) {
     res
   } else {
-    b_seqspec_process(res, format, sepfasta, cleanData)
+    out <- b_parse(res, format, cleanData, raise = TRUE)
+    if (!sepfasta)
+      out
+    else
+      b_sepFasta(out, format = format)
   }
 }
-b_seqspec_process <- function(res, format, sepfasta, cleanData){
-  res$raise_for_status()
-  res <- paste0(rawToChar(res$content, multiple = TRUE), collapse = "")
-  res <- enc2utf8(res)
-  if (res == "") {
-    NA
-  } else {
-    if (b_detect(res, "Fatal error")) {
-      # if returning partial output for bold_seq, might as well do that here too
-      warning("the request timed out, see 'If a request times out'\n",
-              "returning partial output")
-      res <- b_drop(str = res, pattern = "Fatal error")
-      # if missing, adding closing tag so it can be read properly
-      if (format == "xml" && !b_detect(res, "</bold_records")) {
-        res <- paste0(res, "</bold_records>")
-      }
-    }
-    switch(
-      format,
-      xml = b_seqspec_process_xml(x = res, sepfasta = sepfasta),
-      tsv = b_seqspec_process_tsv(
-        x = res,
-        sepfasta = sepfasta,
-        cleanData = cleanData
-      )
-    )
-  }
-}
-b_seqspec_process_tsv <- function(x, sepfasta, cleanData){
-  out <- b_read(x)
-  if (cleanData) {
-    out <- b_cleanData(out)
-  }
-  if (!sepfasta) {
-    out
-  } else {
-    list(data = out[, !names(out) %in% "nucleotides"],
-         fasta = `names<-`(as.list(out$nucleotides),
-                           out$processid))
-  }
-}
-b_seqspec_process_xml <- function(x, sepfasta){
-  # don't remove 'options' !
-  # prevents failing on large request :)
-  out <- xml2::read_xml(x, options = c("NOBLANKS", "HUGE"))
-  if (!sepfasta) {
-    out
-  } else {
-    rec <- xml2::xml_find_all(out, "//record")
-    fasta <- lapply(rec, \(x) {
-      seq <-  xml2::xml_text(xml2::xml_find_all(x, ".//nucleotides"))
-      id <- xml2::xml_text(xml2::xml_find_all(x, ".//processid"))
-      `names<-`(as.list(seq), rep(id, length(seq)))
-    })
-    fasta <- unlist(fasta, recursive = FALSE)
-    # not removing nucleotides since xml2::xml_remove advise against it
-    list(data = out, fasta = fasta)
-  }
-}
+#' Seperate sequences (fasta) from `bold_seqspec` output.
+#'
+#' @param x      (object) The output of a `bold_seqspec` call.
+#' @param format (character) The format used in the `bold_seqspec` call. One of 'tsv' (default) or 'xml'.
+#'
+#' @return A list of length two : the specimen data and the sequences list.
+#'
+#' @examples \dontrun{
+#' res <- bold_seqspec(taxon='Osmia')
+#' res <- b_sepFasta(res)
+#' # (same as bold_seqspec(taxon='Osmia', sepFasta = TRUE))
+#' }
+#' @export
+b_sepFasta <- function(x, format = "tsv"){
+  switch(format,
+         tsv = {
+           list(data = x[, !names(x) %in% "nucleotides"],
+                fasta = `names<-`(as.list(x$nucleotides),
+                                  x$processid))
+         },
+         xml = {
+           recs <- xml2::xml_find_all(x, "//processid")
+           fasta <- list()
+           # must be for loop so record without sequences are also included (so the behavior is the same as when format is 'tsv')
+           for (rec in recs) {
+             seq <-  xml2::xml_text(xml2::xml_find_all(rec, "..//nucleotides"))
+             n <- length(seq)
+             len <- length(fasta) + 1
+             if (n) {
+              fasta[len:(len + n - 1)] <- as.list(seq)
+              names(fasta)[len:(len + n - 1)] <- xml2::xml_text(rec)
+             } else {
+               fasta[[len]] <- list(NULL)
+               names(fasta[[len]]) <- xml2::xml_text(rec)
+             }
 
+           }
+           # not removing nucleotides since xml2::xml_remove advise against it
+           list(data = x, fasta = fasta)
+         }
+  )
+}
