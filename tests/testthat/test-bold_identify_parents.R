@@ -37,7 +37,7 @@ test_that("bold_identify_parents fails well", {
   # required column taxonomicidentification
   expect_error(
     expect_warning(bold_identify_parents(mtcars),
-                   "'bold_identify_parents' is deprecated."),
+                   "'bold_identify_parents' is deprecated"),
     "no fields 'taxonomicidentification' found in input")
   # catch wrong type param inputs
   expect_warning(bold_identify_parents(bold_identify_list[[1]][1,], tax_rank = 5),

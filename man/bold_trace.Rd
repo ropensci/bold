@@ -2,6 +2,7 @@
 % Please edit documentation in R/bold_trace.R
 \name{bold_trace}
 \alias{bold_trace}
+\alias{print.boldtrace}
 \alias{read_trace}
 \alias{bold_read_trace}
 \title{Get BOLD trace files}
@@ -20,6 +21,8 @@ bold_trace(
   progress = TRUE,
   ...
 )
+
+\method{print}{boldtrace}(x, ...)
 
 read_trace(x)
 
@@ -58,7 +61,7 @@ HOPEFULLY WILL RETURN SOON.}
 \item{...}{Further args passed on to \code{\link[crul]{verb-GET}}}
 
 \item{x}{(list or character) Either the boldtrace object returned from
-\code{\link[bold]{bold_trace}} or a path to a bold trace file.}
+\code{\link[bold]{bold_trace}} or the path(s) of bold trace file(s).}
 }
 \description{
 Get BOLD trace files

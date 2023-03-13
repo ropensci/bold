@@ -10,9 +10,18 @@ bold 1.3.0
 
 * Similarly, the now deprecated `bold_identify_parents()` has new argument checks and will throw warnings to not affect existing workflows.
 
+* For `bold_tax_id2()` and `bold_tax_name()`, when querying multiple taxa, if one fails, the loop won't break and will instead throw the API error as a warning. The ouput object will also have 2 new attributes "errors" and "params" that will let you see what errors occured for with request and what parameters were use for the request.
+To make it easy to retrieve these attributes, 3 new functions have been created:
+  * `bold_get_attr()` will return a list of the two attributes
+  * `bold_get_errors()` will return a list of the errors
+  * `bold_get_params()` will return a list of parameters used
+
+
 * `bold_specimens()` and `bold_seqspec()` have a new parameter `cleanData` which, when set to `TRUE`, replaces empty strings ("") by NAs and strings containing only duplicated values by their unique value (ex : "COI-5P|COI-5P|COI-5P" becomes "COI-5P").
 
 * New function `bold_read_trace()` to replace `read_trace()`. Can read one or multiple trace files from a `boldtrace` object or provided file path(s).
+
+* New function `b_sepFasta()` to use after a call to `bold_seqspec()` where `sepFasta` wasn't set to `TRUE`.
 
 ### MINOR IMPROVEMENTS
 
@@ -20,6 +29,7 @@ bold 1.3.0
 * made tests for the `bold_trace()` function
 * added test to existing functions to improved test coverage
 * added/completed argument checks for every functions
+* `bold_specimens()` and `bold_seqspec()` can now also return partial output like `bold_seq()`
 * using `data.table` when possible, removed `dplyr` and `reshape` dependencies
 * using `stringi` instead of `stringr` which removed `stringr`'s other dependencies
 * added more details to the documentation of some functions

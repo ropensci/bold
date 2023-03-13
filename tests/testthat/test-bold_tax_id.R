@@ -12,7 +12,6 @@ test_that("bold_tax_id returns the correct object (one ID)", {
   expect_equal(test$taxid, test$input)
   expect_equal(NROW(test), 1)
 })
-
 test_that("bold_tax_id returns the correct object (multiple IDs)", {
   skip_on_cran()
   vcr::use_cassette("bold_tax_id2", {
@@ -62,7 +61,6 @@ test_that("bold_tax_id 'dataTypes' param works as expected (stats)", {
   expect_is(test, "data.frame")
   expect_equal(NROW(test), 1)
 })
-
 test_that("bold_tax_id 'dataTypes' param works as expected (stats without public marker seqs)", {
   skip_on_cran()
   vcr::use_cassette("bold_tax_id2", {
@@ -71,7 +69,6 @@ test_that("bold_tax_id 'dataTypes' param works as expected (stats without public
   expect_is(test, "data.frame")
   expect_equal(NROW(test), 1)
 })
-
 test_that("bold_tax_id 'dataTypes' param works as expected (geo)", {
   skip_on_cran()
   vcr::use_cassette("bold_tax_id2", {
@@ -81,7 +78,6 @@ test_that("bold_tax_id 'dataTypes' param works as expected (geo)", {
   expect_equal(NROW(test), 1)
   expect_equal(ncol(test), 9)
 })
-
 test_that("bold_tax_id 'dataTypes' param works as expected (sequencinglabs)", {
   skip_on_cran()
   vcr::use_cassette("bold_tax_id2", {
@@ -90,7 +86,6 @@ test_that("bold_tax_id 'dataTypes' param works as expected (sequencinglabs)", {
   expect_is(test, "data.frame")
   expect_equal(NROW(test), 1)
 })
-
 test_that("bold_tax_id 'dataTypes' param works as expected (all)", {
   skip_on_cran()
   vcr::use_cassette("bold_tax_id2", {
@@ -99,8 +94,6 @@ test_that("bold_tax_id 'dataTypes' param works as expected (all)", {
   expect_is(test, "data.frame")
   expect_equal(NROW(test), 1)
 })
-
-
 test_that("bold_tax_id 'dataTypes' param works as expected (basic & stats)", {
   skip_on_cran()
   vcr::use_cassette("bold_tax_id2", {
@@ -109,8 +102,6 @@ test_that("bold_tax_id 'dataTypes' param works as expected (basic & stats)", {
   expect_is(test, "data.frame")
   expect_equal(NROW(test), 1)
 })
-
-
 test_that("bold_tax_id 'includeTree' param works as expected", {
   skip_on_cran()
   vcr::use_cassette("bold_tax_id2", {
@@ -119,7 +110,6 @@ test_that("bold_tax_id 'includeTree' param works as expected", {
   expect_is(test, "data.frame")
   expect_equal(NROW(test), 5)
 })
-
 test_that("bold_tax_id 'includeTree' param works as expected (with 2 dataTypes)", {
   skip_on_cran()
   vcr::use_cassette("bold_tax_id2", {
@@ -128,11 +118,10 @@ test_that("bold_tax_id 'includeTree' param works as expected (with 2 dataTypes)"
   expect_is(test, "data.frame")
   expect_equal(NROW(test), 5)
 })
-
 test_that("bold_tax_id fails well", {
-  expect_error(bold_tax_id(), "argument \"id\" is missing, with no default")
+  expect_error(bold_tax_id(), "argument 'id' is missing, with no default")
   expect_warning(bold_tax_id(id = 88899, dataTypes = 5), "'5' is not a valid data type")
   expect_warning(bold_tax_id(id = 88899, dataTypes = "basics"), "'basics' is not a valid data type")
   expect_warning(bold_tax_id(id = 88899, includeTree = 5), "'includeTree' should be either TRUE or FALSE")
-  expect_warning(bold_tax_id(id = ""), "'bold_tax_id' is deprecated.")
+  expect_warning(bold_tax_id(id = ""), "'bold_tax_id' is deprecated")
 })

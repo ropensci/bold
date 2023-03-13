@@ -41,6 +41,18 @@ test_that("bold_seqspec returns the correct object (sepFasta)", {
   expect_is(test$data, "data.frame")
   expect_is(test$fasta, "list")
   expect_is(test$fasta[[1]], "character")
+  expect_equal(nrow(test$data), length(test$fasta))
+})
+test_that("bold_seqspec returns the correct object (sepFasta, xml)", {
+  skip_on_cran()
+  vcr::use_cassette("bold_seqspec", {
+    test <- bold_seqspec(taxon = 'Coelioxys', sepfasta = TRUE, format = "xml")
+  })
+  expect_is(test, "list")
+  expect_is(test$data, "xml_document")
+  expect_is(test$fasta, "list")
+  expect_is(test$fasta[[1]], "character")
+  expect_equal(length(xml2::xml_children(test$data)), length(test$fasta))
 })
 
 test_that("bold_seq fails well", {

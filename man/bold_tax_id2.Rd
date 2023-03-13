@@ -15,11 +15,9 @@ bold_tax_id2(
 \arguments{
 \item{id}{(integer|numeric|character) One or more BOLD taxonomic identifiers. required.}
 
-\item{dataTypes}{(character) One or more BOLD data type. Specifies the
-information that will be returned. See details for options.}
+\item{dataTypes}{(character) One or more BOLD data types: 'basic', 'stats', 'geo', 'images'/'img', 'sequencinglabs'/'labs', 'depository'/'depo', 'thirdparty'/'wiki' or 'all' (default: 'basic'). Specifies the information that will be returned, see details.}
 
-\item{includeTree}{(logical) If \code{TRUE} (default: \code{FALSE}), returns the
-information for parent taxa as well as the specified taxon.}
+\item{includeTree}{(logical) If \code{TRUE} (default: \code{FALSE}), returns the information for parent taxa as well as the specified taxon, see details.}
 
 \item{response}{(logical) Default : FALSE. If TRUE, returns the object from
 the Curl call. Useful for debugging and getting more detailed info on the
@@ -46,38 +44,38 @@ Search BOLD for taxonomy data by BOLD ID.
 
 \section{includeTree}{
 
-When \code{includeTree} is set to true, for the \code{dataTypes} other than "basic" the information of the parent taxa are identified by their taxonomic id only. To get their ranks and names too, make sure "basic" is in \code{dataTypes}.
+When \code{includeTree} is set to true, for the \code{dataTypes} other than 'basic' the information of the parent taxa are identified by their taxonomic id only. To get their ranks and names too, make sure 'basic' is in \code{dataTypes}.
 }
 
 \examples{
 \dontrun{
-bold_tax_id(id = 88899)
-bold_tax_id(id = 88899, includeTree = TRUE)
-bold_tax_id(id = 88899, includeTree = TRUE, dataTypes = "stats")
-bold_tax_id(id = c(88899, 125295))
+bold_tax_id2(id = 88899)
+bold_tax_id2(id = 88899, includeTree = TRUE)
+bold_tax_id2(id = 88899, includeTree = TRUE, dataTypes = "stats")
+bold_tax_id2(id = c(88899, 125295))
 
 ## dataTypes parameter
-bold_tax_id(id = 88899, dataTypes = "basic")
-bold_tax_id(id = 88899, dataTypes = "stats")
-bold_tax_id(id = 88899, dataTypes = "images")
-bold_tax_id(id = 88899, dataTypes = "geo")
-bold_tax_id(id = 88899, dataTypes = "sequencinglabs")
-bold_tax_id(id = 88899, dataTypes = "depository")
-bold_tax_id(id = 88899, dataTypes = "thirdparty")
-bold_tax_id(id = 88899, dataTypes = "all")
-bold_tax_id(id = c(88899, 125295), dataTypes = c("basic", "geo"))
-bold_tax_id(id = c(88899, 125295), dataTypes = c("basic", "stats", "images"))
+bold_tax_id2(id = 88899, dataTypes = "basic")
+bold_tax_id2(id = 88899, dataTypes = "stats")
+bold_tax_id2(id = 88899, dataTypes = "images")
+bold_tax_id2(id = 88899, dataTypes = "geo")
+bold_tax_id2(id = 88899, dataTypes = "sequencinglabs")
+bold_tax_id2(id = 88899, dataTypes = "depository")
+bold_tax_id2(id = 88899, dataTypes = "thirdparty")
+bold_tax_id2(id = 88899, dataTypes = "all")
+bold_tax_id2(id = c(88899, 125295), dataTypes = c("basic", "geo"))
+bold_tax_id2(id = c(88899, 125295), dataTypes = c("basic", "stats", "images"))
 
 ## Passing in NA
-bold_tax_id(id = NA)
-bold_tax_id(id = c(88899, 125295, NA))
+bold_tax_id2(id = NA)
+bold_tax_id2(id = c(88899, 125295, NA))
 
 ## get http response object only
-bold_tax_id(id = 88899, response = TRUE)
-bold_tax_id(id = c(88899, 125295), response = TRUE)
+bold_tax_id2(id = 88899, response = TRUE)
+bold_tax_id2(id = c(88899, 125295), response = TRUE)
 
 ## curl debugging
-bold_tax_id(id = 88899, verbose = TRUE)
+bold_tax_id2(id = 88899, verbose = TRUE)
 }
 
 }
@@ -85,5 +83,5 @@ bold_tax_id(id = 88899, verbose = TRUE)
 http://v4.boldsystems.org/index.php/resources/api?type=taxonomy
 }
 \seealso{
-\code{\link{bold_tax_name}}
+\code{\link{bold_tax_name}}, \code{\link{bold_get_attr}}, \code{\link{bold_get_errors}}, \code{\link{bold_get_params}}
 }

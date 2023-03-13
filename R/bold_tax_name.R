@@ -13,7 +13,7 @@
 #' @details The `dataTypes` parameter is not supported in this function.
 #' If you want to use that parameter, get an ID from this function and pass
 #' it into `bold_tax_id`, and then use the `dataTypes` parameter.
-#' @seealso \code{\link{bold_tax_id}}
+#' @seealso \code{\link{bold_tax_id}}, \code{\link{bold_get_attr}}, \code{\link{bold_get_errors}}, \code{\link{bold_get_params}}
 #' @examples \dontrun{
 #' bold_tax_name(name='Diplura')
 #' bold_tax_name(name='Osmia')
@@ -38,58 +38,75 @@
 #' @export
 bold_tax_name <- function(name, fuzzy = FALSE, response = FALSE,
                           tax_division = NULL, tax_rank = NULL, ...) {
-  assert(name, "character")
+  if (missing(name)) stop("argument 'name' is missing, with no default")
+  b_assert(name, "character", check.length = 0L)
   # fix for #84:
-  name <- stringi::stri_replace_all_regex(name, "(?<=[^\\\\])'", "\\\\'")
-  if (!missing(response)) assert(response, "logical")
-  if (!missing(fuzzy)) assert(fuzzy, "logical")
-  if (length(tax_division)) {
-    assert(tax_division, "character")
-    if(!all(tax_division %in% c("Animalia", "Protista", "Fungi", "Plantae")))
-      stop("'tax_division' must be one or more of ",
-           toStr(c("Animalia", "Protista", "Fungi", "Plantae")))
-  }
-  if (length(tax_rank)) {
-    assert(tax_rank, "character")
-    tax_rank <- tolower(tax_rank)
-    if(any(!tax_rank %in% c(bold::rank_ref[["rank"]], bold::rank_ref[["ranks"]])))
-      stop("Invalid tax_rank name.")
-  }
-
-  res <- lapply(`names<-`(name, name), function(x)
-    get_response(args = c(taxName = x, fuzzy = tolower(fuzzy)),
-                 url = b_url("API_Tax/TaxonSearch"), ...)
-  )
+  name <- b_replace(name, "(?<=[^\\\\])'", "\\\\'")
+  if (!missing(response)) response <- b_assert_logical(response)
+  if (!missing(fuzzy)) fuzzy <- b_assert_logical(fuzzy)
+  if (!missing(tax_division)) tax_division <- b_assert_tax_division(tax_division)
+  if (!missing(tax_rank)) tax_rank <- b_assert_tax_rank(tax_rank)
+  res <- lapply(b_nameself(name), function(x)
+    b_GET(
+      query = c(taxName = x, fuzzy = tolower(fuzzy)),
+      api = "API_Tax/TaxonSearch",
+      check = TRUE,
+      ...
+    ))
   if (response) {
     res
   } else {
-    out <- setrbind(lapply(res, process_tax_name,
-                           tax_division = tax_division,
-                           tax_rank = tax_rank),
-                    idcol = "input")
-    w <- vapply(res, `[[`, "", "warning")
-    attr(out, "errors") <- bc(w)
+    out <- b_rbind(lapply(res, b_process_tax_name,
+                          tax_division = tax_division,
+                          tax_rank = tax_rank),
+                   idcol = "input")
+    w <- lapply(res, `[[`, "warning")
+    # using %in% to avoid NAs
+    noMatchDiv <- out$taxid %in% -1L
+    noMatchRank <- out$taxid %in% -2L
+    noMatch <- out$taxid %in% -3L
+    out$taxid[noMatchDiv | noMatchRank | noMatch] <- NA_integer_
+    w[noMatchDiv] <- "Request returned no match with supplied 'tax_division'"
+    w[noMatchRank] <- "Request returned no match with supplied 'tax_rank'"
+    w[noMatch] <- "Request returned no match"
+    attr(out, "errors") <- b_rm_empty(w)
+    attr(out, "params") <- list(fuzzy = fuzzy,
+                                tax_division = tax_division,
+                                tax_rank = tax_rank)
     out
   }
 }
 
-process_tax_name <- function(x, tax_division, tax_rank) {
-  if(!nzchar(x$warning)){
-    out <- jsonlite::fromJSON(x$response$parse("UTF-8"), flatten = TRUE)
-    if (length(out) && length(out$top_matched_names)){
-      out <- data.frame(out$top_matched_names, stringsAsFactors = FALSE)
-      if(length(tax_division) && length(out$tax_division)) out <- out[out$tax_division %in% tax_division,]
-      if(length(tax_rank) && length(out$tax_rank)) out <- out[out$tax_rank %in% tax_rank,]
-      out$taxon <- fix_taxonName(out$taxon)
-      if (any(colnames(out) == "parentname"))
-        out$parentname <- fix_taxonName(out$parentname)
-      if (any(colnames(out) == "taxonrep"))
-        out$taxonrep <- fix_taxonName(out$taxonrep)
+b_process_tax_name <- function(x, tax_division, tax_rank) {
+  if (!nzchar(x$warning)) {
+    out <- b_parse(x$response, format = "json")
+    if (length(out) && length(out$top_matched_names)) {
+      out <- data.frame(out$top_matched_names)
+      out.nms <- names(out)
+      # see issue #84
+      if (any(out.nms == "taxon")) out$taxon <- b_fix_taxonName(out$taxon)
+      if (any(out.nms == "parentname")) out$parentname <- b_fix_taxonName(out$parentname)
+      if (any(out.nms == "taxonrep")) out$taxonrep <- b_fix_taxonName(out$taxonrep)
+      if (length(tax_division) && any(out.nms == "tax_division")) {
+        if (sum(out$tax_division %in% tax_division)) {
+          out <- out[out$tax_division %in% tax_division,]
+        } else {
+          out <- data.frame(taxid = -1L) # request returned no match with supplied tax_division
+        }
+      }
+      if (length(tax_rank)  && any(out.nms == "tax_rank")) {
+        if (sum(out$tax_rank %in% tax_rank)) {
+          out <- out[out$tax_rank %in% tax_rank,]
+        } else {
+          out <- data.frame(taxid = -2L) # request returned no match with supplied tax_rank
+        }
+      }
     } else {
-      out <- data.frame(taxid = NA_integer_)
+      out <- data.frame(taxid = -3L) # request returned no match
     }
   } else {
-    out <- data.frame(taxid = NA_integer_)
+    out <- data.frame(taxid = NA_integer_) # resquest had an error
   }
   out
 }
+

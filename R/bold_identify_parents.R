@@ -169,9 +169,8 @@ bold_identify_parents.list <- function(x, wide = FALSE, taxid = NULL,
     }
   })
   # remove length zero elements
-  out <- bc(out)
-
-  # appply parent names to input data
+  out <- b_rm_empty(out)
+  # add parent names to input data
   lapply(x, function(z) {
     if (is.null(z)) return(NULL)
     if (wide) {
@@ -185,7 +184,7 @@ bold_identify_parents.list <- function(x, wide = FALSE, taxid = NULL,
       }))))
     }
     zsplit <- split(z, z$ID)
-    setrbind(
+    b_rbind(
       lapply(zsplit, function(w) {
         tmp <- out[names(out) %in% w$taxonomicidentification]
         if (length(tmp)) {
@@ -203,7 +202,7 @@ filt <- function(df, col, z) {
   if (NROW(df) == 0 || is.null(z)) {
     df
   } else {
-    mtch <- grep(tolower(z), tolower(df[, col]))
+    mtch <- grep(z, df[, col], ignore.case = TRUE)
     if (length(mtch)) {
       df[mtch, ]
     } else {

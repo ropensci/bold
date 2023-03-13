@@ -88,7 +88,6 @@ res$status_code
 res$response_headers
 
 # More than 1 can be given for all search parameters
-bold_stats(taxon=c('Coelioxys','Osmia'))
 
 ## curl debugging
 ### These examples below take a long time, so you can set a timeout so that

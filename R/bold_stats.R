@@ -40,7 +40,7 @@
 #' res$response_headers
 #'
 #' # More than 1 can be given for all search parameters
-#' bold_stats(taxon=c('Coelioxys','Osmia'))
+# bold_stats(taxon=c('Coelioxys','Osmia'))
 #'
 #' ## curl debugging
 #' ### These examples below take a long time, so you can set a timeout so that
@@ -52,31 +52,30 @@
 #' @export
 bold_stats <- function(taxon = NULL, ids = NULL, bin = NULL,
   container = NULL, institutions = NULL, researchers = NULL, geo = NULL,
-  dataType = "drill_down", response=FALSE, simplify = FALSE, ...) {
-  assert(response, "logical")
-  assert(dataType, "character")
-  if(!tolower(dataType) %in% c("overview", "drill_down"))
-    stop("'dataType' must be one of 'overview' or 'drill_down'.")
-  params <- c(pipe_params(taxon = taxon, geo = geo,
+  dataType = "drill_down", response = FALSE, simplify = FALSE, ...) {
+  b_assert(dataType, "character", check.length = 1L)
+  response <- b_assert_logical(response)
+  dataType <- tolower(dataType)
+  b_validate(dataType, c("overview", "drill_down"), "dataType")
+  params <- b_pipe_params(taxon = taxon, geo = geo,
                           ids = ids, bin = bin,
                           container = container,
                           institutions = institutions,
-                          researchers = researchers),
-              dataType = tolower(dataType), format = 'json')
-  res <- b_GET(b_url('API_Public/stats'), params, ...)
+                          researchers = researchers)
+  res <- b_GET(query = c(params, dataType = dataType, format = 'json'),
+               api = 'API_Public/stats', ...)
   if (response) {
-    return(res)
+    res
   } else {
-    out <- jsonlite::fromJSON(rawToChar(res$content))
+    out <- b_parse(res, format = "json")
     if (simplify) {
-      .simplify_stats(out, dataType = tolower(dataType))
+      b_simplify_stats(out, dataType = dataType)
     } else {
       out
     }
   }
 }
-
-.simplify_stats <- function(x, dataType) {
+b_simplify_stats <- function(x, dataType) {
   if (dataType == "drill_down") {
     n <- which(vapply(x, inherits, NA, "integer"))
     ov <- vapply(x[-n], `[[`, 0L, "count")
@@ -90,9 +89,7 @@ bold_stats <- function(taxon = NULL, ids = NULL, bin = NULL,
       }
       y
     })
-    list(overview = ov,
-         drill_down = dd)
-
+    list(overview = ov, drill_down = dd)
   } else {
     structure(as.list(vapply(x, as.integer, 0L)), class = "data.frame", row.names = 1L)
   }

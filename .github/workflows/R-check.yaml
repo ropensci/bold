@@ -13,16 +13,12 @@ jobs:
       matrix:
         config:
         - { os: windows-latest, r: 'release'}
-        # - { os: windows-latest, r: 'devel'} # comment out for now, R 4.2 problems on GH Actions
         - { os: macOS-latest, r: 'release'}
-        # - { os: macOS-latest, r: 'devel'} # comment out for now, R 4.2 problems on GH Actions
-        # - { os: ubuntu-latest, r: 'release', rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
         - {os: ubuntu-latest,   r: 'release'}
 
     env:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
       R_KEEP_PKG_SOURCE: yes
-      # CRAN: ${{ matrix.config.rspm }}
 
     steps:
       - uses: actions/checkout@v3
@@ -39,9 +35,17 @@ jobs:
           extra-packages: any::rcmdcheck
           needs: check
 
-      - uses: r-lib/actions/check-r-package@v2
-        with:
-          upload-snapshots: true
+      # - name: Install dependencies
+      #  run: |
+      #    install.packages("stringi", type="source")
+      #    remotes::install_deps(dependencies = TRUE)
+      #    remotes::install_cran(c("rcmdcheck", "BiocManager"))
+      #    BiocManager::install("sangerseqR")
+      #  shell: Rscript {0}
+      #
+      # - uses: r-lib/actions/check-r-package@v2
+      #   with:
+      #     upload-snapshots: true
 
       #- name: Query dependencies
       #  run: |
@@ -74,14 +78,6 @@ jobs:
       #     Rscript -e "remotes::install_github('r-hub/sysreqs')"
       #     sysreqs=$(Rscript -e "cat(sysreqs::sysreq_commands('DESCRIPTION'))")
       #     sudo -s eval "$sysreqs"
-      
-      #- name: Install dependencies
-      #  run: |
-      #    install.packages("stringi", type="source")
-      #    remotes::install_deps(dependencies = TRUE)
-      #    remotes::install_cran(c("rcmdcheck", "BiocManager"))
-      #    BiocManager::install("sangerseqR")
-      #  shell: Rscript {0}
 
       # - name: Check
       #   env:
