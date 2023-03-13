@@ -1,5 +1,6 @@
 # uncomment to set all cassettes at once
-# vcr::vcr_configure(dir = "./tests/fixtures/")
+# vcr::vcr_configure(dir = normalizePath("./tests/fixtures/"))
+# vcr::vcr_configuration()
 # vcr::use_cassette("bold_specimens", {
 #   bold_specimens(taxon = 'Coelioxys')
 #   bold_specimens(taxon = 'Coelioxys', format = 'xml')
@@ -39,6 +40,11 @@
 #   bold_tax_name(name = c("Apis", "Puma concolor", "Pinus concolor"))
 #   bold_tax_name(name = "Diplur", fuzzy = TRUE)
 #   bold_tax_name(name = "Diplur", fuzzy = FALSE)
+#   bold_tax_name(name = c(
+#     "Diplurodes sp.",
+#     "Chlamydomonas sp. 18 (FA)",
+#     "Chlamydomonas sp. 'Chile J'"
+#   ))
 # })
 # vcr::use_cassette("bold_identify_parents", {
 #   load("tests/testthat/bold_identify_list.rda")
@@ -52,4 +58,4 @@
 #   bold_identify(sequences$seq1)
 #   bold_identify(sequences$seq1, db = 'COX1_SPECIES')
 #   bold_identify("AACCCTATACTTTTTATTTGGAATTTGAGCGGGTATAGTAGGTACTAGCTTAAGTATATTAATTCGTCTAGAGCTAGGACAACCCGGTGTATTTTTAGAAGATGACCAAACCTATAACGTTATTGTAACAGCCCACGCTTTTATTATAATTTTCTTCATAATTATACCAATCATAATTGGA")
-# }, record = "new_episodes")
+# })

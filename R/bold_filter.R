@@ -23,7 +23,7 @@
 #'
 #' @return a data.frame
 #' @examples \dontrun{
-#' res <- bold_seqspec(taxon='Osmia')
+#' res <- bold_seqspec(taxon = 'Osmia')
 #' maxx <- bold_filter(res, by = "species_name")
 #' minn <- bold_filter(res, by = "species_name", how = "min")
 #'
@@ -32,19 +32,30 @@
 #' }
 #' @export
 bold_filter <- function(x, by, how = "max", returnTibble = TRUE){
-  if (!inherits(x, c("data.frame", "matrix"))) stop("'x' must be a data.frame or matrix")
-  if (!by %in% colnames(x)) stop(sprintf("'%s' is not a valid column in 'x'", by))
-  if (!how %in% c("min", "max")) stop("'how' must be one of 'min' or 'max'")
-  .fun <- list(min = which.min, max = which.max)
+  #-- arg check
+  if (missing(x)) stop("argument 'x' is missing, with no default")
+  if (missing(by)) stop("argument 'by' is missing, with no default")
+  b_assert(x, c("data.frame", "matrix"))
+  b_assert(by, "character", check.length = 1L)
+  if (!by %in% colnames(x)) stop("'", by, "' is not a valid column in 'x'")
+  if (!missing(how)) b_assert(how, "character", check.length = 1L)
+  if (!missing(returnTibble)) returnTibble <- b_assert_logical(returnTibble)
+  how <- switch(tolower(how),
+                min = which.min,
+                max = which.max,
+                stop("'how' must be one of 'min' or 'max'"))
+  #-- faster to use data.table by to filter
   xdt <- data.table::as.data.table(x)
   .rows <- xdt[,{
-    lgts <- stringi::stri_count_regex(nucleotides,"[^-]")
-    .I[.fun[[how]](lgts)]
+    lgts <- b_count(nucleotides,"[^-N]")
+    .I[how(lgts)]
   }, by = by]$V1
   out <- x[.rows,]
   # so the output is ordered in the same way as before
   out <- out[order(out[,by]),]
   rownames(out) <- NULL
+  # this make tibble a suggest instead of dependency.
+  # Only function still using it.
   if (returnTibble && requireNamespace("tibble", quietly = TRUE)) {
     tibble::as_tibble(out)
   } else {

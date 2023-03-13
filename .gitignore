@@ -1,11 +1,7 @@
-.DS_Store
-inst/vign/cache
 vignettes/cache
-inst/ignore
-*.Rproj
-*.Rproj.user
-*.Rhistory
-notes.R
+.Rproj
+.Rproj.user
+.Rhistory
 revdep/checks.noindex
 revdep/data.sqlite
 revdep/library.noindex

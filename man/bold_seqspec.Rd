@@ -16,6 +16,7 @@ bold_seqspec(
   response = FALSE,
   format = "tsv",
   sepfasta = FALSE,
+  cleanData = FALSE,
   ...
 )
 }
@@ -50,9 +51,11 @@ API call.}
 back a data.frame object. xml gives back parsed xml as a list.}
 
 \item{sepfasta}{(logical) If \code{TRUE}, the fasta data is separated into
-a list with names matching the processid's from the data frame. Note: This
-means multiple sequences can have the same name.
+a list with names matching the processid's for each records. Works with both 'tsv' and 'xml' format.
+Note: This means multiple sequences can have the same name if a process id has multiple sequences.
 Default: \code{FALSE}}
+
+\item{cleanData}{(logical) If \code{TRUE}, the cell values containing only duplicated values (ex : "COI-5P|COI-5P|COI-5P") will be reduce to one value ("COI-5P") and empty string will be change to NA. Default: \code{FALSE}}
 
 \item{...}{Further args passed on to
 \code{\link[crul:verb-GET]{crul::verb-GET}}, main purpose being curl
@@ -60,11 +63,14 @@ debugging}
 }
 \value{
 Either a data.frame, parsed xml, a http response object, or a list
-with length two (data: a data.frame w/o nucleotide column, and fasta: a list
+of length two (data: a data.frame w/o nucleotide column, and fasta: a list
 of nucleotides with the processid as name)
 }
 \description{
 Get BOLD specimen + sequence data.
+}
+\note{
+If using the \code{taxon} parameter with another parameter, if the \code{taxon} isn't found in the public database, it will act as if no \code{taxon} was specified and try to return all the data for the other specified parameter. You can make sure that the \code{taxon} you're looking up has public records with \code{\link{bold_stats}}.
 }
 \section{Large requests}{
 
@@ -125,8 +131,7 @@ res <- bold_seqspec(taxon="Melanogrammus aeglefinus", geo="Canada")
 ### You can do many things, including get verbose output on the curl call,
 ### and set a timeout
 head(bold_seqspec(taxon='Osmia', verbose = TRUE))
-## timeout
-# head(bold_seqspec(taxon='Osmia', timeout_ms = 1))
+head(bold_seqspec(taxon='Osmia', timeout_ms = 1))
 }
 
 }

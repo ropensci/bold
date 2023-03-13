@@ -121,15 +121,24 @@ bold_identify_parents.list <- function(x, wide = FALSE, taxid = NULL,
           " It's more accurate as it uses the ID stored into 'x' to find the record's taxonomy.",
           "\nSee help(\"Deprecated\")", call. = FALSE, immediate. = TRUE)
 
-  assert(wide, "logical")
-  if (!is.null(taxid)) assert(taxid, "character")
-  if (!is.null(taxon)) assert(taxon, "character")
-  if (!is.null(tax_rank)) assert(tax_rank, "character")
-  if (!is.null(tax_division)) assert(tax_division, "character")
-  if (!is.null(parentid)) assert(parentid, "character")
-  if (!is.null(parentname)) assert(parentname, "character")
-  if (!is.null(taxonrep)) assert(taxonrep, "character")
-  if (!is.null(specimenrecords)) assert(specimenrecords, "character")
+  if (!is.logical(wide))
+    warning("'wide' should be of class logical")
+  if (!is.null(taxid) && !is.character(taxid))
+    warning("'taxid' should be of class character")
+  if (!is.null(taxon) && !is.character(taxon))
+    warning("'taxon' should be of class character")
+  if (!is.null(tax_rank) && !is.character(tax_rank))
+    warning("'tax_rank' should be of class character")
+  if (!is.null(tax_division) && !is.character(tax_division))
+    warning("'tax_division' should be of class character")
+  if (!is.null(parentid) && !is.character(parentid))
+    warning("'parentid' should be of class character")
+  if (!is.null(parentname) && !is.character(parentname))
+    warning("'parentname' should be of class character")
+  if (!is.null(taxonrep) && !is.character(taxonrep))
+    warning("'taxonrep' should be of class character")
+  if (!is.null(specimenrecords) && !is.character(specimenrecords))
+    warning("'specimenrecords' should be of class character")
   # get unique set of names
   uniqnms <-
     unique(c(lapply(x, function(z) z$taxonomicidentification), recursive = TRUE, use.names = FALSE))
@@ -160,9 +169,8 @@ bold_identify_parents.list <- function(x, wide = FALSE, taxid = NULL,
     }
   })
   # remove length zero elements
-  out <- bc(out)
-
-  # appply parent names to input data
+  out <- b_rm_empty(out)
+  # add parent names to input data
   lapply(x, function(z) {
     if (is.null(z)) return(NULL)
     if (wide) {
@@ -176,7 +184,7 @@ bold_identify_parents.list <- function(x, wide = FALSE, taxid = NULL,
       }))))
     }
     zsplit <- split(z, z$ID)
-    setrbind(
+    b_rbind(
       lapply(zsplit, function(w) {
         tmp <- out[names(out) %in% w$taxonomicidentification]
         if (length(tmp)) {
@@ -194,7 +202,7 @@ filt <- function(df, col, z) {
   if (NROW(df) == 0 || is.null(z)) {
     df
   } else {
-    mtch <- grep(tolower(z), tolower(df[, col]))
+    mtch <- grep(z, df[, col], ignore.case = TRUE)
     if (length(mtch)) {
       df[mtch, ]
     } else {

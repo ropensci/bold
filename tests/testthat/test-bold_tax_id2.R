@@ -2,7 +2,6 @@ context("bold_tax_id2")
 
 test_that("bold_tax_id2 returns the correct object (one ID)", {
   skip_on_cran()
-
   vcr::use_cassette("bold_tax_id2", {
     test <- bold_tax_id2(id = 88899)
   })
@@ -13,7 +12,6 @@ test_that("bold_tax_id2 returns the correct object (one ID)", {
   expect_equal(test$taxid, test$input)
   expect_equal(NROW(test), 1)
 })
-
 test_that("bold_tax_id2 returns the correct object (multiple IDs)", {
   skip_on_cran()
   vcr::use_cassette("bold_tax_id2", {
@@ -32,16 +30,13 @@ test_that("bold_tax_id2 returns the correct object (multiple IDs, but one NA)", 
   expect_equal(NROW(test), 3)
   expect_equal(test$taxid, test$input)
 })
-
 test_that("bold_tax_id2 returns the correct object (one ID, but NA)", {
-  skip_on_cran()
   test <- bold_tax_id2(id = NA)
   expect_is(test, "data.frame")
   expect_equal(NROW(test), 1)
   expect_length(test, 2)
   expect_equal(test$taxid, test$input)
 })
-
 test_that("bold_tax_id2 returns the correct object (response)", {
   skip_on_cran()
   vcr::use_cassette("bold_tax_id2", {
@@ -57,7 +52,6 @@ test_that("bold_tax_id2 returns the correct object (response)", {
   expect_is(test$warning, "character")
   expect_equal(test$warning, "")
 })
-
 test_that("bold_tax_id2 'dataTypes' param works as expected (stats)", {
   skip_on_cran()
   vcr::use_cassette("bold_tax_id2", {
@@ -66,7 +60,6 @@ test_that("bold_tax_id2 'dataTypes' param works as expected (stats)", {
   expect_is(test, "data.frame")
   expect_equal(NROW(test), 1)
 })
-
 test_that("bold_tax_id2 'dataTypes' param works as expected (stats without public marker seqs)", {
   skip_on_cran()
   vcr::use_cassette("bold_tax_id2", {
@@ -75,7 +68,6 @@ test_that("bold_tax_id2 'dataTypes' param works as expected (stats without publi
   expect_is(test, "data.frame")
   expect_equal(NROW(test), 1)
 })
-
 test_that("bold_tax_id2 'dataTypes' param works as expected (geo)", {
   skip_on_cran()
   vcr::use_cassette("bold_tax_id2", {
@@ -85,7 +77,6 @@ test_that("bold_tax_id2 'dataTypes' param works as expected (geo)", {
   expect_equal(NROW(test), 8)
   expect_named(test, c("input", "taxid", "country", "count"))
 })
-
 test_that("bold_tax_id2 'dataTypes' param works as expected (sequencinglabs)", {
   skip_on_cran()
   vcr::use_cassette("bold_tax_id2", {
@@ -95,7 +86,6 @@ test_that("bold_tax_id2 'dataTypes' param works as expected (sequencinglabs)", {
   expect_gt(NROW(test), 1)
   expect_named(test, c("input", "taxid", "sequencinglabs", "count"))
 })
-
 test_that("bold_tax_id2 'dataTypes' param works as expected (all)", {
   skip_on_cran()
   vcr::use_cassette("bold_tax_id2", {
@@ -108,7 +98,6 @@ test_that("bold_tax_id2 'dataTypes' param works as expected (all)", {
   expect_equal(NROW(test$basic), 1)
   expect_named(test, c("basic", "stats", "country", "images", "sequencinglabs", "depository", "thirdparty"))
 })
-
 test_that("bold_tax_id2 'dataTypes' param works as expected (basic & stats)", {
   skip_on_cran()
   vcr::use_cassette("bold_tax_id2", {
@@ -121,11 +110,10 @@ test_that("bold_tax_id2 'dataTypes' param works as expected (basic & stats)", {
   expect_is(attr(test, "param"), "list")
   expect_length(attr(test, "param"), 2)
 })
-
 test_that("bold_tax_id2 'dataTypes' param works as expected (basic & stats; as written for bold_tax_id)", {
   skip_on_cran()
   vcr::use_cassette("bold_tax_id2", {
-    test <- bold_tax_id2(id = 660837, dataTypes = c("basic,stats"))
+    test <- bold_tax_id2(id = 660837, dataTypes = "basic,stats")
   })
   expect_is(test, "list")
   expect_is(test[[1]], "data.frame")
@@ -134,18 +122,14 @@ test_that("bold_tax_id2 'dataTypes' param works as expected (basic & stats; as w
   expect_is(attr(test, "param"), "list")
   expect_length(attr(test, "param"), 2)
 })
-
-
 test_that("bold_tax_id2 'includeTree' param works as expected", {
   skip_on_cran()
-
   vcr::use_cassette("bold_tax_id2", {
     test <- bold_tax_id2(id = 88899, includeTree = TRUE)
   })
   expect_is(test, "data.frame")
   expect_equal(NROW(test), 5)
 })
-
 test_that("bold_tax_id2 'includeTree' param works as expected (with 2 dataTypes)", {
   skip_on_cran()
   vcr::use_cassette("bold_tax_id2", {
@@ -157,12 +141,10 @@ test_that("bold_tax_id2 'includeTree' param works as expected (with 2 dataTypes)
   expect_equal(NROW(test[[1]]), 5)
   expect_true(all(test[[1]][,"taxid"] %in% unique(test[[2]][,"taxid"])))
 })
-
 test_that("bold_tax_id2 fails well", {
-  skip_on_cran()
-  expect_error(bold_tax_id2(), "argument \"id\" is missing, with no default")
-  expect_error(bold_tax_id2(id = 88899, dataTypes = 5), "'dataTypes' must be of class character.")
-  expect_error(bold_tax_id2(id = 88899, dataTypes = "basics"), "\"basics\" is not one of the possible dataTypes.")
-  expect_error(bold_tax_id2(id = 88899, dataTypes = c("basics", "stat")), "'basics' and 'stat' are not one of the possible dataTypes.")
-  expect_error(bold_tax_id2(id = 88899, includeTree = 5), "'includeTree' must be of class logical.")
+  expect_error(bold_tax_id2(), "argument 'id' is missing, with no default")
+  expect_error(bold_tax_id2(id = 88899, dataTypes = 5), "'dataTypes' must be of class character")
+  expect_error(bold_tax_id2(id = 88899, dataTypes = "base"), "'base' is not a valid dataTypes")
+  expect_error(bold_tax_id2(id = 88899, dataTypes = c("base", "pic")), "'base' and 'pic' are not valid dataTypes")
+  expect_error(bold_tax_id2(id = 88899, includeTree = 5), "'includeTree' should be one of TRUE or FALSE")
 })

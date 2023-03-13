@@ -37,7 +37,7 @@ Picks either shortest or longest sequences, for a given grouping variable
 }
 \examples{
 \dontrun{
-res <- bold_seqspec(taxon='Osmia')
+res <- bold_seqspec(taxon = 'Osmia')
 maxx <- bold_filter(res, by = "species_name")
 minn <- bold_filter(res, by = "species_name", how = "min")
 

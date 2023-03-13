@@ -49,41 +49,47 @@ NULL
 #' }
 #'
 #' @export
-bold_tax_id <- function(id, dataTypes = 'basic', includeTree = FALSE,
+bold_tax_id <- function(id, dataTypes = "basic", includeTree = FALSE,
                         response = FALSE, ...) {
-  .Deprecated('bold_tax_id2')
+  .Deprecated("bold_tax_id2")
   #-- arguments check
-  # no need to do the call if id is NA
-  if (length(id) == 1 && is.na(id))
-    return(data.frame(input = NA, noresults = NA))
-  assert(dataTypes, "character")
-  assert(includeTree, "logical")
-  assert(id, c("character", "numeric", "integer"))
-  # corrects for the json typo in case the option is taken from a previous query
-  if (grepl("depositories", dataTypes)) dataTypes <- gsub("depositories", "depository", dataTypes)
-  #-- prep query params
-  params <- list(
-    dataTypes = paste(dataTypes, collapse = ","),
-    includeTree = tolower(includeTree)
-  )
-  #-- make URL
-  URL <- b_url("API_Tax/TaxonData")
-  #-- fetch data from the api
-  res <- lapply(`names<-`(id, id), function(x)
-    .get_response_dep(args = c(taxId = x, params), url = URL, ...))
-  if (response) {
-    res
+  if (missing(id)) stop("argument 'id' is missing, with no default")
+  if (!grepl("true|false", includeTree, ignore.case = TRUE))
+    warning("'includeTree' should be either TRUE or FALSE.")
+  if (!inherits(id, c("character", "numeric", "integer")))
+    warning("'id' should be of class character, numeric or integer.")
+  #-- make sure user have correct data types
+  dataTypes <- .check_dataTypes_dep(dataTypes)
+  if (!nzchar(dataTypes)) {
+    out <- data.frame(input = id, noresults = NA)
   } else {
-    out <- setrbind(mapply(FUN = .process_response_dep, x = res, y = id,
-                  z = includeTree, w = dataTypes, SIMPLIFY = FALSE))
-    if (NCOL(out) == 1) {
-      out$noresults <- NA
+    #-- prep query parameters
+    params <- list(dataTypes = dataTypes, includeTree = tolower(includeTree))
+    #-- make URL
+    URL <- b_url("API_Tax/TaxonData")
+    #-- fetch data from the api
+    res <- lapply(`names<-`(id, id), function(x) {
+      # no need to do the call if id is NA
+      if (is.na(x))
+        data.frame(input = NA, noresults = NA)
+      else
+        .get_response_dep(args = c(taxId = x, params), url = URL, ...)
+    })
+    if (response) {
+      out <- res
+    } else {
+      out <- b_rbind(mapply(FUN = .process_response_dep, x = res, y = id,
+                             MoreArgs = list(z = includeTree, w = dataTypes),
+                             SIMPLIFY = FALSE))
+      if (NCOL(out) == 1) {
+        out$noresults <- NA
+      }
     }
-    out
   }
+  out
 }
-
 .process_response_dep <- function(x, y, z, w){
+  if (is.data.frame(x)) return(x)
   tt <- rawToChar(x$content)
   out <- if (x$status_code > 202) "stop" else jsonlite::fromJSON(tt)
   if ( length(out) == 0 || identical(out[[1]], list()) || any(out == "stop") ) {
@@ -100,7 +106,7 @@ bold_tax_id <- function(id, dataTypes = 'basic', includeTree = FALSE,
     if (!is.null(names(out))) {
       df <- data.frame(out, stringsAsFactors = FALSE)
     } else {
-      df <- setrbind(lapply(out, data.frame, stringsAsFactors = FALSE))
+      df <- b_rbind(lapply(out, data.frame, stringsAsFactors = FALSE))
     }
     row.names(df) <- NULL
     if ("parentid" %in% names(df)) df <- df[order(df[,"parentid"]),]
@@ -108,11 +114,31 @@ bold_tax_id <- function(id, dataTypes = 'basic', includeTree = FALSE,
     data.frame(input = y, df, stringsAsFactors = FALSE)
   }
 }
-
 .get_response_dep <- function(args, url, ...){
   cli <- crul::HttpClient$new(url = url)
   out <- cli$get(query = args, ...)
   out$raise_for_status()
   stopifnot(out$headers$`content-type` == 'text/html; charset=utf-8')
   return(out)
+}
+.check_dataTypes_dep <- function(x){
+  x <- b_split(x, ",", fixed = TRUE, simplify = TRUE)
+  # corrects for the json typo in case the option is taken from a previous query
+  x[x == "depositories"] <- "depository"
+  if (length(x) > 1 && any(x == "all")) {
+    x <- "all"
+  } else {
+    wrongType <- !x %in% b_dataTypes
+    if (any(wrongType)) {
+      warning(b_ennum(x[wrongType], quote = TRUE),
+              if (sum(wrongType) > 1) " are not valid data types"
+              else " is not a valid data type",
+              if (!all(wrongType)) " and will be skipped." else ".",
+              "\nChoices are:",
+              b_ennum(b_dataTypes, "or", TRUE))
+      x <- x[!wrongType]
+    }
+    x <- paste(x, collapse = ",")
+  }
+  x
 }

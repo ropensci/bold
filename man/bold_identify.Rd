@@ -4,7 +4,13 @@
 \alias{bold_identify}
 \title{Search for matches to sequences against the BOLD COI database.}
 \usage{
-bold_identify(sequences, db = "COX1", response = FALSE, keepSeq = TRUE, ...)
+bold_identify(
+  sequences,
+  db = c("COX1", "COX1_SPECIES", "COX1_SPECIES_PUBLIC", "COX1_L640bp"),
+  response = FALSE,
+  keepSeq = TRUE,
+  ...
+)
 }
 \arguments{
 \item{sequences}{(character) A vector or list of sequences to identify.
