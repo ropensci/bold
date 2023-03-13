@@ -139,25 +139,21 @@ b_ennum <- function(x, join_word = "and", quote = FALSE) {
 }
 b_fix_taxonName <- function(x){
   # see issue #84
-  b_replace(
-    x,
-    # check if supposed to:
-    c(
+  # check if supposed to:
+  x <- b_replace(x,
       # be quoted; keep quoted text
       " ('[^']*)$",
+      # add closing quote
+      " $1\\\\'")
+  x <- b_replace(x,
       # be in parenthesis; keep parenthesis text
       " (\\([^\\(]*)$",
+      # add closing parenthesis
+      "$1)")
+  x <- b_replace(x,
       # end with a dot (there might be more cases, but haven't seen them yet)
-      "( sp(\\. nov)?$)"
-    ),
-    # add :
-    c(
-      # closing quote
-      " $1\\\\$2\\\\'",
-      # closing parenthesis
-      "$1$2)",
-      # end dot
-      "$1"
-    ),
-    vectorize_all = FALSE)
+      "( sp(\\. nov)?$)",
+      # add end dot
+      "$1")
+  x
 }
