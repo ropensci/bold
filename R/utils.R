@@ -144,16 +144,16 @@ b_fix_taxonName <- function(x){
       # be quoted; keep quoted text
       " ('[^']*)$",
       # add closing quote
-      " $1\\\\'")
+      " \\\\$1\\\\'")
   x <- b_replace(x,
       # be in parenthesis; keep parenthesis text
       " (\\([^\\(]*)$",
       # add closing parenthesis
-      "$1)")
+      " $1)")
   x <- b_replace(x,
       # end with a dot (there might be more cases, but haven't seen them yet)
       "( sp(\\. nov)?$)",
       # add end dot
-      "$1")
+      "$1.")
   x
 }
