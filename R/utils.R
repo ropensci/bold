@@ -1,5 +1,8 @@
 # -- API requests helpers
-b_url <- function(api) paste0('https://v4.boldsystems.org/index.php/', api)
+b_url <- function(api, query){
+  query <- paste(curl::curl_escape(names(query)), curl::curl_escape(query), sep = "=", collapse = "&")
+  paste0('https://v4.boldsystems.org/index.php/', api, "?", query)
+}
 b_pipe_params <- function(..., paramnames = ...names(), params = list(...)) {
   params <- b_rm_empty(params)
   if (!length(params))
@@ -18,6 +21,25 @@ b_GET <- function(query, api, check = FALSE,
                   contentType = 'text/html; charset=utf-8', ...) {
   cli <- crul::HttpClient$new(url = b_url(api))
   res <- cli$get(query = query, ...)
+  if (check) b_CHECK(res = res, contentType = contentType)
+  else res
+}
+b_GET <- function(query, api, check = FALSE,
+                  contentType = 'text/html; charset=utf-8', ...) {
+  cli <- list(
+    url = list(url = b_url(api, query), handle = curl::new_handle()),
+    method = "get",
+    options = {
+      if (...length()) {
+        list(httpget = TRUE, ...)[...names() %in% names(curl::curl_options())]
+      } else {
+        list(httpget = TRUE)
+      }
+    },
+    headers = list(`Accept-Encoding` = "gzip, deflate", 
+                   Accept = "application/json, text/xml, application/xml, */*")
+  )
+  res <- tryCatch(curl::curl_fetch_memory())
   if (check) b_CHECK(res = res, contentType = contentType)
   else res
 }
