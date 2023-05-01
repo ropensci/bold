@@ -74,7 +74,7 @@ bold_seqspec <- function(taxon = NULL, ids = NULL, bin = NULL, container = NULL,
       b_sepFasta(out, format = format)
   }
 }
-#' Seperate sequences (fasta) from `bold_seqspec` output.
+#' Separate sequences (fasta) from `bold_seqspec` output.
 #'
 #' @param x      (object) The output of a `bold_seqspec` call.
 #' @param format (character) The format used in the `bold_seqspec` call. One of 'tsv' (default) or 'xml'.

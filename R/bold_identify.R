@@ -19,7 +19,7 @@
 #'  lot of sequences - you are doing a separate query for each one, so it can
 #' take a long time - if you run into errors let us know.
 #'
-#' @section db parmeter options:
+#' @section db parameter options:
 #'
 #' - COX1 Every COI barcode record on BOLD with a minimum sequences
 #'  length of 500bp (warning: unvalidated library and includes records without

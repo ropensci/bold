@@ -47,7 +47,7 @@ parameter to search with one sequences per query. Remember this if you have a
 lot of sequences - you are doing a separate query for each one, so it can
 take a long time - if you run into errors let us know.
 }
-\section{db parmeter options}{
+\section{db parameter options}{
 
 \itemize{
 \item COX1 Every COI barcode record on BOLD with a minimum sequences
