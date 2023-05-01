@@ -1,3 +1,6 @@
+if (getRversion() >= "2.15.1") {
+  utils::globalVariables(c("nucleotides", ".I"))
+}
 #' Filter BOLD specimen + sequence data (output of bold_seqspec)
 #'
 #' Picks either shortest or longest sequences, for a given grouping variable
