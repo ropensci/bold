@@ -37,7 +37,8 @@
       "@type": "Person",
       "givenName": "Salix",
       "familyName": "Dubois",
-      "email": "salixdubois+bold@gmail.com"
+      "email": "salixdubois+bold@gmail.com",
+      "@id": "https://orcid.org/0009-0003-0183-8825"
     }
   ],
   "softwareSuggestions": [
