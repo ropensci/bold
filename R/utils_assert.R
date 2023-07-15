@@ -3,46 +3,62 @@ b_assert <- function(x,
                      name = NULL,
                      check.length = NULL) {
   if (!length(name)) {
-    name <- substitute(x)
+    name <- b_str2lang(x)
   }
-  msgLen <- if (length(check.length) && !isFALSE(check.length)) {
-      b_assert_length(x = x, len = check.length, name = name,
-                      stopOnFail = length(x) > 0)
-  } else {
-    NULL
-  }
-  msgClass <- if (length(x)) {
-    b_assert_class(x = x, what = what, name = name,
-                   is2nd = length(msgLen), stopOnFail = FALSE)
-  } else {
-    NULL
-  }
-  msg <- c(msgLen, msgClass)
-  if (length(msg)) {
+  checkL <- length(check.length) && !isFALSE(check.length)
+  checkC <- length(x) > 0
+  if (checkL | checkC) {
+    msg <- paste0(
+      if (checkL) {
+        b_assert_length(x = x, len = check.length, name = name,
+                        stopOnFail = checkC)
+        # why is `stopOnFail` TRUE when also checking class?
+      },
+      if (checkC) {
+        b_assert_class(x = x, what = what, name = name,
+                       is2nd = checkL, stopOnFail = FALSE)
+      }
+    )
     stop(msg, call. = FALSE)
   }
 }
 b_assert_class <- function(x, what, name, is2nd = FALSE, stopOnFail = TRUE) {
-  .fun <- if (stopOnFail) stop else paste0
-  if (!inherits(x = x, what = what)) {
-    if (!is2nd)
-      .fun("'", name, "' must be of class ", b_ennum(what, "or"))
-    else
-      .fun(" and of class ", b_ennum(what, "or"))
-  } else {
+  if (inherits(x = x, what = what)) {
     NULL
+  } else {
+    what <- b_ennum(what, "or")
+    msg <- if (!is2nd) {
+      paste0("'", name, "' must be of class ", what)
+    } else {
+      paste0(" and of class ", what)
+    }
+    if (stopOnFail) {
+      stop(msg)
+    } else {
+      msg
+    }
   }
 }
 b_assert_length <- function(x, len, name, stopOnFail = TRUE) {
-  len <- as.integer(len)
-  if (!is.na(len) && len >= 0) {
+  if (length(len) == 1L &&
+      inherits(len, c("logical", "integer", "numeric")) &&
+      !is.na(len) &&
+      !isFALSE(len)
+      ) {
+    NULL
+  } else {
+    if (isTRUE(len)) len <- 0L
+    name <- paste0("'", name, "'")
     .fun <- if (stopOnFail) stop else paste0
-    if (len == 0 && !length(x)) {
-      .fun("'", name, "' can't be empty")
-    } else if (len > 0 && length(x) != len) {
-      .fun("'", name, "' must be length ", len)
+    if (len == 0L && !length(x)) {
+      .fun(name, " can't be empty")
+    } else if (len > 0L && length(x) != len) {
+      .fun(name, "must be length ", len)
+    } else {
+      NULL
     }
   }
+
 }
 b_assert_logical <- function(x, name = NULL) {
   b_assert_length(x, len = 1L, name = name)

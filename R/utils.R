@@ -157,3 +157,6 @@ b_fix_taxonName <- function(x){
       "$1.")
   x
 }
+b_str2lang <- function(x){
+  as.character(as.expression(substitute(expr = x, env = parent.frame(1L))))
+}
