@@ -2,7 +2,7 @@
 % Please edit documentation in R/bold_seqspec.R
 \name{b_sepFasta}
 \alias{b_sepFasta}
-\title{Seperate sequences (fasta) from \code{bold_seqspec} output.}
+\title{Separate sequences (fasta) from \code{bold_seqspec} output.}
 \usage{
 b_sepFasta(x, format = "tsv")
 }
@@ -15,7 +15,7 @@ b_sepFasta(x, format = "tsv")
 A list of length two : the specimen data and the sequences list.
 }
 \description{
-Seperate sequences (fasta) from \code{bold_seqspec} output.
+Separate sequences (fasta) from \code{bold_seqspec} output.
 }
 \examples{
 \dontrun{

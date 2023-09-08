@@ -130,7 +130,7 @@ bold_read_trace <- function(x){
     else
       `names<-`(x, basename(x))
   }
-  lapply(trace_paths, \(trace_path) {
+  lapply(trace_paths, function(trace_path) {
     if (file.exists(trace_path)) {
       sangerseqR::readsangerseq(trace_path)
     } else {

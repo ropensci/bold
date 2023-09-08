@@ -10,7 +10,7 @@ bold 1.3.0
 
 * Similarly, the now deprecated `bold_identify_parents()` has new argument checks and will throw warnings to not affect existing workflows.
 
-* For `bold_tax_id2()` and `bold_tax_name()`, when querying multiple taxa, if one fails, the loop won't break and will instead throw the API error as a warning. The ouput object will also have 2 new attributes "errors" and "params" that will let you see what errors occured for with request and what parameters were use for the request.
+* For `bold_tax_id2()` and `bold_tax_name()`, when querying multiple taxa, if one fails, the loop won't break and will instead throw the API error as a warning. The output object will also have 2 new attributes "errors" and "params" that will let you see what errors occurred for with request and what parameters were use for the request.
 To make it easy to retrieve these attributes, 3 new functions have been created:
   * `bold_get_attr()` will return a list of the two attributes
   * `bold_get_errors()` will return a list of the errors

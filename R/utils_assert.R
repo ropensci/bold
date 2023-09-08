@@ -72,12 +72,14 @@ b_validate <- function(x, choices, name){
   }
 }
 b_get_db <- function(x){
-  x <- tolower(x)
-  if (b_detect(x, '^pub(lic)?$|_public$'))
+  opts <- list(case_insensitive = TRUE)
+  if (b_detect(x, '^COX[1I]$', opts_regex = opts))
+    "COX1"
+  else if (b_detect(x, '^pub(lic)?$|_public$', opts_regex = opts))
     "COX1_SPECIES_PUBLIC"
-  else if (b_detect(x, '^spe(cies)?$|_species$'))
+  else if (b_detect(x, '^spe(cies)?$|_species$', opts_regex = opts))
     "COX1_SPECIES"
-  else if (b_detect(x, '^(cox1_)?(l640)?bp$'))
+  else if (b_detect(x, '^(cox[1I]_)?(l640)?bp$', opts_regex = opts))
     "COX1_L640bp"
   else
     x

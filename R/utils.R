@@ -92,7 +92,7 @@ b_parse <- function(res, format, raise = TRUE, cleanData = FALSE, multiple = FAL
   }
 }
 b_cleanData <- function(x, emptyValue = NA){
-  col2clean <- vapply(x, \(x) {
+  col2clean <- vapply(x, function(x) {
     any(b_detect(x, "|", max_count = 1, fixed = TRUE), na.rm = TRUE)
   }, NA)
   col2clean <- which(col2clean, useNames = FALSE)
@@ -161,25 +161,21 @@ b_ennum <- function(x, join_word = "and", quote = FALSE) {
 }
 b_fix_taxonName <- function(x){
   # see issue #84
-  b_replace(
-    x,
-    # check if supposed to:
-    c(
-      # be quoted; keep quoted text
-      " ('[^']*)$",
-      # be in parenthesis; keep parenthesis text
-      " (\\([^\\(]*)$",
-      # end with a dot (there might be more cases, but haven't seen them yet)
-      "( sp(\\. nov)?$)"
-    ),
-    # add :
-    c(
-      # closing quote
-      " $1\\\\$2\\\\'",
-      # closing parenthesis
-      "$1$2)",
-      # end dot
-      "$1"
-    ),
-    vectorize_all = FALSE)
+  # check if supposed to:
+  x <- b_replace(x,
+                 # be quoted; keep quoted text
+                 " ('[^']*)$",
+                 # add closing quote
+                 " \\\\$1\\\\'")
+  x <- b_replace(x,
+                 # be in parenthesis; keep parenthesis text
+                 " (\\([^\\(]*)$",
+                 # add closing parenthesis
+                 " $1)")
+  x <- b_replace(x,
+                 # end with a dot (there might be more cases, but haven't seen them yet)
+                 "( sp(\\. nov)?$)",
+                 # add end dot
+                 "$1.")
+  x
 }

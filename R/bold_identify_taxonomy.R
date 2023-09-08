@@ -40,7 +40,7 @@ methods::setMethod(
   definition = function(x, taxOnly = TRUE) {
     b_assert_length(x, len = 0L, name = "x")
     taxOnly <- b_assert_logical(taxOnly, name = "taxOnly")
-    hasID <- vapply(x, \(x) "ID" %in% colnames(x), NA)
+    hasID <- vapply(x, function(x) "ID" %in% colnames(x), NA)
     if (all(!hasID)) {
       stop("no column 'ID' found in x")
     } else {

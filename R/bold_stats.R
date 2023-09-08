@@ -80,7 +80,7 @@ b_simplify_stats <- function(x, dataType) {
     n <- which(vapply(x, inherits, NA, "integer"))
     ov <- vapply(x[-n], `[[`, 0L, "count")
     ov <- as.data.frame(c(x[n],ov))
-    dd <- lapply(x[-n], \(x) {
+    dd <- lapply(x[-n], function(x) {
       y <- x$drill_down
       i <- 0
       while (!is.data.frame(y) && i < 5) {

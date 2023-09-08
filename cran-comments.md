@@ -7,21 +7,13 @@
 
 ## R CMD check results
 
-There was no error or warning, and one note :
-```
-❯ checking R code for possible problems ... NOTE
-  bold_filter: no visible binding for global variable 'nucleotides'
-  Undefined global functions or variables:
-    nucleotides
-```
+0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 
-This isn't a problem; this variable doesn't need to be defined in the global scope since it will be evaluated in the data.table's scope.
-
-Using mac-builder there was no error or warning and a second note :
+Using mac-builder there was no error or warning and a one note :
 ```
 Package suggested but not available for checking: ‘sangerseqR’
 ```
-This is also not a problem since it's only a suggested package and only used by one function.
+This isn't a problem since it's only a suggested package and only used by one function.
 
 ## Reverse dependencies
 
