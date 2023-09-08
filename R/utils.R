@@ -70,7 +70,7 @@ b_parse <- function(res, format, raise = TRUE, cleanData = FALSE, multiple = FAL
   }
 }
 b_cleanData <- function(x, emptyValue = NA){
-  col2clean <- vapply(x, \(x) {
+  col2clean <- vapply(x, function(x) {
     any(b_detect(x, "|", max_count = 1, fixed = TRUE), na.rm = TRUE)
   }, NA)
   col2clean <- which(col2clean, useNames = FALSE)

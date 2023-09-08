@@ -130,7 +130,7 @@ b_process_tax_id <- function(x, ids, types, tree) {
         out <- b_format_tax_id(out, ids = ids)
       } else {
         tmp <-
-          lapply(b_nameself(names(out)), \(id) b_format_tax_id(out[[id]], id))
+          lapply(b_nameself(names(out)), function(id) b_format_tax_id(out[[id]], id))
         out <-
           lapply(b_nameself(types), b_grp_dataTypes_tree, x = tmp)
         if ("basic" %in% names(out) &&
