@@ -43,5 +43,7 @@ test_that("bold_seq fails well", {
   expect_error(bold_specimens(geo = 'Costa Rica', timeout_ms = 2), "Timeout was reached")
 })
 
+# TODO: add test for 'Molgula manhattensis' (issue 104)
+
 # FIXME: The test wasn't doing that, removed it. Afaik, this function doesn't throw a warning for this.
 # test_that("Throws warning on call that takes forever including timeout in callopts", {})

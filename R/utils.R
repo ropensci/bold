@@ -96,6 +96,15 @@ b_read_xml <- function(x) {
 }
 b_read_tsv <- function(x, header = TRUE, sep = "\t",
                        cleanData = FALSE, ...) {
+  # -- fix for issue 104 ----------------------------------------
+  # wild '\n' characters in some fields
+  if (stringi::stri_detect_regex(x, "[^\r]\n[^\r]")) {
+    x_names <- stringi::stri_extract_first_regex(x, "^[^\r\n]+")
+    x_names <- stringi::stri_split_regex(x_names, "\t", simplify = TRUE)
+    pttrn <- paste0("(?<!", x_names[length(x_names)], "|\r)\n(?!=\r)")
+    x <- stringi::stri_replace_all_regex(x, pttrn, " ")   
+  }
+  # -------------------------------------------------------------
   x <- data.table::setDF(
     data.table::fread(
       text = x,
