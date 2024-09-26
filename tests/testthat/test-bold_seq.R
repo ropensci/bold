@@ -39,6 +39,7 @@ test_that("bold_seq returns the correct object (response)", {
 
 
 test_that("bold_seq fails well", {
+  skip_on_cran()
   expect_error(bold_seq(), "You must provide a non-empty value to at least one of")
   expect_error(bold_seq(taxon = ''), "You must provide a non-empty value to at least one of")
   expect_error(bold_seq(taxon = 5, geo = 1), "'taxon' and 'geo' must be of class character")

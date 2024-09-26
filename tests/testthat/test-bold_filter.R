@@ -1,6 +1,7 @@
 context("bold_filter")
 
 test_that("bold_filter works as expected", {
+  skip_on_cran()
   vcr::use_cassette("bold_seqspec", {
     test_data <- bold_seqspec(taxon = "Coelioxys")
   })
@@ -34,6 +35,7 @@ test_that("bold_filter works as expected", {
 })
 
 test_that("bold_filter returns fails well", {
+  skip_on_cran()
   expect_error(bold_filter(), "argument 'x' is missing")
   expect_error(bold_filter(x = 5, by = 1), "'x' must be of class data.frame or matrix")
   expect_error(bold_filter(x = mtcars, by = "foobar"),

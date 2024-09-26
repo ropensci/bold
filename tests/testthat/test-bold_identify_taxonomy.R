@@ -6,6 +6,7 @@ context("bold_identify_taxonomy")
 load("bold_identify_list.rda")
 
 test_that("bold_identify_taxonomy works as expected", {
+  skip_on_cran()
   vcr::use_cassette("bold_identify_taxonomy", {
     test <- bold_identify_taxonomy(bold_identify_list)
   })
@@ -19,6 +20,7 @@ test_that("bold_identify_taxonomy works as expected", {
 })
 
 test_that("bold_identify_taxonomy works as expected (taxOnly TRUE)", {
+  skip_on_cran()
   vcr::use_cassette("bold_identify_taxonomy", {
     test <<- bold_identify_taxonomy(bold_identify_list)
   })
@@ -32,6 +34,7 @@ test_that("bold_identify_taxonomy works as expected (taxOnly TRUE)", {
   expect_equal(length(unique(test[[1]]$ID)), length(test[[1]]$ID))
 })
 test_that("bold_identify_taxonomy works as expected (taxOnly FALSE)", {
+  skip_on_cran()
   vcr::use_cassette("bold_identify_taxonomy", {
     test <- bold_identify_taxonomy(bold_identify_list, taxOnly = FALSE)
   })
@@ -46,6 +49,7 @@ test_that("bold_identify_taxonomy works as expected (taxOnly FALSE)", {
 })
 
 test_that("bold_identify_taxonomy fails well", {
+  skip_on_cran()
   # x required
   expect_error(bold_identify_taxonomy(), "argument 'x' is missing")
   expect_error(bold_identify_taxonomy(list()), "'x' can't be empty")

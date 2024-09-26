@@ -64,6 +64,7 @@ test_that("bold_read_trace works properly", {
   expect_length(test_trace[[1]], 0)
 })
 test_that("bold_trace fails well", {
+  skip_on_cran()
   expect_error(bold_trace(), "You must provide a non-empty value to at least one of")
   expect_error(bold_trace(taxon = ''), "You must provide a non-empty value to at least one of")
   expect_error(bold_trace(taxon = 5, geo = 1), "'taxon' and 'geo' must be of class character")

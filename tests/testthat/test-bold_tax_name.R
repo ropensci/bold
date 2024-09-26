@@ -92,6 +92,7 @@ test_that("bold_tax_name works when  'name' containts single quotes", {
   expect_true(all(test$input == test$taxonrep, na.rm = TRUE))
 })
 test_that("bold_tax_name fails well", {
+  skip_on_cran()
   # name required
   expect_error(bold_tax_name(), "argument 'name' is missing, with no default")
   # catch wrong type param inputs

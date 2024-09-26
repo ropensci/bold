@@ -47,7 +47,8 @@ test_that("bold_identify works for XML that contains &", {
 })
 
 test_that("bold_identify skips the identification when the sequences has invalid characters or when the sequence is too short", {
-    test <- bold_identify(sequences = c(substr(sequences$seq1, 1, 50), gsub("N", "0", sequences$seq3)))
+  skip_on_cran()
+  test <- bold_identify(sequences = c(substr(sequences$seq1, 1, 50), gsub("N", "0", sequences$seq3)))
   expect_is(test, 'list')
   expect_true(all(is.na(test)))
   expect_length(attributes(test[[1]]), 2L)
@@ -56,6 +57,7 @@ test_that("bold_identify skips the identification when the sequences has invalid
 })
 
 test_that("bold_identify fails well", {
+  skip_on_cran()
   expect_error(bold_identify(),
     "argument 'sequences' is missing, with no default")
   expect_error(bold_identify(sequences = 1),

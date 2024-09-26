@@ -31,6 +31,7 @@ test_that("bold_tax_id2 returns the correct object (multiple IDs, but one NA)", 
   expect_equal(test$taxid, test$input)
 })
 test_that("bold_tax_id2 returns the correct object (one ID, but NA)", {
+  skip_on_cran()
   test <- bold_tax_id2(id = NA)
   expect_is(test, "data.frame")
   expect_equal(NROW(test), 1)
@@ -142,6 +143,7 @@ test_that("bold_tax_id2 'includeTree' param works as expected (with 2 dataTypes)
   expect_true(all(test[[1]][,"taxid"] %in% unique(test[[2]][,"taxid"])))
 })
 test_that("bold_tax_id2 fails well", {
+  skip_on_cran()
   expect_error(bold_tax_id2(), "argument 'id' is missing, with no default")
   expect_error(bold_tax_id2(id = 88899, dataTypes = 5), "'dataTypes' must be of class character")
   expect_error(bold_tax_id2(id = 88899, dataTypes = "base"), "'base' is not a valid dataTypes")

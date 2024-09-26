@@ -48,6 +48,7 @@ test_that("bold_get_* return the correct objects", {
   expect_is(test$tax_rank, "NULL")
 })
 test_that("bold_get_* fails well", {
+  skip_on_cran()
   expect_error(bold_get_attr(), "argument 'x' is missing, with no default")
   expect_error(bold_get_errors(), "argument 'x' is missing, with no default")
   expect_error(bold_get_params(), "argument 'x' is missing, with no default")
