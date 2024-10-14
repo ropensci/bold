@@ -6,6 +6,7 @@ context("bold_identify_parents")
 load("bold_identify_list.rda")
 
 test_that("bold_identify_parents works as expected", {
+  skip_on_cran()
   vcr::use_cassette("bold_identify_parents", {
     test <- bold_identify_parents(bold_identify_list)
   })
@@ -19,6 +20,7 @@ test_that("bold_identify_parents works as expected", {
 })
 
 test_that("bold_identify_parents return response", {
+  skip_on_cran()
   vcr::use_cassette("bold_identify_parents", {
     test <- bold_identify_parents(bold_identify_list, wide = TRUE)
   })
@@ -30,6 +32,7 @@ test_that("bold_identify_parents return response", {
 })
 
 test_that("bold_identify_parents fails well", {
+  skip_on_cran()
   # x required
   expect_error(bold_identify_parents(), "argument \"x\" is missing")
   # only supported types

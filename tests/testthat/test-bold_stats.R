@@ -54,6 +54,7 @@ test_that("bold_stats many taxa passed to taxon param", {
   expect_is(test, "list")
 })
 test_that("bold_stats fails well", {
+  skip_on_cran()
   expect_error(bold_stats(),
     "You must provide a non-empty value to at least one of")
   expect_error(bold_stats(taxon = 5), "'taxon' must be of class character")

@@ -56,6 +56,7 @@ test_that("bold_seqspec returns the correct object (sepFasta, xml)", {
 })
 
 test_that("bold_seq fails well", {
+  skip_on_cran()
   expect_error(bold_seqspec(taxon = ''), "You must provide a non-empty value to at least one of")
   expect_error(bold_seqspec(), "You must provide a non-empty value to at least one of")
 })

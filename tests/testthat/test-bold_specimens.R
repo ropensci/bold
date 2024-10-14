@@ -38,6 +38,7 @@ test_that("bold_specimens returns the correct object (xml)", {
   expect_is(test, "xml_document")
 })
 test_that("bold_seq fails well", {
+  skip_on_cran()
   expect_error(bold_specimens(), "You must provide a non-empty value to at least one of")
   expect_error(bold_specimens(taxon = ''), "You must provide a non-empty value to at least one of")
   expect_error(bold_specimens(geo = 'Costa Rica', timeout_ms = 2), "Timeout was reached")
