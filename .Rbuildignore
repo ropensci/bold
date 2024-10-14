@@ -11,7 +11,5 @@ codemeta.json
 revdep/
 vignettes/
 LICENSE.md
-data-raw/
-/R/new_feature/
 ^.*\.Rproj$
 ^\.Rproj\.user$
