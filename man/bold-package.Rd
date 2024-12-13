@@ -42,8 +42,8 @@ quite long and would make a data frame unwieldy).
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://docs.ropensci.org/bold/ (documentation)}
-  \item \url{https://github.com/ropensci/bold (source)}
+  \item \url{https://docs.ropensci.org/bold/}
+  \item \url{https://github.com/ropensci/bold}
   \item Report bugs at \url{https://github.com/ropensci/bold/issues}
 }
 

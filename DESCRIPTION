@@ -25,12 +25,12 @@ Imports:
     data.table,
     methods
 Description: A programmatic interface to the Web Service methods provided by
-    Bold Systems (<http://www.boldsystems.org/>) for genetic 'barcode' data.
+    Bold Systems (<https://www.boldsystems.org/>) for genetic 'barcode' data.
     Functions include methods for searching by sequences by taxonomic names,
     ids, collectors, and institutions; as well as a function for searching
     for specimens, and downloading trace files.
 License: MIT + file LICENSE
-URL: https://docs.ropensci.org/bold/ (documentation), https://github.com/ropensci/bold (source)
+URL: https://docs.ropensci.org/bold/, https://github.com/ropensci/bold
 BugReports: https://github.com/ropensci/bold/issues
 LazyData: yes
 Encoding: UTF-8
