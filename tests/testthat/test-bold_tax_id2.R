@@ -1,7 +1,6 @@
 context("bold_tax_id2")
 
-if (!interactive() &&
-    !isTRUE(as.logical(Sys.getenv("NOT_CRAN", "false")))) {
+if (!(!interactive() && !identical(Sys.getenv("NOT_CRAN"), "true")))  {
   test_that("bold_tax_id2 returns the correct object (one ID)", {
     vcr::use_cassette("bold_tax_id2", {
       test <- bold_tax_id2(id = 88899)
@@ -13,6 +12,7 @@ if (!interactive() &&
     expect_equal(test$taxid, test$input)
     expect_equal(NROW(test), 1)
   })
+  
   test_that("bold_tax_id2 returns the correct object (multiple IDs)", {
     vcr::use_cassette("bold_tax_id2", {
       test <- bold_tax_id2(id = c(88899, 125295))
@@ -21,6 +21,7 @@ if (!interactive() &&
     expect_equal(NROW(test), 2)
     expect_equal(test$taxid, test$input)
   })
+  
   test_that("bold_tax_id2 returns the correct object (multiple IDs, but one NA)",
             {
               vcr::use_cassette("bold_tax_id2", {
@@ -30,6 +31,7 @@ if (!interactive() &&
               expect_equal(NROW(test), 3)
               expect_equal(test$taxid, test$input)
             })
+  
   test_that("bold_tax_id2 returns the correct object (one ID, but NA)", {
     test <- bold_tax_id2(id = NA)
     expect_is(test, "data.frame")
@@ -37,6 +39,7 @@ if (!interactive() &&
     expect_length(test, 2)
     expect_equal(test$taxid, test$input)
   })
+  
   test_that("bold_tax_id2 returns the correct object (response)", {
     vcr::use_cassette("bold_tax_id2", {
       test <- bold_tax_id2(id = 88899, response = TRUE)
@@ -52,6 +55,7 @@ if (!interactive() &&
     expect_is(test$warning, "character")
     expect_equal(test$warning, "")
   })
+  
   test_that("bold_tax_id2 'dataTypes' param works as expected (stats)", {
     vcr::use_cassette("bold_tax_id2", {
       test <- bold_tax_id2(id = 88899, dataTypes = "stats")
@@ -59,6 +63,7 @@ if (!interactive() &&
     expect_is(test, "data.frame")
     expect_equal(NROW(test), 1)
   })
+  
   test_that(
     "bold_tax_id2 'dataTypes' param works as expected (stats without public marker seqs)",
     {
@@ -69,6 +74,7 @@ if (!interactive() &&
       expect_equal(NROW(test), 1)
     }
   )
+  
   test_that("bold_tax_id2 'dataTypes' param works as expected (geo)", {
     vcr::use_cassette("bold_tax_id2", {
       test <- bold_tax_id2(id = 88899, dataTypes = "geo")
@@ -77,6 +83,7 @@ if (!interactive() &&
     expect_equal(NROW(test), 8)
     expect_named(test, c("input", "taxid", "country", "count"))
   })
+  
   test_that("bold_tax_id2 'dataTypes' param works as expected (sequencinglabs)",
             {
               vcr::use_cassette("bold_tax_id2", {
@@ -86,6 +93,7 @@ if (!interactive() &&
               expect_gt(NROW(test), 1)
               expect_named(test, c("input", "taxid", "sequencinglabs", "count"))
             })
+  
   test_that("bold_tax_id2 'dataTypes' param works as expected (all)", {
     vcr::use_cassette("bold_tax_id2", {
       test <- bold_tax_id2(id = 88899, dataTypes = "all")
@@ -108,6 +116,7 @@ if (!interactive() &&
       )
     )
   })
+  
   test_that("bold_tax_id2 'dataTypes' param works as expected (basic & stats)",
             {
               vcr::use_cassette("bold_tax_id2", {
@@ -120,6 +129,7 @@ if (!interactive() &&
               expect_is(attr(test, "param"), "list")
               expect_length(attr(test, "param"), 2)
             })
+  
   test_that(
     "bold_tax_id2 'dataTypes' param works as expected (basic & stats; as written for bold_tax_id)",
     {
@@ -134,6 +144,7 @@ if (!interactive() &&
       expect_length(attr(test, "param"), 2)
     }
   )
+  
   test_that("bold_tax_id2 'includeTree' param works as expected", {
     vcr::use_cassette("bold_tax_id2", {
       test <- bold_tax_id2(id = 88899, includeTree = TRUE)
@@ -141,6 +152,7 @@ if (!interactive() &&
     expect_is(test, "data.frame")
     expect_equal(NROW(test), 5)
   })
+  
   test_that("bold_tax_id2 'includeTree' param works as expected (with 2 dataTypes)",
             {
               vcr::use_cassette("bold_tax_id2", {
@@ -156,6 +168,7 @@ if (!interactive() &&
               expect_equal(NROW(test[[1]]), 5)
               expect_true(all(test[[1]][, "taxid"] %in% unique(test[[2]][, "taxid"])))
             })
+  
   test_that("bold_tax_id2 fails well", {
     expect_error(bold_tax_id2(), "argument 'id' is missing, with no default")
     expect_error(bold_tax_id2(id = 88899, dataTypes = 5),

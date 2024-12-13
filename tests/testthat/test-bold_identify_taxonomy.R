@@ -1,7 +1,6 @@
 context("bold_identify_taxonomy")
 
-if (!interactive() &&
-    !isTRUE(as.logical(Sys.getenv("NOT_CRAN", "false")))) {
+if (!(!interactive() && !identical(Sys.getenv("NOT_CRAN"), "true")))  {
   # bold_identify_list <- bold_identify(sequences = sequences$seq2)
   # save(bold_identify_list, file = "tests/testthat/bold_identify_list.rda")
   # load("tests/testthat/bold_identify_list.rda")

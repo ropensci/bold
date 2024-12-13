@@ -1,7 +1,6 @@
 context("bold_identify")
 
-if (!interactive() &&
-    !isTRUE(as.logical(Sys.getenv("NOT_CRAN", "false")))) {
+if (!(!interactive() && !identical(Sys.getenv("NOT_CRAN"), "true")))  {
   test_that("bold_identify returns the correct object", {
     vcr::use_cassette("bold_identify", {
       test <- bold_identify(sequences = sequences$seq1)

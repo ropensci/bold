@@ -1,7 +1,6 @@
 context("bold_tax_name")
 
-if (!interactive() &&
-    !isTRUE(as.logical(Sys.getenv("NOT_CRAN", "false")))) {
+if (!(!interactive() && !identical(Sys.getenv("NOT_CRAN"), "true")))  {
   test_that("bold_tax_name returns the correct object", {
     vcr::use_cassette("bold_tax_name", {
       test <- bold_tax_name(name = "Diplura")

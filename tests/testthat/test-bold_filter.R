@@ -1,9 +1,7 @@
 context("bold_filter")
 
-if (!interactive() &&
-    !isTRUE(as.logical(Sys.getenv("NOT_CRAN", "false")))) {
+if (!(!interactive() && !identical(Sys.getenv("NOT_CRAN"), "true"))) {
   test_that("bold_filter works as expected", {
-    skip_on_cran()
     vcr::use_cassette("bold_seqspec", {
       test_data <- bold_seqspec(taxon = "Coelioxys")
     })
@@ -35,6 +33,7 @@ if (!interactive() &&
     new_lens <- nchar(test[test$species_name == taxon, "nucleotides", drop = TRUE])
     expect_equal(new_lens, min(o_lens))
   })
+  
   test_that("bold_filter returns fails well", {
     expect_error(bold_filter(), "argument 'x' is missing")
     expect_error(bold_filter(x = 5, by = 1),

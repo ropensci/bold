@@ -1,7 +1,6 @@
 context("bold_stats")
 
-if (!interactive() &&
-    !isTRUE(as.logical(Sys.getenv("NOT_CRAN", "false")))) {
+if (!(!interactive() && !identical(Sys.getenv("NOT_CRAN"), "true")))  {
   test_that("bold_stats returns the correct object", {
     vcr::use_cassette("bold_stats", {
       test <- bold_stats(taxon = "Coelioxys")

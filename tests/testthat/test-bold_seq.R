@@ -1,7 +1,6 @@
 context("bold_seq")
 
-if (!interactive() &&
-    !isTRUE(as.logical(Sys.getenv("NOT_CRAN", "false")))) {
+if (!(!interactive() && !identical(Sys.getenv("NOT_CRAN"), "true")))  {
   test_that("bold_seq returns the correct object", {
     vcr::use_cassette("bold_seq", {
       test <- bold_seq(taxon = 'Coelioxys')

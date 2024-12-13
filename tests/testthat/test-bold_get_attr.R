@@ -1,7 +1,6 @@
 context("bold_get_attr")
 
-if (!interactive() &&
-    !isTRUE(as.logical(Sys.getenv("NOT_CRAN", "false")))) {
+if (!(!interactive() && !identical(Sys.getenv("NOT_CRAN"), "true")))  {
   test_that("bold_get_* return the correct objects from bold_tax_id2", {
     vcr::use_cassette("bold_tax_id2", {
       test_id <- bold_tax_id2(id = c(88899, NA))
