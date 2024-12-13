@@ -12,8 +12,8 @@ bold: A programmatic interface to the Barcode of Life data
 
 
 This package gives you access to data from BOLD System
-http://www.boldsystems.org/ via their API
-(http://v4.boldsystems.org/index.php/api_home)
+https://www.boldsystems.org/ via their API
+(https://v4.boldsystems.org/index.php/api_home)
 }
 
 \section{Functions}{
@@ -39,3 +39,21 @@ tsv data, while for sequence data you get back a list (b/c sequences are
 quite long and would make a data frame unwieldy).
 }
 
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://docs.ropensci.org/bold/ (documentation)}
+  \item \url{https://github.com/ropensci/bold (source)}
+  \item Report bugs at \url{https://github.com/ropensci/bold/issues}
+}
+
+}
+\author{
+\strong{Maintainer}: Salix Dubois \email{salixdubois+bold@gmail.com} (\href{https://orcid.org/0009-0003-0183-8825}{ORCID})
+
+Authors:
+\itemize{
+  \item Scott Chamberlain \email{myrmecocystus@gmail.com} (\href{https://orcid.org/0000-0003-1444-9135}{ORCID})
+}
+
+}

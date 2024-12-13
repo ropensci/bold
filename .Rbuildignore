@@ -13,3 +13,4 @@ vignettes/
 LICENSE.md
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^tests/
