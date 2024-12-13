@@ -1,5 +1,5 @@
 Package: bold
-Version: 1.4.0
+Version: 1.4.1
 Title: Interface to Bold Systems API
 Authors@R: c(person("Salix", "Dubois", role = c("aut", "cre"), 
                     email = "salixdubois+bold@gmail.com",
