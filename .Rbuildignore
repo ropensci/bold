@@ -13,4 +13,5 @@ vignettes/
 LICENSE.md
 ^.*\.Rproj$
 ^\.Rproj\.user$
-^tests/
+^tests/fixtures
+^tests/bold_trace_files
