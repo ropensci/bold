@@ -6,7 +6,7 @@ http_interactions:
       encoding: ''
       string: ''
     headers:
-      User-Agent: libcurl/7.64.1 r-curl/4.3.3 crul/1.3
+      User-Agent: libcurl/8.3.0 r-curl/5.2.3 crul/1.5.0
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
   response:
@@ -17,7 +17,7 @@ http_interactions:
     headers:
       status: HTTP/1.1 200 OK
       server: nginx
-      date: Tue, 28 Feb 2023 00:15:06 GMT
+      date: Fri, 13 Dec 2024 21:46:44 GMT
       content-type: application/x-tar
       transfer-encoding: chunked
       connection: keep-alive
@@ -25,11 +25,11 @@ http_interactions:
       content-disposition: attachment; filename="trace_files.tar
       set-cookie: https=on;Path=/;Max-Age=3600;httponly;SameSite=Lax
     body:
-      encoding: UTF-8
+      encoding: ''
       file: yes
-      string: D:\02_rOpenSci\bold\tests\testthat\bold_trace_files/bold_trace_files.tar
-  recorded_at: 2023-02-28 00:15:09 GMT
-  recorded_with: vcr/1.0.2, webmockr/0.8.0
+      string: D:\02_rOpenSci\bold\tests\bold_trace_files/bold_trace_files.tar
+  recorded_at: 2024-12-13 21:46:47 GMT
+  recorded_with: vcr/1.6.0, webmockr/1.0.0
 - request:
     method: get
     uri: https://v4.boldsystems.org/index.php/API_Public/trace?ids=ACRJP618-11%7CACRJP619-11
@@ -37,7 +37,7 @@ http_interactions:
       encoding: ''
       string: ''
     headers:
-      User-Agent: libcurl/7.64.1 r-curl/4.3.3 crul/1.3
+      User-Agent: libcurl/8.3.0 r-curl/5.2.3 crul/1.5.0
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
   response:
@@ -48,7 +48,7 @@ http_interactions:
     headers:
       status: HTTP/1.1 200 OK
       server: nginx
-      date: Tue, 28 Feb 2023 00:15:08 GMT
+      date: Fri, 13 Dec 2024 21:46:46 GMT
       content-type: application/x-tar
       transfer-encoding: chunked
       connection: keep-alive
@@ -56,8 +56,8 @@ http_interactions:
       content-disposition: attachment; filename="trace_files.tar
       set-cookie: https=on;Path=/;Max-Age=3600;httponly;SameSite=Lax
     body:
-      encoding: UTF-8
+      encoding: ''
       file: yes
-      string: D:\02_rOpenSci\bold\tests\testthat\bold_trace_files/bold_trace_files.tar
-  recorded_at: 2023-02-28 00:15:09 GMT
-  recorded_with: vcr/1.0.2, webmockr/0.8.0
+      string: D:\02_rOpenSci\bold\tests\bold_trace_files/bold_trace_files.tar
+  recorded_at: 2024-12-13 21:46:47 GMT
+  recorded_with: vcr/1.6.0, webmockr/1.0.0

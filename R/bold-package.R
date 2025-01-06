@@ -3,8 +3,8 @@
 #' @section About:
 #'
 #' This package gives you access to data from BOLD System
-#' http://www.boldsystems.org/ via their API
-#' (http://v4.boldsystems.org/index.php/api_home)
+#' https://www.boldsystems.org/ via their API
+#' (https://v4.boldsystems.org/index.php/api_home)
 #'
 #' @section Functions:
 #'
@@ -32,10 +32,9 @@
 #' @importFrom methods setGeneric setMethod
 #' @import data.table
 #' @import stringi
-#' @docType package
 #' @name bold-package
 #' @aliases bold
-NULL
+"_PACKAGE"
 
 #' List of 3 nucleotide sequences to use in examples for the
 #' \code{\link{bold_identify}} function

@@ -11,7 +11,7 @@ codemeta.json
 revdep/
 vignettes/
 LICENSE.md
-data-raw/
-/R/new_feature/
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^tests/fixtures
+^tests/bold_trace_files
